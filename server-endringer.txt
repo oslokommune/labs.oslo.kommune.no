@@ -1,0 +1,10 @@
+Ting som er gjort siden sist
+
+- Lagt til i /etc/hosts
+127.0.0.1 local.labs.oslo.kommune.no
+127.0.0.1 local.cms.developer.oslo.kommune.no
+
+- Lagt til to userstores, ett for labs og ett for devcms
+
+- Endret config-fila com.enonic.xp.web.vhost.cfg slik at den støtter alle de riktige domenene
+
