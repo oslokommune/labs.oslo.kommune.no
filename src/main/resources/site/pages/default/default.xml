@@ -1,0 +1,6 @@
+<page>
+    <display-name>Default page</display-name>
+    <regions>
+        <region name="main"/>
+    </regions>
+</page>

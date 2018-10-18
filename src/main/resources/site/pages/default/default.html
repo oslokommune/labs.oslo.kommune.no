@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+</head>
+
+<body data-portal-component-type="page">
+    <div data-portal-component-type="region" data-portal-region="main">
+        <div data-th-each="component : ${main.components}" data-th-remove="tag">
+            <div data-portal-component="${component.path}" data-th-remove="tag"></div>
+        </div>
+    </div>
+</body>
+
+</html>
