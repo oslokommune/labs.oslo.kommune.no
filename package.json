@@ -1,0 +1,42 @@
+{
+  "name": "labs.oslo.kommune.no",
+  "version": "0.0.1",
+  "description": "Frontend and assets build script",
+  "main": "index.js",
+  "config": {
+    "srccss": "./src/main/frontend/styles/main.scss",
+    "destcss": "./src/main/resources/assets/styles/main.css",
+    "destcssdir": "./src/main/resources/assets/styles/",
+    "destcssmin": "./src/main/resources/assets/styles/main.min.css"
+  },
+  "scripts": {
+    "clean": "rimraf $npm_package_config_destcss",
+    "cleandir": "rimraf $npm_package_config_destcssdir/*",
+    "compile": "node-sass --output-style=expanded --source-map=true $npm_package_config_srccss $npm_package_config_destcss",
+    "prefix": "postcss $npm_package_config_destcss --use=autoprefixer --map=false --output=$npm_package_config_destcss",
+    "minify": "cleancss --level=1 --source-map --source-map-inline-sources --output $npm_package_config_destcssmin $npm_package_config_destcss",
+    "dev": "npm run compile -- --watch",
+    "build": "npm run clean && npm run compile && npm run prefix && npm run minify"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslokommune/labs.oslo.kommune.no.git"
+  },
+  "keywords": [],
+  "author": "Origo labs",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oslokommune/labs.oslo.kommune.no/issues"
+  },
+  "homepage": "https://github.com/oslokommune/labs.oslo.kommune.no#readme",
+  "devDependencies": {
+    "autoprefixer": "^9.2.1",
+    "clean-css-cli": "^4.2.1",
+    "node-sass": "^4.9.4",
+    "postcss-cli": "^6.0.1",
+    "rimraf": "^2.6.2"
+  }
+}

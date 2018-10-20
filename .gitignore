@@ -95,3 +95,9 @@ crashlytics-build.properties
 ### Sass ###
 .sass-cache
 *.css.map
+
+### NPM ###
+/node_modules
+
+### labs.oslo.kommune.no ###
+#src/main/resources/assets/**/*
