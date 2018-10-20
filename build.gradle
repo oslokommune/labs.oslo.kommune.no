@@ -38,7 +38,7 @@ repositories {
     xp.enonicRepo()
 }
 
-task sassy(type: NpmTask, dependsOn: 'npmInstall') {
+task webpack(type: NpmTask, dependsOn: 'npmInstall') {
     if (project.hasProperty( 'watch' )) {
         args = ['run', 'dev']
     } else {
@@ -46,4 +46,4 @@ task sassy(type: NpmTask, dependsOn: 'npmInstall') {
     }
 }
 
-jar.dependsOn += sassy
+jar.dependsOn += webpack

@@ -1,3 +1,10 @@
 @import "fonts.scss";
 
-body {color:#222;}
+body {
+  color:#222;
+}
+
+::placeholder {
+  color: #000;
+}
+
