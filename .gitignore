@@ -100,4 +100,4 @@ crashlytics-build.properties
 /node_modules
 
 ### labs.oslo.kommune.no ###
-#src/main/resources/assets/**/*
+src/main/resources/assets/**/*
