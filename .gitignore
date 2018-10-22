@@ -99,5 +99,9 @@ crashlytics-build.properties
 ### NPM ###
 /node_modules
 
+### Various stuff the IDEs drag in ###
+.classpath
+.settings
+
 ### labs.oslo.kommune.no ###
 src/main/resources/assets/**/*
