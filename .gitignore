@@ -102,6 +102,7 @@ crashlytics-build.properties
 ### Various stuff the IDEs drag in ###
 .classpath
 .settings
+.vscode
 
 ### labs.oslo.kommune.no ###
 src/main/resources/assets/**/*
