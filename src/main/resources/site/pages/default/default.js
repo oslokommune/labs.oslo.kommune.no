@@ -9,8 +9,7 @@ exports.get = function (req) {
 
     model.main = content.page.regions.main;
 
-    var serverName = util.getServerName();
-    log.info(serverName);
+    var serverName = util.getServerName().toLowerCase();
     var isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test';
     var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css';
     var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js';
