@@ -1,0 +1,20 @@
+<part>
+    <display-name i18n="parts.genericText" />
+    <config>
+        <input name="preHeading" type="TextLine">
+            <label i18n="txt.preHeading" />
+        </input>
+        <input name="heading" type="TextLine">
+            <label i18n="txt.heading" />
+        </input>
+        <input name="subHeading" type="TextLine">
+            <label i18n="txt.subHeading" />
+        </input>
+        <input name="lead" type="TextArea">
+            <label i18n="parts.genericText.lead" />
+        </input>
+        <input name="body" type="HtmlArea">
+            <label i18n="parts.genericText.body" />
+        </input>
+    </config>
+</part>
