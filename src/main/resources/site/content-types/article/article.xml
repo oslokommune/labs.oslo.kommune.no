@@ -2,15 +2,18 @@
   <display-name i18n="ct.article">Article</display-name>
   <super-type>base:structured</super-type>
   <form>
-		<item-set name="content">
+		<item-set name="contentBlocks">
 			<label i18n="ct.article.ctb">Content block</label>
 			<items>
 				<option-set name="ctbSettings">
 					<label i18n="ct.article.ctbSettings">Settings for content block</label>
 					<occurrences minimum="0" maximum="1"/>
-					<options minimum="0" maximum="0">
-						<option name="width">
+					<options minimum="0" maximum="10">
+						<option name="fullWidth">
 							<label i18n="ct.article.ctbFullWidth">Full width</label>
+						</option>
+						<option name="bgFill">
+							<label i18n="ct.article.ctbBgFill">Background fill</label>
 						</option>
 					</options>
 				</option-set>
