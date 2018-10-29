@@ -16,7 +16,11 @@ exports.get = function (req) {
     }
 
     model.live = req.mode == 'live';
-    model.hasContent = model.hasOwnProperty('heading') || model.hasOwnProperty('subHeading') || model.hasOwnProperty('lead') || model.hasOwnProperty('body');
+    model.hasContent = model.hasOwnProperty('preHeading') 
+        || model.hasOwnProperty('heading') 
+        || model.hasOwnProperty('subHeading') 
+        || model.hasOwnProperty('lead') 
+        || model.hasOwnProperty('body');
 
     var view = resolve('./generic-text.html');
     var body = thymeleaf.render(view, model);
