@@ -1,5 +1,5 @@
 <page>
-    <display-name i18n="pages.default"/>
+    <display-name i18n="pages.default">Default page</display-name>
     <regions>
         <region name="main"/>
     </regions>
