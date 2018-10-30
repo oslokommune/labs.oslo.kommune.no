@@ -3,6 +3,7 @@
   <super-type>base:structured</super-type>
   <form>
 
+		<!-- Authors -->
 		<input name="authors" type="ContentSelector">
 				<label i18n="ct.article.authors">Authors</label>
 				<occurrences minimum="0" maximum="0"/>
@@ -13,9 +14,21 @@
 				</config>
 		</input>
 
+		<!-- Main image -->
+		<input name="mainImage" type="ImageSelector">
+			<label i18n="ct.article.mainImage">Main image</label>
+			<occurrences minimum="0" maximum="1"/>
+			<config>
+				<allowPath>./*</allowPath>
+			</config>
+		</input>
+
+		<!-- Content Blocks -->
 		<item-set name="contentBlocks">
 			<label i18n="ct.article.ctb">Content block</label>
 			<items>
+
+				<!-- Settings for content block -->
 				<option-set name="ctbSettings">
 					<label i18n="ct.article.ctbSettings">Settings for content block</label>
 					<occurrences minimum="0" maximum="1"/>
@@ -28,10 +41,14 @@
 						</option>
 					</options>
 				</option-set>
+
+				<!-- Content block types -->
 				<option-set name="ctb">
 					<label i18n="ct.article.ctbType">Choose content block type</label>
 					<occurrences minimum="1" maximum="1"/>
 					<options minimum="1" maximum="1">
+
+						<!-- Text block -->
 						<option name="ctbText">
 							<label i18n="ct.article.ctbText">Text block</label>
 							<items>
@@ -45,6 +62,8 @@
 								</input>
 							</items>
 						</option>
+
+						<!-- Text block with hanging Quote box -->
 						<option name="ctbTextQuote">
 							<label i18n="ct.article.ctbTextQuote">Text block with quote box</label>
 							<items>
@@ -79,6 +98,8 @@
 								</input>
 							</items>
 						</option>
+
+						<!-- Map block -->
 						<option name="ctbMap">
 							<label i18n="ct.article.ctbMap">Map block</label>
 							<items>
@@ -101,6 +122,8 @@
 								</input>
 							</items>
 						</option>
+
+						<!-- Quote block -->
 						<option name="ctbQuote">
 							<label i18n="ct.article.ctbQuote">Quote block</label>
 							<items>
@@ -127,6 +150,7 @@
 								</input>
 							</items>
 						</option>
+
 					</options>
 				</option-set>
 			</items>
