@@ -1,0 +1,21 @@
+<header class="hero is-large">
+	<img data-th-src="*{image.placeholderSrc}"
+	     data-th-srcset="*{image.srcSet}"
+	     data-th-sizes="'100vw'"
+			 data-th-alt="*{image.alt}" />
+			 
+	<div class="container">
+		<h1 class="title">Large title</h1>
+		<h2 class="subtitle">Large subtitle</h2>
+	</div>
+
+
+
+</header>
+
+<script th:inline="javascript">
+
+    var data = /*[[${dump}]]*/ 'default';
+    console.log(data);
+
+</script>
