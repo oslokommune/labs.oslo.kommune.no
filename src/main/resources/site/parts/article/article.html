@@ -13,7 +13,8 @@
 
 				<!--/* Quote block */-->
 				<div data-th-case="'ctbQuote'" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
-						<h2>Quote block</h2>
+						<blockquote data-th-utext="${block.ctb.ctbQuote.quoteText}"></blockquote>
+						<cite data-th-utext="${block.ctb.ctbQuote.quoteSource}"></cite>
 				</div>
 
 				<!--/* Map block */-->
@@ -22,6 +23,20 @@
 						<div data-th-text="${block.ctb.ctbMap.mapCoordinates}"></div>
 						<div data-th-text="${block.ctb.ctbMap.mapZoom}"></div>
 				</div>
+
+				<!--/* Text block with quote */-->
+				<div data-th-case="'ctbTextQuote'" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'" data-th-remove="tag">
+					
+					<div class="column is-one-quarter">
+						<div data-th-utext="${block.ctb.ctbTextQuote.quoteText}"></div>
+						<cite>
+							<span data-th-utext="${block.ctb.ctbTextQuote.quoteSource}" data-th-remove="tag"></span>
+							<span data-th-utext="${block.ctb.ctbTextQuote.quoteSourceDescription}" data-th-remove="tag"></span>
+						</cite>
+					</div> 
+					<div class="column is-half content" data-th-utext="${block.ctb.ctbTextQuote.content}"></div>
+				</div>
+
 
 			</div>
 
