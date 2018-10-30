@@ -1,7 +1,6 @@
 exports.image = {};
 var portal = require('/lib/xp/portal');
 var contentSvc = require('/lib/xp/content');
-var util = require('util');
 
 var prescaledImageSizes = [256, 512, 1024, 2048];
 var prescaledImageQualities = [70, 65, 60, 55];
