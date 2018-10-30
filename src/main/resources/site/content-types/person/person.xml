@@ -1,0 +1,30 @@
+<content-type>
+    <display-name>Person</display-name>
+    <super-type>base:structured</super-type>
+    <form>
+        <input name="name" type="TextLine">
+            <label>Name</label>
+        </input>
+        <input name="image" type="ImageSelector">
+            <label>Portrait image</label>
+            <config>
+                <allowPath>${site}/*</allowPath>
+            </config>
+        </input>
+        <input name="title" type="TextLine">
+            <label>Title / Role</label>
+        </input>
+        <input name="email" type="TextLine">
+            <label>Email address</label>
+        </input>
+        <input name="mobile" type="TextLine">
+            <label>Mobile</label>
+        </input>
+        <input name="department" type="TextLine">
+            <label>Department</label>
+        </input>
+        <input name="bio" type="TextArea">
+            <label>Public Bio</label>
+        </input>
+    </form>
+</content-type>

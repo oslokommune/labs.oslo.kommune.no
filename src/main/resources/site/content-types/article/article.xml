@@ -2,6 +2,17 @@
   <display-name i18n="ct.article">Article</display-name>
   <super-type>base:structured</super-type>
   <form>
+
+		<input name="authors" type="ContentSelector">
+				<label>Authors</label>
+				<occurrences minimum="0" maximum="0"/>
+				<config>
+						<relationshipType>system:reference</relationshipType>
+						<allowContentType>person</allowContentType>
+						<allowPath>${site}/*</allowPath>
+				</config>
+		</input>
+
 		<item-set name="contentBlocks">
 			<label i18n="ct.article.ctb">Content block</label>
 			<items>
