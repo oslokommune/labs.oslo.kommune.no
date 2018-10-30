@@ -15,14 +15,7 @@
 @import "partials/fonts";
 @import "partials/colors";
 
-body {
-  // background-color: $oslo-blue-dark;
-  // color: $oslo-mustard-mid;
-}
 
-h1 {
-  // color: $oslo-mustard-mid;
-}
 
 ::placeholder {
   color: $oslo-black-50;
@@ -35,4 +28,67 @@ h1 {
   &--bg {
     background: $oslo-blue-dark;
   }
+}
+
+
+
+// Hanging bullets on desktop
+.content ul,
+.content ol {
+
+  @media screen and (min-width: 769px) {
+    margin-left: 0;
+  }
+  
+}
+
+
+// Responsive text sizes
+html, body {
+
+  @media screen and (min-width: 769px) {
+    font-size: 18px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 19px;
+  }
+
+  @media screen and (min-width: 1408px) {
+    font-size: 20px;
+  }
+
+}
+
+
+
+blockquote {
+  font-size: 0.95em;
+  padding-left: 1em;
+  line-height: 1.85em;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: " ";
+    top: -1em;
+    bottom: -1em;
+    left: -4px;
+    width: 4px;
+    background: rgba(black, 0.1);
+  }
+
+
+  &:first-letter {
+    opacity: 0.4;
+    float: left;
+    font-size: 4em;
+    padding-top: 0.2em;
+    padding-right: 0.05em;
+    font-weight: bold;
+    margin-left: -0.06em;
+    position: relative;
+
+  }
+
 }
