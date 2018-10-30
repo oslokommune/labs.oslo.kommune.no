@@ -7,34 +7,33 @@
 			<div class="columns">
 
 				<!--/* Text block */-->
-				<div data-th-case="'ctbText'" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
+				<div data-th-case="'ctbText'" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
 						<div data-th-utext="${block.ctb.ctbText.content}" data-th-remove="tag"></div>
 				</div>
 
 				<!--/* Quote block */-->
-				<div data-th-case="'ctbQuote'" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
+				<div data-th-case="'ctbQuote'" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
 						<blockquote data-th-utext="${block.ctb.ctbQuote.quoteText}"></blockquote>
 						<cite data-th-utext="${block.ctb.ctbQuote.quoteSource}"></cite>
 				</div>
 
 				<!--/* Map block */-->
-				<div data-th-case="'ctbMap'" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
+				<div data-th-case="'ctbMap'" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
 						<h2 class="title" data-th-text="${block.ctb.ctbMap.mapTitle}"></h2>
 						<div data-th-text="${block.ctb.ctbMap.mapCoordinates}"></div>
 						<div data-th-text="${block.ctb.ctbMap.mapZoom}"></div>
 				</div>
 
 				<!--/* Text block with quote */-->
-				<div data-th-case="'ctbTextQuote'" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'" data-th-remove="tag">
-					
-					<div class="column is-one-quarter">
-						<div data-th-utext="${block.ctb.ctbTextQuote.quoteText}"></div>
+				<div data-th-case="'ctbTextQuote'" data-th-remove="tag">
+					<div class="column is-full-mobile is-one-fifth-tablet is-one-quarter-desktop is-2-fullhd">
+					<div data-th-utext="${block.ctb.ctbTextQuote.quoteText}"></div>
 						<cite>
 							<span data-th-utext="${block.ctb.ctbTextQuote.quoteSource}" data-th-remove="tag"></span>
 							<span data-th-utext="${block.ctb.ctbTextQuote.quoteSourceDescription}" data-th-remove="tag"></span>
 						</cite>
 					</div> 
-					<div class="column is-half content" data-th-utext="${block.ctb.ctbTextQuote.content}"></div>
+					<div class="column is-three-fifths-tablet is-half-desktop is-offset-1-fullhd content" data-th-utext="${block.ctb.ctbTextQuote.content}"></div>
 				</div>
 
 
