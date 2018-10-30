@@ -1,24 +1,24 @@
 <article>
 
-	<section data-th-each="block : ${contentBlocks}" data-th-classappend="${block.hasBgFill} ? 'bg' : ''">
+	<section data-th-each="block : ${contentBlocks}" class="section" data-th-classappend="${block.hasBgFill} ? 'section--bg has-text-white' : ''">
 
-		<div data-th-switch="${block.ctb._selected}" class="container" data-th-classappend="${block.isFullWidth} ? 'container--full-width' : ''">
+		<div data-th-switch="${block.ctb._selected}" class="container">
 
 			<div class="columns">
 
 				<!--/* Text block */-->
-				<div data-th-case="'ctbText'" class="column">
+				<div data-th-case="'ctbText'" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
 						<div data-th-utext="${block.ctb.ctbText.content}" data-th-remove="tag"></div>
 				</div>
 
 				<!--/* Quote block */-->
-				<div data-th-case="'ctbQuote'" class="column">
+				<div data-th-case="'ctbQuote'" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
 						<h2>Quote block</h2>
 				</div>
 
 				<!--/* Map block */-->
-				<div data-th-case="'ctbMap'" class="column">
-						<h2 data-th-text="${block.ctb.ctbMap.mapTitle}"></h2>
+				<div data-th-case="'ctbMap'" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-half is-offset-one-quarter'">
+						<h2 class="title" data-th-text="${block.ctb.ctbMap.mapTitle}"></h2>
 						<div data-th-text="${block.ctb.ctbMap.mapCoordinates}"></div>
 						<div data-th-text="${block.ctb.ctbMap.mapZoom}"></div>
 				</div>

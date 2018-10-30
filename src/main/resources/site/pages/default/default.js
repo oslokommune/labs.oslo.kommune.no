@@ -14,7 +14,8 @@ exports.get = function (req) {
     var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css';
     var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js';
     var scripts = '<script async src="' + portal.assetUrl({path: scriptsPath}) + '"></script>';
-    var styles = '<link rel="stylesheet" href="' + portal.assetUrl({path: stylesPath}) + '">';
+    var styles  = '<link rel="stylesheet" href="' + portal.assetUrl({path: stylesPath}) + '">';
+        // styles += '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">';
 
     var view = resolve('default.html');
     var body = thymeleaf.render(view, model);

@@ -1,15 +1,36 @@
+
+@charset "utf-8";
+/*! bulma.io v0.7.2 | MIT License | github.com/jgthms/bulma */
+@import "bulma/utilities/_all";
+@import "bulma/base/_all";
+@import "bulma/elements/_all";
+@import "bulma/components/_all";
+@import "bulma/grid/_all";
+@import "bulma/layout/_all";
+
+
 @import "partials/fonts";
 @import "partials/colors";
 
+
 body {
-  background-color: $oslo-blue-dark;
-  color: $oslo-mustard-mid;
+  // background-color: $oslo-blue-dark;
+  // color: $oslo-mustard-mid;
 }
 
 h1 {
-  color: $oslo-mustard-mid;
+  // color: $oslo-mustard-mid;
 }
 
 ::placeholder {
   color: $oslo-black-50;
+}
+
+
+.section {
+  background: white;
+
+  &--bg {
+    background: $oslo-blue-dark;
+  }
 }
