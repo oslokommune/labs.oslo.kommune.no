@@ -4,7 +4,7 @@
   <form>
 
 		<input name="authors" type="ContentSelector">
-				<label>Authors</label>
+				<label i18n="ct.article.authors">Authors</label>
 				<occurrences minimum="0" maximum="0"/>
 				<config>
 						<relationshipType>system:reference</relationshipType>
