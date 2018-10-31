@@ -1,20 +1,24 @@
-<article>
+<div data-th-remove="tag">
+  <article>
 
-  <div data-th-if="${authors}" data-th-insert="/site/snippets/byline.html" data-th-remove="tag"></div>
+    <div data-th-if="${authors}" data-th-insert="/site/snippets/byline.html" data-th-remove="tag"></div>
 
-  <div data-th-if="${lead}" data-th-insert="/site/snippets/lead.html" data-th-remove="tag"></div>
+    <div data-th-if="${lead}" data-th-insert="/site/snippets/lead.html" data-th-remove="tag"></div>
 
 
-  <!--/* Each content block renders the corresponding content block snippet */-->
-  <section data-th-if="${contentBlocks}" 
-           data-th-each="block : ${contentBlocks}" 
-           class="section" 
-           data-th-classappend="${block.hasBgFill} ? 'section--bg has-text-white' : ''">
-    <div class="container">
-      <div class="columns">
-        <div data-th-case="'ctbText'" data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
+    <!--/* Each content block renders the corresponding content block snippet */-->
+    <section data-th-if="${contentBlocks}" 
+            data-th-each="block : ${contentBlocks}" 
+            class="section" 
+            data-th-classappend="${block.hasBgFill} ? 'section--bg has-text-white' : ''">
+      <div class="container">
+        <div class="columns">
+          <div data-th-case="'ctbText'" data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</article>
+  </article>
+
+  <div data-th-replace="/site/snippets/footer.html"></div>
+</div>

@@ -9,8 +9,6 @@ var cUtil = require('content-util');
 exports.get = function(req) {
     var content = portal.getContent();
 		var model = cUtil.prepareArticleContents(content.data);
-		
-		log.info(JSON.stringify(model, null,2));
 
     var view = resolve('./article.html');
     var body = thymeleaf.render(view, model);

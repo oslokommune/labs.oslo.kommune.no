@@ -29,8 +29,8 @@ function getAuthors(authors) {
 
   if(!authors) return;
 
-  authors = util.forceArray(authors)
-  authors.map(function (author) {
+  authors = util.forceArray(authors);
+  authors = authors.map(function (author) {
     var a = contentLib.get({key: author});
     if (a && a.image) {
       a.image = imageLib.image.create(a.image);
@@ -39,7 +39,6 @@ function getAuthors(authors) {
   });
 
   return authors;
-
 }
 
 
