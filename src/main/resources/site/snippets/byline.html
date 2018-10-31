@@ -1,0 +1,12 @@
+<div data-th-fragment="byline" class="byline">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-three-quarters-tablet">
+        <span>Skrevet av: </span>
+        <span data-th-each="author : ${authors}" data-th-remove="tag">
+          <span data-th-text="${author.data.name}"></span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
