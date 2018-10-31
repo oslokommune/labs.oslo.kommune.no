@@ -1,0 +1,36 @@
+<div data-th-fragment="ctbQuote" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
+  <blockquote class="quote-initial-letter">
+    <p data-th-utext="${block.ctbQuote.quoteText}"></p>
+    <footer>
+      <cite>
+        <span data-th-utext="${block.ctbQuote.quoteSource}" data-th-remove="tag"></span>
+        <span data-th-utext="${block.ctbQuote.quoteSourceDescription}" data-th-remove="tag"></span>
+      </cite>
+    </footer>
+  </blockquote>
+</div>
+
+<div data-th-fragment="ctbText" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
+  <div data-th-utext="${block.ctbText.content}" data-th-remove="tag"></div>
+</div>
+
+<div data-th-fragment="ctbMap" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
+  <h2 class="title" data-th-text="${block.ctbMap.mapTitle}"></h2>
+  <div data-th-text="${block.ctbMap.mapCoordinates}"></div>
+  <div data-th-text="${block.ctbMap.mapZoom}"></div>
+</div>
+
+<div data-th-fragment="ctbTextQuote" data-th-remove="tag">
+  <div class="column is-full-mobile is-one-fifth-tablet is-one-quarter-desktop is-2-fullhd">
+    <blockquote>
+      <p data-th-utext="${block.ctbTextQuote.quoteText}"></p>
+      <footer>
+        <cite>
+          <span data-th-utext="${block.ctbTextQuote.quoteSource}" data-th-remove="tag"></span>
+          <span data-th-utext="${block.ctbTextQuote.quoteSourceDescription}" data-th-remove="tag"></span>
+        </cite>
+      </footer>
+    </blockquote>
+  </div> 
+  <div class="column is-three-fifths-tablet is-half-desktop is-offset-1-fullhd content" data-th-utext="${block.ctbTextQuote.content}"></div>
+</div>

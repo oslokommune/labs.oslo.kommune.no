@@ -3,6 +3,23 @@
   <super-type>base:structured</super-type>
   <form>
 
+		<!-- Headers -->
+		<input name="header" type="TextLine">
+			<label i18n="txt.heading">Heading</label>
+			<occurrences minimum="0" maximum="1"/>
+			<config/>
+		</input>
+		<input name="subheader" type="TextLine">
+			<label i18n="txt.subHeading">Sub header</label>
+			<occurrences minimum="0" maximum="1"/>
+			<config/>
+		</input>
+		<input name="lead" type="TextArea">
+			<label i18n="txt.lead">Lead paragraph</label>
+			<occurrences minimum="0" maximum="1"/>
+			<config/>
+		</input>
+
 		<!-- Authors -->
 		<input name="authors" type="ContentSelector">
 				<label i18n="ct.article.authors">Authors</label>

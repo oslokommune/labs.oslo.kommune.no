@@ -1,0 +1,26 @@
+<header class="hero">
+
+	<img data-th-src="*{image.placeholderSrc}"
+	     data-th-srcset="*{image.srcSet}"
+	     data-th-sizes="'100vw'"
+			 data-th-alt="*{image.alt}" />
+
+	<div class="hero-foot hero__headers">
+		<div class="container">
+			<div class="columns has-text-centered-desktop is-centered">
+				<div class="column hero__headers is-three-quarters-tablet is-three-fifths-desktop has-background-black">
+					<h1 class="title has-text-white" data-th-text="${header}"></h1>
+					<h2 class="subtitle has-text-white" data-th-if="${subheader}" data-th-text="${subheader}"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</header>
+
+<script th:inline="javascript">
+
+    var data = /*[[${dump}]]*/ 'default';
+    console.log(data);
+
+</script>
