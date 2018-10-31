@@ -13,8 +13,16 @@
 
 				<!--/* Quote block */-->
 				<div data-th-case="'ctbQuote'" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
-						<blockquote data-th-utext="${block.ctb.ctbQuote.quoteText}"></blockquote>
-						<cite data-th-utext="${block.ctb.ctbQuote.quoteSource}"></cite>
+						<blockquote class="quote-initial-letter">
+							<p data-th-utext="${block.ctb.ctbQuote.quoteText}"></p>
+							<footer>
+								<cite>
+									<span data-th-utext="${block.ctb.ctbQuote.quoteSource}" data-th-remove="tag"></span>
+									<span data-th-utext="${block.ctb.ctbQuote.quoteSourceDescription}" data-th-remove="tag"></span>
+								</cite>
+							</footer>
+						</blockquote>
+						
 				</div>
 
 				<!--/* Map block */-->
@@ -27,11 +35,15 @@
 				<!--/* Text block with quote */-->
 				<div data-th-case="'ctbTextQuote'" data-th-remove="tag">
 					<div class="column is-full-mobile is-one-fifth-tablet is-one-quarter-desktop is-2-fullhd">
-					<div data-th-utext="${block.ctb.ctbTextQuote.quoteText}"></div>
-						<cite>
-							<span data-th-utext="${block.ctb.ctbTextQuote.quoteSource}" data-th-remove="tag"></span>
-							<span data-th-utext="${block.ctb.ctbTextQuote.quoteSourceDescription}" data-th-remove="tag"></span>
-						</cite>
+						<blockquote>
+							<p data-th-utext="${block.ctb.ctbTextQuote.quoteText}"></p>
+							<footer>
+								<cite>
+									<span data-th-utext="${block.ctb.ctbTextQuote.quoteSource}" data-th-remove="tag"></span>
+									<span data-th-utext="${block.ctb.ctbTextQuote.quoteSourceDescription}" data-th-remove="tag"></span>
+								</cite>
+							</footer>
+						</blockquote>
 					</div> 
 					<div class="column is-three-fifths-tablet is-half-desktop is-offset-1-fullhd content" data-th-utext="${block.ctb.ctbTextQuote.content}"></div>
 				</div>

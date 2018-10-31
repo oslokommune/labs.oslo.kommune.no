@@ -15,6 +15,7 @@
 @import "partials/fonts";
 @import "partials/colors";
 
+@import "partials/hero";
 
 
 ::placeholder {
@@ -79,16 +80,20 @@ blockquote {
   }
 
 
-  &:first-letter {
-    opacity: 0.4;
-    float: left;
-    font-size: 4em;
-    padding-top: 0.2em;
-    padding-right: 0.05em;
-    font-weight: bold;
-    margin-left: -0.06em;
-    position: relative;
+  &.quote-initial-letter {
+
+    &:first-letter {
+      opacity: 0.4;
+      float: left;
+      font-size: 4em;
+      padding-top: 0.2em;
+      padding-right: 0.05em;
+      font-weight: bold;
+      margin-left: -0.06em;
+      position: relative;
+    }
 
   }
+
 
 }
