@@ -48,6 +48,10 @@ function processContentBlocks(ctbs) {
 
   ctbs = ctbs.map(function(block) {
 
+    log.info(JSON.stringify(block, null, 2))
+
+    if(!block.ctb) return;
+
     if(block.hasOwnProperty('ctbSettings') && block.ctbSettings._selected) {
       
       // List of the selected settings
@@ -62,7 +66,23 @@ function processContentBlocks(ctbs) {
       if(selected.indexOf('bgFill') > -1) {
         block.ctb.hasBgFill = true;
       }
+
     }
+
+
+    // Define height of video player based on aspect ratio
+    if(block.ctb._selected === 'ctbVideo' && block.ctb.ctbVideo) {
+
+      var defaultAspectRatio = '16:9';
+      var ratio;
+
+      if(block.ctb.ctbVideo.aspectRatio) {
+        ratio = block.ctb.ctbVideo.aspectRatio.trim().split(':');
+      } else {
+        ratio = defaultAspectRatio.split(":");
+      }
+      block.ctb.ctbVideo.paddingTop = ratio[1] / ratio[0] * 100 + "%";
+    } 
 
     return block.ctb;
 
