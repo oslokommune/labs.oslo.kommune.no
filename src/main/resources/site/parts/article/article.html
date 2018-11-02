@@ -10,7 +10,11 @@
     <section data-th-if="${contentBlocks}" 
             data-th-each="block : ${contentBlocks}" 
             class="section" 
-            data-th-classappend="${block.hasBgFill} ? 'section--bg has-text-white' : ''">
+            data-th-style="${block.gradient} ? ${block.gradient} : ''" 
+            data-th-classappend="
+              (${block.hasWhiteText} ? 'has-text-white' : '') + 
+              (${block.fill} ? ' section--' + ${block.fill} : '')
+            ">
       <div class="container">
         <div class="columns">
           <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>

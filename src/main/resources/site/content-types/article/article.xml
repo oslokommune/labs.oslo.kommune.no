@@ -3,192 +3,274 @@
   <super-type>base:structured</super-type>
   <form>
 
-		<!-- Headers -->
-		<input name="header" type="TextLine">
-			<label i18n="txt.heading">Heading</label>
-			<occurrences minimum="0" maximum="1"/>
-			<config/>
-		</input>
-		<input name="subheader" type="TextLine">
-			<label i18n="txt.subHeading">Sub header</label>
-			<occurrences minimum="0" maximum="1"/>
-			<config/>
-		</input>
-		<input name="lead" type="TextArea">
-			<label i18n="txt.lead">Lead paragraph</label>
-			<occurrences minimum="0" maximum="1"/>
-			<config/>
-		</input>
+    <!-- Headers -->
+    <input name="header" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config/>
+    </input>
+    <input name="subheader" type="TextLine">
+      <label i18n="txt.subHeading">Sub header</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config/>
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="txt.lead">Lead paragraph</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config/>
+    </input>
 
-		<!-- Authors -->
-		<input name="authors" type="ContentSelector">
-				<label i18n="ct.article.authors">Authors</label>
-				<occurrences minimum="0" maximum="0"/>
-				<config>
-						<relationshipType>system:reference</relationshipType>
-						<allowContentType>person</allowContentType>
-						<allowPath>${site}/*</allowPath>
-				</config>
-		</input>
+    <!-- Authors -->
+    <input name="authors" type="ContentSelector">
+      <label i18n="ct.article.authors">Authors</label>
+      <occurrences minimum="0" maximum="0"/>
+      <config>
+        <relationshipType>system:reference</relationshipType>
+        <allowContentType>person</allowContentType>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
 
-		<!-- Main image -->
-		<input name="mainImage" type="ImageSelector">
-			<label i18n="ct.article.mainImage">Main image</label>
-			<occurrences minimum="0" maximum="1"/>
-			<config>
-				<allowPath>./*</allowPath>
-			</config>
-		</input>
+    <!-- Main image -->
+    <input name="mainImage" type="ImageSelector">
+      <label i18n="ct.article.mainImage">Main image</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <allowPath>./*</allowPath>
+      </config>
+    </input>
 
-		<!-- Content Blocks -->
-		<item-set name="contentBlocks">
-			<label i18n="ct.article.ctb">Content block</label>
-			<items>
+    <!-- Content Blocks -->
+    <item-set name="contentBlocks">
+      <label i18n="ct.article.ctb">Content block</label>
+      <items>
 
-				<!-- Settings for content block -->
-				<option-set name="ctbSettings">
-					<label i18n="ct.article.ctbSettings">Settings for content block</label>
-					<occurrences minimum="0" maximum="1"/>
-					<options minimum="0" maximum="10">
-						<option name="fullWidth">
-							<label i18n="ct.article.ctbFullWidth">Full width</label>
-						</option>
-						<option name="bgFill">
-							<label i18n="ct.article.ctbBgFill">Background fill</label>
-						</option>
-					</options>
-				</option-set>
+        <!-- Settings for content block -->
+        <option-set name="ctbSettings">
+          <label i18n="ct.article.ctbSettings">Settings for content block</label>
+          <occurrences minimum="0" maximum="1"/>
+          <options minimum="0" maximum="10">
 
-				<!-- Content block types -->
-				<option-set name="ctb">
-					<label i18n="ct.article.ctbType">Choose content block type</label>
-					<occurrences minimum="1" maximum="1"/>
-					<options minimum="1" maximum="1">
+            <!-- Full Width -->
+            <option name="fullWidth">
+              <label i18n="ct.article.ctbFullWidth">Full width</label>
+            </option>
 
-						<!-- Text block -->
-						<option name="ctbText">
-							<label i18n="ct.article.ctbText">Text block</label>
-							<items>
-								<input name="content" type="HtmlArea">
-									<label i18n="ct.article.ctbTextContent">Content</label>
-									<occurrences minimum="0" maximum="1"/>
-									<config>
-										<exclude>*</exclude>
-										<include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table</include>
-									</config>
-								</input>
-							</items>
-						</option>
+            <!-- Background fill -->
+            <option name="bgFill">
+              <label i18n="ct.article.ctbBg">Background fill</label>
+              <items>
+                <input name="colorMain" type="ComboBox">
+                  <label i18n="ct.article.ctbBgMain">Background</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config>
+                    <option value="blue" i18n="colors.blue">Blue</option>
+                    <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+                    <option value="purple" i18n="colors.purple">Purple</option>
+                    <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+                    <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+                    <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+                    <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+                    <option value="green" i18n="colors.green">Green</option>
+                    <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+                    <option value="green-light" i18n="colors.green-light">Green light</option>
+                    <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+                    <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+                    <option value="brown" i18n="colors.brown">Brown</option>
+                    <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+                    <option value="orange" i18n="colors.orange">Orange</option>
+                    <option value="red" i18n="colors.red">Red</option>
+                    <option value="yellow" i18n="colors.yellow">Yellow</option>
+                    <option value="white" i18n="colors.white">White</option>
+                    <option value="black" i18n="colors.black">Black</option>
+                  </config>
+                </input>
+                <input name="colorTop" type="ComboBox">
+                  <label i18n="ct.article.ctbBgTop">Background top</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <option value="blue" i18n="colors.blue">Blue</option>
+                    <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+                    <option value="purple" i18n="colors.purple">Purple</option>
+                    <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+                    <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+                    <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+                    <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+                    <option value="green" i18n="colors.green">Green</option>
+                    <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+                    <option value="green-light" i18n="colors.green-light">Green light</option>
+                    <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+                    <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+                    <option value="brown" i18n="colors.brown">Brown</option>
+                    <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+                    <option value="orange" i18n="colors.orange">Orange</option>
+                    <option value="red" i18n="colors.red">Red</option>
+                    <option value="yellow" i18n="colors.yellow">Yellow</option>
+                    <option value="white" i18n="colors.white">White</option>
+                    <option value="black" i18n="colors.black">Black</option>
+                  </config>
+                </input>
+                <input name="colorBottom" type="ComboBox">
+                  <label i18n="ct.article.ctbBgBottom">Background bottom</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <option value="blue" i18n="colors.blue">Blue</option>
+                    <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+                    <option value="purple" i18n="colors.purple">Purple</option>
+                    <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+                    <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+                    <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+                    <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+                    <option value="green" i18n="colors.green">Green</option>
+                    <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+                    <option value="green-light" i18n="colors.green-light">Green light</option>
+                    <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+                    <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+                    <option value="brown" i18n="colors.brown">Brown</option>
+                    <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+                    <option value="orange" i18n="colors.orange">Orange</option>
+                    <option value="red" i18n="colors.red">Red</option>
+                    <option value="yellow" i18n="colors.yellow">Yellow</option>
+                    <option value="white" i18n="colors.white">White</option>
+                    <option value="black" i18n="colors.black">Black</option>
+                  </config>
+                </input>
+              </items>
+            </option>
 
-						<!-- Video block -->
-						<option name="ctbVideo">
-							<label i18n="ct.article.ctbVideo">Video block</label>
-							<items>
-								<input name="id" type="TextLine">
-									<label i18n="ct.article.ctbVideoId">Vimeo video id</label>
-									<occurrences minimum="1" maximum="1"/>
-									<config />
-								</input>
-								<input name="aspectRatio" type="TextLine">
-									<label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
-									<occurrences minimum="0" maximum="1"/>
-									<config />
-								</input>
-							</items>
-						</option>
+          </options>
+        </option-set>
 
-						<!-- Text block with hanging Quote box -->
-						<option name="ctbTextQuote">
-							<label i18n="ct.article.ctbTextQuote">Text block with quote box</label>
-							<items>
-								<input name="content" type="HtmlArea">
-									<label i18n="ct.article.ctbTextContent">Content</label>
-									<occurrences minimum="1" maximum="1"/>
-									<config>
-										<exclude>*</exclude>
-										<include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table</include>
-									</config>
-								</input>
-								<input name="quoteText" type="TextArea">
-									<label i18n="ct.article.ctbQuoteText">Quote</label>
-									<occurrences minimum="1" maximum="1"/>
-									<config>
-										<max-length>800</max-length>
-									</config>
-								</input>
-								<input name="quoteSource" type="TextLine">
-									<label i18n="ct.article.ctbQuoteSource">Source</label>
-									<occurrences minimum="0" maximum="1"/>
-									<config>
-										<max-length>150</max-length>
-									</config>
-								</input>
-								<input name="quoteSourceDescription" type="TextLine">
-									<label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
-									<occurrences minimum="0" maximum="1"/>
-									<config>
-										<max-length>150</max-length>
-									</config>
-								</input>
-							</items>
-						</option>
+        <!-- Content block types -->
+        <option-set name="ctb">
+          <label i18n="ct.article.ctbType">Choose content block type</label>
+          <occurrences minimum="1" maximum="1"/>
+          <options minimum="1" maximum="1">
 
-						<!-- Map block -->
-						<option name="ctbMap">
-							<label i18n="ct.article.ctbMap">Map block</label>
-							<items>
-								<input name="mapTitle" type="TextLine">
-									<label i18n="ct.article.ctbMapTitle">Map title</label>
-									<occurrences minimum="0" maximum="1"/>
-								</input>
-								<input name="mapCoordinates" type="GeoPoint">
-									<label i18n="ct.article.ctbMapCoordinates">Coordinates</label>
-									<occurrences minimum="1" maximum="1"/>
-									<config />
-								</input>
-								<input name="mapZoom" type="Long">
-									<label i18n="ct.article.ctbMapZoom">Zoom</label>
-									<occurrences minimum="1" maximum="1"/>
-									<config>
-										<min>3</min>
-										<max>15</max>
-									</config>
-								</input>
-							</items>
-						</option>
+            <!-- Text block -->
+            <option name="ctbText">
+              <label i18n="ct.article.ctbText">Text block</label>
+              <items>
+                <input name="content" type="HtmlArea">
+                  <label i18n="ct.article.ctbTextContent">Content</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <exclude>*</exclude>
+                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table</include>
+                  </config>
+                </input>
+              </items>
+            </option>
 
-						<!-- Quote block -->
-						<option name="ctbQuote">
-							<label i18n="ct.article.ctbQuote">Quote block</label>
-							<items>
-								<input name="quoteText" type="TextArea">
-									<label i18n="ct.article.ctbQuoteText">Quote</label>
-									<occurrences minimum="1" maximum="1"/>
-									<config>
-										<max-length>800</max-length>
-									</config>
-								</input>
-								<input name="quoteSource" type="TextLine">
-									<label i18n="ct.article.ctbQuoteSource">Source</label>
-									<occurrences minimum="0" maximum="1"/>
-									<config>
-										<max-length>150</max-length>
-									</config>
-								</input>
-								<input name="quoteSourceDescription" type="TextLine">
-									<label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
-									<occurrences minimum="0" maximum="1"/>
-									<config>
-										<max-length>150</max-length>
-									</config>
-								</input>
-							</items>
-						</option>
+            <!-- Video block -->
+            <option name="ctbVideo">
+              <label i18n="ct.article.ctbVideo">Video block</label>
+              <items>
+                <input name="id" type="TextLine">
+                  <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config />
+                </input>
+                <input name="aspectRatio" type="TextLine">
+                  <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config />
+                </input>
+              </items>
+            </option>
 
-					</options>
-				</option-set>
-			</items>
-			<occurrences minimum="0" maximum="0"/>
-		</item-set>
+            <!-- Text block with hanging Quote box -->
+            <option name="ctbTextQuote">
+              <label i18n="ct.article.ctbTextQuote">Text block with quote box</label>
+              <items>
+                <input name="content" type="HtmlArea">
+                  <label i18n="ct.article.ctbTextContent">Content</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config>
+                    <exclude>*</exclude>
+                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table</include>
+                  </config>
+                </input>
+                <input name="quoteText" type="TextArea">
+                  <label i18n="ct.article.ctbQuoteText">Quote</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config>
+                    <max-length>800</max-length>
+                  </config>
+                </input>
+                <input name="quoteSource" type="TextLine">
+                  <label i18n="ct.article.ctbQuoteSource">Source</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <max-length>150</max-length>
+                  </config>
+                </input>
+                <input name="quoteSourceDescription" type="TextLine">
+                  <label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <max-length>150</max-length>
+                  </config>
+                </input>
+              </items>
+            </option>
+
+            <!-- Map block -->
+            <option name="ctbMap">
+              <label i18n="ct.article.ctbMap">Map block</label>
+              <items>
+                <input name="mapTitle" type="TextLine">
+                  <label i18n="ct.article.ctbMapTitle">Map title</label>
+                  <occurrences minimum="0" maximum="1"/>
+                </input>
+                <input name="mapCoordinates" type="GeoPoint">
+                  <label i18n="ct.article.ctbMapCoordinates">Coordinates</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config />
+                </input>
+                <input name="mapZoom" type="Long">
+                  <label i18n="ct.article.ctbMapZoom">Zoom</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config>
+                    <min>3</min>
+                    <max>15</max>
+                  </config>
+                </input>
+              </items>
+            </option>
+
+            <!-- Quote block -->
+            <option name="ctbQuote">
+              <label i18n="ct.article.ctbQuote">Quote block</label>
+              <items>
+                <input name="quoteText" type="TextArea">
+                  <label i18n="ct.article.ctbQuoteText">Quote</label>
+                  <occurrences minimum="1" maximum="1"/>
+                  <config>
+                    <max-length>800</max-length>
+                  </config>
+                </input>
+                <input name="quoteSource" type="TextLine">
+                  <label i18n="ct.article.ctbQuoteSource">Source</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <max-length>150</max-length>
+                  </config>
+                </input>
+                <input name="quoteSourceDescription" type="TextLine">
+                  <label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
+                  <occurrences minimum="0" maximum="1"/>
+                  <config>
+                    <max-length>150</max-length>
+                  </config>
+                </input>
+              </items>
+            </option>
+
+          </options>
+        </option-set>
+      </items>
+      <occurrences minimum="0" maximum="0"/>
+    </item-set>
   </form>
 </content-type>

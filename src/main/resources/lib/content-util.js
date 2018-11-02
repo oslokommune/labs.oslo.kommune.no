@@ -48,7 +48,6 @@ function processContentBlocks(ctbs) {
 
   ctbs = ctbs.map(function(block) {
 
-    log.info(JSON.stringify(block, null, 2))
 
     if(!block.ctb) return;
 
@@ -62,9 +61,71 @@ function processContentBlocks(ctbs) {
         block.ctb.isFullWidth = true;
       }
 
-      // Background Fill
+      // Background color
       if(selected.indexOf('bgFill') > -1) {
-        block.ctb.hasBgFill = true;
+        var colors = block.ctbSettings.bgFill;
+
+        // Which bg colors require white text 
+        var darkBgs = [
+          'purple', 
+          'grey-dark', 
+          'grey-darker', 
+          'green-dark', 
+          'green-faded', 
+          'brown', 
+          'brown-beige', 
+          'orange', 
+          'red', 
+          'yellow', 
+          'black'
+        ];
+
+        if(darkBgs.indexOf(colors.colorMain) > -1) {
+          block.ctb.hasWhiteText = true;
+        }
+
+        // Add bg color with css class when top color isn't set,
+        // if not, create the string for a gradient background
+        if(!colors.colorTop) {
+          block.ctb.fill = colors.colorMain;
+        } else {
+
+          // Store color values
+          var hex = [];
+          hex.push(util.getColorValueFromName(colors.colorTop));
+          hex.push(util.getColorValueFromName(colors.colorMain));
+          if(colors.colorBottom) {
+            hex.push(util.getColorValueFromName(colors.colorBottom));
+          }
+
+          
+          // Generate gradient string depending on how many colors were provided
+          var dist, str = "", gradient = "";
+          if(hex.length === 2) {
+            dist = ["0%", "25%", "100%"]; // Distance from top to color change
+            str += hex[0] + " " + dist[0] + ", "; 
+            str += hex[0] + " " + dist[1] + ", ";
+            str += hex[1] + " " + dist[1] + ", "; 
+            str += hex[1] + " " + dist[2];
+          } else {
+            dist = ["0%", "15%", "85%", "100%"]; // Distance from top to color change
+            str += hex[0] + " " + dist[0] + ", "; 
+            str += hex[0] + " " + dist[1] + ", ";
+            str += hex[1] + " " + dist[1] + ", "; 
+            str += hex[1] + " " + dist[2] + ", ";;
+            str += hex[2] + " " + dist[2] + ", "; 
+            str += hex[2] + " " + dist[3];
+          }
+
+          gradient += "background: " + hex[1] + ";"; 
+          gradient += "background: -moz-linear-gradient(top," + str + ");";
+          gradient += "background: -webkit-linear-gradient(top, " + str + ");";
+          gradient += "background: linear-gradient(to bottom, " + str + ");";
+
+          block.ctb.gradient = gradient;
+
+        }
+
       }
 
     }
