@@ -1,0 +1,137 @@
+$header-height: 4em;
+
+.header {
+  position: fixed;
+  height: $header-height;
+  padding: 0em 1em;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  transition: all 0.55s cubic-bezier(0, 0, 0.65, 1.83) 0.3s;
+
+  &--unpin{
+    transform: translateY(-$header-height);
+    transition: transform 0.4s cubic-bezier(0, 0, 0.35, 1.83) 0.15s;
+
+    .header__searchbutton {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+
+  &--pin{
+    transform: translateY(0);
+
+    .header__searchbutton {
+      opacity: 1;
+      transform: translateY($header-height);
+      transition: transform 0.4s cubic-bezier(0, 0, 0.45, 2.43) 0.5s;
+    }
+  }
+
+  &--top.section {
+    background: rgba(white, 0);
+  }
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__branding {
+    margin-left: -1em;
+    padding: 0 1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: black;
+  }
+
+  &__logo {
+    margin-right: $header-height - 1em;
+    height: 100%;
+    display: block;
+    padding: 0.75em 1.5em;
+
+    @media screen and (min-width: 1088px) {
+      margin-right: $header-height;
+    }
+
+    &:hover {
+      background: rgba(black, 0.04);
+    }
+
+  }
+
+  &__navbutton,
+  &__searchbutton {
+    position: absolute;
+    top: 0em;
+    right: -1em;
+    height: $header-height;
+    width: $header-height;
+
+    @media screen and (min-width: 1088px) {
+      right: 0;
+    }
+  }
+
+  &__navbutton {
+    background: $color-blue;
+    display: flex;
+  }
+
+  &__searchbutton {
+    background: $color-purple;
+    transform: translateY($header-height);
+    border-radius: 50%;
+    transition: transform 0.6s cubic-bezier(0.84,-0.86, 0.34, 2.76) .5s, opacity 0s linear 1s;
+  }
+
+  &__navicon {
+    height: 100%;
+    width: 100%;
+    padding: 1em;
+    position: relative;
+
+    $bar-height: 0.2em;
+    span {
+      display: block;
+      position: absolute;
+      width: 2em;
+      left: 1em;
+      height: $bar-height;
+      border-radius: 0.075em;
+      background: $color-purple;
+      top: 1em - ($bar-height/2);
+      transform-origin: 50% 50%;
+
+      &:nth-child(1) { transform: translateY(0.35em) rotate(0deg); transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s; }
+      &:nth-child(2),
+      &:nth-child(3) { transform: translateY(1em) rotate(0deg); transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s; }
+      &:nth-child(4) { transform: translateY(1.65em) rotate(0deg); transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s; }
+
+    }
+
+    &:hover {
+      span {
+        &:nth-child(1),
+        &:nth-child(4) { opacity: 0; transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s; }
+        &:nth-child(2) { transform: translateY(1em) rotate(45deg); transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s; }
+        &:nth-child(3) { transform: translateY(1em) rotate(-45deg); transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s; }
+      }
+    }
+  }
+}
+
+.hero {
+  margin-top: $header-height;
+}
+
+
+

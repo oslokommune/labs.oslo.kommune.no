@@ -8,11 +8,13 @@
 </head>
 
 <body data-portal-component-type="page">
+    <header data-th-replace="/site/snippets/navbar.html"></header>
     <div data-portal-component-type="region" data-portal-region="main" data-th-remove="tag">
         <div data-th-each="component : ${main.components}" data-th-remove="tag">
             <div data-portal-component="${component.path}" data-th-remove="tag"></div>
         </div>
     </div>
+    <footer data-th-replace="/site/snippets/footer.html"></footer>
 </body>
 
 </html>
