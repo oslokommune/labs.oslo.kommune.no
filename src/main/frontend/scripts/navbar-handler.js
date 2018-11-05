@@ -9,8 +9,12 @@ export default function handler(id) {
     pinned: 'header--pin',
     unpinned: 'header--unpin',
     top: 'header--top',
+    open: 'is-open'
   };
   function onScroll() {
+    if(eleHeader.classList.contains(classes.open)) {
+      return;
+    }
     currentScrollY = window.pageYOffset;
     requestTick();
   }
