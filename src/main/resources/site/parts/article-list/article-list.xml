@@ -1,0 +1,11 @@
+<part>
+  <display-name>Article list</display-name>
+  <config>
+    <input name="header" type="TextLine">
+      <label>Header</label>
+    </input>
+    <input name="max" type="Long">
+      <label>Max number of items</label>
+    </input>
+  </config>
+</part>

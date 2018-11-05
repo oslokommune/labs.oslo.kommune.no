@@ -1,5 +1,7 @@
 var util = require('util');
+var portal = require('/lib/xp/portal');
 var contentLib = require('/lib/xp/content');
+var imageLib = require('image');
 
 exports.prepareArticleContents = function(data, scale) {
 
@@ -8,6 +10,35 @@ exports.prepareArticleContents = function(data, scale) {
   data.contentBlocks && (data.contentBlocks = processContentBlocks(data.contentBlocks)); 
 
   return data;
+
+}
+
+
+exports.prepareArticleList = function(data, scale) {
+
+  if(!data.count) return [];
+  scale = scale || 'block(5,2)';
+
+  var list = data.hits.map(function(res) {
+
+    var article = {};
+    article.id = res._id;
+    article.path = portal.pageUrl({path: res._path});
+    article.created = res.createdTime;
+    article.title = res.displayName;
+
+    if(!res.data) return article;
+
+    article.modifiedTime = (res.modifiedTime) ? res.modifiedTime : null;
+    article.mainImage = (res.data.mainImage) ? imageLib.image.create(res.data.mainImage, scale) : null;
+    article.authors = (res.data.authors) ? res.data.authors : null;
+    article.title = (res.data.header) ? res.data.header : res.displayName;
+    article.lead = (res.data.lead) ? res.data.lead : null;
+
+    return article;
+  })
+
+  return list;
 
 }
 
