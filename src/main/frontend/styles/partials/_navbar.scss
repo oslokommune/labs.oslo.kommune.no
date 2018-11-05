@@ -31,9 +31,7 @@ $header-height: 4em;
     }
   }
 
-  &--top.section {
-    background: rgba(white, 0);
-  }
+
 
   .container {
     display: flex;
@@ -135,9 +133,6 @@ $header-height: 4em;
 }
 
 
-html.is-open {
-  overflow: hidden;
-}
 
 .drawer {
   position: fixed;
@@ -147,7 +142,7 @@ html.is-open {
   right: 0;
   background-color: $color-blue !important;
   z-index: 2;
-  overflow: auto;
+  overflow-y: auto;
   opacity: 0;
   transform: translateX(100vw);
   transition: transform 0.3s ease-in-out, opacity 0s linear 0.4s;
@@ -165,4 +160,19 @@ html.is-open {
 }
 
 
+.page_item {
+  margin-bottom: 1em;
+  position: relative;
 
+  &.active::before {
+    content: "";
+    width: .75em;
+    height: .75em;
+    display: block;
+    position: absolute;
+    left: -1.25em;
+    top: 33%;
+    border-radius: 50%;
+    background: $color-purple;
+  }
+}

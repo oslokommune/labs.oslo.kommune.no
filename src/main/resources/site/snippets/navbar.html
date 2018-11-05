@@ -18,24 +18,25 @@
         <div class="container">
           <div class="columns">
             <div class="column">
-              <ul>
-                <li>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element five</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element ten</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                  <a href="#"><h2 class="title is-2">Menu element</h2></a>
-                </li>
-              </ul>
+
+              <nav data-th-if="${menuItems}" role="navigation">
+                <ul class="menu-main">
+                  <li data-th-each="menuItem : ${menuItems}"
+                    data-th-class="${
+                      'page_item' +
+                      (menuItem.hasChildren ? ' has-children' : '') +
+                      (menuItem.inPath ? ' in-path' : '') +
+                      (menuItem.isActive ? ' active' : '')
+                    }">
+                    <a href="#" 
+                      class="title is-3 is-spaced"
+                      data-th-href="${portal.pageUrl({'_path=' + menuItem.path})}"
+                      data-th-text="${menuItem.menuName} ?: ${menuItem.displayName}"
+                      data-th-target="${menuItem.newWindow ? '_blank' : ''}">Page</a>
+                  </li>
+                </ul>
+              </nav>
+
             </div>
           </div>
         </div>
