@@ -1,12 +1,22 @@
 <header class="hero">
 
-  <img data-th-if="*{image}" 
-       data-th-src="*{image.placeholderSrc}"
-       data-th-srcset="*{image.srcSet}"
-       data-th-sizes="'100vw'"
-       data-th-alt="*{image.alt}" />
+  <img data-th-if="*{image}" data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}" data-th-sizes="'100vw'"
+    data-th-alt="*{image.alt}" />
 
-  <div class="hero-foot hero__headers">
+  <div class="hero__videowrapper" id="js-hero-videowrapper" data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''">
+    <div class="hero__videocontainer" id="js-hero-videocontainer">
+      <div data-th-if="${video}" data-th-style="'position: relative; padding-top: 56.25%;'">
+        <iframe data-th-src="'https://player.vimeo.com/video/' + ${video} + '?color=da28d3&title=0&byline=0&portrait=0'"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
+          mozallowfullscreen allowfullscreen>
+        </iframe>
+      </div>
+      <div class="hero__closepopout" id="js-hero-closepopout"></div>
+    </div>
+  </div>
+
+
+  <div class="hero-foot hero__headers section is-paddingless-top-bottom">
     <div class="container">
       <div class="columns has-text-centered-desktop is-centered">
         <div class="column hero__headers is-three-quarters-tablet is-three-fifths-desktop has-background-black">
@@ -17,9 +27,71 @@
     </div>
   </div>
 
+  <div id="myVideo"></div>
+
 </header>
 
 
-<script th:inline="javascript">
-  var data = /*[[${dump}]]*/ 'default';
+
+<script data-th-if="${video}" src="https://player.vimeo.com/api/player.js"></script>
+<script data-th-if="${video}">
+
+  const videoWrapper = document.querySelector('#js-hero-videowrapper');
+  const videoContainer = document.querySelector('#js-hero-videocontainer');
+  const closePopoutButton = document.querySelector('#js-hero-closepopout');
+  const iframe = document.querySelector('iframe');
+  const player = new Vimeo.Player(iframe);
+  const mainElement = document.querySelector('.main');
+  const isSticky = videoWrapper.classList.contains('stickyVideo');
+
+  let videoHeight = videoWrapper.getBoundingClientRect().height;
+  let playing = false;
+
+  player.on('play', function () {
+    videoWrapper.classList.add('hero__videowrapper--expanded');
+    videoHeight = videoWrapper.getBoundingClientRect().height;
+    playing = true;
+  })
+  player.on('pause', () => { playing = false; })
+  player.on('ended', () => { playing = false; })
+  player.on('error', () => { playing = false; })
+
+
+  if (isSticky) {
+    window.addEventListener('scroll', handleVideoPopout)
+    window.addEventListener('resize', handleVideoPopout)
+    closePopoutButton.addEventListener('click', closeVideoPopout);
+  }
+
+
+  function closeVideoPopout() {
+    player.pause().then(() => {
+      mainElement.classList.remove('has-popout');
+      videoContainer.classList.remove('beforepopout');
+      videoContainer.classList.remove('popout');
+      playing = false;
+    })
+  }
+
+  function handleVideoPopout() {
+    videoHeight = videoWrapper.getBoundingClientRect().height;
+
+    if (playing && window.scrollY > videoHeight) {
+
+      videoWrapper.style.height = `${videoHeight}px`;
+      videoContainer.classList.add('beforepopout');
+
+      setTimeout(() => {
+        mainElement.classList.add('has-popout');
+        videoContainer.classList.add('popout');
+      }, 100)
+
+    } else {
+      mainElement.classList.remove('has-popout');
+      videoContainer.classList.remove('beforepopout');
+      videoContainer.classList.remove('popout');
+    }
+
+  }
+
 </script>

@@ -1,10 +1,12 @@
-<div data-th-fragment="byline" class="byline">
+<div data-th-fragment="byline" class="byline section is-paddingless-top-bottom">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-three-quarters-tablet">
         <span>Skrevet av: </span>
         <span data-th-each="author, i : ${authors}">
-          <div data-th-text="${author.data.name}" data-th-remove="tag"></div><div data-th-if="${i.count < (i.size - 1)}" data-th-remove="tag">,</div><div data-th-if="${i.count == (i.size - 1)}" data-th-remove="tag"> og </div>
+          <div data-th-text="${author.data.name}" data-th-remove="tag"></div>
+          <div data-th-if="${i.count < (i.size - 1)}" data-th-remove="tag">,</div>
+          <div data-th-if="${i.count == (i.size - 1)}" data-th-remove="tag"> og </div>
         </span>
       </div>
     </div>

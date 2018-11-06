@@ -11,7 +11,7 @@ $header-height: 4em;
   z-index: 10;
   transition: all 0.55s cubic-bezier(0, 0, 0.65, 1.83) 0.3s;
 
-  &--unpin{
+  &--unpin {
     transform: translateY(-$header-height);
     transition: transform 0.4s cubic-bezier(0, 0, 0.35, 1.83) 0.15s;
 
@@ -21,7 +21,7 @@ $header-height: 4em;
     }
   }
 
-  &--pin{
+  &--pin {
     transform: translateY(0);
 
     .header__searchbutton {
@@ -30,8 +30,6 @@ $header-height: 4em;
       transition: transform 0.4s cubic-bezier(0, 0, 0.45, 2.43) 0.5s;
     }
   }
-
-
 
   .container {
     display: flex;
@@ -63,7 +61,6 @@ $header-height: 4em;
     &:hover {
       background: rgba(black, 0.04);
     }
-
   }
 
   &__navbutton,
@@ -88,12 +85,22 @@ $header-height: 4em;
     &.is-open {
       span {
         &:nth-child(1),
-        &:nth-child(4) { opacity: 0; transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s; }
-        &:nth-child(2) { transform: translateY(1em) rotate(45deg); transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s; }
-        &:nth-child(3) { transform: translateY(1em) rotate(-45deg); transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s; }
+        &:nth-child(4) {
+          opacity: 0;
+          transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+        }
+        &:nth-child(2) {
+          transform: translateY(1em) rotate(45deg);
+          transition: transform 0.4s ease-in-out 0.4s,
+            opacity 0.4s ease-in-out 0.4s;
+        }
+        &:nth-child(3) {
+          transform: translateY(1em) rotate(-45deg);
+          transition: transform 0.4s ease-in-out 0.4s,
+            opacity 0.4s ease-in-out 0.4s;
+        }
       }
     }
-
   }
 
   &__searchbutton {
@@ -101,7 +108,8 @@ $header-height: 4em;
     transform: translateY($header-height);
     border-radius: 50%;
     z-index: 1;
-    transition: transform 0.6s cubic-bezier(0.84,-0.86, 0.34, 2.76) .5s, opacity 0s linear 1s;
+    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s,
+      opacity 0s linear 1s;
   }
 
   &__navicon {
@@ -122,17 +130,24 @@ $header-height: 4em;
       top: 1em - ($bar-height/2);
       transform-origin: 50% 50%;
 
-      &:nth-child(1) { transform: translateY(0.35em) rotate(0deg); transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s; }
+      &:nth-child(1) {
+        transform: translateY(0.35em) rotate(0deg);
+        transition: transform 0.15s ease-in-out 0.3s,
+          opacity 0.15s ease-in-out 0.3s;
+      }
       &:nth-child(2),
-      &:nth-child(3) { transform: translateY(1em) rotate(0deg); transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s; }
-      &:nth-child(4) { transform: translateY(1.65em) rotate(0deg); transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s; }
-
+      &:nth-child(3) {
+        transform: translateY(1em) rotate(0deg);
+        transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
+      }
+      &:nth-child(4) {
+        transform: translateY(1.65em) rotate(0deg);
+        transition: transform 0.15s ease-in-out 0.3s,
+          opacity 0.15s ease-in-out 0.3s;
+      }
     }
-
   }
 }
-
-
 
 .drawer {
   position: fixed;
@@ -147,7 +162,6 @@ $header-height: 4em;
   transform: translateX(100vw);
   transition: transform 0.3s ease-in-out, opacity 0s linear 0.4s;
 
-
   &.is-open {
     opacity: 1;
     transition: transform 0.3s ease-in-out, opacity 0s linear 0s;
@@ -155,15 +169,14 @@ $header-height: 4em;
   }
 }
 
-
 .page_item {
   margin-bottom: 1em;
   position: relative;
 
   &.active::before {
     content: "";
-    width: .75em;
-    height: .75em;
+    width: 0.75em;
+    height: 0.75em;
     display: block;
     position: absolute;
     left: -1.25em;
@@ -171,4 +184,9 @@ $header-height: 4em;
     border-radius: 50%;
     background: $color-purple;
   }
+}
+
+main.main {
+  min-height: 80vw;
+  padding-top: 4em;
 }

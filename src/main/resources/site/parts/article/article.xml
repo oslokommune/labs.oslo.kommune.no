@@ -1,4 +1,4 @@
 <part>
-	<display-name>Article</display-name>
+	<display-name i18n="parts.article">Article</display-name>
 	<config/>
 </part>

@@ -1,11 +1,11 @@
 <part>
-  <display-name>Article list</display-name>
+  <display-name i18n="parts.articleList">Article list</display-name>
   <config>
     <input name="header" type="TextLine">
-      <label>Header</label>
+      <label i18n="txt.heading">Header</label>
     </input>
     <input name="max" type="Long">
-      <label>Max number of items</label>
+      <label i18n="parts.articleList.max">Max number of items</label>
     </input>
   </config>
 </part>

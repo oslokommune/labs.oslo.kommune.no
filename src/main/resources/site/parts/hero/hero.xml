@@ -1,4 +1,11 @@
 <part>
-	<display-name>Hero</display-name>
-	<config/>
+  <display-name i18n="parts.hero">Hero</display-name>
+  <config>
+    <input name="videoId" type="TextLine">
+      <label i18n="parts.hero.vimeoId">Vimeo video id</label>
+    </input>
+    <input name="stickyVideo" type="Checkbox">
+      <label i18n="parts.hero.stikcy">Sticky video</label>
+    </input>
+  </config>
 </part>

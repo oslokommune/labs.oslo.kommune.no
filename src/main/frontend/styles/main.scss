@@ -1,7 +1,5 @@
-
 @charset "utf-8";
 /*! bulma.io v0.7.2 | MIT License | github.com/jgthms/bulma */
-
 
 @import "custom-bulma";
 
@@ -18,55 +16,83 @@
 @import "partials/hero";
 @import "partials/navbar";
 
-
 ::placeholder {
   color: $color-grayscale-50;
 }
 
-
 .section {
-  background-color: white; 
+  background-color: white;
 
-  &--blue { background-color: $color-blue; }
-  &--blue-light { background-color: $color-blue-light; }
-  &--purple { background-color: $color-purple; }
-  &--grey-lighter { background-color: $color-grey-lighter; }
-  &--grey-light { background-color: $color-grey-light; }
-  &--grey-dark { background-color: $color-grey-dark; }
-  &--grey-darker { background-color: $color-grey-darker; }
-  &--green { background-color: $color-green; }
-  &--green-dark { background-color: $color-green-dark; }
-  &--green-light { background-color: $color-green-light; }
-  &--green-lighter { background-color: $color-green-lighter; }
-  &--green-faded { background-color: $color-green-faded; }
-  &--brown { background-color: $color-brown; }
-  &--brown-beige { background-color: $color-brown-beige; }
-  &--orange { background-color: $color-orange; }
-  &--red { background-color: $color-red; }
-  &--yellow { background-color: $color-yellow; }
-  &--white { background-color: $color-white; }
-  &--black { background-color: $color-black; }
-
+  &--blue {
+    background-color: $color-blue;
+  }
+  &--blue-light {
+    background-color: $color-blue-light;
+  }
+  &--purple {
+    background-color: $color-purple;
+  }
+  &--grey-lighter {
+    background-color: $color-grey-lighter;
+  }
+  &--grey-light {
+    background-color: $color-grey-light;
+  }
+  &--grey-dark {
+    background-color: $color-grey-dark;
+  }
+  &--grey-darker {
+    background-color: $color-grey-darker;
+  }
+  &--green {
+    background-color: $color-green;
+  }
+  &--green-dark {
+    background-color: $color-green-dark;
+  }
+  &--green-light {
+    background-color: $color-green-light;
+  }
+  &--green-lighter {
+    background-color: $color-green-lighter;
+  }
+  &--green-faded {
+    background-color: $color-green-faded;
+  }
+  &--brown {
+    background-color: $color-brown;
+  }
+  &--brown-beige {
+    background-color: $color-brown-beige;
+  }
+  &--orange {
+    background-color: $color-orange;
+  }
+  &--red {
+    background-color: $color-red;
+  }
+  &--yellow {
+    background-color: $color-yellow;
+  }
+  &--white {
+    background-color: $color-white;
+  }
+  &--black {
+    background-color: $color-black;
+  }
 }
-
-
-
-
 
 // Hanging bullets on desktop
 .content ul,
 .content ol {
-
   @media screen and (min-width: 769px) {
     margin-left: 0;
   }
-  
 }
 
-
 // Responsive text sizes
-html, body {
-
+html,
+body {
   @media screen and (min-width: 769px) {
     font-size: 18px;
   }
@@ -78,10 +104,7 @@ html, body {
   @media screen and (min-width: 1408px) {
     font-size: 20px;
   }
-
 }
-
-
 
 blockquote {
   font-size: 0.95em;
@@ -99,9 +122,7 @@ blockquote {
     background: rgba(black, 0.1);
   }
 
-
   &.quote-initial-letter {
-
     &:first-letter {
       opacity: 0.4;
       float: left;
@@ -112,18 +133,14 @@ blockquote {
       margin-left: -0.06em;
       position: relative;
     }
-
   }
-
-
 }
-
 
 .lead {
   font-size: 1.2em;
 }
 
-main.main {
-  min-height: 80vw;
-  padding-top: 4em;
+.is-paddingless-top-bottom {
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
 }

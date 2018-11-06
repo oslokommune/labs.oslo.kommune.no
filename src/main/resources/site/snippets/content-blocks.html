@@ -1,4 +1,4 @@
-<div data-th-fragment="ctbQuote" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
+<div data-th-fragment="ctbQuote" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-half-desktop'">
   <blockquote class="quote-initial-letter">
     <p data-th-utext="${block.ctbQuote.quoteText}"></p>
     <footer>
@@ -10,11 +10,11 @@
   </blockquote>
 </div>
 
-<div data-th-fragment="ctbText" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
+<div data-th-fragment="ctbText" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-half-desktop'">
   <div data-th-utext="${block.ctbText.content}" data-th-remove="tag"></div>
 </div>
 
-<div data-th-fragment="ctbMap" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
+<div data-th-fragment="ctbMap" class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-half-desktop'">
   <h2 class="title" data-th-text="${block.ctbMap.mapTitle}"></h2>
   <div data-th-text="${block.ctbMap.mapCoordinates}"></div>
   <div data-th-text="${block.ctbMap.mapZoom}"></div>
@@ -31,18 +31,16 @@
         </cite>
       </footer>
     </blockquote>
-  </div> 
-  <div class="column is-three-fifths-tablet is-half-desktop is-offset-1-fullhd content" data-th-utext="${block.ctbTextQuote.content}"></div>
+  </div>
+  <div class="column is-three-fifths-tablet is-half-desktop content" data-th-utext="${block.ctbTextQuote.content}"></div>
+  <div class="column is-one-fifth-tablet is-one-quarter-desktop is-2-fullhd"></div>
 </div>
 
-<div data-th-fragment="ctbVideo" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-offset-one-fifth-tablet is-half-desktop is-offset-one-quarter-desktop'">
-  <div data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'" >
-    <iframe data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?color=da28d3&title=0&byline=0&portrait=0'" 
-      style="position:absolute;top:0;left:0;width:100%;height:100%;" 
-      frameborder="0" 
-      webkitallowfullscreen 
-      mozallowfullscreen 
-      allowfullscreen>
+<div data-th-fragment="ctbVideo" class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-three-fifths-tablet is-half-desktop'">
+  <div data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'">
+    <iframe data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?color=da28d3&title=0&byline=0&portrait=0'"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
+      mozallowfullscreen allowfullscreen>
     </iframe>
   </div>
   <!-- <script src="https://player.vimeo.com/api/player.js"></script> -->
