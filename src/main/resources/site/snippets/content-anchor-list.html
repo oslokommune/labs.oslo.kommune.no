@@ -1,0 +1,54 @@
+<nav class="anchor-list">
+  <input type="checkbox" class="anchor-list__toggle" id="anchor-list__toggle">
+  <label for="anchor-list__toggle" class="anchor-list__header">På denne siden</label>
+  <ul class="anchor-list__list" id="js-anchor-list">
+  </ul>
+</nav>
+
+<script>
+
+  function slugify(string) {
+    const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
+    const b = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
+    const p = new RegExp(a.split('').join('|'), 'g')
+    return string.toString().toLowerCase()
+      .replace(/\s+/g, '-') // Replace spaces with
+      .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
+      .replace(/&/g, '-and-') // Replace & with ‘and’
+      .replace(/[^\w\-]+/g, '') // Remove all non-word characters
+      .replace(/\-\-+/g, '-') // Replace multiple — with single -
+      .replace(/^-+/, '') // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
+  }
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+    const anchorList = document.querySelector('#js-anchor-list');
+    const article = document.querySelector('main article');
+    const headers = article.querySelectorAll('h2, h3, h4');
+
+
+    headers.forEach(header => {
+      let text = header.innerHTML.replace(/<\/?[^>]+(>|$)/g, "").trim();
+      let id = slugify(text);
+
+      var listEl = document.createElement('li');
+      var linkEl = document.createElement('a');
+
+      header.id = id;
+      listEl.classList.add('anchor-list__element');
+      linkEl.classList.add('anchor-list__link');
+      linkEl.innerHTML = text;
+      linkEl.href = '#' + id;
+
+      listEl.appendChild(linkEl);
+      anchorList.appendChild(listEl);
+
+    });
+
+
+
+  });
+
+
+
+</script>

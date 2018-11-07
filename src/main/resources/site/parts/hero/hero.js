@@ -1,16 +1,24 @@
 var portal = require("/lib/xp/portal");
 var thymeleaf = require("/lib/xp/thymeleaf");
 var imageLib = require("image");
+var cUtil = require("content-util");
 
 exports.get = function(req) {
   var content = portal.getContent();
   var component = portal.getComponent();
   var model = {};
 
+  if (content.data && content.data.authors) {
+    model.lead = content.data.lead;
+  }
+
+  if (content.data && content.data.authors) {
+    model.authors = cUtil.getAuthors(content.data.authors);
+  }
+
   if (component.config && component.config.videoId) {
     model.video = component.config.videoId;
 
-    log.info(JSON.stringify(component.config, null, 2));
     if (component.config.stickyVideo) {
       model.stickyVideo = true;
     }
