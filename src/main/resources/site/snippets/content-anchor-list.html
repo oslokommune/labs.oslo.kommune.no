@@ -1,4 +1,4 @@
-<nav class="anchor-list">
+<nav class="anchor-list is-hidden" id="js-anchor-list-container">
   <input type="checkbox" class="anchor-list__toggle" id="anchor-list__toggle">
   <label for="anchor-list__toggle" class="anchor-list__header">På denne siden</label>
   <ul class="anchor-list__list" id="js-anchor-list">
@@ -22,10 +22,15 @@
 
   document.addEventListener("DOMContentLoaded", function (event) {
 
-    const anchorList = document.querySelector('#js-anchor-list');
+    const container = document.querySelector('#js-anchor-list-container');
+    const anchorList = container.querySelector('#js-anchor-list');
     const article = document.querySelector('main article');
     const headers = article.querySelectorAll('h2, h3, h4');
 
+
+    if (headers.length >= 3) {
+      container.classList.remove('is-hidden');
+    }
 
     headers.forEach(header => {
       let text = header.innerHTML.replace(/<\/?[^>]+(>|$)/g, "").trim();

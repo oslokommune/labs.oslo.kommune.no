@@ -264,6 +264,10 @@ main.main.has-popout {
   border-left: 2px solid $color-grayscale-30;
   padding-left: 1em;
 
+  &--hidden {
+    display: none;
+  }
+
   // Hide the checkbox
   &__toggle {
     display: none;
