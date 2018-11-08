@@ -24,6 +24,11 @@
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   position: relative;
+  margin-bottom: 1em;
+
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 0em;
+  }
 
   &::before,
   &::after {
@@ -71,6 +76,10 @@
     &::after,
     &::before {
       opacity: 0;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 6em;
     }
   }
 }
@@ -277,7 +286,7 @@ main.main.has-popout {
     transition: max-height 1s ease-in-out;
 
     @media screen and (min-width: $tablet) {
-      max-height: 10em;
+      max-height: 25em;
     }
   }
 
@@ -295,6 +304,14 @@ main.main.has-popout {
 
   // Show list when checkbox is checked
   &__toggle:checked ~ &__list {
-    max-height: 10em;
+    max-height: 25em;
+  }
+}
+
+.lead {
+  margin: 1em 0;
+
+  @media screen and (min-width: $tablet) {
+    margin: 0;
   }
 }
