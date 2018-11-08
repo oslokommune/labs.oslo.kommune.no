@@ -1,6 +1,22 @@
-.hero__headers {
-  margin-top: 1em;
-  margin-bottom: 1em;
+.hero-foot {
+  @media screen and (min-width: $desktop) {
+    .columns {
+      margin: 0;
+    }
+  }
+}
+
+.hero__text {
+  @media screen and (min-width: $desktop) {
+    margin-top: -4em;
+    margin-bottom: 2em;
+    background: $color-blue-light;
+    padding: 2em;
+
+    .title {
+      color: $color-purple !important;
+    }
+  }
 }
 
 .hero__videowrapper {
@@ -8,6 +24,11 @@
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   position: relative;
+  margin-bottom: 1em;
+
+  @media screen and (min-width: $desktop) {
+    margin-bottom: 0em;
+  }
 
   &::before,
   &::after {
@@ -55,6 +76,10 @@
     &::after,
     &::before {
       opacity: 0;
+    }
+
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 6em;
     }
   }
 }
@@ -145,5 +170,148 @@ main.main.has-popout {
     @media screen and (min-width: 1088px) {
       max-width: 50%;
     }
+  }
+}
+
+.dateline {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7em;
+  text-transform: uppercase;
+  margin: 1rem 0 0.5rem;
+
+  @media screen and (min-width: 500px) {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 0;
+  }
+
+  &__date {
+    padding: 0.5em 0;
+    border-top: 1px solid $color-grayscale-20;
+    @media screen and (min-width: 500px) {
+      border: none;
+    }
+    &:last-child {
+      border-bottom: 1px solid $color-grayscale-20;
+      @media screen and (min-width: 500px) {
+        border: none;
+      }
+    }
+  }
+
+  &__label {
+    font-weight: 500;
+    margin-right: 0.25em;
+    @media screen and (min-width: 500px) {
+      &::after {
+        content: ":";
+      }
+    }
+  }
+
+  &__datetime {
+    font-weight: 700;
+    float: right;
+  }
+}
+
+.byline {
+  background: $color-grey-bg;
+  padding: 0.5em;
+
+  &__author {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+  }
+
+  &__image {
+    flex: 0 0 3em;
+    height: 3em;
+    border-radius: 50%;
+    background: darken($color-grey-bg, 20%);
+  }
+
+  &__contact {
+    flex-grow: 1;
+    font-style: normal;
+    margin-left: 0.65em;
+  }
+
+  &__name {
+    font-weight: 600;
+    line-height: 1em;
+    margin-top: 0.1em;
+  }
+
+  &__email {
+    font-size: 0.7em;
+    color: $text;
+    text-decoration: underline;
+  }
+
+  &__icon {
+    margin-left: 0.65em;
+    display: block;
+    background: blue;
+    height: 3em;
+    width: 2em;
+  }
+}
+
+.anchor-list {
+  border-left: 2px solid $color-grayscale-30;
+  padding-left: 1em;
+
+  // Hide the checkbox
+  &__toggle {
+    display: none;
+  }
+
+  &__header {
+    display: block;
+    width: 100%;
+    padding: 1em 0;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__list {
+    padding-top: 0.5em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+
+    @media screen and (min-width: $tablet) {
+      max-height: 25em;
+    }
+  }
+
+  &__link {
+    display: block;
+    width: 100%;
+    padding: 0.25em 0;
+    color: $text;
+    text-decoration: underline;
+  }
+
+  // Toggle status of header
+  &__toggle:checked ~ &__header {
+  }
+
+  // Show list when checkbox is checked
+  &__toggle:checked ~ &__list {
+    max-height: 25em;
+  }
+}
+
+.lead {
+  margin: 1em 0;
+
+  @media screen and (min-width: $tablet) {
+    margin: 0;
   }
 }

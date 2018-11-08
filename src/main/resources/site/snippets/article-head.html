@@ -1,0 +1,17 @@
+<div class="section is-paddingless-top-bottom">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
+        <div data-th-if="${lead}" data-th-insert="/site/snippets/lead.html" data-th-remove="tag"></div>
+        <div data-th-insert="/site/snippets/dateline.html" data-th-remove="tag"></div>
+        <div data-th-if="${authors}" data-th-insert="/site/snippets/byline.html" data-th-remove="tag"></div>
+      </div>
+      <div class="column is-4-tablet is-3-desktop is-offset-1-desktop">
+        <div data-th-insert="/site/snippets/content-anchor-list.html" data-th-remove-tag></div>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

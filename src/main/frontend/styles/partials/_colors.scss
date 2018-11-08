@@ -14,10 +14,13 @@ $color-brown: #d0bfae;
 $color-brown-beige: #f8f0dd;
 $color-orange: #f9c66b;
 $color-red: #ff8274;
-$color-yellow: #F8F0DD;
-$color-white: #FFFFFF;
-$color-black: #000000; 
+$color-yellow: #f8f0dd;
+$color-white: #ffffff;
+$color-black: #000000;
 
+$color-grey-bg: #e9f1f2;
+
+$color-grayscale-5: darken(white, 5%);
 $color-grayscale-10: darken(white, 10%);
 $color-grayscale-20: darken(white, 20%);
 $color-grayscale-30: darken(white, 30%);

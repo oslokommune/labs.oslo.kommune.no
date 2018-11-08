@@ -1,25 +1,64 @@
 $body-size: 16px;
 $body-line-height: 1.65;
-$family-sans-serif: 'Oslo', Helvetica, Arial;
+$family-sans-serif: "Oslo", Helvetica, Arial;
+$body-family: $family-sans-serif;
+// $body-background-color: $color-grayscale-5;
 
+body,
+button,
+input,
+select,
+textarea {
+  font-family: $family-sans-serif;
+}
 
 .has-text-white .content {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: white;
+  }
 
-	h1, 
-	h2, 
-	h3,
-	h4,
-	h5,
-	h6 {
-		color: white;
-	}
+  strong {
+    color: white !important;
+  }
 
-	strong {
-		color: white !important;
-	}
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+}
 
-	a {
-		color: white;
-		text-decoration: underline;
-	}
+.content h1,
+.title.is-1 {
+  font-weight: 500;
+  font-size: 2em;
+  line-height: 1.2em;
+  letter-spacing: -0.02em;
+}
+
+.content h2,
+.title.is-2 {
+  font-weight: 500;
+  font-size: 1.65em;
+  line-height: 1.3em;
+  letter-spacing: -0.01em;
+}
+
+.content h3,
+.title.is-3 {
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 1.4em;
+  letter-spacing: -0.005em;
+}
+
+.content h4,
+.title.is-4 {
+  font-weight: 500;
+  font-size: 1.3em;
+  line-height: 1.4em;
 }

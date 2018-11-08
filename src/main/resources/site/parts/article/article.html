@@ -2,11 +2,6 @@
 
   <article>
 
-    <div data-th-if="${authors}" data-th-insert="/site/snippets/byline.html" data-th-remove="tag"></div>
-
-    <div data-th-if="${lead}" data-th-insert="/site/snippets/lead.html" data-th-remove="tag"></div>
-
-
     <!--/* Each content block renders the corresponding content block snippet */-->
     <section data-th-if="${contentBlocks}" data-th-each="block : ${contentBlocks}" class="section" data-th-style="${block.gradient} ? ${block.gradient} : ''"
       data-th-classappend="
@@ -14,7 +9,7 @@
               (${block.fill} ? ' section--' + ${block.fill} : '')
             ">
       <div class="container">
-        <div class="columns is-centered">
+        <div class="columns">
           <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
         </div>
       </div>
