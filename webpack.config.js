@@ -1,5 +1,6 @@
 const path = require('path');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = (env, argv) => {
   console.log(JSON.stringify(argv, null, 2));
@@ -30,7 +31,11 @@ module.exports = (env, argv) => {
           }
         },
         {
-          test: /\.scss$/,
+          test: /\.vue$/,
+          use: 'vue-loader'
+        },
+        {
+          test: /\.(sass|scss|css)$/,
           use: [
             MiniCssExtractPlugin.loader,
             {
@@ -70,10 +75,11 @@ module.exports = (env, argv) => {
       ]
     },
     resolve: {
-      extensions: ['.js', 'scss'],
+      extensions: ['.js', '.vue', '.css', '.scss'],
     },
     stats: 'normal',
     plugins: [
+      new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css'
       })

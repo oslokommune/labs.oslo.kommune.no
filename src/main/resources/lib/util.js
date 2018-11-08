@@ -65,10 +65,7 @@ exports.getMomentLocale = function (content) {
   return locale;
 };
 
-
-
 exports.getColorValueFromName = function(color) {
-
   var colors = {
     "blue": "#6fe9ff",
     "blue-light": "#b3f5ff",
@@ -90,9 +87,33 @@ exports.getColorValueFromName = function(color) {
     "white": "#FFFFFF",
     "black": "#000000"
   }
-
   return colors[color];
-
 }
 
+exports.sanitizeParam = function(str) {
+  if (str) {
+      return str.replace(/(['".*+?^=!:$<>{}()|\[\]\/\\])/g, '');
+  }
+};
 
+exports.dmyDate = function (datestr) {
+  var date = new Date(datestr);
+  var day = date.getDate();
+  var month = date.getMonth();
+  month = parseInt(month);
+  month = month + 1;
+  var year = date.getFullYear();
+  var prettydate = day + "." + month + "." + year;
+  return prettydate;
+};
+
+exports.ymdDate = function (datestr) {
+  var date = new Date(datestr);
+  var day = date.getDate();
+  var month = date.getMonth();
+  month = parseInt(month);
+  month = month + 1;
+  var year = date.getFullYear();
+  var ymdDate = [("0000" + year).slice(-4), ("00" + month).slice(-2), ("00" + day).slice(-2)].join("-");
+  return ymdDate;
+};
