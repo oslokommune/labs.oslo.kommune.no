@@ -6,80 +6,88 @@
   }
 }
 
-.hero__text {
-  @media screen and (min-width: $desktop) {
-    margin-top: -4em;
-    margin-bottom: 2em;
-    background: $color-blue-light;
-    padding: 2em;
+.hero {
+  &__text {
+    @media screen and (min-width: $desktop) {
+      margin-top: -4em;
+      margin-bottom: 2em;
+      background: $color-blue-light;
+      padding: 2em;
 
-    .title {
-      color: $color-purple !important;
-    }
-  }
-}
-
-.hero__videowrapper {
-  max-height: 40vh;
-  overflow: hidden;
-  transition: all 0.3s ease-in-out;
-  position: relative;
-  margin-bottom: 1em;
-
-  @media screen and (min-width: $desktop) {
-    margin-bottom: 0em;
-  }
-
-  &::before,
-  &::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transition: all 0.3s ease-in-out;
-    pointer-events: none;
-  }
-  &::before {
-    width: 5em;
-    height: 5em;
-    background: rgba($color-purple, 0.2);
-    border-radius: 50%;
-    transform: translate(-2.5em, -2.5em);
-    z-index: 2;
-    cursor: pointer;
-  }
-
-  &::after {
-    border-top: 1em solid transparent;
-    border-bottom: 1em solid transparent;
-    border-left: 1.5em solid $color-blue;
-    transform: translate(-0.5em, -1em);
-    z-index: 3;
-  }
-
-  &:hover {
-    &::before {
-      background: rgba($color-purple, 1);
-    }
-    &::after {
-      border-left-color: rgba($color-blue, 1);
+      .title {
+        color: $color-purple !important;
+      }
     }
   }
 
-  &--expanded {
-    max-height: 1344px * 0.5625;
-    max-width: 1344px;
+  &__img {
+    max-height: 44vh;
+    object-fit: cover;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    &::after,
-    &::before {
-      opacity: 0;
-    }
+  }
+
+  &__videowrapper {
+    max-height: 40vh;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    margin-bottom: 1em;
 
     @media screen and (min-width: $desktop) {
-      margin-bottom: 6em;
+      margin-bottom: 0em;
+    }
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: all 0.3s ease-in-out;
+      pointer-events: none;
+    }
+    &::before {
+      width: 5em;
+      height: 5em;
+      background: rgba($color-purple, 0.2);
+      border-radius: 50%;
+      transform: translate(-2.5em, -2.5em);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    &::after {
+      border-top: 1em solid transparent;
+      border-bottom: 1em solid transparent;
+      border-left: 1.5em solid $color-blue;
+      transform: translate(-0.5em, -1em);
+      z-index: 3;
+    }
+
+    &:hover {
+      &::before {
+        background: rgba($color-purple, 1);
+      }
+      &::after {
+        border-left-color: rgba($color-blue, 1);
+      }
+    }
+
+    &--expanded {
+      max-height: 1344px * 0.5625;
+      max-width: 1344px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      &::after,
+      &::before {
+        opacity: 0;
+      }
+
+      @media screen and (min-width: $desktop) {
+        margin-bottom: 6em;
+      }
     }
   }
 }
@@ -281,6 +289,7 @@ main.main.has-popout {
     text-transform: uppercase;
     font-weight: 700;
     cursor: pointer;
+    // add icon here
   }
 
   &__list {
@@ -304,6 +313,7 @@ main.main.has-popout {
 
   // Toggle status of header
   &__toggle:checked ~ &__header {
+    // change icon here
   }
 
   // Show list when checkbox is checked

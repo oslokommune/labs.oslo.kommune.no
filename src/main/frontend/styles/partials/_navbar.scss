@@ -3,7 +3,6 @@ $header-height: 4em;
 .header {
   position: fixed;
   height: $header-height;
-  padding: 0em 1em;
   top: 0;
   width: 100%;
   display: flex;
@@ -28,19 +27,30 @@ $header-height: 4em;
       opacity: 1;
       transform: translateY($header-height);
       transition: transform 0.4s cubic-bezier(0, 0, 0.45, 2.43) 0.5s;
+
+      @media screen and (min-width: $tablet) {
+        transform: translateY(0);
+      }
     }
   }
 
-  .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-  }
+  // .header__container {
+  //   max-width: $fullhd;
+  // }
+
+  // .container {
+  //   display: flex;
+  //   align-items: center;
+  // }
+
+  // .container-fluid {
+  //   display: flex;
+  //   align-items: center;
+  //   width: 100%;
+  //   height: 100%;
+  // }
 
   &__branding {
-    margin-left: -1em;
     padding: 0 1em;
     height: 100%;
     display: flex;
@@ -49,14 +59,10 @@ $header-height: 4em;
   }
 
   &__logo {
-    margin-right: $header-height - 1em;
+    margin-left: auto;
     height: 100%;
     display: block;
     padding: 0.75em 1.5em;
-
-    @media screen and (min-width: 1088px) {
-      margin-right: $header-height;
-    }
 
     &:hover {
       background: rgba(black, 0.04);
@@ -65,15 +71,8 @@ $header-height: 4em;
 
   &__navbutton,
   &__searchbutton {
-    position: absolute;
-    top: 0em;
-    right: -1em;
     height: $header-height;
     width: $header-height;
-
-    @media screen and (min-width: 1088px) {
-      right: 0;
-    }
   }
 
   &__navbutton {
@@ -110,6 +109,13 @@ $header-height: 4em;
     z-index: 1;
     transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s,
       opacity 0s linear 1s;
+    position: absolute;
+    right: 0;
+
+    @media screen and (min-width: $tablet) {
+      transform: translateY(0);
+      position: relative;
+    }
   }
 
   &__navicon {
@@ -152,7 +158,8 @@ $header-height: 4em;
 .drawer {
   position: fixed;
   height: 100vh;
-  width: 100vw;
+  width: 90%;
+  max-width: 600px;
   top: 0;
   right: 0;
   background-color: $color-blue !important;
@@ -161,29 +168,70 @@ $header-height: 4em;
   opacity: 0;
   transform: translateX(100vw);
   transition: transform 0.3s ease-in-out, opacity 0s linear 0.4s;
+  overflow-x: hidden;
 
   &.is-open {
     opacity: 1;
     transition: transform 0.3s ease-in-out, opacity 0s linear 0s;
     transform: translate(0);
+
+    .page_item {
+      transform: translateX(0);
+      opacity: 1;
+      &:nth-child(1) {
+        transition-delay: 0.4s;
+      }
+      &:nth-child(2) {
+        transition-delay: 0.45s;
+      }
+      &:nth-child(3) {
+        transition-delay: 0.5s;
+      }
+      &:nth-child(4) {
+        transition-delay: 0.55s;
+      }
+      &:nth-child(5) {
+        transition-delay: 0.6s;
+      }
+      &:nth-child(6) {
+        transition-delay: 0.65s;
+      }
+      &:nth-child(7) {
+        transition-delay: 0.7s;
+      }
+      &:nth-child(8) {
+        transition-delay: 0.75s;
+      }
+      &:nth-child(9) {
+        transition-delay: 0.8s;
+      }
+    }
   }
 }
 
 .page_item {
   margin-bottom: 1em;
   position: relative;
+  transform: translateX(10em);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  transition-delay: 0s;
 
-  &.active::before {
-    content: "";
-    width: 0.75em;
-    height: 0.75em;
-    display: block;
-    position: absolute;
-    left: -1.25em;
-    top: 33%;
-    border-radius: 50%;
-    background: $color-purple;
+  &.active a {
+    font-weight: 700;
   }
+
+  // &.active::before {
+  //   content: "";
+  //   width: 0.75em;
+  //   height: 0.75em;
+  //   display: block;
+  //   position: absolute;
+  //   left: -1.25em;
+  //   top: 33%;
+  //   border-radius: 50%;
+  //   background: $color-purple;
+  // }
 }
 
 main.main {

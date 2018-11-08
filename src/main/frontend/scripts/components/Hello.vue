@@ -1,36 +1,28 @@
 <template>
   <div>
     <p>{{ greeting }} World!</p>
-    <template v-if="dataFromEnonic">
+    <template v-if="model">
       <p>Data from Enonic:</p>
       <ul>
-        <li v-for="(val, key, idx) in dataFromEnonic" :key="idx">
-          {{key}}: {{val}}
-        </li>
+        <li v-for="(val, key, idx) in model" :key="idx">{{key}}: {{val}}</li>
       </ul>
     </template>
   </div>
 </template>
 
 <script>
-module.exports = {
-  data: function () {
-    return {
-      greeting: 'Hello',
-      dataFromEnonic: {}
-    }
-  },
-  mounted() {
-    const el = document.getElementById('js-vuetest-data');
-    if (el) {
-      this.dataFromEnonic = JSON.parse(el.text);
-    }
-  }
-}
+export default {
+  name: "VueComponentName",
+  data: () => ({
+    model: enonicModel,
+    greeting: "Hello"
+  })
+};
 </script>
 
-<style scoped>
-p, ul {
+<style lang="scss" scoped>
+p,
+ul {
   font-size: 2em;
   text-align: center;
 }

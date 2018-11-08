@@ -5,9 +5,10 @@ var util = require("util");
 exports.get = function(req) {
   var model = {};
   model.someData = {
-    a: 'b',
-    c: 'd'
-  }
+    a: "b",
+    c: "d",
+    e: "f"
+  };
   var view = resolve("./vuetest.html");
   var body = thymeleaf.render(view, model);
   return {
