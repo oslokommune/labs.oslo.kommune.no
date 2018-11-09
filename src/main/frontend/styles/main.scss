@@ -158,3 +158,70 @@ blockquote {
     left: 0;
   }
 }
+
+.is-small {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.065em;
+}
+
+.footer {
+  color: $color-purple;
+  font-weight: 500;
+  background: $color-grayscale-5;
+  border-top: 1px solid $color-grayscale-20;
+
+  &__column {
+    padding-right: 1.5em;
+    margin-bottom: 1.5em;
+
+    > .title {
+      position: relative;
+      padding-top: 0.75rem;
+      color: $color-purple;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 3rem;
+        height: 4px;
+        left: 0;
+        top: -0.2rem;
+      }
+    }
+
+    &:nth-of-type(1) > .title {
+      padding-top: 0.5rem;
+      margin-bottom: 0.85rem;
+    }
+
+    &:nth-of-type(1) > .title::before {
+      background: $color-blue;
+    }
+    &:nth-of-type(2) > .title::before {
+      background: $color-green;
+    }
+    &:nth-of-type(3) > .title::before {
+      background: $color-orange;
+    }
+    &:nth-of-type(4) > .title::before {
+      background: $color-red;
+    }
+  }
+
+  &__content {
+    font-size: 0.8em;
+  }
+
+  &__logocontainer {
+    background: $color-purple;
+    padding: 2em;
+  }
+
+  a {
+    color: $color-purple !important;
+    text-decoration: underline;
+    font-weight: 500;
+  }
+}

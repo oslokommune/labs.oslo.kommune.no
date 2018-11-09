@@ -1,6 +1,6 @@
 <page>
-    <display-name i18n="pages.default">Default page</display-name>
-    <regions>
-        <region name="main"/>
-    </regions>
+  <display-name i18n="pages.default">Default page</display-name>
+  <regions>
+    <region name="main"/>
+  </regions>
 </page>

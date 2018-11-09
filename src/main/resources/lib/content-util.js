@@ -64,6 +64,7 @@ function getAuthors(authors) {
   return authors;
 }
 
+//
 function processContentBlocks(ctbs) {
   ctbs = util.forceArray(ctbs);
 

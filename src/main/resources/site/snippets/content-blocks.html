@@ -1,3 +1,10 @@
+<!-- 
+  Each of the following snippets corresponds to a content block 
+  type for the article content type. Column classes are linked 
+  to the full width flag in the content block option for a block.
+-->
+
+<!--/* Quote */-->
 <div data-th-fragment="ctbQuote" data-th-remove="tag">
   <div class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <blockquote class="quote-initial-letter">
@@ -13,6 +20,7 @@
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
+<!--/* Textblock */-->
 <div data-th-fragment="ctbText" data-th-remove="tag">
   <div class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <div data-th-utext="${block.ctbText.content}" data-th-remove="tag"></div>
@@ -20,6 +28,7 @@
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
+<!--/* Map */-->
 <div data-th-fragment="ctbMap" data-th-remove="tag">
   <div class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <h2 class="title" data-th-text="${block.ctbMap.mapTitle}"></h2>
@@ -29,6 +38,7 @@
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
+<!--/* Text with quotebox */-->
 <div data-th-fragment="ctbTextQuote" data-th-remove="tag">
   <div class="column is-full-mobile is-one-fifth-tablet is-one-quarter-widescreen is-2-fullhd">
     <blockquote>
@@ -45,6 +55,7 @@
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
+<!--/* Video */-->
 <div data-th-fragment="ctbVideo" data-th-remove="tag">
   <div class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <div data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'">
@@ -57,6 +68,7 @@
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
+<!-- Sidebar box which should get inserted into each block -->
 <div data-th-fragment="sidebarbox" data-th-if="${block.sidebarbox}" class="column is-4-tablet is-3-desktop is-offset-1-desktop">
   <div class="sidebarbox section">
     <div class="sidebarbox__icon">[[${block.sidebarbox.icon}]]</div>
