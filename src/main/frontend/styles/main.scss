@@ -142,3 +142,19 @@ blockquote {
   padding-top: 0.25em;
   padding-bottom: 0.25em;
 }
+
+.sidebarbox {
+  background: $color-grey-bg;
+  padding-bottom: 2em;
+  position: relative;
+  margin-top: 1.75em;
+
+  &__icon {
+    position: absolute;
+    height: 3.5em;
+    width: 3.5em;
+    background: darken($color-grey-bg, 20%);
+    top: -1.75em;
+    left: 0;
+  }
+}
