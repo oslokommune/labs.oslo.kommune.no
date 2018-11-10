@@ -13,17 +13,19 @@
 <script>
 export default {
   name: "VueComponentName",
-  data: () => ({
-    model: enonicModel,
-    greeting: "Hello"
-  })
+  data: function() {
+    return {
+      model: enonicModel,
+      greeting: "Hello"
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 p,
 ul {
-  font-size: 2em;
+  font-size: 1em;
   text-align: center;
 }
 </style>

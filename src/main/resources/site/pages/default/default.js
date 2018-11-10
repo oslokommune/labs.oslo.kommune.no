@@ -14,7 +14,10 @@ exports.get = function (req) {
     model.menuItems = menuLib.getMenuTree(2); // Get 2 levels of menu based on content setting 'Show in menu'.
     model.breadcrumbItems = menuLib.getBreadcrumbMenu({}); // Get a breadcrumb menu for current content.
     model.subMenuItems = menuLib.getSubMenus(content,1); // Get 1 level of submenu (from current content)
-
+    model.searchURL = portal.serviceUrl({
+        service: 'search',
+        type: 'absolute'
+    });
 
     var serverName = util.getServerName().toLowerCase();
     var isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test';
