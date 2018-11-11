@@ -1,18 +1,27 @@
 <template>
   <div class="thing">
     <input type="text" v-model="q" placeholder="Søk her" @input="doSearch" />
-    <p>{{q}}</p>
-    <p v-if="next">{{next}}</p>
-    <p>{{time}}</p>
-    <p>{{total}}</p>
-    <p>{{hits}}</p>
+    <template v-if="hits.length > 0">
+      <ul>
+        <li v-for="(item, index) in hits" :key="index">
+          <SearchItem :item="item"/>
+        </li>
+      </ul>
+      <p v-if="next">Neste side: {{next}}</p>
+      <p>Tid brukt: {{time}}</p>
+      <p>Treff: {{total}}</p>
+    </template>
   </div>
 </template>
 
 <script>
+import SearchItem from './SearchItem'
 import axios from 'axios'
 export default {
   name: "Search",
+  components: {
+    SearchItem
+  },
   data: function() {
     return {
       searchURL: searchURL,
@@ -46,11 +55,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../styles/partials/sizes';
 .thing {
-  margin-top: 4em;
-}
-p {
-  font-size: 2em;
-  text-align: center;
+  margin-top: $header-height;
 }
 </style>
