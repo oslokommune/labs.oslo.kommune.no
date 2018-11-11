@@ -64,6 +64,7 @@ function getAuthors(authors) {
   return authors;
 }
 
+//
 function processContentBlocks(ctbs) {
   ctbs = util.forceArray(ctbs);
 
@@ -74,8 +75,19 @@ function processContentBlocks(ctbs) {
       // List of the selected settings
       var selected = util.forceArray(block.ctbSettings._selected);
 
+      // Sidebarbox
+      if (selected.indexOf("sidebarbox") > -1) {
+        block.ctb.sidebarbox = {};
+        if (block.ctbSettings.sidebarbox.sidebarboxIcon) {
+          block.ctb.sidebarbox.icon =
+            block.ctbSettings.sidebarbox.sidebarboxIcon;
+        }
+        block.ctb.sidebarbox.contents =
+          block.ctbSettings.sidebarbox.sidebarboxContents;
+      }
+
       // Full Width
-      if (selected.indexOf("fullWidth") > -1) {
+      if (selected.indexOf("fullWidth") > -1 && !block.ctb.sidebarbox) {
         block.ctb.isFullWidth = true;
       }
 

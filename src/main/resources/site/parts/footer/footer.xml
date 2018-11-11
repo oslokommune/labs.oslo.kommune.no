@@ -1,0 +1,53 @@
+<part>
+  <display-name i18n="parts.footer">Footer</display-name>
+  <config>
+    <input name="siteName" type="TextLine">
+      <label>Site name</label>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+    <input name="siteDescription" type="TextArea">
+      <label>Site Description</label>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+    <input name="menuName" type="TextLine">
+      <label>Menu header</label>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+    <input name="contactTitle" type="TextLine">
+      <label>Contact Title</label>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+    <input name="contactAddress" type="TextLine">
+      <label>Contact Address</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="contactPhone" type="TextLine">
+      <label>Contact Phone</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="contactEmail" type="TextLine">
+      <label>Contact Email</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="socialTitle" type="TextLine">
+      <label>Social header</label>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+    <input name="facebook" type="TextLine">
+      <label>Facebook URL</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="twitter" type="TextLine">
+      <label>Twitter URL</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="vimeo" type="TextLine">
+      <label>Vimeo URL</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="instagram" type="TextLine">
+      <label>Instagram URL</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+  </config>
+</part>
