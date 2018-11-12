@@ -1,9 +1,9 @@
-var portalLib = require('/lib/xp/portal');
-var contentLib = require('/lib/xp/content');
-var cacheLib = require('/lib/xp/cache');
-var i18nLib = require('/lib/xp/i18n');
-var imageLib = require('image');
-var util = require('util');
+var portalLib = require("/lib/xp/portal");
+var contentLib = require("/lib/xp/content");
+var cacheLib = require("/lib/xp/cache");
+var i18nLib = require("/lib/xp/i18n");
+var imageLib = require("image");
+var util = require("util");
 
 var imageCache = cacheLib.newCache({
   size: 100,
@@ -11,12 +11,11 @@ var imageCache = cacheLib.newCache({
 });
 
 var nameCache = cacheLib.newCache({
-  size: 2, /* /no and /en namespaces*/
+  size: 2 /* /no and /en namespaces*/,
   expire: 60 * 60 * 24
 });
 
-exports.get = function (req) {
-
+exports.get = function(req) {
   var startTime = +new Date();
 
   var searchResults = [],
@@ -24,26 +23,26 @@ exports.get = function (req) {
     nextPageStart = 0,
     next = false,
     qArr = [],
-    qMod = '',
-    q = '';
+    qMod = "",
+    q = "";
 
   var site = portalLib.getSite();
   var contentTypes = getContentTypes(site._path);
   var queryParams = {
     count: 10,
     start: 0,
-    sort: '_score DESC',
+    sort: "_score DESC",
     contentTypes: Object.keys(contentTypes),
     query: "_path like '/content" + site._path + "/*'",
     filters: {
       boolean: {
         mustNot: {
-          hasValue: [{
-            field: 'data.hideFromList',
-            values: [
-              'true'
-            ]
-          }]
+          hasValue: [
+            {
+              field: "data.hideFromList",
+              values: ["true"]
+            }
+          ]
         }
       }
     }
@@ -56,27 +55,31 @@ exports.get = function (req) {
   }
 
   if (req.params.q) {
-
     q = util.sanitizeParam(req.params.q);
 
     // Ngram only supports words up to 12 chars
-    qArr = q.split(' ');
-    qArr = qArr.map(function (word) {
+    qArr = q.split(" ");
+    qArr = qArr.map(function(word) {
       if (word.length > 12) {
         word = word.substr(0, 12);
       }
       return word;
     });
-    qMod = qArr.join(' ');
+    qMod = qArr.join(" ");
 
-    queryParams.query += " AND ( ngram('displayName^5, _allText', '" + qMod + "', 'AND')";
+    queryParams.query +=
+      " AND ( ngram('displayName^5, _allText', '" + qMod + "', 'AND')";
     if (qArr.length === 1) {
       // Single word query. Also look at path
-      queryParams.query += " OR ( ngram('displayName^5, _allText', '" + qMod + "', 'AND') AND _path like '*" + qMod + "*')";
+      queryParams.query +=
+        " OR ( ngram('displayName^5, _allText', '" +
+        qMod +
+        "', 'AND') AND _path like '*" +
+        qMod +
+        "*')";
       queryParams.query += " OR _path like '*" + qMod + "*'";
     }
     queryParams.query += " )";
-
   } else {
     queryParams.sort = "publish.from DESC";
   }
@@ -84,7 +87,7 @@ exports.get = function (req) {
   var r = contentLib.query(queryParams);
 
   if (r && r.count) {
-    r.hits.map(function (item) {
+    r.hits.map(function(item) {
       searchResults.push({
         type: getTypeString(item, contentTypes),
         heading: getHeading(item),
@@ -99,10 +102,10 @@ exports.get = function (req) {
     nextPageStart = queryParams.start + queryParams.count;
     if (total > nextPageStart) {
       next = portalLib.serviceUrl({
-        service: 'search',
+        service: "search",
         params: {
           q: q,
-          start: (String)(nextPageStart)
+          start: String(nextPageStart)
         }
       });
     }
@@ -115,13 +118,12 @@ exports.get = function (req) {
     body: {
       hits: searchResults,
       total: total,
-      time: timeSpent + 'ms',
+      time: timeSpent + "ms",
       next: next
     },
     status: 200,
-    contentType: 'application/json; charset=utf-8'
+    contentType: "application/json; charset=utf-8"
   };
-
 };
 
 /**
@@ -147,7 +149,7 @@ function getTypeString(content, contentTypes) {
     items.push(util.dmyDate(time));
   }
 
-  return items.join(' · ');
+  return items.join(" · ");
 }
 
 /**
@@ -156,7 +158,8 @@ function getTypeString(content, contentTypes) {
  * @param {*} content   The content object from the result
  */
 function getHeading(content) {
-  if (content && content.data && content.data.heading) return content.data.heading;
+  if (content && content.data && content.data.heading)
+    return content.data.heading;
   if (content && content.data && content.data.title) return content.data.title;
   if (content && content.data && content.data.name) return content.data.name;
   if (content) return content.displayName;
@@ -169,8 +172,10 @@ function getHeading(content) {
  * @param {*} content   The content object from the result
  */
 function getLead(content) {
-  if (content && content.data && content.data.lead) return util.paragraphify(content.data.lead);
-  if (content && content.data && content.data.bio) return util.paragraphify(content.data.bio);
+  if (content && content.data && content.data.lead)
+    return util.paragraphify(content.data.lead);
+  if (content && content.data && content.data.bio)
+    return util.paragraphify(content.data.bio);
   return false;
 }
 
@@ -179,12 +184,15 @@ function getLead(content) {
  * @param {*} content The content object from the result
  */
 function getImage(content) {
-  if (content && content.data && content.data.image) return getImageFromCache(content.data.image);
+  if (content && content.data && content.data.image)
+    return getImageFromCache(content.data.image);
+  if (content && content.data && content.data.mainImage)
+    return getImageFromCache(content.data.mainImage);
   return false;
 }
 function getImageFromCache(imageId) {
-  return imageCache.get(imageId, function () {
-    return imageLib.image.create(imageId, 'square');
+  return imageCache.get(imageId, function() {
+    return imageLib.image.create(imageId, "square");
   });
 }
 
@@ -193,16 +201,16 @@ function getImageFromCache(imageId) {
  * @param {*} pathKey   The root part of the content path (i.e. "no" in /content/no/urlpath)
  */
 function getContentTypes(pathKey) {
-  return nameCache.get(pathKey, function () {
+  return nameCache.get(pathKey, function() {
     var contentTypes = {};
-    contentTypes[app.name + ':article'] = i18nLib.localize({
-      key: 'search.article'
+    contentTypes[app.name + ":article"] = i18nLib.localize({
+      key: "search.article"
     });
-    contentTypes[app.name + ':landing-page'] = i18nLib.localize({
-      key: 'search.landing-page'
+    contentTypes[app.name + ":landing-page"] = i18nLib.localize({
+      key: "search.landing-page"
     });
-    contentTypes[app.name + ':person'] = i18nLib.localize({
-      key: 'search.person'
+    contentTypes[app.name + ":person"] = i18nLib.localize({
+      key: "search.person"
     });
     return contentTypes;
   });
