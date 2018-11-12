@@ -6,7 +6,6 @@
     <div v-if="item.image" class="imageWrapper">
       <ResponsiveImage :image="item.image" sizes="100px"/>
     </div>
-    <pre>{{item}}</pre>
   </div>
 </template>
 
