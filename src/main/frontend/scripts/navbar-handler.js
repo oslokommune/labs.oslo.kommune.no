@@ -1,60 +1,57 @@
 export default function handler(id) {
-
-  var lastKnownScrollY = 0;
-  var currentScrollY = 0;
-  var ticking = false;
-  var idOfHeader = id;
-  var eleHeader = null;
+  var lastKnownScrollY = 0
+  var currentScrollY = 0
+  var ticking = false
+  var idOfHeader = id
+  var eleHeader = null
   const classes = {
     pinned: 'header--pin',
     unpinned: 'header--unpin',
     top: 'header--top',
     open: 'is-open'
-  };
+  }
   function onScroll() {
-    if(eleHeader.classList.contains(classes.open)) {
-      return;
+    if (eleHeader.classList.contains(classes.open)) {
+      return
     }
-    currentScrollY = window.pageYOffset;
-    requestTick();
+    currentScrollY = window.pageYOffset
+    requestTick()
   }
   function requestTick() {
     if (!ticking) {
-      requestAnimationFrame(update);
+      requestAnimationFrame(update)
     }
-    ticking = true; 
+    ticking = true
   }
   function update() {
     if (currentScrollY < lastKnownScrollY) {
-      pin();
+      pin()
     } else if (currentScrollY > lastKnownScrollY) {
-      unpin();
+      unpin()
     }
-    lastKnownScrollY = currentScrollY;
-    ticking = false;
+    lastKnownScrollY = currentScrollY
+    ticking = false
   }
   function pin() {
-
-    if(currentScrollY <= 0) {
-      eleHeader.classList.add(classes.top);
+    if (currentScrollY <= 0) {
+      eleHeader.classList.add(classes.top)
     } else {
-      eleHeader.classList.remove(classes.top);
+      eleHeader.classList.remove(classes.top)
     }
 
     if (eleHeader.classList.contains(classes.unpinned)) {
-      eleHeader.classList.remove(classes.unpinned);
-      eleHeader.classList.add(classes.pinned);
+      eleHeader.classList.remove(classes.unpinned)
+      eleHeader.classList.add(classes.pinned)
     }
   }
   function unpin() {
     if (eleHeader.classList.contains(classes.pinned) || !eleHeader.classList.contains(classes.unpinned)) {
-      eleHeader.classList.remove(classes.pinned);
-      eleHeader.classList.add(classes.unpinned);
+      eleHeader.classList.remove(classes.pinned)
+      eleHeader.classList.add(classes.unpinned)
     }
   }
   window.onload = function() {
-    eleHeader = document.getElementById(idOfHeader);
-    document.addEventListener('scroll', onScroll, false);
+    eleHeader = document.getElementById(idOfHeader)
+    document.addEventListener('scroll', onScroll, false)
   }
-
 }

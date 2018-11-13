@@ -15,22 +15,22 @@
 </template>
 
 <script>
-import SearchItem from "./SearchItem";
-import axios from "axios";
+import SearchItem from './SearchItem'
+import axios from 'axios'
 export default {
-  name: "Search",
+  name: 'Search',
   components: {
     SearchItem
   },
   data: function() {
     return {
       searchURL: searchURL,
-      q: "",
+      q: '',
       hits: [],
       next: false,
-      time: "",
+      time: '',
       total: 0
-    };
+    }
   },
   methods: {
     doSearch: function(event) {
@@ -41,22 +41,22 @@ export default {
           }
         })
         .then(res => {
-          const data = res.data;
-          this.next = data.next;
-          this.time = data.time;
-          this.total = data.total;
-          this.hits = data.hits;
+          const data = res.data
+          this.next = data.next
+          this.time = data.time
+          this.total = data.total
+          this.hits = data.hits
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>
-@import "../../styles/partials/sizes";
+@import '../../styles/partials/sizes';
 .thing {
   margin-top: $header-height;
 }

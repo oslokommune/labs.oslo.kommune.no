@@ -12,14 +12,14 @@
 
 <script>
 export default {
-  name: "VueComponentName",
+  name: 'VueComponentName',
   data: function() {
     return {
       model: enonicModel,
-      greeting: "Hello"
+      greeting: 'Hello'
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

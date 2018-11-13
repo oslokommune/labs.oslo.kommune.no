@@ -1,21 +1,21 @@
 @charset "utf-8";
 /*! bulma.io v0.7.2 | MIT License | github.com/jgthms/bulma */
 
-@import "partials/fonts";
-@import "partials/colors";
-@import "partials/sizes";
+@import 'partials/fonts';
+@import 'partials/colors';
+@import 'partials/sizes';
 
-@import "../../../../node_modules/bulma/sass/utilities/_all";
-@import "../../../../node_modules/bulma/sass/base/_all";
-@import "../../../../node_modules/bulma/sass/elements/_all";
-@import "../../../../node_modules/bulma/sass/components/_all";
-@import "../../../../node_modules/bulma/sass/grid/_all";
-@import "../../../../node_modules/bulma/sass/layout/_all";
+@import '../../../../node_modules/bulma/sass/utilities/_all';
+@import '../../../../node_modules/bulma/sass/base/_all';
+@import '../../../../node_modules/bulma/sass/elements/_all';
+@import '../../../../node_modules/bulma/sass/components/_all';
+@import '../../../../node_modules/bulma/sass/grid/_all';
+@import '../../../../node_modules/bulma/sass/layout/_all';
 
-@import "custom-bulma";
+@import 'custom-bulma';
 
-@import "partials/hero";
-@import "partials/navbar";
+@import 'partials/hero';
+@import 'partials/navbar';
 
 ::placeholder {
   color: $color-grayscale-50;
@@ -113,7 +113,7 @@ blockquote {
 
   &::before {
     position: absolute;
-    content: " ";
+    content: ' ';
     top: -1em;
     bottom: -1em;
     left: -4px;
@@ -183,7 +183,7 @@ blockquote {
       color: $color-purple;
 
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         width: 3rem;
         height: 4px;

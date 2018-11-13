@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import ResponsiveImage from "./ResponsiveImage";
+import ResponsiveImage from './ResponsiveImage'
 export default {
   props: {
     item: {
@@ -27,20 +27,20 @@ export default {
   },
   methods: {
     highlight(str) {
-      if (!this.q) return str;
+      if (!this.q) return str
 
       // Strip HTML tags from string
-      let div = document.createElement("div");
-      div.innerHTML = str;
-      str = div.textContent || div.innerText || "";
+      let div = document.createElement('div')
+      div.innerHTML = str
+      str = div.textContent || div.innerText || ''
 
       // Highlight the matched characters by wrapping a span around them
-      return str.replace(new RegExp(this.q, "gi"), match => {
-        return '<span class="has-background-grey-lighter">' + match + "</span>";
-      });
+      return str.replace(new RegExp(this.q, 'gi'), match => {
+        return '<span class="has-background-grey-lighter">' + match + '</span>'
+      })
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -1,10 +1,5 @@
 <template>
-  <img
-    :src="image.src"
-    :srcset="image.srcSet"
-    :alt="image.alt"
-    :sizes="sizes"
-  />
+  <img :src="image.src" :srcset="image.srcSet" :alt="image.alt" :sizes="sizes">
 </template>
 
 <script>
@@ -16,10 +11,10 @@ export default {
     },
     sizes: {
       type: String,
-      default: "100%"
+      default: '100%'
     }
   }
-};
+}
 </script>
 
 <style scoped>

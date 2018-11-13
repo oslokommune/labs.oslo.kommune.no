@@ -1,12 +1,10 @@
 <div data-th-remove="tag">
-    <div data-th-if="${!live && !hasContent}">
-        <h3>Unconfigured generic text part</h3>
-    </div>
-    <section data-th-if="${hasContent}">
-        <div data-th-if="${preHeading}" data-th-text="${preHeading}">Pre heading</div>
-        <h2 data-th-if="${heading}" data-th-text="${heading}">Heading</h2>
-        <div data-th-if="${subHeading}" data-th-text="${subHeading}">Sub heading</div>
-        <div data-th-if="${lead}" data-th-utext="${lead}">Lead</div>
-        <div data-th-if="${body}" data-th-utext="${body}">Body</div>
-    </section>
+  <div data-th-if="${!live && !hasContent}"><h3>Unconfigured generic text part</h3></div>
+  <section data-th-if="${hasContent}">
+    <div data-th-if="${preHeading}" data-th-text="${preHeading}">Pre heading</div>
+    <h2 data-th-if="${heading}" data-th-text="${heading}">Heading</h2>
+    <div data-th-if="${subHeading}" data-th-text="${subHeading}">Sub heading</div>
+    <div data-th-if="${lead}" data-th-utext="${lead}">Lead</div>
+    <div data-th-if="${body}" data-th-utext="${body}">Body</div>
+  </section>
 </div>

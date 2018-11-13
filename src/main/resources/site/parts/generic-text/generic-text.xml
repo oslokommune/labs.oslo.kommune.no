@@ -1,20 +1,20 @@
 <part>
-    <display-name i18n="parts.genericText">Generic text block</display-name>
-    <config>
-        <input name="preHeading" type="TextLine">
-            <label i18n="txt.preHeading">Pre heading</label>
-        </input>
-        <input name="heading" type="TextLine">
-            <label i18n="txt.heading">Heading</label>
-        </input>
-        <input name="subHeading" type="TextLine">
-            <label i18n="txt.subHeading">Sub heading</label>
-        </input>
-        <input name="lead" type="TextArea">
-            <label i18n="parts.genericText.lead">Simple text</label>
-        </input>
-        <input name="body" type="HtmlArea">
-            <label i18n="parts.genericText.body">Rich text</label>
-        </input>
-    </config>
+  <display-name i18n="parts.genericText">Generic text block</display-name>
+  <config>
+    <input name="preHeading" type="TextLine">
+      <label i18n="txt.preHeading">Pre heading</label>
+    </input>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+    </input>
+    <input name="subHeading" type="TextLine">
+      <label i18n="txt.subHeading">Sub heading</label>
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="parts.genericText.lead">Simple text</label>
+    </input>
+    <input name="body" type="HtmlArea">
+      <label i18n="parts.genericText.body">Rich text</label>
+    </input>
+  </config>
 </part>

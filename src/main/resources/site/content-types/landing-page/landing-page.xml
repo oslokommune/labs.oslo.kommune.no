@@ -1,23 +1,23 @@
 <content-type>
-    <display-name i18n="ct.genericLandingPage">Generic landing page</display-name>
-    <super-type>base:structured</super-type>
-    <form>
-        <input name="image" type="ImageSelector">
-            <label i18n="txt.image">Image</label>
-            <config>
-                <allowPath>${site}/*</allowPath>
-            </config>
-        </input>
-        <input name="heading" type="TextLine">
-            <label i18n="txt.heading">Heading</label>
-            <occurrences minimum="1" maximum="1" />
-        </input>
-        <input name="lead" type="TextArea">
-            <label i18n="txt.lead">Lead text</label>
-            <occurrences minimum="1" maximum="1" />
-        </input>
-        <input name="body" type="HtmlArea">
-            <label i18n="txt.body">Body text</label>
-        </input>
-    </form>
+  <display-name i18n="ct.genericLandingPage">Generic landing page</display-name>
+  <super-type>base:structured</super-type>
+  <form>
+    <input name="image" type="ImageSelector">
+      <label i18n="txt.image">Image</label>
+      <config>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+      <occurrences minimum="1" maximum="1" />
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="txt.lead">Lead text</label>
+      <occurrences minimum="1" maximum="1" />
+    </input>
+    <input name="body" type="HtmlArea">
+      <label i18n="txt.body">Body text</label>
+    </input>
+  </form>
 </content-type>

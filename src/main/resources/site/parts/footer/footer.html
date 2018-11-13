@@ -4,64 +4,33 @@
       <div class="columns is-multiline">
         <div class="footer__column column is-6-tablet is-3-desktop">
           <h4 class="footer__title title is-4" data-th-text="${siteName}"></h4>
-          <div class="footer__content">
-            <p data-th-text="${siteDescription}"></p>
-          </div>
+          <div class="footer__content"><p data-th-text="${siteDescription}"></p></div>
         </div>
         <div class="footer__column column is-6-tablet is-3-desktop">
-          <h4
-            class="footer__title title is-small"
-            data-th-text="${menuName}"
-          ></h4>
+          <h4 class="footer__title title is-small" data-th-text="${menuName}"></h4>
           <div class="footer__content ul">
             <p data-th-each="element : ${menuElements}">
-              <a
-                data-th-href="${element.url}"
-                data-th-text="${element.name}"
-              ></a>
+              <a data-th-href="${element.url}" data-th-text="${element.name}"></a>
             </p>
           </div>
         </div>
         <div class="footer__column column is-6-tablet is-3-desktop">
-          <h4
-            class="footer__title title is-small"
-            data-th-text="${contactTitle}"
-          ></h4>
+          <h4 class="footer__title title is-small" data-th-text="${contactTitle}"></h4>
           <div class="footer__content ul">
-            <p data-th-if="${contactAddress}">
-              <em class="icon"></em
-              ><span data-th-text="${contactAddress}"></span>
-            </p>
-            <p data-th-if="${contactPhone}">
-              <em class="icon"></em><span data-th-text="${contactPhone}"></span>
-            </p>
+            <p data-th-if="${contactAddress}"><em class="icon"></em><span data-th-text="${contactAddress}"></span></p>
+            <p data-th-if="${contactPhone}"><em class="icon"></em><span data-th-text="${contactPhone}"></span></p>
             <p data-th-if="${contactEmail}">
-              <em class="icon"></em
-              ><a
-                data-th-href="${'mailto:' + contactEmail}"
-                data-th-text="${contactEmail}"
-              ></a>
+              <em class="icon"></em><a data-th-href="${'mailto:' + contactEmail}" data-th-text="${contactEmail}"></a>
             </p>
           </div>
         </div>
         <div class="footer__column column is-6-tablet is-3-desktop">
-          <h4
-            class="footer__title title is-small"
-            data-th-text="${socialTitle}"
-          ></h4>
+          <h4 class="footer__title title is-small" data-th-text="${socialTitle}"></h4>
           <div class="footer__content ul">
-            <p data-th-if="${facebook}">
-              <em class="icon"></em><a data-th-href="${facebook}">Facebook</a>
-            </p>
-            <p data-th-if="${twitter}">
-              <em class="icon"></em><a data-th-href="${twitter}">Twitter</a>
-            </p>
-            <p data-th-if="${vimeo}">
-              <em class="icon"></em><a data-th-href="${vimeo}">Vimeo</a>
-            </p>
-            <p data-th-if="${instagram}">
-              <em class="icon"></em><a data-th-href="${instagram}">Instagram</a>
-            </p>
+            <p data-th-if="${facebook}"><em class="icon"></em><a data-th-href="${facebook}">Facebook</a></p>
+            <p data-th-if="${twitter}"><em class="icon"></em><a data-th-href="${twitter}">Twitter</a></p>
+            <p data-th-if="${vimeo}"><em class="icon"></em><a data-th-href="${vimeo}">Vimeo</a></p>
+            <p data-th-if="${instagram}"><em class="icon"></em><a data-th-href="${instagram}">Instagram</a></p>
           </div>
         </div>
       </div>
@@ -95,8 +64,6 @@
     </div>
   </div>
   <div class="section">
-    <div class="container has-text-centered">
-      <a href="#">Personvern og informasjonskapsler</a>
-    </div>
+    <div class="container has-text-centered"><a href="#">Personvern og informasjonskapsler</a></div>
   </div>
 </footer>

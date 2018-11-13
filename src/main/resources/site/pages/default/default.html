@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="no">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-</head>
-
-<body data-portal-component-type="page">
-  <header data-th-replace="/site/snippets/navbar.html"></header>
-  <main class="main" data-portal-component-type="region" data-portal-region="main">
-    <div data-th-each="component : ${main.components}" data-th-remove="tag">
-      <div data-portal-component="${component.path}" data-th-remove="tag"></div>
-    </div>
-  </main>
-</body>
-
+  <body data-portal-component-type="page">
+    <header data-th-replace="/site/snippets/navbar.html"></header>
+    <main class="main" data-portal-component-type="region" data-portal-region="main">
+      <div data-th-each="component : ${main.components}" data-th-remove="tag">
+        <div data-portal-component="${component.path}" data-th-remove="tag"></div>
+      </div>
+    </main>
+  </body>
 </html>

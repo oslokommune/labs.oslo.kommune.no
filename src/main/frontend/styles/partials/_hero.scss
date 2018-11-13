@@ -39,7 +39,7 @@
 
     &::before,
     &::after {
-      content: "";
+      content: '';
       display: block;
       position: absolute;
       top: 50%;
@@ -110,7 +110,7 @@
   &::before,
   &::after {
     position: absolute;
-    content: "";
+    content: '';
     width: 2px;
     height: 1em;
     left: calc(2em - 1px);
@@ -213,7 +213,7 @@ main.main.has-popout {
     margin-right: 0.25em;
     @media screen and (min-width: 500px) {
       &::after {
-        content: ":";
+        content: ':';
       }
     }
   }
