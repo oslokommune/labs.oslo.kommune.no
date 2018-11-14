@@ -18,7 +18,9 @@ exports.prepareArticleList = function(data, scale) {
   var list = data.hits.map(function(res) {
     var article = {}
     article.id = res._id
-    article.path = portal.pageUrl({ path: res._path })
+    article.path = portal.pageUrl({
+      path: res._path
+    })
     article.created = res.createdTime
     article.title = res.displayName
 
@@ -51,7 +53,9 @@ function getAuthors(authors) {
 
   authors = util.forceArray(authors)
   authors = authors.map(function(author) {
-    var a = contentLib.get({ key: author })
+    var a = contentLib.get({
+      key: author
+    })
     if (a && a.image) {
       a.image = imageLib.image.create(a.image)
     }
@@ -163,6 +167,44 @@ function processContentBlocks(ctbs) {
         ratio = defaultAspectRatio.split(':')
       }
       block.ctb.ctbVideo.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
+    }
+
+    // Sanitize links. Prefer internal over external, override link text if desired
+    if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
+      var b = block.ctb.ctbLinks
+      if (b.linkList) {
+        var workingLinks = [];
+        var link = {}
+        util.forceArray(b.linkList).forEach(function(item) {
+          link = {}
+          if (item.internalLink || item.externalLink) {
+            if (item.internalLink) {
+              link.text = contentLib.get({
+                key: item.internalLink
+              }).displayName
+              link.href = portal.pageUrl({
+                id: item.internalLink
+              })
+            } else {
+              link.href = item.externalLink
+              if (!/^https?:\/\//i.test(link.href)) {
+                link.href = 'https://' + link.href; // Add protocol to href if missing...
+              }
+              link.text = item.externalLink.replace(/^https?:\/\//i, "") // ...but remove from text
+            }
+            if (item.overrideLinkText) {
+              link.text = item.overrideLinkText
+            }
+          }
+          if (link.href) {
+            workingLinks.push(link)
+          }
+        })
+        if (workingLinks.length) {
+          b.links = workingLinks
+        }
+      }
+      log.info(b.links)
     }
 
     return block.ctb

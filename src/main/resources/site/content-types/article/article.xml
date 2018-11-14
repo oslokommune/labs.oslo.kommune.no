@@ -285,6 +285,14 @@
               </items>
             </option>
 
+            <!-- Link block -->
+            <option name="ctbLinks">
+              <label i18n="ct.article.ctbLinks">Link list</label>
+              <items>
+                <inline mixin="link-list" />
+              </items>
+            </option>
+
           </options>
         </option-set>
       </items>

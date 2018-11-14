@@ -1,0 +1,27 @@
+<mixin>
+  <display-name>Link list mixin</display-name>
+  <items>
+    <item-set name="linkList">
+      <label i18n="txt.linkItem">Link item</label>
+      <occurrences minimum="0" maximum="0"/>
+      <items>
+        <input name="internalLink" type="ContentSelector">
+          <label i18n="txt.internalLink">Link to internal content</label>
+          <config>
+            <relationshipType>system:reference</relationshipType>
+            <allowContentType>article</allowContentType>
+            <allowContentType>landing-page</allowContentType>
+            <allowContentType>person</allowContentType>
+            <allowPath>${site}/*</allowPath>
+          </config>
+        </input>
+        <input name="externalLink" type="TextLine">
+          <label i18n="txt.externalLink">URL to external content</label>
+        </input>
+        <input name="overrideLinkText" type="TextLine">
+          <label i18n="txt.overrideLinkText">Override link text</label>
+        </input>
+      </items>
+    </item-set>
+  </items>
+</mixin>
