@@ -16,6 +16,8 @@
 
 @import 'partials/hero';
 @import 'partials/navbar';
+@import 'partials/search-results';
+@import 'partials/pagination';
 
 ::placeholder {
   color: $color-grayscale-50;

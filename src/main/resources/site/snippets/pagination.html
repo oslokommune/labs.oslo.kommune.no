@@ -1,0 +1,25 @@
+<!--
+     [1] 2  3  4  5 ... 10  ->
+  <-  1 [2] 3  4  5 ... 10  ->
+  <-  1  2 [3] 4  5 ... 10  ->
+  <-  1  2  3 [4] 5 ... 10  ->
+  <-  1 ... 4 [5] 6 ... 10  ->
+  <-  1 ... 5 [6] 7 ... 10  ->
+  <-  1 ... 6 [7] 8  9  10  ->
+  <-  1 ... 6  7 [8] 9  10  ->
+  <-  1 ... 6  7  8 [9] 10  ->
+  <-  1 ... 6  7  8  9 [10]
+-->
+
+<div class="pagination columns is-centered" role="navigation" aria-label="Pagineringsmeny">
+  <!-- Add class 'pagination__arrow--disabled' when current page === 1 -->
+  <a class="pagination__arrow pagination__arrow-left" aria-label="Gå til forrige side"></a>
+  <a class="pagination__item" aria-label="Gå til side 1">1</a>
+  <div class="pagination__ellipsis" aria-hidden="true">...</div>
+  <a class="pagination__item" aria-label="Gå til side 8">8</a>
+  <a class="pagination__item pagination__item--active" aria-current="true">9</a>
+  <a class="pagination__item" aria-label="Gå til side 10">10</a>
+  <div class="pagination__ellipsis" aria-hidden="true">...</div>
+  <a class="pagination__item" aria-label="Gå til side 16">16</a>
+  <a class="pagination__arrow pagination__arrow-right" aria-label="Gå til neste side"></a>
+</div>
