@@ -1,27 +1,14 @@
-import scrollIt from './scrollIt'
-
-function slugify(string) {
-  const a = 'àáäâãåèéëêìíïîòóöôùúüûñçßÿœæŕśńṕẃǵǹḿǘẍźḧ·/_,:;'
-  const b = 'aaaaaaeeeeiiiioooouuuuncsyoarsnpwgnmuxzh------'
-  const p = new RegExp(a.split('').join('|'), 'g')
-  return string
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, '-') // Replace spaces with
-    .replace(p, c => b.charAt(a.indexOf(c))) // Replace special characters
-    .replace(/&/g, '-and-') // Replace & with ‘and’
-    .replace(/[^\w\-]+/g, '') // Remove all non-word characters
-    .replace(/\-\-+/g, '-') // Replace multiple — with single -
-    .replace(/^-+/, '') // Trim — from start of text .replace(/-+$/, '') // Trim — from end of text
-}
+import scrollIt from './utils/scrollIt'
+import slugify from './utils/slugify'
 
 export default function init() {
+  const minCount = 3 // Minimum amount of headers required to create the list
   const container = document.querySelector('#js-anchor-list-container')
   const anchorList = container.querySelector('#js-anchor-list')
   const article = document.querySelector('main article')
   const headers = article.querySelectorAll('h2, h3, h4')
 
-  if (headers.length >= 3) {
+  if (headers.length >= minCount) {
     container.classList.remove('is-hidden')
   }
 
