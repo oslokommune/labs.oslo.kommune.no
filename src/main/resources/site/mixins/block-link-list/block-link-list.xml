@@ -1,9 +1,15 @@
 <mixin>
   <display-name>Link list mixin</display-name>
   <items>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="txt.lead">Lead</label>
+    </input>
     <item-set name="linkList">
       <label i18n="txt.linkItem">Link item</label>
-      <occurrences minimum="0" maximum="0"/>
+      <occurrences minimum="1" maximum="0"/>
       <items>
         <input name="internalLink" type="ContentSelector">
           <label i18n="txt.internalLink">Link to internal content</label>

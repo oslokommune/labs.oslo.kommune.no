@@ -1,0 +1,6 @@
+<part>
+  <display-name i18n="parts.blockLinkList">Generic link list block</display-name>
+  <config>
+    <inline mixin="block-link-list" />
+  </config>
+</part>

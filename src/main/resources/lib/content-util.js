@@ -171,40 +171,7 @@ function processContentBlocks(ctbs) {
 
     // Sanitize links. Prefer internal over external, override link text if desired
     if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
-      var b = block.ctb.ctbLinks
-      if (b.linkList) {
-        var workingLinks = [];
-        var link = {}
-        util.forceArray(b.linkList).forEach(function(item) {
-          link = {}
-          if (item.internalLink || item.externalLink) {
-            if (item.internalLink) {
-              link.text = contentLib.get({
-                key: item.internalLink
-              }).displayName
-              link.href = portal.pageUrl({
-                id: item.internalLink
-              })
-            } else {
-              link.href = item.externalLink
-              if (!/^https?:\/\//i.test(link.href)) {
-                link.href = 'https://' + link.href; // Add protocol to href if missing...
-              }
-              link.text = item.externalLink.replace(/^https?:\/\//i, "") // ...but remove from text
-            }
-            if (item.overrideLinkText) {
-              link.text = item.overrideLinkText
-            }
-          }
-          if (link.href) {
-            workingLinks.push(link)
-          }
-        })
-        if (workingLinks.length) {
-          b.links = workingLinks
-        }
-      }
-      log.info(b.links)
+      block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)
     }
 
     return block.ctb
@@ -212,3 +179,41 @@ function processContentBlocks(ctbs) {
 
   return ctbs
 }
+
+var processBlockLinkList = function(b) {
+  if (b.linkList) {
+    var workingLinks = [];
+    var link = {}
+    util.forceArray(b.linkList).forEach(function(item) {
+      link = {}
+      if (item.internalLink || item.externalLink) {
+        if (item.internalLink) {
+          link.text = contentLib.get({
+            key: item.internalLink
+          }).displayName
+          link.href = portal.pageUrl({
+            id: item.internalLink
+          })
+        } else {
+          link.href = item.externalLink
+          if (!/^https?:\/\//i.test(link.href)) {
+            link.href = 'https://' + link.href; // Add protocol to href if missing...
+          }
+          link.text = item.externalLink.replace(/^https?:\/\//i, "") // ...but remove from text
+        }
+        if (item.overrideLinkText) {
+          link.text = item.overrideLinkText
+        }
+      }
+      if (link.href) {
+        workingLinks.push(link)
+      }
+    })
+    if (workingLinks.length) {
+      b.links = workingLinks
+    }
+  }
+  log.info(JSON.stringify(b.links, null, 2))
+  return b
+}
+exports.processBlockLinkList = processBlockLinkList
