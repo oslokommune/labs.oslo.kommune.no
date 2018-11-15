@@ -104,7 +104,8 @@
   }
 
   &__searchbutton {
-    background: $color-purple;
+    background-color: $color-purple;
+    // background-image: url('../../gfx/icons/search.svg');
     transform: translateY($header-height);
     border-radius: 50%;
     z-index: 1;
