@@ -55,6 +55,11 @@
     height: 1.6em;
   }
 
+  &__date,
+  &__authors {
+    font-size: 0.65rem;
+  }
+
   &.isFocus {
     background: rgba($color-grayscale-5, 0.5);
     outline-color: rgb(77, 144, 254); // #4D90FE

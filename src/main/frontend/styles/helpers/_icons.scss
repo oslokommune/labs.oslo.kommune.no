@@ -1,0 +1,39 @@
+.icon {
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+
+  &--calendar {
+    background-image: url($gfxPath+'/icons/calendar-alt.svg');
+    margin-right: -0.25em;
+    transform: translateY(-0.1em);
+  }
+  &--user {
+    background-image: url($gfxPath+'/icons/user.svg');
+    margin-right: -0.25em;
+    transform: translateY(-0.1em);
+  }
+  &--chevron-right {
+    background-image: url($gfxPath+'/icons/chevron-right.svg');
+  }
+  &--facebook {
+    background-image: url($gfxPath+'/icons/facebook.svg');
+  }
+  &--twitter {
+    background-image: url($gfxPath+'/icons/twitter.svg');
+  }
+  &--vimeo {
+    background-image: url($gfxPath+'/icons/vimeo.svg');
+  }
+  &--instagram {
+    background-image: url($gfxPath+'/icons/instagram.svg');
+  }
+  &--map {
+    background-image: url($gfxPath+'/icons/map.svg');
+  }
+  &--phone {
+    background-image: url($gfxPath+'/icons/phone.svg');
+  }
+  &--email {
+    background-image: url($gfxPath+'/icons/email.svg');
+  }
+}

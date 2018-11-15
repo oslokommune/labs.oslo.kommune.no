@@ -16,22 +16,33 @@
         </div>
         <div class="footer__column column is-6-tablet is-3-desktop">
           <h4 class="footer__title title is-small" data-th-text="${contactTitle}"></h4>
-          <div class="footer__content ul">
-            <p data-th-if="${contactAddress}"><em class="icon"></em><span data-th-text="${contactAddress}"></span></p>
-            <p data-th-if="${contactPhone}"><em class="icon"></em><span data-th-text="${contactPhone}"></span></p>
-            <p data-th-if="${contactEmail}">
-              <em class="icon"></em><a data-th-href="${'mailto:' + contactEmail}" data-th-text="${contactEmail}"></a>
-            </p>
-          </div>
+          <ul class="footer__content ul">
+            <li data-th-if="${contactAddress}">
+              <em class="icon icon--map"></em><span data-th-text="${contactAddress}"></span>
+            </li>
+            <li data-th-if="${contactPhone}">
+              <em class="icon icon--phone"></em><span data-th-text="${contactPhone}"></span>
+            </li>
+            <li data-th-if="${contactEmail}">
+              <em class="icon icon--email"></em
+              ><a data-th-href="${'mailto:' + contactEmail}" data-th-text="${contactEmail}"></a>
+            </li>
+          </ul>
         </div>
         <div class="footer__column column is-6-tablet is-3-desktop">
           <h4 class="footer__title title is-small" data-th-text="${socialTitle}"></h4>
-          <div class="footer__content ul">
-            <p data-th-if="${facebook}"><em class="icon"></em><a data-th-href="${facebook}">Facebook</a></p>
-            <p data-th-if="${twitter}"><em class="icon"></em><a data-th-href="${twitter}">Twitter</a></p>
-            <p data-th-if="${vimeo}"><em class="icon"></em><a data-th-href="${vimeo}">Vimeo</a></p>
-            <p data-th-if="${instagram}"><em class="icon"></em><a data-th-href="${instagram}">Instagram</a></p>
-          </div>
+          <ul class="footer__content ul">
+            <li data-th-if="${facebook}">
+              <em class="icon icon--facebook"></em><a data-th-href="${facebook}">Facebook</a>
+            </li>
+            <li data-th-if="${twitter}">
+              <em class="icon icon--twitter"></em><a data-th-href="${twitter}">Twitter</a>
+            </li>
+            <li data-th-if="${vimeo}"><em class="icon icon--vimeo"></em><a data-th-href="${vimeo}">Vimeo</a></li>
+            <li data-th-if="${instagram}">
+              <em class="icon icon--instagram"></em><a data-th-href="${instagram}">Instagram</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

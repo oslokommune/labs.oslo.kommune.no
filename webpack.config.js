@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, argv) => {
   console.log(JSON.stringify(argv, null, 2));
@@ -82,7 +83,11 @@ module.exports = (env, argv) => {
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css'
-      })
+      }),
+      new CopyWebpackPlugin([
+        { from: './src/main/frontend/gfx', to: 'gfx' }
+      ])
+
     ]
   }
 }
