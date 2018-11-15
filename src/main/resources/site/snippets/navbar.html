@@ -1,4 +1,4 @@
-<nav class="header header--top has-background-white" id="js-header">
+<nav class="header header--top has-background-white">
   <a href="/" class="header__branding"> <strong>Origo labs</strong> </a>
   <a href="https://www.oslo.kommune.no/" class="header__logo">
     <svg style="height: 100%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.9 254.3">
@@ -21,12 +21,12 @@
       </g>
     </svg>
   </a>
-  <div class="header__searchbutton">
-    <div id="js-search"><p>Loading component...</p></div>
-  </div>
-  <div class="header__navbutton" id="js-navbutton">
+  <a data-th-href="${searchPageUrl}" class="header__searchbutton">
+    <!-- <div id="js-search"><p>Loading component...</p></div> -->
+  </a>
+  <a href="" class="header__navbutton" id="js-navbutton" aria-label="Åpne meny">
     <div class="header__navicon"><span></span> <span></span> <span></span> <span></span></div>
-  </div>
+  </a>
   <div class="section drawer" id="js-drawer">
     <nav data-th-if="${menuItems}" role="navigation">
       <ul class="menu-main">
@@ -45,13 +45,9 @@
             data-th-href="${portal.pageUrl({'_path=' + menuItem.path})}"
             data-th-text="${menuItem.menuName} ?: ${menuItem.displayName}"
             data-th-target="${menuItem.newWindow ? '_blank' : ''}"
-            >Page</a
-          >
+          ></a>
         </li>
       </ul>
     </nav>
   </div>
 </nav>
-<script data-th-inline="javascript">
-  var searchURL = /*[[${searchURL}]]*/ 'default'
-</script>

@@ -7,6 +7,8 @@ export default function init() {
 }
 
 function togglemenu(e) {
+  e.preventDefault()
+
   if (Array.from(this.classList).includes('is-open')) {
     menuButton.classList.remove('is-open')
     menuDrawer.classList.remove('is-open')

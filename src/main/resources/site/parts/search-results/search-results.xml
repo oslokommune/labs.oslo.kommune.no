@@ -3,5 +3,16 @@
 		Search results
 	</display-name>
 	<config>
+		<input name="mainImage" type="ImageSelector">
+			<label i18n="ct.article.mainImage">
+				Main image
+			</label>
+			<occurrences minimum="0" maximum="1" />
+			<config>
+				<allowPath>
+					./*
+				</allowPath>
+			</config>
+		</input>
 	</config>
 </part>

@@ -1,39 +1,6 @@
-<section class="search__hero section">
-  <img
-    class="search__heroimg"
-    title=""
-    src="https://images.unsplash.com/photo-1542027162039-67cb61de57df?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=038a777ed16cca406abbe738f75aa425&auto=format&fit=crop&w=1950&q=80"
-    alt=""
-  />
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-10-tablet is-8-desktop">
-        <form class="field has-addons" action="" role="search" aria-label="Globalt søk">
-          <div class="control is-expanded"><input type="text" class="input is-fullwidth" /></div>
-          <div class="control"><button class="button">Søk</button></div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-10-tablet is-8-desktop">
-        <div class="section search__resultlist">
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-          <div data-th-replace="./search-result-item.html"></div>
-        </div>
-        <div data-th-replace="/site/snippets/pagination.html"></div>
-      </div>
-    </div>
-  </div>
-</section>
+<div id="js-search"></div>
+
+<script data-th-inline="javascript">
+  var searchURL = /*[[${searchURL}]]*/ 'default'
+  var mainImage = /*[[${mainImage}]]*/ 'default'
+</script>

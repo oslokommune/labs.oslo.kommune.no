@@ -85,6 +85,11 @@ exports.get = function(req) {
     r.hits.map(function(item) {
       searchResults.push({
         type: getTypeString(item, contentTypes),
+        date: {
+          iso: util.ymdDate(item.publish.from),
+          pretty: util.dmyDate(item.publish.from)
+        },
+        authors: getAuthors(item),
         heading: getHeading(item),
         lead: getLead(item),
         image: getImage(item),
@@ -133,17 +138,6 @@ function getTypeString(content, contentTypes) {
   if (type) {
     items.push(type)
   }
-
-  var time
-  if (content.publish && content.publish.from) {
-    time = content.publish.from
-  } else {
-    time = content.createdTime
-  }
-  if (time) {
-    items.push(util.dmyDate(time))
-  }
-
   return items.join(' · ')
 }
 
@@ -161,13 +155,31 @@ function getHeading(content) {
 }
 
 /**
+ * Helper function to extract a list of authors for an item
+ * @param {*} content   The content object from the result
+ */
+function getAuthors(item) {
+  var authors = []
+  if (item.data && item.data.authors) {
+    authors = util.forceArray(item.data.authors).map(function(authorId) {
+      var author = contentLib.get({ key: authorId })
+      return {
+        name: author.data.name,
+        url: author._path
+      }
+    })
+  }
+  return authors
+}
+
+/**
  * Helper function to extract the best field to use for lead text when dealing with
  * multi type content. Prefers lead > bio
  * @param {*} content   The content object from the result
  */
 function getLead(content) {
-  if (content && content.data && content.data.lead) return util.paragraphify(content.data.lead)
-  if (content && content.data && content.data.bio) return util.paragraphify(content.data.bio)
+  if (content && content.data && content.data.lead) return content.data.lead
+  if (content && content.data && content.data.bio) return content.data.bio
   return false
 }
 

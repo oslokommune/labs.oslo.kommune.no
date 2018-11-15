@@ -74,8 +74,13 @@
   }
 
   &__navbutton {
+    height: $header-height !important;
+    width: $header-height !important;
     background: $color-blue;
+    padding: 0 !important;
+    margin: 0 !important;
     display: flex;
+    border: 0;
     z-index: 3;
     cursor: pointer;
 
@@ -163,7 +168,17 @@
   transition: transform 0.3s ease-in-out, opacity 0s linear 0.4s;
   overflow-x: hidden;
 
+  .page_item {
+    visibility: hidden;
+    opacity: 1;
+  }
+
   &.is-open {
+    .page_item {
+      visibility: visible;
+      opacity: 0;
+    }
+
     opacity: 1;
     transition: transform 0.3s ease-in-out, opacity 0s linear 0s;
     transform: translate(0);

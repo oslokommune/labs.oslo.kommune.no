@@ -1,7 +1,6 @@
 .search {
   &__hero {
-    background: blue;
-    min-height: 20em;
+    min-height: 22em;
     position: relative;
     padding-top: 6em;
   }
@@ -22,13 +21,14 @@
     box-shadow: 0 0.4em 2em rgba(black, 0.05), 0 0.2em 0.7em rgba(black, 0.1);
     background: white;
     border-radius: 2px;
-    padding: 1.5rem;
+    padding: 1rem;
   }
 }
 
 .search-list-item {
   display: flex;
   margin-bottom: 1em;
+  padding: 0.5rem;
 
   & + & {
     border-top: 1px solid $color-grey-bg;
@@ -55,6 +55,14 @@
     height: 1.6em;
   }
 
+  &.isFocus {
+    background: rgba($color-grayscale-5, 0.5);
+    outline-color: rgb(77, 144, 254); // #4D90FE
+    outline-offset: -2px;
+    outline-style: auto;
+    outline-width: 5px;
+  }
+
   &__tag,
   &__date,
   &__author,
@@ -77,6 +85,10 @@
 
   &__lead {
     font-size: 0.85em;
+  }
+
+  &__text {
+    flex-grow: 1;
   }
 
   &__image {
