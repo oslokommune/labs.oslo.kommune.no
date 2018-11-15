@@ -2,8 +2,10 @@ import navbarHandler from './navbar-handler.js'
 import menuHandler from './menu-handler.js'
 import anchorListHandler from './anchorlist-handler.js'
 
-navbarHandler('js-header')
-menuHandler()
+if (document.getElementById('js-header')) {
+  navbarHandler('js-header')
+  menuHandler()
+}
 
 if (document.getElementById('js-anchor-list')) {
   anchorListHandler()
