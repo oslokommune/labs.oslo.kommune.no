@@ -53,14 +53,15 @@ exports.image.create = function(key, scale, filter, format, quality, responsive)
           image.src = exports.image.createUrl(key, scale, filter, format, quality)
         }
       } else {
-        image.src = portal.attachmentUrl({ id: key })
+        image.src = portal.attachmentUrl({
+          id: key
+        })
       }
       image.alt = result.displayName
       image.caption = result.data['caption'] || null
       image.artist = result.data['artist'] || null
       image.copyright = result.data['copyright'] || null
       image.tags = result.data['tags'] || null
-      //log.info(JSON.stringify(image, null, 2));
     }
   }
   return image

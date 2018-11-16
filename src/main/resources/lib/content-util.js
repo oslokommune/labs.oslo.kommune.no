@@ -5,17 +5,12 @@ var imageLib = require('image')
 
 exports.prepareArticleContents = function(data, scale) {
   data = processCommonFields(data, scale)
-
   data.contentBlocks && (data.contentBlocks = processContentBlocks(data.contentBlocks))
-
-  log.info(JSON.stringify(data, null, 2))
-
   return data
 }
 
 exports.prepareHeroContents = function(data, scale) {
   data = processCommonFields(data, scale)
-
   return data
 }
 
@@ -79,12 +74,13 @@ function getAuthors(authors) {
       author.email = content.data.email
     }
 
-    author.url = portal.pageUrl({ id: authorId })
+    author.url = portal.pageUrl({
+      id: authorId
+    })
 
     return author
   })
 
-  log.info(JSON.stringify(authors, null, 2))
   return authors
 }
 exports.getAuthors = getAuthors
@@ -242,7 +238,6 @@ var processBlockLinkList = function(b) {
       b.links = workingLinks
     }
   }
-  log.info(JSON.stringify(b.links, null, 2))
   return b
 }
 exports.processBlockLinkList = processBlockLinkList
@@ -251,7 +246,6 @@ var processBlockImages = function(b, scale) {
   b.images = util.forceArray(b.images).map(function(image) {
     return imageLib.image.create(image, scale)
   })
-  log.info(JSON.stringify(b, null, 2))
   return b
 }
 exports.processBlockImages = processBlockImages
