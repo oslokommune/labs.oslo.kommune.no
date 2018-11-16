@@ -1,0 +1,41 @@
+<mixin>
+  <display-name>Hero mixin</display-name>
+  <items>
+
+    <!-- Headings -->
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config/>
+    </input>
+    <input name="subheading" type="TextLine">
+      <label i18n="txt.subHeading">Sub heading</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config/>
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="txt.lead">Lead paragraph</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config/>
+    </input>
+
+    <!-- Main image -->
+    <input name="image" type="ImageSelector">
+      <label i18n="txt.image">Main image</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+
+    <!-- Hero video -->
+    <input name="videoId" type="TextLine">
+      <label i18n="txt.vimeoId">Hero Vimeo Id</label>
+    </input>
+
+    <!-- Sticky hero video -->
+    <input name="stickyVideo" type="Checkbox">
+      <label i18n="txt.stickyVideo">Sticky hero video</label>
+    </input>
+  </items>
+</mixin>

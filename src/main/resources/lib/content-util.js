@@ -4,9 +4,17 @@ var contentLib = require('/lib/xp/content')
 var imageLib = require('image')
 
 exports.prepareArticleContents = function(data, scale) {
-  var data = processCommonFields(data, scale)
+  data = processCommonFields(data, scale)
 
   data.contentBlocks && (data.contentBlocks = processContentBlocks(data.contentBlocks))
+
+  log.info(JSON.stringify(data, null, 2))
+
+  return data
+}
+
+exports.prepareHeroContents = function(data, scale) {
+  data = processCommonFields(data, scale)
 
   return data
 }
@@ -42,6 +50,7 @@ function processCommonFields(data, scale) {
   if (!data) return
 
   data.authors && (data.authors = getAuthors(data.authors))
+  data.image && (data.image = imageLib.image.create(data.image, scale))
 
   return data
 }

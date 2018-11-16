@@ -3,39 +3,16 @@
   <super-type>base:structured</super-type>
   <form>
 
-    <!-- Headings -->
-    <input name="heading" type="TextLine">
-      <label i18n="txt.heading">Heading</label>
-      <occurrences minimum="0" maximum="1"/>
-      <config/>
-    </input>
-    <input name="subheading" type="TextLine">
-      <label i18n="txt.subHeading">Sub heading</label>
-      <occurrences minimum="0" maximum="1"/>
-      <config/>
-    </input>
-    <input name="lead" type="TextArea">
-      <label i18n="txt.lead">Lead paragraph</label>
-      <occurrences minimum="0" maximum="1"/>
-      <config/>
-    </input>
+    <!-- Hero controls -->
+    <inline mixin="hero"/>
 
     <!-- Authors -->
     <input name="authors" type="ContentSelector">
-      <label i18n="ct.article.authors">Authors</label>
+      <label i18n="txt.authors">Authors</label>
       <occurrences minimum="0" maximum="0"/>
       <config>
         <relationshipType>system:reference</relationshipType>
         <allowContentType>person</allowContentType>
-        <allowPath>${site}/*</allowPath>
-      </config>
-    </input>
-
-    <!-- Main image -->
-    <input name="image" type="ImageSelector">
-      <label i18n="ct.article.image">Main image</label>
-      <occurrences minimum="0" maximum="1"/>
-      <config>
         <allowPath>${site}/*</allowPath>
       </config>
     </input>
