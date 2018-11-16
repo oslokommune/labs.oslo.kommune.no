@@ -1,12 +1,12 @@
 <ul data-th-fragment="byline" class="byline">
   <li data-th-each="author, i : ${authors}" class="byline__author">
-    <img src="" class="byline__image" />
+    <img data-th-srcset="${author.image}" class="byline__image" />
+
     <cite class="byline__contact">
-      <div class="byline__name" data-th-text="${author.data.name}"></div>
-      <a href="mailto:jesper.kiledal@byr.oslo.kommune.no" class="byline__email" data-th-text="${author.data}"
-        >jesper.kiledal@byr.oslo.kommune.no</a
-      >
+      <div class="byline__name" data-th-text="${author.name}"></div>
+      <a data-th-href="'mailto:' + ${author.email}" class="byline__email" data-th-text="${author.email}"></a>
     </cite>
-    <a href="#" class="icon icon--chevron-right byline__icon"></a>
+
+    <a data-th-href="${author.url}" class="icon icon--chevron-right byline__icon"></a>
   </li>
 </ul>

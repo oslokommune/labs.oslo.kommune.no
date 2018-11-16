@@ -52,14 +52,29 @@ function getAuthors(authors) {
   if (!authors) return
 
   authors = util.forceArray(authors)
-  authors = authors.map(function(author) {
-    var a = contentLib.get({
-      key: author
+  authors = authors.map(function(authorId) {
+    var author = {}
+    var content = contentLib.get({
+      key: authorId
     })
-    if (a && a.image) {
-      a.image = imageLib.image.create(a.image)
+
+    if (content && content.data && content.data.name) {
+      author.name = content.data.name
+    } else {
+      author.name = content.displayName
     }
-    return a
+
+    if (content && content.data && content.data.image) {
+      author.image = imageLib.image.create(content.data.image)
+    }
+
+    if (content && content.data && content.data.email) {
+      author.email = content.data.email
+    }
+
+    author.url = portal.pageUrl({ id: authorId })
+
+    return author
   })
 
   return authors
