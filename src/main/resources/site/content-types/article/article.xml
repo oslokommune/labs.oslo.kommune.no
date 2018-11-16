@@ -61,10 +61,20 @@
               <label i18n="ct.article.sidebar">Sidebar box</label>
               <items>
                 <!-- TODO: List available icons -->
-                <input name="sidebarboxIcon" type="TextLine">
+                <input name="sidebarboxIcon" type="RadioButton">
                   <label i18n="ct.article.sidebarIcon">Box icon</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config/>
+                  <occurrences minimum="1" maximum="0"/>
+                  <config>
+                    <option value="question" i18n="icon.question">Question mark</option>
+                    <option value="exclamation" i18n="icon.exclamation">Exclamation mark</option>
+                    <option value="info" i18n="icon.info">Info</option>
+                    <option value="dialog" i18n="icon.dialog">Dialogue</option>
+                    <option value="map" i18n="icon.map">Map</option>
+                    <option value="code" i18n="icon.code">Code</option>
+                    <option value="megaphone" i18n="icon.megaphone">Megaphone</option>
+                    <option value="file" i18n="icon.file">File</option>
+                    <option value="link" i18n="icon.link">Link</option>
+                  </config>
                 </input>
                 <input name="sidebarboxContents" type="HtmlArea">
                   <label i18n="ct.article.sidebarContent">Box contents</label>

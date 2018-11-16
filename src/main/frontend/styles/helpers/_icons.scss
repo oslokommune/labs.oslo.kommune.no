@@ -36,4 +36,32 @@
   &--email {
     background-image: url($gfxPath+'/icons/email.svg');
   }
+
+  &-sidebar--question {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/question-circle.svg');
+  }
+  &-sidebar--exclamation {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/exclamation-triangle.svg');
+  }
+  &-sidebar--info {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/info-circle.svg');
+  }
+  &-sidebar--dialog {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/comments.svg');
+  }
+  &-sidebar--map {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/map.svg');
+  }
+  &-sidebar--code {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/code.svg');
+  }
+  &-sidebar--megaphone {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/megaphone.svg');
+  }
+  &-sidebar--file {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/file.svg');
+  }
+  &-sidebar--link {
+    background-image: url($gfxPath+'/icons/sidebarboxIcons/link.svg');
+  }
 }
