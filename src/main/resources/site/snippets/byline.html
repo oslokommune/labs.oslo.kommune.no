@@ -1,6 +1,12 @@
 <ul data-th-fragment="byline" class="byline">
   <li data-th-each="author, i : ${authors}" class="byline__author">
-    <img data-th-srcset="${author.image}" class="byline__image" />
+    <img
+      data-th-if="${author.image}"
+      data-th-srcset="${author.image.srcSet}"
+      data-th-src="${author.image.src}"
+      sizes="60px"
+      class="byline__image"
+    />
 
     <cite class="byline__contact">
       <div class="byline__name" data-th-text="${author.name}"></div>

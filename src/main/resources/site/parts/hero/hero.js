@@ -25,8 +25,8 @@ exports.get = function(req) {
   }
 
   if (content.data) {
-    if (content.data.mainImage && !model.video) {
-      model.image = imageLib.image.create(content.data.mainImage, 'block(5,2)')
+    if (content.data.image && !model.video) {
+      model.image = imageLib.image.create(content.data.image, 'block(5,2)')
     }
 
     if (content.data.heading) {

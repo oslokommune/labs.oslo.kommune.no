@@ -27,7 +27,7 @@ exports.prepareArticleList = function(data, scale) {
     if (!res.data) return article
 
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
-    article.mainImage = res.data.mainImage ? imageLib.image.create(res.data.mainImage, scale) : null
+    article.image = res.data.image ? imageLib.image.create(res.data.image, scale) : null
     article.authors = res.data.authors ? res.data.authors : null
     article.title = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null
@@ -37,8 +37,6 @@ exports.prepareArticleList = function(data, scale) {
 
   return list
 }
-
-exports.getAuthors = getAuthors
 
 function processCommonFields(data, scale) {
   if (!data) return
@@ -77,8 +75,10 @@ function getAuthors(authors) {
     return author
   })
 
+  log.info(JSON.stringify(authors, null, 2))
   return authors
 }
+exports.getAuthors = getAuthors
 
 //
 function processContentBlocks(ctbs) {

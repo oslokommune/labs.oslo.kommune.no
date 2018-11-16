@@ -29,8 +29,8 @@ exports.get = function(req) {
     result.hits.forEach(function(content) {
       var item = {}
 
-      if (content.data.mainImage) {
-        item.image = imageLib.image.create(content.data.mainImage, 'block(4,3)')
+      if (content.data.image) {
+        item.image = imageLib.image.create(content.data.image, 'block(4,3)')
       }
 
       item.id = content._id

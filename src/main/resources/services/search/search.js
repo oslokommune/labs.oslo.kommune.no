@@ -177,7 +177,6 @@ function getLead(content) {
  */
 function getImage(content) {
   if (content && content.data && content.data.image) return getImageFromCache(content.data.image)
-  if (content && content.data && content.data.mainImage) return getImageFromCache(content.data.mainImage)
   return false
 }
 function getImageFromCache(imageId) {

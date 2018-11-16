@@ -7,10 +7,10 @@
         <div class="column is-6-tablet is-4-desktop" data-th-each="article : ${articles}">
           <a href="" data-th-href="${article.path}">
             <img
-              data-th-if="*{article.mainImage}"
-              data-th-src="*{article.mainImage.placeholderSrc}"
-              data-th-srcset="*{article.mainImage.srcSet}"
-              data-th-alt="*{article.mainImage.alt}"
+              data-th-if="*{article.image}"
+              data-th-src="*{article.image.placeholderSrc}"
+              data-th-srcset="*{article.image.srcSet}"
+              data-th-alt="*{article.image.alt}"
             />
             <h1 data-th-text="${article.title}"></h1>
           </a>

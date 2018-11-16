@@ -32,11 +32,11 @@
     </input>
 
     <!-- Main image -->
-    <input name="mainImage" type="ImageSelector">
-      <label i18n="ct.article.mainImage">Main image</label>
+    <input name="image" type="ImageSelector">
+      <label i18n="ct.article.image">Main image</label>
       <occurrences minimum="0" maximum="1"/>
       <config>
-        <allowPath>./*</allowPath>
+        <allowPath>${site}/*</allowPath>
       </config>
     </input>
 

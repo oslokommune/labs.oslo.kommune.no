@@ -7,8 +7,8 @@ exports.get = function(req) {
   var model = {}
   model.searchURL = portal.serviceUrl({ service: 'search', type: 'absolute' })
 
-  if (component.config && component.config.mainImage) {
-    model.mainImage = imageLib.image.create(component.config.mainImage, 'block(6,1)')
+  if (component.config && component.config.image) {
+    model.image = imageLib.image.create(component.config.image, 'block(6,1)')
   }
 
   var view = resolve('./search-results.html')

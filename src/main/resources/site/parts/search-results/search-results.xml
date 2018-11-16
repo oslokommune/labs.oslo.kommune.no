@@ -3,8 +3,8 @@
 		Search results
 	</display-name>
 	<config>
-		<input name="mainImage" type="ImageSelector">
-			<label i18n="ct.article.mainImage">
+		<input name="image" type="ImageSelector">
+			<label i18n="ct.article.image">
 				Main image
 			</label>
 			<occurrences minimum="0" maximum="1" />
