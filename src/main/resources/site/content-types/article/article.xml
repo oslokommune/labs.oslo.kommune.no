@@ -272,11 +272,19 @@
               </items>
             </option>
 
-            <!-- Link block -->
+            <!-- Links block -->
             <option name="ctbLinks">
               <label i18n="ct.article.ctbLinks">Link list</label>
               <items>
                 <inline mixin="block-link-list" />
+              </items>
+            </option>
+
+            <!-- Images block -->
+            <option name="ctbImages">
+              <label i18n="ct.article.ctbImages">Images</label>
+              <items>
+                <inline mixin="block-images" />
               </items>
             </option>
 

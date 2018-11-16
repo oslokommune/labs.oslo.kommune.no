@@ -195,40 +195,12 @@ function processContentBlocks(ctbs) {
 
     // Sanitize links. Prefer internal over external, override link text if desired
     if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
-      var b = block.ctb.ctbLinks
-      if (b.linkList) {
-        var workingLinks = []
-        var link = {}
-        util.forceArray(b.linkList).forEach(function(item) {
-          link = {}
-          if (item.internalLink || item.externalLink) {
-            if (item.internalLink) {
-              link.text = contentLib.get({
-                key: item.internalLink
-              }).displayName
-              link.href = portal.pageUrl({
-                id: item.internalLink
-              })
-            } else {
-              link.href = item.externalLink
-              if (!/^https?:\/\//i.test(link.href)) {
-                link.href = 'https://' + link.href // Add protocol to href if missing...
-              }
-              link.text = item.externalLink.replace(/^https?:\/\//i, '') // ...but remove from text
-            }
-            if (item.overrideLinkText) {
-              link.text = item.overrideLinkText
-            }
-          }
-          if (link.href) {
-            workingLinks.push(link)
-          }
-        })
-        if (workingLinks.length) {
-          b.links = workingLinks
-        }
-      }
-      log.info(b.links)
+      block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)
+    }
+
+    // Prepare images
+    if (block.ctb._selected === 'ctbImages' && block.ctb.ctbImages) {
+      block.ctb.ctbImages = processBlockImages(block.ctb.ctbImages)
     }
 
     return block.ctb
@@ -274,6 +246,15 @@ var processBlockLinkList = function(b) {
   return b
 }
 exports.processBlockLinkList = processBlockLinkList
+
+var processBlockImages = function(b, scale) {
+  b.images = util.forceArray(b.images).map(function(image) {
+    return imageLib.image.create(image, scale)
+  })
+  log.info(JSON.stringify(b, null, 2))
+  return b
+}
+exports.processBlockImages = processBlockImages
 
 /**
  * Helper function to extract the best field to use for heading when dealing with

@@ -1,0 +1,16 @@
+<!--/* 
+ Images block
+ Wants data in ${data} and settings in ${settings}
+*/-->
+<div data-th-fragment="block-link-list" data-th-remove="tag">
+  <div data-th-if="${data.images}" data-th-remove="tag">
+    <ul>
+      <li data-th-each="image: ${data.images}" data-th-object="${image}">
+        <figure>
+          <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt="*{alt}" data-th-sizes="*{sizes}" />
+          <figcaption data-th-if="*{caption}" data-th-text="*{caption}">Caption</figcaption>
+        </figure>
+      </li>
+    </ul>
+  </div>
+</div>

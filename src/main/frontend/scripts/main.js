@@ -14,13 +14,6 @@ if (document.getElementById('js-anchor-list')) {
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Hello from './components/Hello.vue'
-if (document.getElementById('js-vuetest')) {
-  new Vue({
-    render: h => h(Hello)
-  }).$mount('#js-vuetest')
-}
-
 import Search from './components/Search.vue'
 if (document.getElementById('js-search')) {
   var router = new VueRouter({
