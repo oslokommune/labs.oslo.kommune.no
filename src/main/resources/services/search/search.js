@@ -4,6 +4,7 @@ var cacheLib = require('/lib/xp/cache')
 var i18nLib = require('/lib/xp/i18n')
 var imageLib = require('image')
 var util = require('util')
+var cUtil = require('content-util')
 
 var imageCache = cacheLib.newCache({
   size: 100,
@@ -90,7 +91,7 @@ exports.get = function(req) {
           pretty: util.dmyDate(item.publish.from)
         },
         authors: getAuthors(item),
-        heading: getHeading(item),
+        heading: cUtil.getHeading(item),
         lead: getLead(item),
         image: getImage(item),
         url: portalLib.pageUrl({
@@ -142,19 +143,6 @@ function getTypeString(content, contentTypes) {
 }
 
 /**
- * Helper function to extract the best field to use for heading when dealing with
- * multi type content. Prefers heading > title > name > displayName
- * @param {*} content   The content object from the result
- */
-function getHeading(content) {
-  if (content && content.data && content.data.heading) return content.data.heading
-  if (content && content.data && content.data.title) return content.data.title
-  if (content && content.data && content.data.name) return content.data.name
-  if (content) return content.displayName
-  return false
-}
-
-/**
  * Helper function to extract a list of authors for an item
  * @param {*} content   The content object from the result
  */
@@ -165,7 +153,7 @@ function getAuthors(item) {
       var author = contentLib.get({ key: authorId })
       return {
         name: author.data.name,
-        url: author._path
+        url: portalLib.pageUrl({ id: authorId })
       }
     })
   }

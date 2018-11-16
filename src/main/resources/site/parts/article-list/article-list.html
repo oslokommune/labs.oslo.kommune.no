@@ -2,7 +2,7 @@
   <article class="section">
     <div class="container" data-th-if="${articles.isEmpty()}"><h1>No articles found</h1></div>
     <div class="container" data-th-if="${!articles.isEmpty()}">
-      <h1 data-th-if="header" data-th-text="${header}" class="title is-3"></h1>
+      <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
       <div class="columns is-multiline">
         <div class="column is-6-tablet is-4-desktop" data-th-each="article : ${articles}">
           <a href="" data-th-href="${article.path}">

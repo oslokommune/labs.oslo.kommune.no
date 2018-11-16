@@ -29,7 +29,7 @@ exports.prepareArticleList = function(data, scale) {
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
     article.mainImage = res.data.mainImage ? imageLib.image.create(res.data.mainImage, scale) : null
     article.authors = res.data.authors ? res.data.authors : null
-    article.title = res.data.header ? res.data.header : res.displayName
+    article.title = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null
 
     return article
@@ -171,7 +171,40 @@ function processContentBlocks(ctbs) {
 
     // Sanitize links. Prefer internal over external, override link text if desired
     if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
-      block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)
+      var b = block.ctb.ctbLinks
+      if (b.linkList) {
+        var workingLinks = []
+        var link = {}
+        util.forceArray(b.linkList).forEach(function(item) {
+          link = {}
+          if (item.internalLink || item.externalLink) {
+            if (item.internalLink) {
+              link.text = contentLib.get({
+                key: item.internalLink
+              }).displayName
+              link.href = portal.pageUrl({
+                id: item.internalLink
+              })
+            } else {
+              link.href = item.externalLink
+              if (!/^https?:\/\//i.test(link.href)) {
+                link.href = 'https://' + link.href // Add protocol to href if missing...
+              }
+              link.text = item.externalLink.replace(/^https?:\/\//i, '') // ...but remove from text
+            }
+            if (item.overrideLinkText) {
+              link.text = item.overrideLinkText
+            }
+          }
+          if (link.href) {
+            workingLinks.push(link)
+          }
+        })
+        if (workingLinks.length) {
+          b.links = workingLinks
+        }
+      }
+      log.info(b.links)
     }
 
     return block.ctb
@@ -182,7 +215,7 @@ function processContentBlocks(ctbs) {
 
 var processBlockLinkList = function(b) {
   if (b.linkList) {
-    var workingLinks = [];
+    var workingLinks = []
     var link = {}
     util.forceArray(b.linkList).forEach(function(item) {
       link = {}
@@ -197,9 +230,9 @@ var processBlockLinkList = function(b) {
         } else {
           link.href = item.externalLink
           if (!/^https?:\/\//i.test(link.href)) {
-            link.href = 'https://' + link.href; // Add protocol to href if missing...
+            link.href = 'https://' + link.href // Add protocol to href if missing...
           }
-          link.text = item.externalLink.replace(/^https?:\/\//i, "") // ...but remove from text
+          link.text = item.externalLink.replace(/^https?:\/\//i, '') // ...but remove from text
         }
         if (item.overrideLinkText) {
           link.text = item.overrideLinkText
@@ -217,3 +250,16 @@ var processBlockLinkList = function(b) {
   return b
 }
 exports.processBlockLinkList = processBlockLinkList
+
+/**
+ * Helper function to extract the best field to use for heading when dealing with
+ * multi type content. Prefers heading > title > name > displayName
+ * @param {*} content   The content object from the result
+ */
+exports.getHeading = function(content) {
+  if (content && content.data && content.data.heading) return content.data.heading
+  if (content && content.data && content.data.title) return content.data.title
+  if (content && content.data && content.data.name) return content.data.name
+  if (content) return content.displayName
+  return false
+}

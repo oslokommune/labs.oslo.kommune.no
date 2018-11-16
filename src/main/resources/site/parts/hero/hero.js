@@ -29,14 +29,14 @@ exports.get = function(req) {
       model.image = imageLib.image.create(content.data.mainImage, 'block(5,2)')
     }
 
-    if (content.data.header) {
-      model.header = content.data.header
+    if (content.data.heading) {
+      model.heading = content.data.heading
     } else {
-      model.header = content.displayName
+      model.heading = content.displayName
     }
 
-    if (content.data.subheader) {
-      model.subheader = content.data.subheader
+    if (content.data.subheading) {
+      model.subheading = content.data.subheading
     }
   }
 

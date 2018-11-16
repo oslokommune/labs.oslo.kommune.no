@@ -3,14 +3,14 @@
   <super-type>base:structured</super-type>
   <form>
 
-    <!-- Headers -->
-    <input name="header" type="TextLine">
+    <!-- Headings -->
+    <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
       <occurrences minimum="0" maximum="1"/>
       <config/>
     </input>
-    <input name="subheader" type="TextLine">
-      <label i18n="txt.subHeading">Sub header</label>
+    <input name="subheading" type="TextLine">
+      <label i18n="txt.subHeading">Sub heading</label>
       <occurrences minimum="0" maximum="1"/>
       <config/>
     </input>

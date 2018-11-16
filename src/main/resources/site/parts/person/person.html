@@ -1,0 +1,16 @@
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column"><h1 class="title is-1" data-th-text="${name}"></h1></div>
+    </div>
+    <div class="columns is-multiline">
+      <div class="column is-4" data-th-each="item : ${items}">
+        <img data-th-if="${item.image}" data-th-srcset="${item.image.srcset}" alt="" />
+        <a data-th-href="${item.url}">
+          <img data-th-src="${item.image}" alt="" />
+          <h2 data-th-text="${item.heading}"></h2>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
