@@ -1,6 +1,8 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
+const {
+  VueLoaderPlugin
+} = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, argv) => {
@@ -15,8 +17,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'src/main/resources/assets')
     },
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
@@ -46,22 +47,20 @@ module.exports = (env, argv) => {
               loader: 'postcss-loader',
               options: {
                 sourceMap: PROD_MODE ? false : 'inline',
-                plugins: PROD_MODE
-                  ? [
-                      require('postcss-preset-env')({
-                        autoprefixer: {
-                          grid: true
-                        }
-                      }),
-                      require('postcss-csso')()
-                    ]
-                  : [
-                      require('postcss-preset-env')({
-                        autoprefixer: {
-                          grid: true
-                        }
-                      })
-                    ]
+                plugins: PROD_MODE ? [
+                  require('postcss-preset-env')({
+                    autoprefixer: {
+                      grid: true
+                    }
+                  }),
+                  require('postcss-csso')()
+                ] : [
+                  require('postcss-preset-env')({
+                    autoprefixer: {
+                      grid: true
+                    }
+                  })
+                ]
               }
             },
             {
@@ -83,7 +82,10 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css'
       }),
-      new CopyWebpackPlugin([{ from: './src/main/frontend/gfx', to: 'gfx' }])
+      new CopyWebpackPlugin([{
+        from: './src/main/frontend/gfx',
+        to: 'gfx'
+      }])
     ]
   }
 }

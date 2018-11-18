@@ -1,3 +1,9 @@
+/**
+ * Helper methods for part and page controllers. Tightly coupled with Origo labs
+ * styling and layout. The grid is mainly Bulma based, so you should be fine with
+ * little modification as long as you use the same controllers.
+ */
+
 var util = require('util')
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
@@ -67,7 +73,7 @@ function getAuthors(authors) {
     }
 
     if (content && content.data && content.data.image) {
-      author.image = imageLib.image.create(content.data.image)
+      author.image = imageLib.image.create(content.data.image, 'square')
     }
 
     if (content && content.data && content.data.email) {
@@ -122,7 +128,6 @@ function processContentBlocks(ctbs) {
           'green-dark',
           'green-faded',
           'brown',
-          'brown-beige',
           'orange',
           'red',
           'yellow',
@@ -196,6 +201,8 @@ function processContentBlocks(ctbs) {
 
     // Prepare images
     if (block.ctb._selected === 'ctbImages' && block.ctb.ctbImages) {
+      // Duplicate fullwidth flag from settings, as it is needed in calculation
+      block.ctb.ctbImages.isFullWidth = block.ctb.isFullWidth
       block.ctb.ctbImages = processBlockImages(block.ctb.ctbImages)
     }
 
@@ -242,13 +249,108 @@ var processBlockLinkList = function(b) {
 }
 exports.processBlockLinkList = processBlockLinkList
 
-var processBlockImages = function(b, scale) {
-  b.images = util.forceArray(b.images).map(function(image) {
-    return imageLib.image.create(image, scale)
+var processBlockImages = function(b) {
+  b.images = util.forceArray(b.images)
+  var scale = 'width(1)' // No scaling is default
+  if (b.images.length > 1 && b.makeEqual) {
+    scale = calculateEqualSizeScale(b.images)
+  }
+  var sizes = calculateImageSizesString(b.isFullWidth, b.images.length)
+  var image
+  b.images = b.images.map(function(image) {
+    image = imageLib.image.create(image, scale)
+    image.sizes = sizes
+    return image
   })
   return b
 }
 exports.processBlockImages = processBlockImages
+
+/**
+ * Helper function that will calculate the sizes param used in conjunction with srcset in img tag.
+ * Should ideally be moved closer to the html template, but for rendering convenience it makes
+ * sense to calulate it here and pass it to the controller along with the prepared images.
+ * @param {boolean} isFullWidth
+ * @param {int} count
+ */
+function calculateImageSizesString(isFullWidth, count) {
+  var sizes = ['(max-width:768px) 95vw']
+  switch (count) {
+    case 1:
+      sizes.push('(max-width:1087px) ' + (isFullWidth ? '95vw' : '64vw'))
+      sizes.push('(max-width:1279px) ' + (isFullWidth ? '960px' : '630px'))
+      sizes.push('(max-width:1471px) ' + (isFullWidth ? '1152px' : '660px'))
+      sizes.push(isFullWidth ? '1344px' : '657px')
+      break
+    case 2:
+      sizes.push('(max-width:1087px) ' + (isFullWidth ? '48vw' : '32vw'))
+      sizes.push('(max-width:1279px) ' + (isFullWidth ? '466px' : '301px'))
+      sizes.push('(max-width:1471px) ' + (isFullWidth ? '561px' : '316px'))
+      sizes.push(isFullWidth ? '657px' : '314px')
+      break
+    case 3:
+      sizes.push('(max-width:1087px) ' + (isFullWidth ? '48vw' : '32vw'))
+      sizes.push('(max-width:1279px) ' + (isFullWidth ? '301px' : '192px'))
+      sizes.push('(max-width:1471px) ' + (isFullWidth ? '364px' : '202px'))
+      sizes.push(isFullWidth ? '428px' : '199px')
+      break
+    default:
+      sizes.push('1024px')
+  }
+  return sizes.join(', ')
+}
+
+/**
+ * Helper function that takes an array of images of varying dimensions and calculates
+ * the optimal common aspect ratio to make them equal, while keeping as much of the
+ * original aspect ratio as possible.
+ * @param {object} images
+ */
+function calculateEqualSizeScale(images) {
+  var width = 0
+  var height = 0
+  var maxWidth = 0
+  var maxHeight = 0
+  var imageData, imageDimensions
+  images.forEach(function(image) {
+    imageData = contentLib.get({
+      key: image
+    })
+    if (imageData) {
+      imageDimensions = getImageDimensions(imageData)
+      if (imageDimensions.x > imageDimensions.y) {
+        width = 1
+        height = imageDimensions.y / imageDimensions.x
+      } else {
+        width = imageDimensions.x / imageDimensions.y
+        height = 1
+      }
+      if (width > maxWidth) maxWidth = width
+      if (height > maxHeight) maxHeight = height
+    }
+  })
+  if (maxWidth > 0 && maxHeight > 0) {
+    return 'block(' + maxWidth + ',' + maxHeight + ')'
+  }
+  return 'square'
+}
+
+function getImageDimensions(image) {
+  var imageInfo = image['x']['media']['imageInfo']
+  var cameraInfo = image['x']['media']['cameraInfo']
+  var imageDimensions = {
+    x: imageInfo['imageWidth'],
+    y: imageInfo['imageHeight']
+  }
+  // Check for rotated images. Enonic doesn't seem to recognize this in the java layer.
+  if (cameraInfo && cameraInfo.orientation && /(90|270)/.test(cameraInfo.orientation)) {
+    imageDimensions = {
+      x: imageInfo['imageHeight'],
+      y: imageInfo['imageWidth']
+    }
+  }
+  return imageDimensions
+}
 
 /**
  * Helper function to extract the best field to use for heading when dealing with

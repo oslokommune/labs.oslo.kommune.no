@@ -222,9 +222,17 @@ function createScaledPlaceholder(image, scale, width) {
  */
 function getImageDimensions(image) {
   var imageInfo = image['x']['media']['imageInfo']
+  var cameraInfo = image['x']['media']['cameraInfo']
   var imageDimensions = {
     x: imageInfo['imageWidth'],
     y: imageInfo['imageHeight']
+  }
+  // Check for rotated images. Enonic doesn't recognize this.
+  if (cameraInfo && cameraInfo.orientation && /(90|270)/.test(cameraInfo.orientation)) {
+    imageDimensions = {
+      x: imageInfo['imageHeight'],
+      y: imageInfo['imageWidth']
+    }
   }
   return imageDimensions
 }
