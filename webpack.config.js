@@ -84,7 +84,8 @@ module.exports = (env, argv) => {
       }),
       new CopyWebpackPlugin([{
         from: './src/main/frontend/gfx',
-        to: 'gfx'
+        to: 'gfx',
+        ignore: ['.*']
       }])
     ]
   }

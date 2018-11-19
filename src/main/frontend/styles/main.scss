@@ -20,6 +20,7 @@
 @import 'partials/search-results';
 @import 'partials/pagination';
 @import 'partials/footer';
+@import 'partials/block-images';
 
 ::placeholder {
   color: $color-grayscale-50;
@@ -29,57 +30,75 @@
   &--blue {
     background-color: $color-blue;
   }
+
   &--blue-light {
     background-color: $color-blue-light;
   }
+
   &--purple {
     background-color: $color-purple;
   }
+
   &--grey-lighter {
     background-color: $color-grey-lighter;
   }
+
   &--grey-light {
     background-color: $color-grey-light;
   }
+
   &--grey-dark {
     background-color: $color-grey-dark;
   }
+
   &--grey-darker {
     background-color: $color-grey-darker;
   }
+
   &--green {
     background-color: $color-green;
   }
+
   &--green-dark {
     background-color: $color-green-dark;
   }
+
   &--green-light {
     background-color: $color-green-light;
   }
+
   &--green-lighter {
     background-color: $color-green-lighter;
   }
+
   &--green-faded {
     background-color: $color-green-faded;
   }
+
   &--brown {
     background-color: $color-brown;
   }
+
   &--brown-beige {
     background-color: $color-brown-beige;
   }
+
   &--orange {
     background-color: $color-orange;
   }
+
   &--red {
     background-color: $color-red;
   }
+
   &--yellow {
     background-color: $color-yellow;
   }
+
   &--white {
     background-color: $color-white;
   }
+
   &--black {
     background-color: $color-black;
   }

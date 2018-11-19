@@ -251,6 +251,7 @@ exports.processBlockLinkList = processBlockLinkList
 
 var processBlockImages = function(b) {
   b.images = util.forceArray(b.images)
+  b.isSingleImage = b.images.length === 1
   var scale = 'width(1)' // No scaling is default
   if (b.images.length > 1 && b.makeEqual) {
     scale = calculateEqualSizeScale(b.images)
