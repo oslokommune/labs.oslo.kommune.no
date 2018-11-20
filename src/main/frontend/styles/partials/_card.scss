@@ -1,0 +1,38 @@
+.card {
+  font-size: 0.85em;
+
+  &__imagecontainer {
+    overflow: hidden;
+  }
+
+  &:hover img {
+    transform: scale(1.02);
+  }
+
+  &__image {
+    transition: transform 0.3s ease-in-out 0.1s;
+  }
+
+  &__body {
+    max-width: 600px;
+    position: relative;
+    background: $color-blue-light;
+    padding: 1em;
+    margin-top: -3em;
+    width: calc(100% - 3em);
+
+    > .title {
+      margin: 0 0 0.25em;
+    }
+  }
+
+  &--featured > &__body {
+    margin-top: -3em;
+    margin-left: 1.5em;
+    margin-bottom: 2em;
+
+    @media screen and (min-width: $tablet) {
+      margin-top: -7em;
+    }
+  }
+}

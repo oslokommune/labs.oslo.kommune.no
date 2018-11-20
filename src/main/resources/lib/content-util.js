@@ -20,7 +20,27 @@ exports.prepareHeroContents = function(data, scale) {
   return data
 }
 
-exports.prepareArticleList = function(data, scale) {
+exports.prepareFeaturedArticle = function(data, scale) {
+  scale = scale || 'block(5,2)'
+
+  var article = {}
+  article.id = data._id
+  article.path = portal.pageUrl({ path: data._path })
+  article.created = data.createdTime
+  article.modifiedTime = data.modifiedTime ? data.modifiedTime : null
+  article.heading = data.displayName
+
+  if (!data.data) return article
+
+  article.image = data.data.image ? imageLib.image.create(data.data.image, scale) : null
+  article.authors = data.data.authors ? data.data.authors : null
+  article.heading = data.data.heading ? data.data.heading : res.displayName
+  article.lead = data.data.lead ? data.data.lead : null
+
+  return article
+}
+
+exports.prepareArticleList = function(data, scale, featured) {
   if (!data.count) return []
   scale = scale || 'block(5,2)'
 
@@ -31,14 +51,14 @@ exports.prepareArticleList = function(data, scale) {
       path: res._path
     })
     article.created = res.createdTime
-    article.title = res.displayName
+    article.heading = res.displayName
 
     if (!res.data) return article
 
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
     article.image = res.data.image ? imageLib.image.create(res.data.image, scale) : null
     article.authors = res.data.authors ? res.data.authors : null
-    article.title = res.data.heading ? res.data.heading : res.displayName
+    article.heading = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null
 
     return article

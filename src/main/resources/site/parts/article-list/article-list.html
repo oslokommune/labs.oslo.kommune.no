@@ -1,20 +1,21 @@
 <div data-th-remove="tag">
   <article class="section">
     <div class="container" data-th-if="${articles.isEmpty()}"><h1>No articles found</h1></div>
+    <div
+      class="container"
+      data-th-with="item=${featured}"
+      data-th-if="${featured}"
+      data-th-insert="/site/snippets/article-card.html :: card('big')"
+    ></div>
     <div class="container" data-th-if="${!articles.isEmpty()}">
       <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
       <div class="columns is-multiline">
-        <div class="column is-6-tablet is-4-desktop" data-th-each="article : ${articles}">
-          <a href="" data-th-href="${article.path}">
-            <img
-              data-th-if="*{article.image}"
-              data-th-src="*{article.image.placeholderSrc}"
-              data-th-srcset="*{article.image.srcSet}"
-              data-th-alt="*{article.image.alt}"
-            />
-            <h1 data-th-text="${article.title}"></h1>
-          </a>
-        </div>
+        <div
+          class="column is-6-tablet is-4-desktop"
+          data-th-each="article : ${articles}"
+          data-th-with="item=${article}"
+          data-th-insert="/site/snippets/article-card.html :: card('small')"
+        ></div>
       </div>
     </div>
   </article>

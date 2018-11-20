@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-	<config>
-		<field-set name="siteSettings">
-			<label>
-				Site settings
-			</label>
-			<items>
-				<input name="searchPage" type="ContentSelector">
-					<label>
-						Search results page
-					</label>
-					<occurrences minimum="0" maximum="1" />
-					<config>
-						<allowContentType>
-							landing-page
-						</allowContentType>
-						<showStatus>
-							true
-						</showStatus>
-						<hideToggleIcon>
-							true
-						</hideToggleIcon>
-					</config>
-				</input>
-			</items>
-		</field-set>
-	</config>
-	<x-data mixin="menu-item" />
+  <config>
+    <field-set name="siteSettings">
+      <label>Site settings</label>
+      <items>
+        <input name="searchPage" type="ContentSelector">
+          <label>Search results page</label>
+          <occurrences minimum="0" maximum="1" />
+          <config>
+            <allowContentType>landing-page</allowContentType>
+            <showStatus>true</showStatus>
+            <hideToggleIcon>true</hideToggleIcon>
+          </config>
+        </input>
+      </items>
+    </field-set>
+  </config>
+  <x-data mixin="menu-item" />
 </site>

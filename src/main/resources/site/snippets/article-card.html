@@ -1,0 +1,20 @@
+<a
+  data-th-fragment="card(size)"
+  data-th-href="${item.path}"
+  class="card"
+  data-th-classappend="${size == 'big'} ? card--featured : ''"
+>
+  <div class="card__imagecontainer">
+    <img
+      data-th-if="*{item.image}"
+      data-th-src="*{item.image.placeholderSrc}"
+      data-th-srcset="*{item.image.srcSet}"
+      data-th-alt="*{item.image.alt}"
+      class="card__image"
+    />
+  </div>
+  <div class="card__body">
+    <h2 class="title is-4" data-th-text="${item.heading}"></h2>
+    <p data-th-text="${item.lead}"></p>
+  </div>
+</a>

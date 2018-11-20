@@ -1,11 +1,21 @@
 <part>
   <display-name i18n="parts.articleList">Article list</display-name>
   <config>
-    <input name="header" type="TextLine">
-      <label i18n="txt.heading">Header</label>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
     </input>
     <input name="max" type="Long">
       <label i18n="parts.articleList.max">Max number of items</label>
+    </input>
+
+    <input name="featured" type="ContentSelector">
+      <label i18n="parts.articleList.featured">Featured article</label>
+      <occurrences minimum="0" maximum="1" />
+      <config>
+        <allowContentType>article</allowContentType>
+        <showStatus>true</showStatus>
+        <hideToggleIcon>true</hideToggleIcon>
+      </config>
     </input>
   </config>
 </part>

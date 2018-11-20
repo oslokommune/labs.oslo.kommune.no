@@ -8,8 +8,17 @@ exports.get = function(req) {
   var component = portal.getComponent()
   var config = component.config
   var model = {}
+  var featured = null
 
-  model.header = config.header || null
+  model.heading = config.heading || null
+
+  // Increase max articles when featured is defined
+  // To ensure that the article list contains the
+  // correct amount of items (excluding featured)
+  if (config.featured) {
+    featured = contentLib.get({ key: config.featured })
+    config.max++
+  }
 
   // Find articles
   var siteReferencePath = portal.getContent()._path.split('/')[1]
@@ -20,6 +29,18 @@ exports.get = function(req) {
     query: "_path LIKE '/content/" + siteReferencePath + "/*'",
     sort: 'createdTime DESC'
   })
+
+  if (featured && featured._id) {
+    result.hits = result.hits.filter(function(item) {
+      return item._id != featured._id
+    })
+
+    if (result.hits.length > config.max) {
+      result.hits.pop()
+    }
+
+    model.featured = cUtil.prepareFeaturedArticle(featured, 'block(5,2)')
+  }
 
   // Prepare model
   model.articles = cUtil.prepareArticleList(result, 'block(5,2)')
