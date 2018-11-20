@@ -13,9 +13,35 @@
 
   &__caption {
     font-size: 0.8em;
+    line-height: 1.2em;
+    font-weight: 300;
+    margin-top: 0;
+    padding-top: 0;
+    color: $color-grayscale-60;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      height: 0.6em;
+      width: 0.7em;
+      border-bottom: 0.6em solid $color-blue;
+      border-left: 0.35em solid transparent;
+      border-right: 0.35em solid transparent;
+      margin-right: 0.5em;
+      transform: translateY(-0.05em);
+    }
 
     &--bottom {
       margin-top: auto;
+
+      &::before {
+        @media screen and (min-width: $tablet) {
+          transform: translateX(-0.15em);
+          border-bottom: 0.35em solid transparent;
+          border-top: 0.35em solid transparent;
+          border-right: 0.6em solid $color-blue;
+        }
+      }
     }
   }
 }

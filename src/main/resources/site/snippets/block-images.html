@@ -5,7 +5,7 @@
   */
 -->
 
-<div data-th-if="${data.images}">
+<figcaption data-th-if="${data.images}">
   <!-- /* Layout for single image */ -->
   <div data-th-if="${#lists.size(data.images) == 1}" data-th-remove="tag">
     <figure data-th-object="${data.images[0]}" class="columns is-multiline">
@@ -20,12 +20,13 @@
           data-th-sizes="*{sizes}"
         />
       </div>
-      <div
+      <figcaption
+        data-th-if="*{caption}" data-th-text="*{caption}"
         class="column o-block-images__caption"
-        data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : 'o-block-images__caption--bottom is-2-tablet is-3-widescreen is-4-fullhd'"
+        data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : 'o-block-images__caption--bottom is-3-tablet is-4-widescreen is-4-fullhd'"
       >
-        <figcaption data-th-if="*{caption}" data-th-text="*{caption}">Caption</figcaption>
-      </div>
+        Caption
+      </figcaption>
     </figure>
   </div>
 
