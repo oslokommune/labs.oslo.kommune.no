@@ -1,11 +1,21 @@
 .o-block-images {
-  &--is-single &__caption-container {
-    align-self: flex-end;
-    margin-top: -20px;
-
+  &--two {
+    align-items: flex-end;
     @media screen and (min-width: $tablet) {
-      margin-left: -16px;
-      margin-bottom: 8px;
+      margin-bottom: 2em !important;
+    }
+  }
+  &--offset {
+    @media screen and (min-width: $tablet) {
+      margin-bottom: -2em;
+    }
+  }
+
+  &__caption {
+    font-size: 0.8em;
+
+    &--bottom {
+      margin-top: auto;
     }
   }
 }

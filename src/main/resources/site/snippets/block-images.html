@@ -1,20 +1,89 @@
-<!--/* 
- Images block
- Wants data in ${data} and settings in ${settings}
-*/-->
-<div data-th-fragment="block-link-list" data-th-remove="tag">
-  <div data-th-if="${data.images}" class="o-block-images columns" data-th-classappend="${data.isSingleImage} ? 'o-block-images--is-single' : ''">
-    <div data-th-each="image: ${data.images}" data-th-object="${image}" class="column is-size-7">
-      <figure data-th-classappend="${data.isSingleImage} ? 'columns' : ''">
-        <div data-th-class="${data.isSingleImage} ? 'o-block-images__image column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : ''">
-          <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt-title="*{alt}" data-th-sizes="*{sizes}" />
-        </div>
-        <div data-th-class="${data.isSingleImage} ? 'o-block-images__caption-container column is-4-tablet is-4-widescreen is-3-fullhd' : ''">
-          <figcaption data-th-if="*{caption}" data-th-text="*{caption}">
-            Caption
-          </figcaption>
-        </div>
+<!--
+  /*
+   Images block
+   Wants data in ${data}
+  */
+-->
+
+<div data-th-if="${data.images}">
+  <!-- /* Layout for single image */ -->
+  <div data-th-if="${#lists.size(data.images) == 1}" data-th-remove="tag">
+    <figure data-th-object="${data.images[0]}" class="columns is-multiline">
+      <div
+        class="column"
+        data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+      >
+        <img
+          data-th-src="*{placeholderSrc}"
+          data-th-srcset="*{srcSet}"
+          data-th-alt-title="*{alt}"
+          data-th-sizes="*{sizes}"
+        />
+      </div>
+      <div
+        class="column o-block-images__caption"
+        data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : 'o-block-images__caption--bottom is-2-tablet is-3-widescreen is-4-fullhd'"
+      >
+        <figcaption data-th-if="*{caption}" data-th-text="*{caption}">Caption</figcaption>
+      </div>
+    </figure>
+  </div>
+
+  <!-- /* Layout for two images */ -->
+  <div data-th-if="${#lists.size(data.images) == 2}" data-th-remove="tag">
+    <div class="columns o-block-images--two">
+      <figure
+        class="column"
+        data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-fullhd' : 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+        data-th-object="${data.images[0]}"
+      >
+        <img
+          data-th-src="*{placeholderSrc}"
+          data-th-srcset="*{srcSet}"
+          data-th-alt-title="*{alt}"
+          data-th-sizes="*{sizes}"
+        />
+        <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
+          Caption
+        </figcaption>
       </figure>
+
+      <figure
+        class="column o-block-images--offset"
+        data-th-classappend="${data.isFullWidth} ? 'is-4-tablet is-5-fullhd' : 'is-4-tablet is-5-widescreen is-4-fullhd'"
+        data-th-object="${data.images[1]}"
+      >
+        <img
+          data-th-src="*{placeholderSrc}"
+          data-th-srcset="*{srcSet}"
+          data-th-alt-title="*{alt}"
+          data-th-sizes="*{sizes}"
+        />
+        <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
+          Caption
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <!-- /* Layout for three images */ -->
+  <div data-th-if="${#lists.size(data.images) == 3}" data-th-remove="tag">
+    <div class="columns">
+      <div class="column" data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-10-fullhd is-offset-1-fullhd'">
+        <div class="columns is-multiline">
+          <figure class="column is-one-third" data-th-each="image: ${data.images}" data-th-object="${image}">
+            <img
+              data-th-src="*{placeholderSrc}"
+              data-th-srcset="*{srcSet}"
+              data-th-alt-title="*{alt}"
+              data-th-sizes="*{sizes}"
+            />
+            <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
+              Caption
+            </figcaption>
+          </figure>
+        </div>
+      </div>
     </div>
   </div>
 </div>

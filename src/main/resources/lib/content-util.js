@@ -150,7 +150,6 @@ function processContentBlocks(ctbs) {
           'brown',
           'orange',
           'red',
-          'yellow',
           'black'
         ]
 
