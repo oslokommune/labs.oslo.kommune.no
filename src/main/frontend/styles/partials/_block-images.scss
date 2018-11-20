@@ -33,9 +33,15 @@
 
     &--bottom {
       margin-top: auto;
+      transform: translateY(-0.25em);
+      @media screen and (min-width: $tablet) {
+        margin-bottom: -0.25em;
+        transform: translateX(-1em);
+      }
 
       &::before {
         @media screen and (min-width: $tablet) {
+          margin-right: 0.25em;
           transform: translateX(-0.15em);
           border-bottom: 0.35em solid transparent;
           border-top: 0.35em solid transparent;
