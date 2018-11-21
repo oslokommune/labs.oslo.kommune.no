@@ -1,7 +1,7 @@
-import navbarHandler from './navbar-handler.js'
-import menuHandler from './menu-handler.js'
-import anchorListHandler from './anchorlist-handler.js'
-import * as maps from './map-handler.js'
+import navbarHandler from './handlers/navbar-handler.js'
+import menuHandler from './handlers/menu-handler.js'
+import anchorListHandler from './handlers/anchorlist-handler.js'
+import * as maps from './handlers/map-handler.js'
 
 if (document.getElementById('js-header')) {
   navbarHandler('js-header')

@@ -1,5 +1,5 @@
-import scrollIt from './utils/scrollIt'
-import slugify from './utils/slugify'
+import scrollIt from '../utils/scrollIt'
+import slugify from '../utils/slugify'
 
 export default function init() {
   const minCount = 3 // Minimum amount of headers required to create the list

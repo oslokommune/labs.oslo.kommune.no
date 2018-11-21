@@ -1,3 +1,4 @@
+// Create custom styles at https://mapstyle.withgoogle.com/
 export default [
   {
     elementType: 'geometry',

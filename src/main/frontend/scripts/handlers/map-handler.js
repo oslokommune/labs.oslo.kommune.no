@@ -1,4 +1,4 @@
-import mapStyles from './mapStyles.js'
+import mapStyles from '../mapStyles.js'
 
 function init() {
   const mapElements = document.querySelectorAll('.map')
@@ -12,13 +12,11 @@ function renderMaps() {
 
   mapElements.forEach(el => {
     const markers = JSON.parse(el.getAttribute('markers')) || []
-
+    const zoom = +el.getAttribute('zoom')
     const coordinates = el
       .getAttribute('coordinates')
       .split(',')
       .map(d => +d)
-
-    const zoom = +el.getAttribute('zoom')
 
     const map = new google.maps.Map(el, {
       center: {
@@ -43,18 +41,6 @@ function renderMaps() {
       })
     })
   })
-  //       function initMap() {
-  //       let mapCoordinates = /*[[${block.ctbMap.mapCoordinates}]]*/ 'default'
-  //         let mapZoom = /*[[${block.ctbMap.mapZoom}]]*/ 'default'
-  //     mapCoordinates = mapCoordinates.split(',').map(d => +d)
-  //         new google.maps.Map(document.getElementById('map'), {
-  //       center: {
-  //       lat: mapCoordinates[0],
-  //     lng: mapCoordinates[1]
-  //   },
-  //   zoom: mapZoom
-  // })
-  // }
 }
 
 // Create map script element including map Key
