@@ -37,12 +37,25 @@
 <!-- /* Map */ -->
 <div data-th-fragment="ctbMap" data-th-remove="tag">
   <div
+    id="js-map-block"
     class="column content"
     data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
   >
-    <h2 class="title" data-th-text="${block.ctbMap.mapTitle}"></h2>
-    <div data-th-text="${block.ctbMap.mapCoordinates}"></div>
-    <div data-th-text="${block.ctbMap.mapZoom}"></div>
+    <div class="columns">
+      <div
+        class="column is-paddingless-top-bottom"
+        data-th-classappend="${block.isFullWidth} ? ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : ''"
+      >
+        <h3 class="title is-marginless" data-th-text="${block.ctbMap.mapTitle}"></h3>
+      </div>
+    </div>
+    <div
+      class="map"
+      data-th-googleMapsKey="${block.ctbMap.googleMapsKey}"
+      data-th-coordinates="${block.ctbMap.mapCoordinates}"
+      data-th-zoom="${block.ctbMap.mapZoom}"
+      data-th-markers="${block.ctbMap.mapMarkers}"
+    ></div>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>

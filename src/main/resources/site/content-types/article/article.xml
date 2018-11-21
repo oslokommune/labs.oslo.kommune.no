@@ -241,6 +241,11 @@
                     <max>15</max>
                   </config>
                 </input>
+                <input name="mapMarkers" type="GeoPoint">
+                  <label>Map markers</label>
+                  <occurrences minimum="0" maximum="10" />
+                  <config/>
+                </input>
               </items>
             </option>
 

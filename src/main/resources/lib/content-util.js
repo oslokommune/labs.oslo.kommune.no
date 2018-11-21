@@ -213,6 +213,23 @@ function processContentBlocks(ctbs) {
       block.ctb.ctbVideo.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
     }
 
+    // Get Google Maps key
+    if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
+      var siteConfig = portal.getSiteConfig()
+      var googleMapsKey = siteConfig.googleMapsKey ? siteConfig.googleMapsKey : null
+      if (googleMapsKey) {
+        block.ctb.ctbMap.googleMapsKey = googleMapsKey
+      }
+
+      if (block.ctb.ctbMap.mapMarkers) {
+        var markers = []
+        block.ctb.ctbMap.mapMarkers.forEach(function(marker) {
+          markers.push([marker])
+        })
+        block.ctb.ctbMap.mapMarkers = markers
+      }
+    }
+
     // Sanitize links. Prefer internal over external, override link text if desired
     if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
       block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)

@@ -1,10 +1,15 @@
 import navbarHandler from './navbar-handler.js'
 import menuHandler from './menu-handler.js'
 import anchorListHandler from './anchorlist-handler.js'
+import * as maps from './map-handler.js'
 
 if (document.getElementById('js-header')) {
   navbarHandler('js-header')
   menuHandler()
+}
+
+if (document.getElementById('js-map-block')) {
+  maps.init()
 }
 
 if (document.getElementById('js-anchor-list')) {

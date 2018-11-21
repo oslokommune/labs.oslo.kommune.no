@@ -5,13 +5,17 @@
       <label>Site settings</label>
       <items>
         <input name="searchPage" type="ContentSelector">
-          <label>Search results page</label>
+          <label i18n="site.searchPage">Search results page</label>
           <occurrences minimum="0" maximum="1" />
           <config>
             <allowContentType>landing-page</allowContentType>
             <showStatus>true</showStatus>
             <hideToggleIcon>true</hideToggleIcon>
           </config>
+        </input>
+        <input name="googleMapsKey" type="TextLine">
+          <label i18n="site.googleMapsKey">Google Maps key</label>
+          <config />
         </input>
       </items>
     </field-set>
