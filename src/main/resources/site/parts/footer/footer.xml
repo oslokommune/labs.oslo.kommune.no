@@ -2,19 +2,19 @@
   <display-name i18n="parts.footer">Footer</display-name>
   <config>
     <input name="siteName" type="TextLine">
-      <label>Site name</label>
+      <label i18n="parts.footer.siteName">Site name</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
     <input name="siteDescription" type="TextArea">
-      <label>Site Description</label>
+      <label i18n="parts.footer.siteDesc">Site Description</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
     <input name="menuName" type="TextLine">
-      <label>Menu header</label>
+      <label i18n="parts.footer.menuName">Menu header</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
     <input name="menuElement" type="ContentSelector">
-      <label>Menu element</label>
+      <label i18n="parts.footer.menuElement">Menu element</label>
       <occurrences minimum="0" maximum="6"/>
       <config>
         <allowContentType>article</allowContentType>
@@ -24,39 +24,39 @@
       </config>
     </input>
     <input name="contactTitle" type="TextLine">
-      <label>Contact Title</label>
+      <label i18n="parts.footer.contactTitle">Contact Title</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
     <input name="contactAddress" type="TextLine">
-      <label>Contact Address</label>
+      <label i18n="parts.footer.contactAddress">Contact Address</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
     <input name="contactPhone" type="TextLine">
-      <label>Contact Phone</label>
+      <label i18n="parts.footer.contactPhone">Contact Phone</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
     <input name="contactEmail" type="TextLine">
-      <label>Contact Email</label>
+      <label i18n="parts.footer.contactEmail">Contact Email</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
     <input name="socialTitle" type="TextLine">
-      <label>Social header</label>
+      <label i18n="parts.footer.socialTitle">Social header</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
     <input name="facebook" type="TextLine">
-      <label>Facebook URL</label>
+      <label i18n="parts.footer.facebook">Facebook URL</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
     <input name="twitter" type="TextLine">
-      <label>Twitter URL</label>
+      <label i18n="parts.footer.twitter">Twitter URL</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
     <input name="vimeo" type="TextLine">
-      <label>Vimeo URL</label>
+      <label i18n="parts.footer.vimeo">Vimeo URL</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
     <input name="instagram" type="TextLine">
-      <label>Instagram URL</label>
+      <label i18n="parts.footer.instagram">Instagram URL</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
   </config>

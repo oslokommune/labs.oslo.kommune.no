@@ -1,6 +1,4 @@
 <part>
-	<display-name i18n="parts.person">
-		Person
-	</display-name>
-	<config />
+  <display-name i18n="parts.person">Person</display-name>
+  <config />
 </part>
