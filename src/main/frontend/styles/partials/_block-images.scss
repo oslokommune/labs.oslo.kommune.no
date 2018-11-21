@@ -22,13 +22,13 @@
     &::before {
       content: '';
       display: inline-block;
-      height: 0.6em;
-      width: 0.7em;
-      border-bottom: 0.6em solid $color-blue;
-      border-left: 0.35em solid transparent;
-      border-right: 0.35em solid transparent;
-      margin-right: 0.5em;
-      transform: translateY(-0.05em);
+      height: 0.3em;
+      width: 0.3em;
+      background-color: $color-blue;
+      transform-origin: 0.3em 0.3em;
+      transform: translateY(-0.35em) translateX(0.1em) rotate(45deg);
+      margin-right: 0.8em;
+      box-shadow: 0.3em 0 0 $color-blue, 0 0.3em 0 $color-blue;
     }
 
     &--bottom {
@@ -41,11 +41,8 @@
 
       &::before {
         @media screen and (min-width: $tablet) {
-          margin-right: 0.25em;
-          transform: translateX(-0.15em);
-          border-bottom: 0.35em solid transparent;
-          border-top: 0.35em solid transparent;
-          border-right: 0.6em solid $color-blue;
+          transform: translateY(-0.35em) translateX(0.1em) rotate(-45deg);
+          margin-right: 0.6em;
         }
       }
     }

@@ -5,7 +5,7 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-10-tablet is-8-desktop">
-            <div class="field has-addons" action="" role="search" aria-label="Globalt søk">
+            <div class="field has-addons" role="search" aria-label="Globalt søk">
               <div class="control is-expanded">
                 <input
                   type="text"
