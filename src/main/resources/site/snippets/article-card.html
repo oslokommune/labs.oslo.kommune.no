@@ -11,6 +11,9 @@
       data-th-srcset="*{item.image.srcSet}"
       data-th-alt="*{item.image.alt}"
       class="card__image"
+      data-th-sizes="${size == 'big'} ? 
+          '(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px' :
+          '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'"
     />
   </div>
   <div class="card__body">
