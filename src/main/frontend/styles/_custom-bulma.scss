@@ -1,6 +1,8 @@
 $body-size: 16px;
 $body-line-height: 1.65;
-$family-sans-serif: 'Oslo', Helvetica, Arial;
+$family-sans-serif: 'Oslo',
+Helvetica,
+Arial;
 $body-family: $family-sans-serif;
 // $body-background-color: $color-grayscale-5;
 
@@ -12,7 +14,12 @@ textarea {
   font-family: $family-sans-serif;
 }
 
+img {
+  width: 100%;
+}
+
 .has-text-white .content {
+
   h1,
   h2,
   h3,

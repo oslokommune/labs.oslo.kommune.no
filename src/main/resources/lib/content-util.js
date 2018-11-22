@@ -25,7 +25,9 @@ exports.prepareFeaturedArticle = function(data, scale) {
 
   var article = {}
   article.id = data._id
-  article.path = portal.pageUrl({ path: data._path })
+  article.path = portal.pageUrl({
+    path: data._path
+  })
   article.created = data.createdTime
   article.modifiedTime = data.modifiedTime ? data.modifiedTime : null
   article.heading = data.displayName
@@ -292,50 +294,14 @@ var processBlockImages = function(b) {
   if (b.images.length > 1 && b.makeEqual) {
     scale = calculateEqualSizeScale(b.images)
   }
-  var sizes = calculateImageSizesString(b.isFullWidth, b.images.length)
   var image
   b.images = b.images.map(function(image) {
     image = imageLib.image.create(image, scale)
-    image.sizes = sizes
     return image
   })
   return b
 }
 exports.processBlockImages = processBlockImages
-
-/**
- * Helper function that will calculate the sizes param used in conjunction with srcset in img tag.
- * Should ideally be moved closer to the html template, but for rendering convenience it makes
- * sense to calulate it here and pass it to the controller along with the prepared images.
- * @param {boolean} isFullWidth
- * @param {int} count
- */
-function calculateImageSizesString(isFullWidth, count) {
-  var sizes = ['(max-width:768px) 95vw']
-  switch (count) {
-    case 1:
-      sizes.push('(max-width:1087px) ' + (isFullWidth ? '95vw' : '64vw'))
-      sizes.push('(max-width:1279px) ' + (isFullWidth ? '960px' : '630px'))
-      sizes.push('(max-width:1471px) ' + (isFullWidth ? '1152px' : '660px'))
-      sizes.push(isFullWidth ? '1344px' : '657px')
-      break
-    case 2:
-      sizes.push('(max-width:1087px) ' + (isFullWidth ? '48vw' : '32vw'))
-      sizes.push('(max-width:1279px) ' + (isFullWidth ? '466px' : '301px'))
-      sizes.push('(max-width:1471px) ' + (isFullWidth ? '561px' : '316px'))
-      sizes.push(isFullWidth ? '657px' : '314px')
-      break
-    case 3:
-      sizes.push('(max-width:1087px) ' + (isFullWidth ? '48vw' : '32vw'))
-      sizes.push('(max-width:1279px) ' + (isFullWidth ? '301px' : '192px'))
-      sizes.push('(max-width:1471px) ' + (isFullWidth ? '364px' : '202px'))
-      sizes.push(isFullWidth ? '428px' : '199px')
-      break
-    default:
-      sizes.push('1024px')
-  }
-  return sizes.join(', ')
-}
 
 /**
  * Helper function that takes an array of images of varying dimensions and calculates
