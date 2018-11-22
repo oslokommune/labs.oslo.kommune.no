@@ -225,7 +225,7 @@ function processContentBlocks(ctbs) {
 
       if (block.ctb.ctbMap.mapMarkers) {
         var markers = []
-        block.ctb.ctbMap.mapMarkers.forEach(function(marker) {
+        util.forceArray(block.ctb.ctbMap.mapMarkers).forEach(function(marker) {
           markers.push([marker])
         })
         block.ctb.ctbMap.mapMarkers = util.forceArray(markers)
