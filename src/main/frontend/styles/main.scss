@@ -199,3 +199,10 @@ blockquote {
   height: 50vh;
   width: 100%;
 }
+
+// Remove padding between white content blocks
+.article-blocks {
+  .section:not(.has-background) + .section:not(.has-background) {
+    margin-top: -4em;
+  }
+}

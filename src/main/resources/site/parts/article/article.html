@@ -49,42 +49,18 @@
           <div class="columns">
             <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
               <p class="lead" data-th-utext="${lead}"></p>
-
               <ul class="dateline">
                 <li class="dateline__date">
-                  <span class="dateline__label">Publisert</span>
-                  <time class="dateline__datetime" datetime="">07.11.2018 kl. 15:52</time>
+                  <time class="dateline__datetime" title="2018-11-19" datetime="2018-11-19">For 3 dager siden</time>
                 </li>
-                <li class="dateline__date">
-                  <span class="dateline__label">Sist endret</span>
-                  <time class="dateline__datetime" datetime="">07.11.2018 kl. 16:24</time>
-                </li>
-              </ul>
-
-              <ul data-th-if="${authors}" class="byline">
-                <li data-th-each="author, i : ${authors}" class="byline__author">
-                  <img
-                    data-th-if="${author.image}"
-                    data-th-srcset="${author.image.srcSet}"
-                    data-th-src="${author.image.src}"
-                    sizes="60px"
-                    class="byline__image"
-                  />
-
-                  <cite class="byline__contact">
-                    <div class="byline__name" data-th-text="${author.name}"></div>
-                    <a
-                      data-th-href="'mailto:' + ${author.email}"
-                      class="byline__email"
-                      data-th-text="${author.email}"
-                    ></a>
-                  </cite>
-
-                  <a data-th-href="${author.url}" class="icon icon--chevron-right byline__icon"></a>
+                <li class="dateline__authors">
+                  <span data-th-each="author : ${authors}">
+                    <a data-th-href="${author.url}" data-th-text="${author.name}"></a>
+                  </span>
                 </li>
               </ul>
             </div>
-            <div class="column is-4-tablet is-3-desktop is-offset-1-desktop">
+            <div class="column is-4-tablet is-3-desktop is-offset-1-desktop is-hidden-touch">
               <nav class="anchor-list is-hidden" id="js-anchor-list-container">
                 <input type="checkbox" class="anchor-list__toggle" id="anchor-list__toggle" />
                 <label for="anchor-list__toggle" class="anchor-list__header">På denne siden</label>
@@ -96,23 +72,46 @@
       </div>
     </header>
 
-    <!-- /* Each content block renders the corresponding content block snippet */ -->
-    <section
-      data-th-if="${contentBlocks}"
-      data-th-each="block : ${contentBlocks}"
-      class="section"
-      data-th-style="${block.gradient} ? ${block.gradient} : ''"
-      data-th-classappend="
-              (${block.hasWhiteText} ? 'has-text-white' : '') + 
-              (${block.fill} ? ' has-background section--' + ${block.fill} : '')
-            "
-    >
-      <div class="container">
-        <div class="columns">
-          <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
+    <div class="article-blocks">
+      <!-- /* Each content block renders the corresponding content block snippet */ -->
+      <section
+        data-th-if="${contentBlocks}"
+        data-th-each="block : ${contentBlocks}"
+        class="section"
+        data-th-style="${block.gradient} ? ${block.gradient} : ''"
+        data-th-classappend="
+                (${block.hasWhiteText} ? 'has-text-white' : '') + 
+                (${block.fill} ? ' has-background section--' + ${block.fill} : '') + 
+                (${block.gradient} ? 'has-background' : '')
+              "
+      >
+        <div class="container">
+          <div class="columns">
+            <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+    <footer class="section article-footer">
+      <ul data-th-if="${authors}" class="byline">
+        <li data-th-each="author, i : ${authors}" class="byline__author">
+          <img
+            data-th-if="${author.image}"
+            data-th-srcset="${author.image.srcSet}"
+            data-th-src="${author.image.src}"
+            sizes="60px"
+            class="byline__image"
+          />
+          <cite class="byline__contact">
+            <div class="byline__name" data-th-text="${author.name}"></div>
+            <a data-th-href="'mailto:' + ${author.email}" class="byline__email" data-th-text="${author.email}"></a>
+          </cite>
+          <a data-th-href="${author.url}" class="icon icon--chevron-right byline__icon"></a>
+        </li>
+      </ul>
+      <!-- TODO: Add related content -->
+      <!-- <h1>Relaterte artikler</h1> -->
+    </footer>
   </article>
 
   <script data-th-if="${videoId}" src="https://player.vimeo.com/api/player.js"></script>
