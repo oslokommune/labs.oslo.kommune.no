@@ -362,8 +362,8 @@ function getImageDimensions(image) {
  */
 exports.getHeading = function(content) {
   if (content && content.data && content.data.heading) return content.data.heading
-  if (content && content.data && content.data.title) return content.data.title
   if (content && content.data && content.data.name) return content.data.name
+  if (content && content.data && content.data.title) return content.data.title
   if (content) return content.displayName
   return false
 }
