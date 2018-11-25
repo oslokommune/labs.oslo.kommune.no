@@ -2,31 +2,16 @@
   <article>
     <header class="hero">
       <div class="container-fluid" data-th-if="!${videoId}">
-        <img
-          data-th-if="*{image}"
-          data-th-src="*{image.placeholderSrc}"
-          data-th-srcset="*{image.srcSet}"
-          data-th-sizes="'100vw'"
-          data-th-alt="*{image.alt}"
-          class="hero__img"
-        />
+        <img data-th-if="*{image}" data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}" data-th-sizes="'100vw'"
+          data-th-alt="*{image.alt}" class="hero__img" />
       </div>
 
-      <div
-        class="hero__videowrapper"
-        id="js-hero-videowrapper"
-        data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''"
-      >
+      <div class="hero__videowrapper" id="js-hero-videowrapper" data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''">
         <div class="hero__videocontainer" id="js-hero-videocontainer">
           <div data-th-if="${videoId}" data-th-style="'position: relative; padding-top: 56.25%;'">
-            <iframe
-              data-th-src="'https://player.vimeo.com/video/' + ${videoId} + '?color=da28d3&title=0&byline=0&portrait=0'"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;"
-              frameborder="0"
-              webkitallowfullscreen
-              mozallowfullscreen
-              allowfullscreen
-            >
+            <iframe data-th-src="'https://player.vimeo.com/video/' + ${videoId} + '?color=da28d3&title=0&byline=0&portrait=0'"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
+              mozallowfullscreen allowfullscreen>
             </iframe>
           </div>
           <div class="hero__closepopout" id="js-hero-closepopout"></div>
@@ -51,7 +36,8 @@
               <p class="lead" data-th-utext="${lead}"></p>
               <ul class="dateline">
                 <li class="dateline__date">
-                  <time class="dateline__datetime" title="2018-11-19" datetime="2018-11-19">For 3 dager siden</time>
+                  <time class="dateline__datetime" title="2018-11-19" datetime="2018-11-19" data-th-text="${createdTimeRelative}">Created
+                    time</time>
                 </li>
                 <li class="dateline__authors">
                   <span data-th-each="author : ${authors}">
@@ -74,17 +60,12 @@
 
     <div class="article-blocks">
       <!-- /* Each content block renders the corresponding content block snippet */ -->
-      <section
-        data-th-if="${contentBlocks}"
-        data-th-each="block : ${contentBlocks}"
-        class="section"
-        data-th-style="${block.gradient} ? ${block.gradient} : ''"
+      <section data-th-if="${contentBlocks}" data-th-each="block : ${contentBlocks}" class="section" data-th-style="${block.gradient} ? ${block.gradient} : ''"
         data-th-classappend="
                 (${block.hasWhiteText} ? 'has-text-white' : '') + 
                 (${block.fill} ? ' has-background section--' + ${block.fill} : '') + 
                 (${block.gradient} ? 'has-background' : '')
-              "
-      >
+              ">
         <div class="container">
           <div class="columns">
             <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
@@ -95,13 +76,8 @@
     <footer class="section article-footer">
       <ul data-th-if="${authors}" class="byline">
         <li data-th-each="author, i : ${authors}" class="byline__author">
-          <img
-            data-th-if="${author.image}"
-            data-th-srcset="${author.image.srcSet}"
-            data-th-src="${author.image.src}"
-            sizes="60px"
-            class="byline__image"
-          />
+          <img data-th-if="${author.image}" data-th-srcset="${author.image.srcSet}" data-th-src="${author.image.src}"
+            sizes="60px" class="byline__image" />
           <cite class="byline__contact">
             <div class="byline__name" data-th-text="${author.name}"></div>
             <a data-th-href="'mailto:' + ${author.email}" class="byline__email" data-th-text="${author.email}"></a>
@@ -174,5 +150,6 @@
         videoContainer.classList.remove('popout')
       }
     }
+
   </script>
 </div>

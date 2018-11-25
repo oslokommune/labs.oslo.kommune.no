@@ -25,6 +25,7 @@ dependencies {
     include "com.enonic.xp:lib-i18n:${xpVersion}"
     include 'com.enonic.lib:lib-cache:1.1.0'
     include 'com.enonic.lib:menu:2.0.1'
+    webjar 'org.webjars.bower:moment:2.22.2'
 }
 
 repositories {

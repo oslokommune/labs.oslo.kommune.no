@@ -48,17 +48,19 @@ exports.guid = function guid() {
   return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4()
 }
 
-exports.getLanguage = function() {
+var getLanguage = function() {
   return portal.getSite().language
 }
+exports.getLanguage = getLanguage
 
-exports.getContentLocale = function(content) {
+var getContentLocale = function(content) {
   var locale = getLanguage()
   if (content && content.language) {
     locale = content.language
   }
   return locale
 }
+exports.getContentLocale = getContentLocale
 
 exports.getMomentLocale = function(content) {
   // Moment doesn't have 'no' translation, so we force it to 'nb' instead

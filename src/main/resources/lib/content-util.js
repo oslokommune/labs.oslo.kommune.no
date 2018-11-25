@@ -8,6 +8,7 @@ var util = require('util')
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var imageLib = require('image')
+var moment = require('/assets/moment/2.22.2/moment.js');
 
 exports.prepareArticleContents = function(data, scale) {
   data = processCommonFields(data, scale)
@@ -74,6 +75,12 @@ function processCommonFields(data, scale) {
 
   data.authors && (data.authors = getAuthors(data.authors))
   data.image && (data.image = imageLib.image.create(data.image, scale))
+
+  //data.createdTime && (data.createdTimeRelative = moment(data.createdTime).locale(data.locale).format('D. MMM'))
+  data.createdTime && (data.createdTimeRelative = moment(data.createdTime).locale(data.locale).fromNow())
+  data.modifiedTime && (data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow())
+
+  log.info(JSON.stringify(data, null, 2))
 
   return data
 }
