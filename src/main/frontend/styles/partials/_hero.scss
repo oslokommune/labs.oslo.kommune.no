@@ -167,20 +167,6 @@
   }
 }
 
-// Force article columns to be narrow when
-// there's an active pop out video
-main.main.has-popout {
-  .column {
-    transition: max-width 0.4s ease-in-out;
-    @media screen and (min-width: 769px) {
-      max-width: 60%;
-    }
-    @media screen and (min-width: 1088px) {
-      max-width: 50%;
-    }
-  }
-}
-
 .dateline {
   display: flex;
   flex-direction: row;
