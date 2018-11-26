@@ -213,7 +213,7 @@ main.main.has-popout {
         content: ', ';
       }
     }
-    > span:last-child::before {
+    > span:last-child:not(:first-child)::before {
       content: '\00a0og ';
     }
   }
