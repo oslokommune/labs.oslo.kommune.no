@@ -12,12 +12,14 @@ function renderMaps() {
 
   mapElements.forEach(el => {
     const markers = JSON.parse(el.getAttribute('markers')) || []
+    const geoJSON = JSON.parse(el.getAttribute('geoJSON')) || {}
     const zoom = +el.getAttribute('zoom')
     const coordinates = el
       .getAttribute('coordinates')
       .split(',')
       .map(d => +d)
 
+    // Map settings
     const map = new google.maps.Map(el, {
       center: {
         lat: coordinates[0],
@@ -30,6 +32,16 @@ function renderMaps() {
       styles: mapStyles
     })
 
+    // Draw distric overlays
+    map.data.addGeoJson(geoJSON)
+
+    // Overlay styling
+    map.data.setStyle({
+      fillColor: 'blue',
+      strokeWeight: 1
+    })
+
+    // Draw map markers
     markers.forEach(coordinates => {
       new google.maps.Marker({
         position: {

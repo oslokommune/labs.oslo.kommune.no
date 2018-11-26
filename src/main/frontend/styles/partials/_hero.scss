@@ -20,6 +20,21 @@
     }
   }
 
+  &--no-image &__text {
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    padding: 0 0.75em;
+    background: none;
+
+    @media screen and (min-width: $desktop) {
+      padding: 0;
+    }
+
+    .title {
+      padding-right: 1.5em;
+    }
+  }
+
   &__img {
     max-height: 44vh;
     object-fit: cover;
@@ -288,11 +303,6 @@
     padding: 0.25em 0;
     color: $text;
     text-decoration: underline;
-  }
-
-  // Toggle status of header
-  &__toggle:checked ~ &__header {
-    // change icon here
   }
 
   // Show list when checkbox is checked

@@ -8,7 +8,8 @@ var util = require('util')
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var imageLib = require('image')
-var moment = require('/assets/moment/2.22.2/moment.js');
+var districts = require('labs-oslo-districts')
+var moment = require('/assets/moment/2.22.2/moment.js')
 
 exports.prepareArticleContents = function(data, scale) {
   data = processCommonFields(data, scale)
@@ -77,10 +78,14 @@ function processCommonFields(data, scale) {
   data.image && (data.image = imageLib.image.create(data.image, scale))
 
   //data.createdTime && (data.createdTimeRelative = moment(data.createdTime).locale(data.locale).format('D. MMM'))
-  data.createdTime && (data.createdTimeRelative = moment(data.createdTime).locale(data.locale).fromNow())
-  data.modifiedTime && (data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow())
-
-  log.info(JSON.stringify(data, null, 2))
+  data.createdTime &&
+    (data.createdTimeRelative = moment(data.createdTime)
+      .locale(data.locale)
+      .fromNow())
+  data.modifiedTime &&
+    (data.modifiedTimeRelative = moment(data.modifiedTime)
+      .locale(data.locale)
+      .fromNow())
 
   return data
 }
@@ -150,17 +155,7 @@ function processContentBlocks(ctbs) {
         var colors = block.ctbSettings.bgFill
 
         // Which bg colors require white text
-        var darkBgs = [
-          'purple',
-          'grey-dark',
-          'grey-darker',
-          'green-dark',
-          'green-faded',
-          'brown',
-          'orange',
-          'red',
-          'black'
-        ]
+        var darkBgs = ['purple', 'grey-dark', 'grey-darker', 'green-dark', 'green-faded', 'orange', 'red', 'black']
 
         if (darkBgs.indexOf(colors.colorMain) > -1) {
           block.ctb.hasWhiteText = true
@@ -228,6 +223,11 @@ function processContentBlocks(ctbs) {
       var googleMapsKey = siteConfig.googleMapsKey ? siteConfig.googleMapsKey : null
       if (googleMapsKey) {
         block.ctb.ctbMap.googleMapsKey = googleMapsKey
+      }
+
+      if (block.ctb.ctbMap.mapDistricts) {
+        var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
+        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(districts.generateGeoJSON(selectedDistricts))
       }
 
       if (block.ctb.ctbMap.mapMarkers) {
