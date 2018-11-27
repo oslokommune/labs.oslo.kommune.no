@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "webpack --mode development --env=dev --progress --colors --watch",
     "build": "webpack --mode production --env=prod --progress --colors",
+    "analyze-dev": "webpack --mode development --env=analyze --progress --colors",
     "analyze": "webpack --mode production --env=analyze --progress --colors"
   },
   "browserslist": [
