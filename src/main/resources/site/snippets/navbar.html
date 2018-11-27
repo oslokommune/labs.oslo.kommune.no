@@ -1,9 +1,10 @@
-<nav class="header header--top has-background-white" id="js-header">
-  <a href="/" class="header__branding"> <strong>Origo labs</strong> </a>
-  <a href="https://www.oslo.kommune.no/" class="header__logo">
-    <svg style="height: 100%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.9 254.3">
-      <g data-name="Layer 2">
-        <g data-name="Layer 1" fill="#231f20">
+<header class="header header--top has-background-white" id="js-header" role="navigation">
+  <a href="/" class="header__branding"><strong>Origo labs</strong></a>
+  <a href="https://www.oslo.kommune.no/" class="header__logo" aria-label="Oslo kommune">
+    <svg style="height: 100%;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 493.9 254.3" role="logo">
+      <title>Logo Oslo kommune</title>
+      <g>
+        <g fill="#231f20">
           <path
             d="M169 56.4l-3.5-2.2a111.6 111.6 0 0 0-16.8-8.8c-2.5-1.1-5-2-7.6-3a110.5 110.5 0 0 0-18.4-4.5l-8-1a114.3 114.3 0 0 0-19 0l-8 1a110.5 110.5 0 0 0-18.4 4.6c-2.5.8-5 1.8-7.5 2.8a111.7 111.7 0 0 0-16.9 9l-3.4 2.1-17-32.5 2.9-1.8a148.2 148.2 0 0 1 17.8-9.4l3.2-1.4 6.1 11.6 5.3-2-3.2-12.8 3.3-1a147.6 147.6 0 0 1 19.6-4.9l3.4-.6 3.2 12.8h.9c1.5-.3 3-.5 4.7-.6V.6L95 .3a150.7 150.7 0 0 1 20.2 0l3.5.3v13.2l5.5.6 3.2-12.8 3.4.6a147.6 147.6 0 0 1 19.6 4.9l3.3 1-3.2 12.8 5.3 2 6.1-11.6 3.2 1.4A148.2 148.2 0 0 1 183 22l3 1.8zM34.2 26.6l10 19.2a119.4 119.4 0 0 1 14.5-7.3h.1c2.6-1.2 5.3-2.2 8-3.1a118 118 0 0 1 19.6-4.9c2.8-.4 5.7-.8 8.6-1a121.8 121.8 0 0 1 20.2 0c2.9.2 5.8.6 8.6 1a118 118 0 0 1 19.7 4.9l8 3a119.4 119.4 0 0 1 14.4 7.4l10-19.2c-3.4-2-7-3.9-10.6-5.6l-6.1 11.6-3.2-1.4-1.3-.6A128 128 0 0 0 145 27l-3.3-1 3.1-12.7c-3.8-1.2-7.8-2.1-11.7-3L129.9 23l-3.4-.5c-3.9-.7-7.8-1.2-11.8-1.5l-3.4-.2v-13c-4-.3-8.1-.3-12.2 0v13l-3.4.2a127.7 127.7 0 0 0-11.8 1.5l-3.4.5-3.2-12.6c-4 .8-7.9 1.7-11.7 2.9l3 12.6-3.2 1.1a128 128 0 0 0-9.8 3.7l-1.3.6-3.2 1.4-6-11.6a141 141 0 0 0-10.8 5.6z"
           />
@@ -21,11 +22,11 @@
       </g>
     </svg>
   </a>
-  <a data-th-href="${searchPageUrl}" class="header__searchbutton">
+  <a data-th-href="${searchPageUrl}" class="header__searchbutton" aria-label="Søk">
     <!-- <div id="js-search"><p>Loading component...</p></div> -->
   </a>
-  <a href="" class="header__navbutton" id="js-navbutton" aria-label="Åpne meny">
-    <div class="header__navicon"><span></span> <span></span> <span></span> <span></span></div>
+  <a href="" class="header__navbutton" id="js-navbutton" aria-expanded="false" aria-label="Åpne meny">
+    <div class="header__navicon" role="presentation"><span></span> <span></span> <span></span> <span></span></div>
   </a>
   <div class="section drawer" id="js-drawer">
     <nav data-th-if="${menuItems}" role="navigation">
@@ -50,4 +51,4 @@
       </ul>
     </nav>
   </div>
-</nav>
+</header>

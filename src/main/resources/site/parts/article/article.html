@@ -56,10 +56,11 @@
                     title="2018-11-19"
                     datetime="2018-11-19"
                     data-th-text="${createdTimeRelative}"
+                    data-th-aria-label="${'Publisert ' + createdTimeRelative}"
                     >Created time</time
                   >
                 </li>
-                <li class="dateline__authors">
+                <li class="dateline__authors" aria-label="Skrevet av">
                   <span data-th-each="author : ${authors}">
                     <a data-th-href="${author.url}" data-th-text="${author.name}"></a>
                   </span>

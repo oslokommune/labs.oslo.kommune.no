@@ -5,10 +5,12 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-10-tablet is-8-desktop">
-            <div class="field has-addons" role="search" aria-label="Globalt søk">
+            <div class="field has-addons">
               <div class="control is-expanded">
                 <input
                   type="text"
+                  role="search"
+                  aria-label="Globalt søk"
                   class="input is-fullwidth"
                   v-model="q"
                   @input="doSearch"
@@ -28,7 +30,12 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-10-tablet is-8-desktop">
-            <div class="section search__resultlist">
+            <div
+              class="section search__resultlist"
+              role="region"
+              id="search-results"
+              aria-live="polite"
+            >
               <div v-if="!hits.length && !q">
                 <!-- TODO: INSERT MOST POPULAR ARTICLES WHEN SEARCH STRING IS EMPTY -->
                 <em>:)</em>
@@ -36,13 +43,17 @@
               <div v-if="!hits.length && q">
                 <h1>Ingen treff funnet på "{{q}}"</h1>
               </div>
-              <SearchItem
-                v-for="(item,i) in hits"
-                :focus="focused === i"
-                :item="item"
-                :q="q"
-                :key="i"
-              ></SearchItem>
+              <ul v-if="hits.length" role="list">
+                <li>
+                  <SearchItem
+                    v-for="(item,i) in hits"
+                    :focus="focused === i"
+                    :item="item"
+                    :q="q"
+                    :key="i"
+                  ></SearchItem>
+                </li>
+              </ul>
             </div>
             <!-- <div data-th-replace="/site/snippets/pagination.html"></div> -->
           </div>
@@ -53,11 +64,11 @@
 </template>
 
 <script>
-import ResponsiveImage from './ResponsiveImage'
-import SearchItem from './SearchItem'
-import axios from 'axios'
+import ResponsiveImage from "./ResponsiveImage";
+import SearchItem from "./SearchItem";
+import axios from "axios";
 export default {
-  name: 'Search',
+  name: "Search",
   components: {
     SearchItem,
     ResponsiveImage
@@ -68,46 +79,56 @@ export default {
       searchURL: searchURL,
       mainImage: mainImage,
       focused: -1, // index of the list element in focus. -1 means none.
-      q: '',
+      q: "",
       hits: [],
       next: false,
-      time: '',
+      time: "",
       total: 0
-    }
+    };
   },
 
   mounted() {
     // Focus search field on creation
-    this.$refs.searchField.focus()
+    this.$refs.searchField.focus();
 
     // Parse query if URL contains query param
     if (this.$route.query && this.$route.query.q) {
-      this.q = decodeURI(this.$route.query.q)
+      this.q = decodeURI(this.$route.query.q);
     }
 
-    this.doSearch()
+    this.doSearch();
   },
 
   methods: {
     focusNextItem(target = false) {
-      if (target === 'first') {
-        this.focused = 0
+      if (target === "first") {
+        this.focused = 0;
       }
 
       // Prevent incrementing this.focused when 'tabbing' into the search field from above
-      if (event.keyCode === 9 && this.focused === -1 && document.activeElement === this.$refs.searchField) {
-        return
+      if (
+        event.keyCode === 9 &&
+        this.focused === -1 &&
+        document.activeElement === this.$refs.searchField
+      ) {
+        return;
       }
       // Increment or decrement this.focused when using tab/shift+tab or arrow keys
-      if ((event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) && this.focused < this.hits.length - 1) {
-        this.focused++
-      } else if ((event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) && this.focused >= -2) {
-        this.focused--
+      if (
+        (event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) &&
+        this.focused < this.hits.length - 1
+      ) {
+        this.focused++;
+      } else if (
+        (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) &&
+        this.focused >= -2
+      ) {
+        this.focused--;
       }
 
       // when reaching -1 the searchfield should gain focus
       if (this.focused === -1) {
-        this.$refs.searchField.focus()
+        this.$refs.searchField.focus();
       }
     },
 
@@ -120,7 +141,10 @@ export default {
       // }
 
       // Update query param in in address bar
-      this.$router.push({ path: this.$router.app._route.path, query: { q: encodeURI(this.q) } })
+      this.$router.push({
+        path: this.$router.app._route.path,
+        query: { q: encodeURI(this.q) }
+      });
 
       // Perform search and store the results
       axios
@@ -130,16 +154,16 @@ export default {
           }
         })
         .then(res => {
-          const data = res.data
-          this.next = data.next
-          this.time = data.time
-          this.total = data.total
-          this.hits = data.hits
+          const data = res.data;
+          this.next = data.next;
+          this.time = data.time;
+          this.total = data.total;
+          this.hits = data.hits;
         })
         .catch(error => {
-          console.log(error)
-        })
+          console.log(error);
+        });
     }
   }
-}
+};
 </script>
