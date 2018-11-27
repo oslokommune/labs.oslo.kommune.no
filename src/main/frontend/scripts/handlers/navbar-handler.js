@@ -55,7 +55,7 @@ export default function handler(id) {
 
   // Show/hide header when an element on it is focused/blurred
   function showOnFocus(headerElement) {
-    headerLinks = headerElement.querySelectorAll('a')
+    headerLinks = [...headerElement.querySelectorAll('a')]
     headerLinks.forEach(el => {
       el.addEventListener('focus', () => {
         headerElement.classList.add(classes.focus)

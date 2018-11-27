@@ -8,7 +8,7 @@ function init() {
 }
 
 function renderMaps() {
-  let mapElements = document.querySelectorAll('.map')
+  let mapElements = [...document.querySelectorAll('.map')]
 
   mapElements.forEach(el => {
     const markers = JSON.parse(el.getAttribute('markers')) || []
