@@ -4,7 +4,8 @@
   "description": "Frontend and assets build script",
   "scripts": {
     "dev": "webpack --mode development --env=dev --progress --colors --watch",
-    "build": "webpack --mode production --env=prod --progress --colors"
+    "build": "webpack --mode production --env=prod --progress --colors",
+    "analyze": "webpack --mode production --env=analyze --progress --colors"
   },
   "browserslist": [
     "last 2 versions"
@@ -40,6 +41,7 @@
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
     "webpack": "^4.21.0",
+    "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {

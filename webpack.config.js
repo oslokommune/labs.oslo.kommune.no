@@ -1,22 +1,26 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
+const {
+  VueLoaderPlugin
+} = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = (env, argv) => {
   console.log(JSON.stringify(argv, null, 2))
+  console.log(JSON.stringify(env, null, 2))
   const PROD_MODE = argv.mode === 'production' || process.env.NODE_ENV === 'production'
-  return {
+  const config = {
     entry: {
-      main: ['./src/main/frontend/scripts/main.js', './src/main/frontend/styles/main.scss']
+      main: './src/main/frontend/scripts/main.js'
     },
     output: {
       filename: PROD_MODE ? 'scripts/[name].min.js' : 'scripts/[name].js',
+      chunkFilename: PROD_MODE ? 'scripts/[name].bundle.min.js' : 'scripts/[name].bundle.js',
       path: path.resolve(__dirname, 'src/main/resources/assets')
     },
     module: {
-      rules: [
-        {
+      rules: [{
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
@@ -46,22 +50,20 @@ module.exports = (env, argv) => {
               loader: 'postcss-loader',
               options: {
                 sourceMap: PROD_MODE ? false : 'inline',
-                plugins: PROD_MODE
-                  ? [
-                      require('postcss-preset-env')({
-                        autoprefixer: {
-                          grid: true
-                        }
-                      }),
-                      require('postcss-csso')()
-                    ]
-                  : [
-                      require('postcss-preset-env')({
-                        autoprefixer: {
-                          grid: true
-                        }
-                      })
-                    ]
+                plugins: PROD_MODE ? [
+                  require('postcss-preset-env')({
+                    autoprefixer: {
+                      grid: true
+                    }
+                  }),
+                  require('postcss-csso')()
+                ] : [
+                  require('postcss-preset-env')({
+                    autoprefixer: {
+                      grid: true
+                    }
+                  })
+                ]
               }
             },
             {
@@ -83,13 +85,26 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css'
       }),
-      new CopyWebpackPlugin([
-        {
-          from: './src/main/frontend/gfx',
-          to: 'gfx',
-          ignore: ['.*']
+      new CopyWebpackPlugin([{
+        from: './src/main/frontend/gfx',
+        to: 'gfx',
+        ignore: ['.*']
+      }])
+    ],
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendors",
+            chunks: "all"
+          }
         }
-      ])
-    ]
+      }
+    }
   }
+  if (env === "analyze") {
+    config.plugins.push(new BundleAnalyzerPlugin());
+  }
+  return config
 }

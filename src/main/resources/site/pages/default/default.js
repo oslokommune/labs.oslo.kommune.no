@@ -12,7 +12,9 @@ exports.get = function(req) {
   var siteConfig = portal.getSiteConfig()
 
   if (siteConfig && siteConfig.searchPage) {
-    model.searchPageUrl = portal.pageUrl({ id: siteConfig.searchPage })
+    model.searchPageUrl = portal.pageUrl({
+      id: siteConfig.searchPage
+    })
   }
 
   model.main = content.page.regions.main
@@ -24,9 +26,16 @@ exports.get = function(req) {
   var serverName = util.getServerName().toLowerCase()
   var isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test'
   var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
+  var vendorScriptsPath = isProd ? 'scripts/vendors.bundle.min.js' : 'scripts/vendors.bundle.js'
   var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
+  var vendorScripts =
+    '<script defer src="' +
+    portal.assetUrl({
+      path: vendorScriptsPath
+    }) +
+    '"></script>'
   var scripts =
-    '<script async src="' +
+    '<script defer src="' +
     portal.assetUrl({
       path: scriptsPath
     }) +
@@ -44,8 +53,7 @@ exports.get = function(req) {
   return {
     body: body,
     pageContributions: {
-      headEnd: [styles],
-      bodyEnd: [scripts]
+      headEnd: [styles, vendorScripts, scripts]
     }
   }
 }

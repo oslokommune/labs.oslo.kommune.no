@@ -1,3 +1,4 @@
+import '../styles/main.scss'
 import navbarHandler from './handlers/navbar-handler.js'
 import menuHandler from './handlers/menu-handler.js'
 import anchorListHandler from './handlers/anchorlist-handler.js'
