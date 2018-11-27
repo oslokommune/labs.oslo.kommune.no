@@ -18,7 +18,8 @@
     }
   }
 
-  &--pin {
+  &--pin,
+  &--focus {
     transform: translateY(0);
 
     .header__searchbutton {
@@ -31,22 +32,6 @@
       }
     }
   }
-
-  // .header__container {
-  //   max-width: $fullhd;
-  // }
-
-  // .container {
-  //   display: flex;
-  //   align-items: center;
-  // }
-
-  // .container-fluid {
-  //   display: flex;
-  //   align-items: center;
-  //   width: 100%;
-  //   height: 100%;
-  // }
 
   &__branding {
     padding: 0 1em;
@@ -231,18 +216,6 @@
   &.active a {
     font-weight: 700;
   }
-
-  // &.active::before {
-  //   content: "";
-  //   width: 0.75em;
-  //   height: 0.75em;
-  //   display: block;
-  //   position: absolute;
-  //   left: -1.25em;
-  //   top: 33%;
-  //   border-radius: 50%;
-  //   background: $color-purple;
-  // }
 }
 
 main.main {

@@ -4,11 +4,13 @@ export default function handler(id) {
   var ticking = false
   var idOfHeader = id
   var eleHeader = null
+  var headerLinks = null
   const classes = {
     pinned: 'header--pin',
     unpinned: 'header--unpin',
     top: 'header--top',
-    open: 'is-open'
+    open: 'is-open',
+    focus: 'header--focus'
   }
   function onScroll() {
     if (eleHeader.classList.contains(classes.open)) {
@@ -50,8 +52,23 @@ export default function handler(id) {
       eleHeader.classList.add(classes.unpinned)
     }
   }
+
+  // Show/hide header when an element on it is focused/blurred
+  function showOnFocus(headerElement) {
+    headerLinks = headerElement.querySelectorAll('a')
+    headerLinks.forEach(el => {
+      el.addEventListener('focus', () => {
+        headerElement.classList.add(classes.focus)
+      })
+      el.addEventListener('blur', () => {
+        headerElement.classList.remove(classes.focus)
+      })
+    })
+  }
+
   window.onload = function() {
     eleHeader = document.getElementById(idOfHeader)
+    showOnFocus(eleHeader)
     document.addEventListener('scroll', onScroll, false)
   }
 }
