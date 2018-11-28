@@ -1,7 +1,7 @@
 <template>
   <div @keyup="focusNextItem()">
     <section class="search__hero section">
-      <ResponsiveImage class="search__heroimg" :image="mainImage" sizes="100%"></ResponsiveImage>
+      <ResponsiveImage v-if="mainImage" class="search__heroimg" :image="mainImage" sizes="100vw"></ResponsiveImage>
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-10-tablet is-8-desktop">
