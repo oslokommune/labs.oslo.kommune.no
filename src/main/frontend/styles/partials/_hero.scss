@@ -62,6 +62,7 @@
       transition: all 0.3s ease-in-out;
       pointer-events: none;
     }
+
     &::before {
       width: 5em;
       height: 5em;
@@ -84,6 +85,7 @@
       &::before {
         background: rgba($color-purple, 1);
       }
+
       &::after {
         border-left-color: rgba($color-blue, 1);
       }
@@ -95,6 +97,7 @@
       width: 100%;
       margin-left: auto;
       margin-right: auto;
+
       &::after,
       &::before {
         opacity: 0;
@@ -137,6 +140,7 @@
   &::before {
     transform: rotate(-45deg);
   }
+
   &::after {
     transform: rotate(45deg);
   }
@@ -175,6 +179,7 @@
       width: 400px;
       height: 400px * 0.5625;
     }
+
     @media screen and (min-width: 1088px) {
       width: 25vw;
       height: 25vw * 0.5625;
@@ -193,7 +198,7 @@
   border-bottom: 1px solid $color-grayscale-30;
   font-weight: 500;
 
-  > li {
+  >li {
     flex: 1 0 50%;
   }
 
@@ -209,12 +214,14 @@
     span::before {
       font-size: 0.75rem;
     }
-    > span + span {
+
+    >span+span {
       &::before {
         content: ', ';
       }
     }
-    > span:last-child:not(:first-child)::before {
+
+    >span:last-child:not(:first-child)::before {
       content: '\00a0og ';
     }
   }
@@ -232,7 +239,6 @@
 
   &__image {
     flex: 0 0 3em;
-    height: 3em;
     border-radius: 50%;
   }
 
@@ -306,7 +312,7 @@
   }
 
   // Show list when checkbox is checked
-  &__toggle:checked ~ &__list {
+  &__toggle:checked~&__list {
     max-height: 25em;
   }
 }
