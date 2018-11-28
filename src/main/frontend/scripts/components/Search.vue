@@ -1,7 +1,7 @@
 <template>
   <div @keyup="focusNextItem()">
     <section class="search__hero section">
-      <ResponsiveImage class="search__heroimg" :image="mainImage" sizes="100%"></ResponsiveImage>
+      <ResponsiveImage v-if="mainImage" class="search__heroimg" :image="mainImage" sizes="100vw"></ResponsiveImage>
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-10-tablet is-8-desktop">
@@ -64,11 +64,11 @@
 </template>
 
 <script>
-import ResponsiveImage from "./ResponsiveImage";
-import SearchItem from "./SearchItem";
-import axios from "axios";
+import ResponsiveImage from './ResponsiveImage'
+import SearchItem from './SearchItem'
+import axios from 'axios'
 export default {
-  name: "Search",
+  name: 'Search',
   components: {
     SearchItem,
     ResponsiveImage
@@ -79,56 +79,46 @@ export default {
       searchURL: searchURL,
       mainImage: mainImage,
       focused: -1, // index of the list element in focus. -1 means none.
-      q: "",
+      q: '',
       hits: [],
       next: false,
-      time: "",
+      time: '',
       total: 0
-    };
+    }
   },
 
   mounted() {
     // Focus search field on creation
-    this.$refs.searchField.focus();
+    this.$refs.searchField.focus()
 
     // Parse query if URL contains query param
     if (this.$route.query && this.$route.query.q) {
-      this.q = decodeURI(this.$route.query.q);
+      this.q = decodeURI(this.$route.query.q)
     }
 
-    this.doSearch();
+    this.doSearch()
   },
 
   methods: {
     focusNextItem(target = false) {
-      if (target === "first") {
-        this.focused = 0;
+      if (target === 'first') {
+        this.focused = 0
       }
 
       // Prevent incrementing this.focused when 'tabbing' into the search field from above
-      if (
-        event.keyCode === 9 &&
-        this.focused === -1 &&
-        document.activeElement === this.$refs.searchField
-      ) {
-        return;
+      if (event.keyCode === 9 && this.focused === -1 && document.activeElement === this.$refs.searchField) {
+        return
       }
       // Increment or decrement this.focused when using tab/shift+tab or arrow keys
-      if (
-        (event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) &&
-        this.focused < this.hits.length - 1
-      ) {
-        this.focused++;
-      } else if (
-        (event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) &&
-        this.focused >= -2
-      ) {
-        this.focused--;
+      if ((event.keyCode === 40 || (event.keyCode === 9 && !event.shiftKey)) && this.focused < this.hits.length - 1) {
+        this.focused++
+      } else if ((event.keyCode === 38 || (event.keyCode === 9 && event.shiftKey)) && this.focused >= -2) {
+        this.focused--
       }
 
       // when reaching -1 the searchfield should gain focus
       if (this.focused === -1) {
-        this.$refs.searchField.focus();
+        this.$refs.searchField.focus()
       }
     },
 
@@ -144,7 +134,7 @@ export default {
       this.$router.push({
         path: this.$router.app._route.path,
         query: { q: encodeURI(this.q) }
-      });
+      })
 
       // Perform search and store the results
       axios
@@ -154,16 +144,16 @@ export default {
           }
         })
         .then(res => {
-          const data = res.data;
-          this.next = data.next;
-          this.time = data.time;
-          this.total = data.total;
-          this.hits = data.hits;
+          const data = res.data
+          this.next = data.next
+          this.time = data.time
+          this.total = data.total
+          this.hits = data.hits
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
   }
-};
+}
 </script>
