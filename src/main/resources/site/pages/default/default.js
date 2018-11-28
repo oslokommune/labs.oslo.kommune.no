@@ -10,11 +10,18 @@ exports.get = function(req) {
 
   // Store URL to search page
   var siteConfig = portal.getSiteConfig()
-
   if (siteConfig && siteConfig.searchPage) {
     model.searchPageUrl = portal.pageUrl({
       id: siteConfig.searchPage
     })
+  }
+
+  // Local hack for development
+  // Store Site Path
+  var site = portal.getSite()
+  model.sitePath = '/'
+  if (req.host === 'localhost' && site._path) {
+    model.sitePath = site._path
   }
 
   model.main = content.page.regions.main

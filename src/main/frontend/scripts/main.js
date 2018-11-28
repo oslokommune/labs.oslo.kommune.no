@@ -18,19 +18,10 @@ if (document.getElementById('js-anchor-list')) {
 }
 
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 
 import Search from './components/Search.vue'
 if (document.getElementById('js-search')) {
-  var router = new VueRouter({
-    mode: 'history',
-    routes: []
-  })
-
-  Vue.use(VueRouter)
-
   new Vue({
-    router,
     render: h => h(Search)
   }).$mount('#js-search')
 }

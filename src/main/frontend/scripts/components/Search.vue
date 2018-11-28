@@ -67,6 +67,7 @@
 import ResponsiveImage from "./ResponsiveImage";
 import SearchItem from "./SearchItem";
 import axios from "axios";
+
 export default {
   name: "Search",
   components: {
@@ -90,12 +91,6 @@ export default {
   mounted() {
     // Focus search field on creation
     this.$refs.searchField.focus();
-
-    // Parse query if URL contains query param
-    if (this.$route.query && this.$route.query.q) {
-      this.q = decodeURI(this.$route.query.q);
-    }
-
     this.doSearch();
   },
 
@@ -133,19 +128,6 @@ export default {
     },
 
     doSearch: function(event) {
-      // Reset hits array when query is empty
-      // if (!this.q) {
-      //   this.$router.push(this.$router.app._route.path)
-      //   this.hits = []
-      //   return
-      // }
-
-      // Update query param in in address bar
-      this.$router.push({
-        path: this.$router.app._route.path,
-        query: { q: encodeURI(this.q) }
-      });
-
       // Perform search and store the results
       axios
         .get(this.searchURL, {
