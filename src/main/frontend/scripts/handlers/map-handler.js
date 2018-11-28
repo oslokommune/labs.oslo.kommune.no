@@ -12,7 +12,7 @@ function renderMaps() {
 
   mapElements.forEach(el => {
     const markers = JSON.parse(el.getAttribute('markers')) || []
-    const geoJSON = JSON.parse(el.getAttribute('geoJSON')) || {}
+    const geoJSON = JSON.parse(el.getAttribute('geoJSON')) || null
     const zoom = +el.getAttribute('zoom')
     const coordinates = el
       .getAttribute('coordinates')
@@ -33,7 +33,9 @@ function renderMaps() {
     })
 
     // Draw distric overlays
-    map.data.addGeoJson(geoJSON)
+    if (geoJSON) {
+      map.data.addGeoJson(geoJSON)
+    }
 
     // Overlay styling
     map.data.setStyle({
@@ -61,7 +63,10 @@ function createMapScriptElement(key) {
   const callback = 'renderMaps'
 
   const mapsScript = document.createElement('script')
-  mapsScript.setAttribute('src', `https://maps.googleapis.com/maps/api/js?key=${key}&callback=${callback}`)
+  mapsScript.setAttribute(
+    'src',
+    `https://maps.googleapis.com/maps/api/js?key=${key}&callback=${callback}`
+  )
   mapsScript.setAttribute('async', true)
   mapsScript.setAttribute('defer', true)
   document.body.appendChild(mapsScript)
