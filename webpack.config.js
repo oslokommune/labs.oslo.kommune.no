@@ -37,6 +37,16 @@ module.exports = (env, argv) => {
           use: 'vue-loader'
         },
         {
+          test: /\.(ttf|eot|woff|woff2)$/,
+          use: {
+            loader: "file-loader",
+            options: {
+              name: "styles/[name].[ext]",
+              publicPath: "../"
+            },
+          },
+        },
+        {
           test: /\.(sass|scss|css)$/,
           use: [
             MiniCssExtractPlugin.loader,
