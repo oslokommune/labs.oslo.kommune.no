@@ -26,4 +26,13 @@
       content: '• ';
     }
   }
+
+  &__link {
+    font-weight: bold;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin-left: 0.25em;
+    color: $color-purple;
+  }
 }
