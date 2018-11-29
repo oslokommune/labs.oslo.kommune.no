@@ -39,11 +39,11 @@ exports.get = function(req) {
       result.hits.pop()
     }
 
-    model.featured = cUtil.prepareFeaturedArticle(featured, 'block(5,2)')
+    model.featured = cUtil.prepareFeaturedArticle(featured, 'block(3,2)')
   }
 
   // Prepare model
-  model.articles = cUtil.prepareArticleList(result, 'block(5,2)')
+  model.articles = cUtil.prepareArticleList(result, 'block(3,2)')
 
   var view = resolve('./article-list.html')
   var body = thymeleaf.render(view, model)

@@ -39,7 +39,7 @@ exports.prepareFeaturedArticle = function(data, scale) {
 
   article.image = data.data.image
     ? imageLib.image.create(data.data.image, scale)
-    : null
+    : imageLib.image.placeholder(scale)
   article.authors = data.data.authors ? data.data.authors : null
   article.heading = data.data.heading ? data.data.heading : res.displayName
   article.lead = data.data.lead ? data.data.lead : null
@@ -63,7 +63,9 @@ exports.prepareArticleList = function(data, scale, featured) {
     if (!res.data) return article
 
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
-    article.image = imageLib.image.create(res.data.image, scale)
+    article.image = res.data.image
+      ? imageLib.image.create(res.data.image, scale)
+      : imageLib.image.placeholder(scale)
     article.authors = res.data.authors ? res.data.authors : null
     article.heading = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null

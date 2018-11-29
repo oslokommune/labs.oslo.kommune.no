@@ -87,6 +87,28 @@ exports.image.createUrl = function(key, scale, filter, format, quality) {
   })
 }
 
+
+/**
+ * Creates placeholder image
+ * @param {String} scale - Scaling filter
+ * @return {Object} The image srcset
+ */
+exports.image.placeholder = function(scale) {
+
+  var image = {}
+  var ar = scale.split('block(')[1].split(')')[0].split(',')
+  var placeholder = 'data:image/svg+xml;charset=utf-8,' +
+    encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
+
+  image.src = ''
+  image.srcSet = placeholder
+  image.alt = 'Placeholder image'
+
+  return image
+}
+
+
+
 /**
  * Creates image responsive srcset.
  * @param {Object} image - The image content
