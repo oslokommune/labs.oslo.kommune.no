@@ -1,0 +1,29 @@
+.bio {
+  &__author {
+    background: $color-yellow;
+    align-items: center;
+  }
+
+  &__img {
+    min-width: 8em;
+    max-width: 12em;
+
+    > img {
+      border: 1px solid darken($color-yellow, 20%);
+      border-radius: 50%;
+    }
+  }
+
+  &__video {
+    border-radius: 50%;
+  }
+
+  &__meta {
+    font-size: 0.85em;
+    margin-bottom: 1em;
+
+    > *:not(:first-child)::before {
+      content: '• ';
+    }
+  }
+}

@@ -49,7 +49,11 @@
           '(max-width:768px) 95vw, (max-width:1087px) 62vw, (max-width:1279px) 631px, (max-width:1471px) 758px, 771px' :
           '(max-width:768px) 95vw, (max-width:1087px) 62vw, (max-width:1279px) 631px, (max-width:1471px) 660px, 657px'"
         />
-        <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
+        <figcaption
+          data-th-if="*{caption}"
+          class="o-block-images__caption"
+          data-th-text="*{caption}"
+        >
           Caption
         </figcaption>
       </figure>
@@ -67,7 +71,11 @@
           '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px' :
           '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
         />
-        <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
+        <figcaption
+          data-th-if="*{caption}"
+          class="o-block-images__caption"
+          data-th-text="*{caption}"
+        >
           Caption
         </figcaption>
       </figure>
@@ -77,9 +85,16 @@
   <!-- /* Layout for three images */ -->
   <div data-th-if="${#lists.size(data.images) == 3}" data-th-remove="tag">
     <div class="columns">
-      <div class="column" data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-10-fullhd is-offset-1-fullhd'">
+      <div
+        class="column"
+        data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-10-fullhd is-offset-1-fullhd'"
+      >
         <div class="columns">
-          <figure class="column is-one-third" data-th-each="image: ${data.images}" data-th-object="${image}">
+          <figure
+            class="column is-one-third"
+            data-th-each="image: ${data.images}"
+            data-th-object="${image}"
+          >
             <img
               data-th-src="*{placeholderSrc}"
               data-th-srcset="*{srcSet}"
@@ -88,7 +103,11 @@
               '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 352px' :
               '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
             />
-            <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
+            <figcaption
+              data-th-if="*{caption}"
+              class="o-block-images__caption"
+              data-th-text="*{caption}"
+            >
               Caption
             </figcaption>
           </figure>

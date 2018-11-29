@@ -1,17 +1,39 @@
 <div data-th-remove="tag">
   <article>
-    <header class="hero" data-th-classappend="${image or videoId} ? '' : ' hero--no-image'">
+    <header
+      class="hero"
+      data-th-classappend="${image or videoId} ? '' : ' hero--no-image'"
+    >
       <div class="container-fluid" data-th-if="!${videoId}">
-        <img data-th-if="*{image}" data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}" data-th-sizes="'100vw'"
-          data-th-alt="*{image.alt}" class="hero__img" />
+        <img
+          data-th-if="*{image}"
+          data-th-src="*{image.placeholderSrc}"
+          data-th-srcset="*{image.srcSet}"
+          data-th-sizes="'100vw'"
+          data-th-alt="*{image.alt}"
+          class="hero__img"
+        />
       </div>
 
-      <div class="hero__videowrapper" id="js-hero-videowrapper" data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''">
-        <div data-th-if="${videoId}" class="hero__videocontainer" id="js-hero-videocontainer">
+      <div
+        class="hero__videowrapper"
+        id="js-hero-videowrapper"
+        data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''"
+      >
+        <div
+          data-th-if="${videoId}"
+          class="hero__videocontainer"
+          id="js-hero-videocontainer"
+        >
           <div data-th-style="'position: relative; padding-top: 56.25%;'">
-            <iframe data-th-src="'https://player.vimeo.com/video/' + ${videoId} + '?color=da28d3&title=0&byline=0&portrait=0'"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
-              mozallowfullscreen allowfullscreen>
+            <iframe
+              data-th-src="'https://player.vimeo.com/video/' + ${videoId} + '?color=da28d3&title=0&byline=0&portrait=0'"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;"
+              frameborder="0"
+              webkitallowfullscreen
+              mozallowfullscreen
+              allowfullscreen
+            >
             </iframe>
           </div>
           <div class="hero__closepopout" id="js-hero-closepopout"></div>
@@ -21,9 +43,19 @@
       <div class="hero-foot section is-paddingless-top-bottom">
         <div class="container">
           <div class="columns">
-            <div class="column hero__text is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
-              <h1 class="title is-1" data-th-if="${heading}" data-th-text="${heading}"></h1>
-              <h2 class="subtitle is-4" data-th-if="${subheading}" data-th-text="${subheading}"></h2>
+            <div
+              class="column hero__text is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen"
+            >
+              <h1
+                class="title is-1"
+                data-th-if="${heading}"
+                data-th-text="${heading}"
+              ></h1>
+              <h2
+                class="subtitle is-4"
+                data-th-if="${subheading}"
+                data-th-text="${subheading}"
+              ></h2>
             </div>
           </div>
         </div>
@@ -32,24 +64,43 @@
       <div class="section is-paddingless-top-bottom">
         <div class="container">
           <div class="columns">
-            <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
+            <div
+              class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen"
+            >
               <p class="lead" data-th-utext="${lead}"></p>
               <ul class="dateline">
                 <li class="dateline__date">
-                  <time class="dateline__datetime" title="2018-11-19" datetime="2018-11-19" data-th-text="${createdTimeRelative}"
-                    data-th-aria-label="${'Publisert ' + createdTimeRelative}">Created time</time>
+                  <time
+                    class="dateline__datetime"
+                    title="2018-11-19"
+                    datetime="2018-11-19"
+                    data-th-text="${createdTimeRelative}"
+                    data-th-aria-label="${'Publisert ' + createdTimeRelative}"
+                    >Created time</time
+                  >
                 </li>
                 <li class="dateline__authors" aria-label="Skrevet av">
                   <span data-th-each="author : ${authors}">
-                    <a data-th-href="${author.url}" data-th-text="${author.name}"></a>
+                    <a
+                      data-th-href="${author.url}"
+                      data-th-text="${author.name}"
+                    ></a>
                   </span>
                 </li>
               </ul>
             </div>
-            <div class="column is-4-tablet is-3-desktop is-offset-1-desktop is-hidden-touch">
+            <div
+              class="column is-4-tablet is-3-desktop is-offset-1-desktop is-hidden-touch"
+            >
               <nav class="anchor-list is-hidden" id="js-anchor-list-container">
-                <input type="checkbox" class="anchor-list__toggle" id="anchor-list__toggle" />
-                <label for="anchor-list__toggle" class="anchor-list__header">På denne siden</label>
+                <input
+                  type="checkbox"
+                  class="anchor-list__toggle"
+                  id="anchor-list__toggle"
+                />
+                <label for="anchor-list__toggle" class="anchor-list__header"
+                  >På denne siden</label
+                >
                 <ul class="anchor-list__list" id="js-anchor-list"></ul>
               </nav>
             </div>
@@ -59,38 +110,78 @@
     </header>
 
     <div class="article-blocks">
-      <!-- /* Each content block renders the corresponding content block snippet */ -->
-      <section data-th-if="${contentBlocks}" data-th-each="block : ${contentBlocks}" class="section" data-th-style="${block.gradient} ? ${block.gradient} : ''"
+      <!--
+        /* Each content block renders the corresponding content block snippet */
+      -->
+      <section
+        data-th-if="${contentBlocks}"
+        data-th-each="block : ${contentBlocks}"
+        class="section"
+        data-th-style="${block.gradient} ? ${block.gradient} : ''"
         data-th-classappend="
                 (${block.hasWhiteText} ? 'has-text-white' : '') + 
                 (${block.fill} ? ' has-background section--' + ${block.fill} : '') + 
                 (${block.gradient} ? 'has-background' : '')
-              ">
+              "
+      >
         <div class="container">
           <div class="columns">
-            <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
+            <div
+              data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"
+            ></div>
           </div>
         </div>
       </section>
     </div>
-    <footer class="section article-footer">
-      <ul data-th-if="${authors}" class="byline">
-        <li data-th-each="author, i : ${authors}" class="byline__author">
-          <img data-th-if="${author.image}" data-th-srcset="${author.image.srcSet}" data-th-src="${author.image.src}"
-            sizes="60px" class="byline__image" data-th-alt="${author.name}" />
-          <cite class="byline__contact">
-            <div class="byline__name" data-th-text="${author.name}"></div>
-            <a data-th-href="'mailto:' + ${author.email}" class="byline__email" data-th-text="${author.email}"></a>
-          </cite>
-          <a data-th-href="${author.url}" class="icon icon--chevron-right byline__icon"></a>
+    <footer class="article-footer">
+
+      <ul data-th-if="${authors}" class="bio" role="list" aria-label="Forfattere">
+        <li
+          data-th-each="author: ${authors}"
+          class="section bio__author"
+          role="listitem"
+          data-th-object="${author}"
+        >
+        <div class="container">
+          <div class="columns">
+          <div class="column is-3 bio__img">
+
+            <video data-th-if="*{video}" class="bio__video" data-th-src="*{video}" autoplay loop></video>
+
+
+            <img
+              data-th-unless="*{video}"
+              data-th-if="*{image}"
+              data-th-src="*{image.placeholderSrc}"
+              data-th-srcset="*{image.srcSet}"
+              data-th-sizes="'100px'"
+              data-th-alt="*{image.alt}"
+            />
+          </div>
+          <div class="column is-9 bio__text">
+            <h3 class="title is-3 is-marginless" data-th-text="*{name}"></h3>
+            <p class="bio__meta">
+              <span data-th-if="*{role}" class="bio__role" data-th-text="*{role}">role</span>
+              <span data-th-if="*{department}" class="bio__department" data-th-text="*{department}">department</span>
+            </p>
+            <p>
+              <span data-th-text="*{bio}" th-remove="tag"></span>
+              <a data-th-href="*{url}" data-th-aria-label="*{'Se profil for ' + name}">Se profil</a>
+            </p>
+          </div>
+        </div>
         </li>
       </ul>
+
       <!-- TODO: Add related content -->
       <!-- <h1>Relaterte artikler</h1> -->
     </footer>
   </article>
 
-  <script data-th-if="${videoId}" src="https://player.vimeo.com/api/player.js"></script>
+  <script
+    data-th-if="${videoId}"
+    src="https://player.vimeo.com/api/player.js"
+  ></script>
   <script data-th-if="${videoId}">
     const videoWrapper = document.querySelector('#js-hero-videowrapper')
     const videoContainer = document.querySelector('#js-hero-videocontainer')
@@ -148,6 +239,5 @@
         videoContainer.classList.remove('popout')
       }
     }
-
   </script>
 </div>

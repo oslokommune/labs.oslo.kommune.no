@@ -11,8 +11,14 @@
                 <allowPath>${site}/*</allowPath>
             </config>
         </input>
-        <input name="title" type="TextLine">
-            <label i18n="ct.person.title">Title / Role</label>
+        <input name="video" type="MediaSelector">
+            <label i18n="ct.person.video">Portrait video</label>
+            <config>
+                <allowPath>${site}/*</allowPath>
+            </config>
+        </input>
+        <input name="role" type="TextLine">
+            <label i18n="ct.person.role">Title / Role</label>
         </input>
         <input name="email" type="TextLine">
             <label i18n="ct.person.email">Email address</label>

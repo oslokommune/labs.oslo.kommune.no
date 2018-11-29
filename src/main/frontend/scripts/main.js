@@ -25,3 +25,16 @@ if (document.getElementById('js-search')) {
     render: h => h(Search)
   }).$mount('#js-search')
 }
+
+// Hack to prevent flashing a black frame at the end
+// of looping videos by stripping a few frames at the end
+// of the video before resetting the current time.
+var videoElements = [...document.querySelectorAll('video')]
+videoElements.forEach(video => {
+  if (!video.autoplay || !video.loop) return
+  video.addEventListener('timeupdate', function() {
+    if (this.currentTime >= this.duration - 0.5) {
+      this.currentTime = 0
+    }
+  })
+})

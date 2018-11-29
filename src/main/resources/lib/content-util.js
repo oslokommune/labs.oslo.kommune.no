@@ -13,7 +13,8 @@ var moment = require('/assets/moment/2.22.2/moment.js')
 
 exports.prepareArticleContents = function(data, scale) {
   data = processCommonFields(data, scale)
-  data.contentBlocks && (data.contentBlocks = processContentBlocks(data.contentBlocks))
+  data.contentBlocks &&
+    (data.contentBlocks = processContentBlocks(data.contentBlocks))
   return data
 }
 
@@ -36,7 +37,9 @@ exports.prepareFeaturedArticle = function(data, scale) {
 
   if (!data.data) return article
 
-  article.image = data.data.image ? imageLib.image.create(data.data.image, scale) : null
+  article.image = data.data.image
+    ? imageLib.image.create(data.data.image, scale)
+    : null
   article.authors = data.data.authors ? data.data.authors : null
   article.heading = data.data.heading ? data.data.heading : res.displayName
   article.lead = data.data.lead ? data.data.lead : null
@@ -60,7 +63,7 @@ exports.prepareArticleList = function(data, scale, featured) {
     if (!res.data) return article
 
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
-    article.image = res.data.image ? imageLib.image.create(res.data.image, scale) : null
+    article.image = imageLib.image.create(res.data.image, scale)
     article.authors = res.data.authors ? res.data.authors : null
     article.heading = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null
@@ -100,18 +103,48 @@ function getAuthors(authors) {
       key: authorId
     })
 
+    // Name
     if (content && content.data && content.data.name) {
       author.name = content.data.name
     } else {
       author.name = content.displayName
     }
 
+    // Profile image
     if (content && content.data && content.data.image) {
       author.image = imageLib.image.create(content.data.image, 'square')
+    } else {
+      // Handle no profile image
+    }
+
+    // Profile video
+    if (content && content.data && content.data.video) {
+      author.video = portal.attachmentUrl({ id: content.data.video })
+    }
+
+    // Email
+    if (content && content.data && content.data.email) {
+      author.email = content.data.email
+    }
+
+    if (content && content.data && content.data.role) {
+      author.role = content.data.role
     }
 
     if (content && content.data && content.data.email) {
       author.email = content.data.email
+    }
+
+    if (content && content.data && content.data.mobile) {
+      author.mobile = content.data.mobile
+    }
+
+    if (content && content.data && content.data.department) {
+      author.department = content.data.department
+    }
+
+    if (content && content.data && content.data.bio) {
+      author.bio = content.data.bio
     }
 
     author.url = portal.pageUrl({
@@ -140,9 +173,11 @@ function processContentBlocks(ctbs) {
       if (selected.indexOf('sidebarbox') > -1) {
         block.ctb.sidebarbox = {}
         if (block.ctbSettings.sidebarbox.sidebarboxIcon) {
-          block.ctb.sidebarbox.icon = block.ctbSettings.sidebarbox.sidebarboxIcon
+          block.ctb.sidebarbox.icon =
+            block.ctbSettings.sidebarbox.sidebarboxIcon
         }
-        block.ctb.sidebarbox.contents = block.ctbSettings.sidebarbox.sidebarboxContents
+        block.ctb.sidebarbox.contents =
+          block.ctbSettings.sidebarbox.sidebarboxContents
       }
 
       // Full Width
@@ -155,7 +190,16 @@ function processContentBlocks(ctbs) {
         var colors = block.ctbSettings.bgFill
 
         // Which bg colors require white text
-        var darkBgs = ['purple', 'grey-dark', 'grey-darker', 'green-dark', 'green-faded', 'orange', 'red', 'black']
+        var darkBgs = [
+          'purple',
+          'grey-dark',
+          'grey-darker',
+          'green-dark',
+          'green-faded',
+          'orange',
+          'red',
+          'black'
+        ]
 
         if (darkBgs.indexOf(colors.colorMain) > -1) {
           block.ctb.hasWhiteText = true
@@ -220,14 +264,18 @@ function processContentBlocks(ctbs) {
     // Get Google Maps key
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       var siteConfig = portal.getSiteConfig()
-      var googleMapsKey = siteConfig.googleMapsKey ? siteConfig.googleMapsKey : null
+      var googleMapsKey = siteConfig.googleMapsKey
+        ? siteConfig.googleMapsKey
+        : null
       if (googleMapsKey) {
         block.ctb.ctbMap.googleMapsKey = googleMapsKey
       }
 
       if (block.ctb.ctbMap.mapDistricts) {
         var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
-        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(districts.generateGeoJSON(selectedDistricts))
+        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(
+          districts.generateGeoJSON(selectedDistricts)
+        )
       }
 
       if (block.ctb.ctbMap.mapMarkers) {
@@ -353,7 +401,11 @@ function getImageDimensions(image) {
     y: imageInfo['imageHeight']
   }
   // Check for rotated images. Enonic doesn't seem to recognize this in the java layer.
-  if (cameraInfo && cameraInfo.orientation && /(90|270)/.test(cameraInfo.orientation)) {
+  if (
+    cameraInfo &&
+    cameraInfo.orientation &&
+    /(90|270)/.test(cameraInfo.orientation)
+  ) {
     imageDimensions = {
       x: imageInfo['imageHeight'],
       y: imageInfo['imageWidth']
@@ -368,7 +420,8 @@ function getImageDimensions(image) {
  * @param {*} content   The content object from the result
  */
 exports.getHeading = function(content) {
-  if (content && content.data && content.data.heading) return content.data.heading
+  if (content && content.data && content.data.heading)
+    return content.data.heading
   if (content && content.data && content.data.name) return content.data.name
   if (content && content.data && content.data.title) return content.data.title
   if (content) return content.displayName
