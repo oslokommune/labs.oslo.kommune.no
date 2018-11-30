@@ -37,6 +37,7 @@
 
   &__header {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     font-size: 0.85em;
     align-items: center;
