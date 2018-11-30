@@ -26,10 +26,14 @@ export default function handler(id) {
     ticking = true
   }
   function update() {
-    if (currentScrollY < lastKnownScrollY) {
+    if (currentScrollY <= 60) {
       pin()
-    } else if (currentScrollY > lastKnownScrollY) {
-      unpin()
+    } else {
+      if (currentScrollY < lastKnownScrollY) {
+        pin()
+      } else if (currentScrollY > lastKnownScrollY) {
+        unpin()
+      }
     }
     lastKnownScrollY = currentScrollY
     ticking = false
@@ -47,6 +51,9 @@ export default function handler(id) {
     }
   }
   function unpin() {
+    if (currentScrollY <= 0) {
+      return
+    }
     if (eleHeader.classList.contains(classes.pinned) || !eleHeader.classList.contains(classes.unpinned)) {
       eleHeader.classList.remove(classes.pinned)
       eleHeader.classList.add(classes.unpinned)
