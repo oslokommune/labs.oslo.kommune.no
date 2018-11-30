@@ -44,13 +44,17 @@
       </g>
     </svg>
   </a>
-  <a
+
+  <!-- <a
     data-th-href="${searchPageUrl}"
     class="header__searchbutton"
     aria-label="Søk"
     role="menuitem"
-  >
-    <!-- <div id="js-search"><p>Loading component...</p></div> -->
+  > -->
+    <div id="js-minisearch"></div>
+    <script data-th-inline="javascript">
+      var searchURL = /*[[${searchURL}]]*/ 'default'
+    </script>
   </a>
   <a
     href=""

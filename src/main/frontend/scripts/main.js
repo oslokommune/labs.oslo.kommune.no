@@ -26,6 +26,13 @@ if (document.getElementById('js-search')) {
   }).$mount('#js-search')
 }
 
+import MiniSearch from './components/MiniSearch.vue'
+if (document.getElementById('js-minisearch')) {
+  new Vue({
+    render: h => h(MiniSearch)
+  }).$mount('#js-minisearch')
+}
+
 // Hack to prevent flashing a black frame at the end
 // of looping videos by stripping a few frames at the end
 // of the video before resetting the current time.

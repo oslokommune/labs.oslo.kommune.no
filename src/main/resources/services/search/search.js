@@ -19,6 +19,8 @@ var nameCache = cacheLib.newCache({
 exports.get = function(req) {
   var startTime = +new Date()
 
+  var limit = req.params.limit || 20
+
   var searchResults = [],
     total = 0,
     nextPageStart = 0,
@@ -30,7 +32,7 @@ exports.get = function(req) {
   var site = portalLib.getSite()
   var contentTypes = getContentTypes(site._path)
   var queryParams = {
-    count: 10,
+    count: limit,
     start: 0,
     sort: '_score DESC',
     contentTypes: Object.keys(contentTypes),
@@ -68,11 +70,16 @@ exports.get = function(req) {
     })
     qMod = qArr.join(' ')
 
-    queryParams.query += " AND ( ngram('displayName^5, _allText', '" + qMod + "', 'AND')"
+    queryParams.query +=
+      " AND ( ngram('displayName^5, _allText', '" + qMod + "', 'AND')"
     if (qArr.length === 1) {
       // Single word query. Also look at path
       queryParams.query +=
-        " OR ( ngram('displayName^5, _allText', '" + qMod + "', 'AND') AND _path like '*" + qMod + "*')"
+        " OR ( ngram('displayName^5, _allText', '" +
+        qMod +
+        "', 'AND') AND _path like '*" +
+        qMod +
+        "*')"
       queryParams.query += " OR _path like '*" + qMod + "*'"
     }
     queryParams.query += ' )'
@@ -176,7 +183,8 @@ function getLead(content) {
  * @param {*} content The content object from the result
  */
 function getImage(content) {
-  if (content && content.data && content.data.image) return getImageFromCache(content.data.image)
+  if (content && content.data && content.data.image)
+    return getImageFromCache(content.data.image)
   return false
 }
 function getImageFromCache(imageId) {

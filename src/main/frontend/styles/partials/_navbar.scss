@@ -12,7 +12,7 @@
     transform: translateY(-$header-height);
     transition: transform 0.4s cubic-bezier(0, 0, 0.35, 1.83) 0.15s;
 
-    .header__searchbutton {
+    .header__search {
       transform: translateY(0);
       opacity: 0;
     }
@@ -22,7 +22,7 @@
   &--focus {
     transform: translateY(0);
 
-    .header__searchbutton {
+    .header__search {
       opacity: 1;
       transform: translateY($header-height);
       transition: transform 0.4s cubic-bezier(0, 0, 0.45, 2.43) 0.5s;
@@ -54,13 +54,12 @@
 
   &__navbutton,
   &__searchbutton {
+    font-size: 1rem;
     height: $header-height;
     width: $header-height;
   }
 
   &__navbutton {
-    height: $header-height !important;
-    width: $header-height !important;
     background: $color-blue;
     padding: 0 !important;
     margin: 0 !important;
@@ -78,14 +77,31 @@
         }
         &:nth-child(2) {
           transform: translateY(1em) rotate(45deg);
-          transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s;
+          transition: transform 0.4s ease-in-out 0.4s,
+            opacity 0.4s ease-in-out 0.4s;
         }
         &:nth-child(3) {
           transform: translateY(1em) rotate(-45deg);
-          transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s;
+          transition: transform 0.4s ease-in-out 0.4s,
+            opacity 0.4s ease-in-out 0.4s;
         }
       }
     }
+  }
+
+  &__search {
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s,
+      opacity 0s linear 1s;
+    position: absolute;
+    right: 0;
+    transform: translateY($header-height);
+    height: $header-height;
+    @media screen and (min-width: $tablet) {
+      transform: translateY(0);
+      position: relative;
+    }
+    display: flex;
   }
 
   &__searchbutton {
@@ -93,16 +109,13 @@
     background-image: url($gfxPath+'/icons/search.svg');
     background-repeat: no-repeat;
     background-position: 50% 50%;
-    transform: translateY($header-height);
     border-radius: 50%;
-    z-index: 1;
-    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s, opacity 0s linear 1s;
-    position: absolute;
-    right: 0;
+    border: none;
+    transition: border-radius 0.3s ease-in-out;
 
-    @media screen and (min-width: $tablet) {
-      transform: translateY(0);
-      position: relative;
+    &.active {
+      border-radius: 0;
+      background-image: url($gfxPath+'/icons/close.svg');
     }
   }
 
@@ -126,7 +139,8 @@
 
       &:nth-child(1) {
         transform: translateY(0.35em) rotate(0deg);
-        transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s;
+        transition: transform 0.15s ease-in-out 0.3s,
+          opacity 0.15s ease-in-out 0.3s;
       }
       &:nth-child(2),
       &:nth-child(3) {
@@ -135,7 +149,8 @@
       }
       &:nth-child(4) {
         transform: translateY(1.65em) rotate(0deg);
-        transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s;
+        transition: transform 0.15s ease-in-out 0.3s,
+          opacity 0.15s ease-in-out 0.3s;
       }
     }
   }
@@ -220,4 +235,60 @@
 
 main.main {
   padding-top: 4em;
+}
+
+.minisearch {
+  &__field {
+    height: 100%;
+    width: 100%;
+    padding: 0.5em;
+    background: $color-purple;
+    color: white;
+    font-size: 1rem;
+    border: 0;
+
+    &:focus {
+      outline-color: $color-blue;
+    }
+  }
+
+  &__results {
+    background: darken($color-purple, 5%);
+
+    a {
+      color: white;
+    }
+  }
+
+  &__item a {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+
+    a:focus {
+      background: darken($color-purple, 20%);
+    }
+  }
+
+  &__box {
+    max-width: 0em;
+    width: 0;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+
+    input {
+      display: none;
+    }
+
+    &.expanded {
+      opacity: 1;
+      width: 20em;
+      max-width: 20em;
+      background: $color-purple;
+
+      input {
+        display: block;
+      }
+    }
+  }
 }

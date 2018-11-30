@@ -16,6 +16,9 @@ exports.get = function(req) {
     })
   }
 
+  // Store URL to search service
+  model.searchURL = portal.serviceUrl({ service: 'search', type: 'absolute' })
+
   // Local hack for development
   // Store Site Path
   var site = portal.getSite()
@@ -31,9 +34,14 @@ exports.get = function(req) {
   model.subMenuItems = menuLib.getSubMenus(content, 1) // Get 1 level of submenu (from current content)
 
   var serverName = util.getServerName().toLowerCase()
-  var isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test'
+  var isProd =
+    serverName === 'production' ||
+    serverName === 'prod' ||
+    serverName === 'test'
   var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  var vendorScriptsPath = isProd ? 'scripts/vendors.bundle.min.js' : 'scripts/vendors.bundle.js'
+  var vendorScriptsPath = isProd
+    ? 'scripts/vendors.bundle.min.js'
+    : 'scripts/vendors.bundle.js'
   var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
   var vendorScripts =
     '<script defer src="' +
