@@ -24,22 +24,8 @@ exports.get = function(req) {
     }
   })
 
-  var items = []
-  if (result.hits.length) {
-    result.hits.forEach(function(content) {
-      var item = {}
+  model.articles = cUtil.prepareArticleList(result, 'block(3,2)')
 
-      if (content.data.image) {
-        item.image = imageLib.image.create(content.data.image, 'block(4,3)')
-      }
-
-      item.id = content._id
-      item.url = portal.pageUrl({ id: content._id })
-      item.heading = cUtil.getHeading(content)
-      items.push(item)
-    })
-    model.items = items
-  }
 
   if (content.data && content.data.name) {
     model.name = content.data.name
