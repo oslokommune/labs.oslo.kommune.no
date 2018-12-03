@@ -7,6 +7,7 @@
   align-items: center;
   z-index: 10;
   transition: all 0.55s cubic-bezier(0, 0, 0.65, 1.83) 0.3s;
+  box-shadow: 0 0px 0px $color-grayscale-30;
 
   &--unpin {
     transform: translateY(-$header-height);
@@ -16,6 +17,10 @@
       transform: translateY(0);
       opacity: 0;
     }
+  }
+
+  &--pin:not(&--top) {
+    box-shadow: 0 1px 4px $color-grayscale-30;
   }
 
   &--pin,
@@ -250,6 +255,10 @@ main.main {
     &:focus {
       outline-color: $color-blue;
     }
+  }
+
+  &__form {
+    height: 100%;
   }
 
   &__results {

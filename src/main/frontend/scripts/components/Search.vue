@@ -91,6 +91,9 @@ export default {
   mounted() {
     // Focus search field on creation
     this.$refs.searchField.focus();
+    if (location.search.split("q=")[1]) {
+      this.q = location.search.split("q=")[1];
+    }
     this.doSearch();
   },
 

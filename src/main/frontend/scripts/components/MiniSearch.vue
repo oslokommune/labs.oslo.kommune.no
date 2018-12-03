@@ -1,18 +1,20 @@
 <template>
   <div class="header__search" role="menuitem" @keyup="nav">
     <div class="minisearch__box" :class="{expanded: expanded}">
-      <input
-        v-if="expanded"
-        class="minisearch__field"
-        type="text"
-        v-model="q"
-        @keydown.escape="toggle"
-        @input="doSearch"
-        ref="searchField"
-        placeholder="Søk innhold"
-        @focus="focus(-1)"
-        @blur="focus(-2)"
-      >
+      <form class="minisearch__form" @submit="submitSearch">
+        <input
+          v-if="expanded"
+          class="minisearch__field"
+          type="text"
+          v-model="q"
+          @keydown.escape="toggle"
+          @input="doSearch"
+          ref="searchField"
+          placeholder="Søk innhold"
+          @focus="focus(-1)"
+          @blur="focus(-2)"
+        >
+      </form>
       <div class="minisearch__results">
         <ul v-if="hits">
           <li v-for="(hit,i) in hits" :key="i" class="minisearch__item">
@@ -35,6 +37,7 @@ import axios from "axios";
 export default {
   data: () => ({
     searchURL: searchURL,
+    searchPageUrl: searchPageUrl,
     expanded: false,
     limit: 3,
     q: "",
@@ -90,6 +93,11 @@ export default {
       }
     },
 
+    submitSearch(event) {
+      event.preventDefault();
+      window.location.href = `${this.searchPageUrl}?q=${this.q}`;
+    },
+
     doSearch: function(event) {
       if (this.q.length === 0) {
         this.hits = [];
@@ -116,6 +124,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
