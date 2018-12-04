@@ -37,9 +37,9 @@ exports.prepareFeaturedArticle = function(data, scale) {
 
   if (!data.data) return article
 
-  article.image = data.data.image
-    ? imageLib.image.create(data.data.image, scale)
-    : imageLib.image.placeholder(scale)
+  article.image = data.data.image ?
+    imageLib.image.create(data.data.image, scale) :
+    imageLib.image.placeholder(scale)
   article.authors = data.data.authors ? data.data.authors : null
   article.heading = data.data.heading ? data.data.heading : res.displayName
   article.lead = data.data.lead ? data.data.lead : null
@@ -63,9 +63,9 @@ exports.prepareArticleList = function(data, scale, featured) {
     if (!res.data) return article
 
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
-    article.image = res.data.image
-      ? imageLib.image.create(res.data.image, scale)
-      : imageLib.image.placeholder(scale)
+    article.image = res.data.image ?
+      imageLib.image.create(res.data.image, scale) :
+      imageLib.image.placeholder(scale)
     article.authors = res.data.authors ? res.data.authors : null
     article.heading = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null
@@ -82,15 +82,14 @@ function processCommonFields(data, scale) {
   data.authors && (data.authors = getAuthors(data.authors))
   data.image && (data.image = imageLib.image.create(data.image, scale))
 
-  //data.createdTime && (data.createdTimeRelative = moment(data.createdTime).locale(data.locale).format('D. MMM'))
-  data.createdTime &&
-    (data.createdTimeRelative = moment(data.createdTime)
-      .locale(data.locale)
-      .fromNow())
-  data.modifiedTime &&
-    (data.modifiedTimeRelative = moment(data.modifiedTime)
-      .locale(data.locale)
-      .fromNow())
+  if (data.createdTime) {
+    data.createdTimeShort = moment(data.createdTime).locale(data.locale).format('l')
+    data.createdTimeRelative = moment(data.createdTime).locale(data.locale).fromNow()
+  }
+  if (data.modifiedTime) {
+    data.modifiedTimeShort = moment(data.modifiedTime).locale(data.locale).format('l')
+    data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow()
+  }
 
   return data
 }
@@ -121,7 +120,9 @@ function getAuthors(authors) {
 
     // Profile video
     if (content && content.data && content.data.video) {
-      author.video = portal.attachmentUrl({ id: content.data.video })
+      author.video = portal.attachmentUrl({
+        id: content.data.video
+      })
     }
 
     // Email
@@ -266,9 +267,9 @@ function processContentBlocks(ctbs) {
     // Get Google Maps key
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       var siteConfig = portal.getSiteConfig()
-      var googleMapsKey = siteConfig.googleMapsKey
-        ? siteConfig.googleMapsKey
-        : null
+      var googleMapsKey = siteConfig.googleMapsKey ?
+        siteConfig.googleMapsKey :
+        null
       if (googleMapsKey) {
         block.ctb.ctbMap.googleMapsKey = googleMapsKey
       }

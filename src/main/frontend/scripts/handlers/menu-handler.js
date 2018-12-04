@@ -14,14 +14,14 @@ function togglemenu(e) {
     menuDrawer.classList.remove('is-open')
     headerElement.classList.remove('is-open')
 
-    menuButton.setAttribute('aria-label', 'Åpne meny')
+    menuButton.setAttribute('aria-label', ariaLabelOpenMenu) // Global var from html
     menuButton.setAttribute('aria-expanded', false)
   } else {
     menuButton.classList.add('is-open')
     menuDrawer.classList.add('is-open')
     headerElement.classList.add('is-open', 'header--pin')
 
-    menuButton.setAttribute('aria-label', 'Lukk meny')
+    menuButton.setAttribute('aria-label', ariaLabelCloseMenu)
     menuButton.setAttribute('aria-expanded', true)
   }
 }

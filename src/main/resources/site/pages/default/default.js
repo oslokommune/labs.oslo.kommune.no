@@ -1,6 +1,5 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/xp/thymeleaf')
-var contentLib = require('/lib/xp/content')
 var util = require('util')
 var menuLib = require('/lib/enonic/menu')
 
@@ -17,7 +16,10 @@ exports.get = function(req) {
   }
 
   // Store URL to search service
-  model.searchURL = portal.serviceUrl({ service: 'search', type: 'absolute' })
+  model.searchURL = portal.serviceUrl({
+    service: 'search',
+    type: 'absolute'
+  })
 
   // Local hack for development
   // Store Site Path
@@ -39,9 +41,9 @@ exports.get = function(req) {
     serverName === 'prod' ||
     serverName === 'test'
   var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  var vendorScriptsPath = isProd
-    ? 'scripts/vendors.bundle.min.js'
-    : 'scripts/vendors.bundle.js'
+  var vendorScriptsPath = isProd ?
+    'scripts/vendors.bundle.min.js' :
+    'scripts/vendors.bundle.js'
   var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
   var vendorScripts =
     '<script defer src="' +

@@ -6,16 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Origo labs</title>
-
-  <style>
-
-
-  </style>
-
 </head>
 
 <body data-portal-component-type="page">
-  <div><a href="#main" aria-label="Hopp til innhold" z-index="0"></a></div>
+  <div><a href="#main" data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}" z-index="0"></a></div>
 
   <header data-th-replace="/site/snippets/navbar.html"></header>
   <main id="main" role="main" class="main" data-portal-component-type="region" data-portal-region="main">
