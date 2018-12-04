@@ -41,7 +41,7 @@
                 <em>:)</em>
               </div>
               <div v-if="!hits.length && q">
-                <h1>Ingen treff funnet på "{{q}}"</h1>
+                <h1>Ingen treff på "{{q}}"</h1>
               </div>
               <ul v-if="hits.length" role="list">
                 <li>

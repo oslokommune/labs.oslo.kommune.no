@@ -269,13 +269,23 @@ main.main {
     }
   }
 
-  &__item a {
-    display: block;
-    width: 100%;
-    padding: 0.5em;
+  &__item {
+    &--hitcount {
+      border-top: 1px solid rgba(white, 0.2);
+      a {
+        padding: 0.025;
+        color: rgba(white, 0.8);
+      }
+    }
 
-    a:focus {
-      background: darken($color-purple, 20%);
+    a {
+      display: block;
+      width: 100%;
+      padding: 0.5em;
+
+      &:focus {
+        background: darken($color-purple, 20%);
+      }
     }
   }
 
@@ -291,8 +301,8 @@ main.main {
 
     &.expanded {
       opacity: 1;
-      width: 20em;
-      max-width: 20em;
+      width: 16em;
+      max-width: 16em;
       background: $color-purple;
 
       input {

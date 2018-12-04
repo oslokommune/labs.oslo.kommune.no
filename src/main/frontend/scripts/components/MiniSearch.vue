@@ -6,11 +6,11 @@
           v-if="expanded"
           class="minisearch__field"
           type="text"
+          placeholder="Søk innhold"
           v-model="q"
+          ref="searchField"
           @keydown.escape="toggle"
           @input="doSearch"
-          ref="searchField"
-          placeholder="Søk innhold"
           @focus="focus(-1)"
           @blur="focus(-2)"
         >
@@ -19,6 +19,11 @@
         <ul v-if="hits">
           <li v-for="(hit,i) in hits" :key="i" class="minisearch__item">
             <a :href="hit.url" @focus="focus(i)" @blur="focus(-2)" ref="searchItem">{{hit.heading}}</a>
+          </li>
+          <li class="minisearch__item minisearch__item--hitcount">
+            <a :href="searchPageUrl" ref="hitcount" @focus="focus(hits.length)" @blur="focus(-2)">
+              <small>{{ total }} treff på "{{q}}" – se alle</small>
+            </a>
           </li>
         </ul>
       </div>
@@ -50,10 +55,10 @@ export default {
     focused(to, from) {
       if (to === -2) {
         return;
-      }
-
-      if (to === -1) {
+      } else if (to === -1) {
         this.$refs.searchField.focus();
+      } else if (to === this.hits.length) {
+        this.$refs.hitcount.focus();
       } else {
         this.$refs.searchItem[to].focus();
       }
@@ -81,7 +86,7 @@ export default {
       if (event.keyCode === 40) {
         event.preventDefault();
 
-        if (this.focused < this.hits.length - 1) {
+        if (this.focused < this.hits.length) {
           this.focused++;
         }
       } else if (event.keyCode === 38) {
