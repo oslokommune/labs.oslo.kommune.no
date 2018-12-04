@@ -18,6 +18,8 @@ if (document.getElementById('js-anchor-list')) {
 }
 
 import Vue from 'vue'
+import VueI18n from "vue-i18n"
+Vue.use(VueI18n)
 
 import Search from './components/Search.vue'
 if (document.getElementById('js-search')) {

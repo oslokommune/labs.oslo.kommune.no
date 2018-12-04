@@ -29,6 +29,8 @@ exports.get = function(req) {
     model.sitePath = site._path
   }
 
+  model.siteLanguage = site.language || 'en'
+
   model.main = content.page.regions.main
 
   model.menuItems = menuLib.getMenuTree(2) // Get 2 levels of menu based on content setting 'Show in menu'.

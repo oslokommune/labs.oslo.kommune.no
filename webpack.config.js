@@ -37,6 +37,11 @@ module.exports = (env, argv) => {
           use: 'vue-loader'
         },
         {
+          resourceQuery: /blockType=i18n/,
+          type: 'javascript/auto',
+          loader: '@kazupon/vue-i18n-loader'
+        },
+        {
           test: /\.(ttf|eot|woff|woff2)$/,
           use: {
             loader: "file-loader",

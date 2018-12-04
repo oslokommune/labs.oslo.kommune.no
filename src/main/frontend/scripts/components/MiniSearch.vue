@@ -1,3 +1,18 @@
+<i18n>
+{
+  "en": {
+    "inputPlaceHolder": "Search content",
+    "search": "Search",
+    "hitsString": "No hits for «{q}» | One hit for «{q}» | {total} hits for «{q}» – see all"
+  },
+  "no": {
+    "inputPlaceHolder": "Søk innhold",
+    "search": "Søk",
+    "hitsString": "Ingen treff på «{q}» | {total} treff på «{q}» | {total} treff på «{q}» – se alle"
+  }
+}
+</i18n>
+
 <template>
   <div class="header__search" role="menuitem" @keyup="nav">
     <div class="minisearch__box" :class="{expanded: expanded}">
@@ -6,7 +21,7 @@
           v-if="expanded"
           class="minisearch__field"
           type="text"
-          placeholder="Søk innhold"
+          :placeholder="$t('inputPlaceHolder')"
           v-model="q"
           ref="searchField"
           @keydown.escape="toggle"
@@ -20,9 +35,9 @@
           <li v-for="(hit,i) in hits" :key="i" class="minisearch__item">
             <a :href="hit.url" @focus="focus(i)" @blur="focus(-2)" ref="searchItem">{{hit.heading}}</a>
           </li>
-          <li class="minisearch__item minisearch__item--hitcount">
+          <li v-if="q.length > 0" class="minisearch__item minisearch__item--hitcount">
             <a :href="searchPageUrl" ref="hitcount" @focus="focus(hits.length)" @blur="focus(-2)">
-              <small>{{ total }} treff på "{{q}}" – se alle</small>
+              <small>{{$tc('hitsString', total, {total: total, q: q})}}</small>
             </a>
           </li>
         </ul>
@@ -31,7 +46,7 @@
     <button
       class="header__searchbutton"
       :class="{active : expanded}"
-      aria-label="Søk"
+      :aria-label="$t('search')"
       @click="toggle"
     ></button>
   </div>
@@ -39,6 +54,7 @@
 
 <script>
 import axios from "axios";
+
 export default {
   data: () => ({
     searchURL: searchURL,
@@ -46,10 +62,14 @@ export default {
     expanded: false,
     limit: 3,
     q: "",
-    total: null,
+    total: 0,
     focused: -1,
     hits: []
   }),
+
+  mounted: function() {
+    this.$i18n.locale = labsSiteLanguage || "en"; // Global var set in html
+  },
 
   watch: {
     focused(to, from) {
