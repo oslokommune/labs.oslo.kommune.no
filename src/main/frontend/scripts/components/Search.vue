@@ -1,3 +1,20 @@
+<i18n>
+{
+  "en": {
+    "inputPlaceHolder": "Search content",
+    "searchLabel": "Search",
+    "goToSearchPage": "Go to search page",
+    "hitsString": "No hits for “{q}” | One hit for “{q}” | {total} hits for “{q}” – see all"
+  },
+  "no": {
+    "inputPlaceHolder": "Søk innhold",
+    "searchLabel": "Søk",
+    "goToSearchPage": "Gå til søkesiden",
+    "hitsString": "Ingen treff på «{q}» | {total} treff på «{q}» | {total} treff på «{q}» – se alle"
+  }
+}
+</i18n>
+
 <template>
   <div @keyup="focusNextItem()">
     <section class="search__hero section">
@@ -10,7 +27,8 @@
                 <input
                   type="text"
                   role="search"
-                  aria-label="Globalt søk"
+                  :aria-label="$t('searchLabel')"
+                  :placeholder="$t('inputPlaceHolder')"
                   class="input is-fullwidth"
                   v-model="q"
                   @input="doSearch"
@@ -19,7 +37,7 @@
                 >
               </div>
               <p class="control">
-                <a class="button is-static">Søk</a>
+                <a class="button is-static">{{$t('searchLabel')}}</a>
               </p>
             </div>
           </div>
@@ -41,7 +59,7 @@
                 <em>:)</em>
               </div>
               <div v-if="!hits.length && q">
-                <h1>Ingen treff på "{{q}}"</h1>
+                <h1>{{$tc('hitsString', total, {total: total, q: q})}}</h1>
               </div>
               <ul v-if="hits.length" role="list">
                 <li>
@@ -55,7 +73,6 @@
                 </li>
               </ul>
             </div>
-            <!-- <div data-th-replace="/site/snippets/pagination.html"></div> -->
           </div>
         </div>
       </div>
@@ -88,11 +105,15 @@ export default {
     };
   },
 
+  created() {
+    this.$i18n.locale = labsSiteLanguage || "en"; // Global var set in html
+  },
+
   mounted() {
     // Focus search field on creation
     this.$refs.searchField.focus();
     if (location.search.split("q=")[1]) {
-      this.q = location.search.split("q=")[1];
+      this.q = decodeURIComponent(location.search.split("q=")[1]);
     }
     this.doSearch();
   },
