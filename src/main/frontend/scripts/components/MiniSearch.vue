@@ -95,10 +95,6 @@ export default {
     focused: -2
   }),
 
-  mounted: function() {
-    this.$i18n.locale = labsSiteLanguage || "en"; // Global var set in html
-  },
-
   watch: {
     // When 'focused' variable changes, set the focus to
     // the corresponding list item (or field)

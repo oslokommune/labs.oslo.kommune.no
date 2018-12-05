@@ -105,10 +105,6 @@ export default {
     };
   },
 
-  created() {
-    this.$i18n.locale = labsSiteLanguage || "en"; // Global var set in html
-  },
-
   mounted() {
     // Focus search field on creation
     this.$refs.searchField.focus();
