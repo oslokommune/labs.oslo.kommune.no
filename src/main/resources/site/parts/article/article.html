@@ -84,8 +84,7 @@
             <div class="columns">
               <div class="column is-3 bio__img">
 
-                <video data-th-if="*{video}" class="bio__video" data-th-src="*{video}" autoplay loop></video>
-
+                <video data-th-if="*{video}" class="bio__video" data-th-src="*{video}" loop muted></video>
 
                 <img data-th-unless="*{video}" data-th-if="*{image}" data-th-src="*{image.placeholderSrc}"
                      data-th-srcset="*{image.srcSet}" data-th-sizes="'100px'" data-th-alt="*{image.alt}" />

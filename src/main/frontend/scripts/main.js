@@ -1,7 +1,9 @@
 import '../styles/main.scss'
 import navbarHandler from './handlers/navbar-handler.js'
 import menuHandler from './handlers/menu-handler.js'
+import videobylineHandler from './handlers/videobyline-handler.js'
 import anchorListHandler from './handlers/anchorlist-handler.js'
+import * as vueHandler from './handlers/vue-handler.js'
 import * as maps from './handlers/map-handler.js'
 
 if (document.getElementById('js-header')) {
@@ -17,39 +19,15 @@ if (document.getElementById('js-anchor-list')) {
   anchorListHandler()
 }
 
-import Vue from 'vue'
-import VueI18n from "vue-i18n"
-Vue.use(VueI18n)
-
-const i18n = new VueI18n({
-  locale: (typeof labsSiteLanguage !== 'undefined') ? labsSiteLanguage : 'no' // Global var set by html controller
-})
-
-import Search from './components/Search.vue'
-if (document.getElementById('js-search')) {
-  new Vue({
-    i18n,
-    render: h => h(Search)
-  }).$mount('#js-search')
+var videoBylines = [...document.querySelectorAll('.bio__video')]
+if (videoBylines.length) {
+  videobylineHandler(videoBylines)
 }
 
-import MiniSearch from './components/MiniSearch.vue'
 if (document.getElementById('js-minisearch')) {
-  new Vue({
-    i18n,
-    render: h => h(MiniSearch)
-  }).$mount('#js-minisearch')
+  vueHandler.minisearch()
 }
 
-// Hack to prevent flashing a black frame at the end
-// of looping videos by stripping a few frames at the end
-// of the video before resetting the current time.
-var videoElements = [...document.querySelectorAll('video')]
-videoElements.forEach(video => {
-  if (!video.autoplay || !video.loop) return
-  video.addEventListener('timeupdate', function() {
-    if (this.currentTime >= this.duration - 0.5) {
-      this.currentTime = 0
-    }
-  })
-})
+if (document.getElementById('js-search')) {
+  vueHandler.search()
+}
