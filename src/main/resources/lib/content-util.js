@@ -37,9 +37,9 @@ exports.prepareFeaturedArticle = function(data, scale) {
 
   if (!data.data) return article
 
-  article.image = data.data.image ?
-    imageLib.image.create(data.data.image, scale) :
-    imageLib.image.placeholder(scale)
+  article.image = data.data.image
+    ? imageLib.image.create(data.data.image, scale)
+    : imageLib.image.placeholder(scale)
   article.authors = data.data.authors ? data.data.authors : null
   article.heading = data.data.heading ? data.data.heading : res.displayName
   article.lead = data.data.lead ? data.data.lead : null
@@ -63,9 +63,9 @@ exports.prepareArticleList = function(data, scale, featured) {
     if (!res.data) return article
 
     article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
-    article.image = res.data.image ?
-      imageLib.image.create(res.data.image, scale) :
-      imageLib.image.placeholder(scale)
+    article.image = res.data.image
+      ? imageLib.image.create(res.data.image, scale)
+      : imageLib.image.placeholder(scale)
     article.authors = res.data.authors ? res.data.authors : null
     article.heading = res.data.heading ? res.data.heading : res.displayName
     article.lead = res.data.lead ? res.data.lead : null
@@ -83,12 +83,20 @@ function processCommonFields(data, scale) {
   data.image && (data.image = imageLib.image.create(data.image, scale))
 
   if (data.createdTime) {
-    data.createdTimeShort = moment(data.createdTime).locale(data.locale).format('l')
-    data.createdTimeRelative = moment(data.createdTime).locale(data.locale).fromNow()
+    data.createdTimeShort = moment(data.createdTime)
+      .locale(data.locale)
+      .format('l')
+    data.createdTimeRelative = moment(data.createdTime)
+      .locale(data.locale)
+      .fromNow()
   }
   if (data.modifiedTime) {
-    data.modifiedTimeShort = moment(data.modifiedTime).locale(data.locale).format('l')
-    data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow()
+    data.modifiedTimeShort = moment(data.modifiedTime)
+      .locale(data.locale)
+      .format('l')
+    data.modifiedTimeRelative = moment(data.modifiedTime)
+      .locale(data.locale)
+      .fromNow()
   }
 
   return data
@@ -264,16 +272,8 @@ function processContentBlocks(ctbs) {
       block.ctb.ctbVideo.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
     }
 
-    // Get Google Maps key
+    // Markers and District overlays
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
-      var siteConfig = portal.getSiteConfig()
-      var googleMapsKey = siteConfig.googleMapsKey ?
-        siteConfig.googleMapsKey :
-        null
-      if (googleMapsKey) {
-        block.ctb.ctbMap.googleMapsKey = googleMapsKey
-      }
-
       if (block.ctb.ctbMap.mapDistricts) {
         var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
         block.ctb.ctbMap.mapGeoJSON = JSON.stringify(

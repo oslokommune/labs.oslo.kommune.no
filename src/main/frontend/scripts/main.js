@@ -4,22 +4,24 @@ import menuHandler from './handlers/menu-handler.js'
 import videobylineHandler from './handlers/videobyline-handler.js'
 import anchorListHandler from './handlers/anchorlist-handler.js'
 import * as vueHandler from './handlers/vue-handler.js'
-import * as maps from './handlers/map-handler.js'
 
 if (document.getElementById('js-header')) {
   navbarHandler('js-header')
   menuHandler()
 }
 
-if (document.getElementById('js-map-block')) {
-  maps.init()
+const mapBlocks = document.querySelectorAll("[data-js='map-block']")
+if (mapBlocks.length) {
+  mapBlocks.forEach(mapBlock => {
+    vueHandler.map(mapBlock)
+  })
 }
 
 if (document.getElementById('js-anchor-list')) {
   anchorListHandler()
 }
 
-var videoBylines = [...document.querySelectorAll('.bio__video')]
+const videoBylines = [...document.querySelectorAll('.bio__video')]
 if (videoBylines.length) {
   videobylineHandler(videoBylines)
 }

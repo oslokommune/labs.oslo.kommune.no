@@ -21,6 +21,10 @@ exports.get = function(req) {
     type: 'absolute'
   })
 
+  model.googleMapsKey = siteConfig.googleMapsKey
+    ? siteConfig.googleMapsKey
+    : null
+
   // Local hack for development
   // Store Site Path
   var site = portal.getSite()
@@ -43,9 +47,9 @@ exports.get = function(req) {
     serverName === 'prod' ||
     serverName === 'test'
   var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  var vendorScriptsPath = isProd ?
-    'scripts/vendors.bundle.min.js' :
-    'scripts/vendors.bundle.js'
+  var vendorScriptsPath = isProd
+    ? 'scripts/vendors.bundle.min.js'
+    : 'scripts/vendors.bundle.js'
   var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
   var vendorScripts =
     '<script defer src="' +
