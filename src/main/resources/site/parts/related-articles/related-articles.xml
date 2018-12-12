@@ -1,0 +1,26 @@
+<part>
+  <display-name i18n="parts.relatedArticles">Related Articles</display-name>
+  <config>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading text</label>
+    </input>
+    <input name="selectedItems" type="ContentSelector">
+      <label i18n="txt.selectedItems">Selected items (shown first)</label>
+      <occurrences minimum="0" maximum="0"/>
+      <config>
+        <relationshipType>system:reference</relationshipType>
+        <allow-content-type>article</allow-content-type>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+    <input name="count" type="Long">
+      <label i18n="txt.maxItems">Maximum number of items</label>
+      <occurrences minimum="1" maximum="1"/>
+      <default>3</default>
+    </input>
+    <input name="fallback" type="Checkbox">
+      <label i18n="txt.fallbackIfNoMatch">Fallback to all content if no match</label>
+      <default>false</default>
+    </input>
+  </config>
+</part>

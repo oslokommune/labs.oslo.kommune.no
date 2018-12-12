@@ -20,5 +20,6 @@
       </items>
     </field-set>
   </config>
+  <x-data mixin="categories" />
   <x-data mixin="menu-item" />
 </site>

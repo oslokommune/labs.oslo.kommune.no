@@ -1,5 +1,5 @@
 <content-type>
-  <display-name i18n="ct.genericLandingPage">Generic landing page</display-name>
+  <display-name i18n="ct.category">Category</display-name>
   <super-type>base:structured</super-type>
   <form>
     <inline mixin="image-heading-lead-body" />
