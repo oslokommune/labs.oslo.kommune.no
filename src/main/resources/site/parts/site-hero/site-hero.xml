@@ -1,0 +1,26 @@
+<part>
+  <display-name i18n="parts.siteHero">Site hero</display-name>
+  <config>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="subheading" type="TextLine">
+      <label i18n="txt.subheading">Sub-heading</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="vimeoId" type="TextLine">
+      <label i18n="txt.vimeoId">Vimeo Id</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="image" type="ImageSelector">
+      <label i18n="txt.image">Main image</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <allowPath>${site}/*</allowPath>
+        <allowContentType>media:vector</allowContentType>
+      </config>
+    </input>
+
+  </config>
+</part>

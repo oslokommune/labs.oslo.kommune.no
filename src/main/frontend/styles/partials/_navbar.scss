@@ -130,20 +130,21 @@
     padding: 1em;
     position: relative;
 
-    $bar-height: 0.2em;
+    $bar-height: 0.15em;
+    $center: 1em - ($bar-height/2);
     span {
       display: block;
       position: absolute;
-      width: 2em;
-      left: 1em;
+      width: 1.5em;
+      left: 1.25em;
       height: $bar-height;
       border-radius: 0.075em;
       background: $color-purple;
-      top: 1em - ($bar-height/2);
+      top: $center;
       transform-origin: 50% 50%;
 
       &:nth-child(1) {
-        transform: translateY(0.35em) rotate(0deg);
+        transform: translateY($center - 0.35em) rotate(0deg);
         transition: transform 0.15s ease-in-out 0.3s,
           opacity 0.15s ease-in-out 0.3s;
       }
@@ -153,7 +154,7 @@
         transition: transform 0.2s ease-in-out 0s, opacity 0.2s ease-in-out 0s;
       }
       &:nth-child(4) {
-        transform: translateY(1.65em) rotate(0deg);
+        transform: translateY($center + 0.35em + $bar-height) rotate(0deg);
         transition: transform 0.15s ease-in-out 0.3s,
           opacity 0.15s ease-in-out 0.3s;
       }

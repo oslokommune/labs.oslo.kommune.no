@@ -207,3 +207,35 @@ blockquote {
     margin-top: -4em;
   }
 }
+
+.home-header {
+  background: $color-yellow;
+
+  &__text-column {
+    padding-top: 2em;
+
+    @media screen and (min-width: $tablet) {
+      padding-top: 0;
+    }
+  }
+
+  &__image-column {
+    margin-top: auto;
+  }
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+
+    width: 50vw;
+    max-width: 300px;
+    mix-blend-mode: multiply;
+    transform-origin: 50% 0%;
+    transform: scale(1.25) translateY(0em);
+
+    @media screen and (min-width: $tablet) {
+      width: auto;
+      transform: scale(1.3) translateY(-1em);
+    }
+  }
+}
