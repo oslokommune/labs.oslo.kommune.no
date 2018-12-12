@@ -1,41 +1,43 @@
 <section class="section home-header">
   <div class="container">
-    <div class="columns is-multiline">
-      <div class="column is-5-tablet is-3-widescreen">
-        <div class="home-header__text-column">
-          <h1
-            data-th-if="${heading}"
-            class="title is-3"
-            data-th-text="${heading}"
-          ></h1>
-          <h2
-            data-th-if="${subheading}"
-            class="subtitle is-5"
-            data-th-text="${subheading}"
-          ></h2>
-        </div>
-      </div>
-      <div class="column is-7-tablet is-6-widescreen">
-        <div class="home-header__video-column">
-          <div data-th-style="'position: relative; padding-top: 56.25%;'">
-            <iframe
-              data-th-src="'https://player.vimeo.com/video/' + ${vimeoId} + '?color=da28d3&title=0&byline=0&portrait=0'"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;"
-              frameborder="0"
-              webkitallowfullscreen
-              mozallowfullscreen
-              allowfullscreen
-            >
-            </iframe>
-          </div>
+    <div class="columns is-multiline home-header__columns">
+      <div
+        class="column is-offset-1-tablet is-offset-2-desktop is-5-tablet home-header__image-column"
+      >
+        <div class="home-header__image-container">
+          <img
+            data-th-if="${image}"
+            class="home-header__image"
+            data-th-src="${image.src}"
+            alt=""
+          />
         </div>
       </div>
       <div
-        class="column is-12-tablet is-3-widescreen is-paddingless home-header__image-column"
+        class="column is-6-tablet is-5-desktop home-header__text-column has-text-centered-mobile"
       >
-        <div class="home-header__image-container">
-          <img class="home-header__image" data-th-src="${image.src}" alt="" />
-        </div>
+        <h1
+          data-th-if="${heading}"
+          class="title is-1"
+          data-th-text="${heading}"
+        ></h1>
+        <p data-th-if="${subheading}" data-th-text="${subheading}"></p>
+        <p class="home-header__links">
+          <a
+            data-th-if="${primary}"
+            data-th-href="${primary.url}"
+            data-th-text="${primary.label}"
+            class="button is-primary"
+            >Call to Action</a
+          >
+          <a
+            data-th-if="${secondary}"
+            data-th-href="${secondary.url}"
+            data-th-text="${secondary.label}"
+            class="button is-primary is-outlined"
+            >Call to Action</a
+          >
+        </p>
       </div>
     </div>
   </div>
