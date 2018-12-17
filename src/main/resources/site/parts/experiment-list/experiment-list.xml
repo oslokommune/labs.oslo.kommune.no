@@ -1,0 +1,11 @@
+<part>
+  <display-name i18n="parts.experimentList">Experiment list</display-name>
+  <config>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+    </input>
+    <input name="max" type="Long">
+      <label i18n="parts.articleList.max">Max number of items</label>
+    </input>
+  </config>
+</part>

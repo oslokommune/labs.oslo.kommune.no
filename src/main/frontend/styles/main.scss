@@ -287,3 +287,57 @@ blockquote {
     transition: all 0.2s;
   }
 }
+
+.experiment {
+  $p: &;
+
+  &__tile {
+    height: 24em;
+    position: relative;
+
+    &:hover #{$p}__image {
+      filter: saturate(1) brightness(1);
+      transform: scale(1.015);
+    }
+  }
+
+  &__heading,
+  &__tag {
+    position: absolute;
+    left: 2rem;
+  }
+
+  &__tag {
+    top: 2rem;
+    display: block;
+    padding: 0.3em 0.5em 0.1em;
+    font-size: 0.7em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 1px 1px rgba(black, 0.4);
+  }
+
+  &__heading {
+    bottom: 2rem;
+    width: calc(100% - 4rem);
+    max-width: 20em;
+    text-shadow: 0 1px 4px rgba(black, 1);
+  }
+
+  &__imagecontainer {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transform-origin: 50% 50%;
+    transform: scale(1);
+    filter: saturate(0.7) brightness(0.6);
+    transition: all 1.2s ease-in-out;
+  }
+}

@@ -47,6 +47,36 @@ exports.prepareFeaturedArticle = function(data, scale) {
   return article
 }
 
+exports.prepareExperimentList = function(data, scalePortrait, scaleLandscape) {
+  if (!data.count) return []
+  scalePortrait = scalePortrait || 'block(2,3)'
+  scaleLandscape = scaleLandscape || 'block(3,2)'
+
+  var list = data.hits.map(function(res) {
+    var article = {}
+    article.id = res._id
+    article.path = portal.pageUrl({ path: res._path })
+    article.heading = res.displayName
+
+    if (!res.data) return article
+
+    article.heading = res.data.heading ? res.data.heading : res.displayName
+
+    article.image = {}
+    article.image.portrait = res.data.image
+      ? imageLib.image.create(res.data.image, scalePortrait)
+      : imageLib.image.placeholder(scalePortrait)
+
+    article.image.landscape = res.data.image
+      ? imageLib.image.create(res.data.image, scaleLandscape)
+      : imageLib.image.placeholder(scaleLandscape)
+
+    return article
+  })
+
+  return list
+}
+
 exports.prepareArticleList = function(data, scale, featured) {
   if (!data.count) return []
   scale = scale || 'block(5,2)'
