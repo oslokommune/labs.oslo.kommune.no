@@ -1,12 +1,12 @@
 <part>
   <display-name i18n="parts.footer">Footer</display-name>
   <config>
-    <input name="siteName" type="TextLine">
-      <label i18n="parts.footer.siteName">Site name</label>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
-    <input name="siteDescription" type="TextArea">
-      <label i18n="parts.footer.siteDesc">Site Description</label>
+    <input name="description" type="TextArea">
+      <label i18n="txt.description">Description</label>
       <occurrences minimum="1" maximum="1"/>
     </input>
     <input name="menuName" type="TextLine">
@@ -57,6 +57,10 @@
     </input>
     <input name="instagram" type="TextLine">
       <label i18n="parts.footer.instagram">Instagram URL</label>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input name="copyright" type="TextLine">
+      <label i18n="parts.footer.copyright">Copyright text</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
   </config>

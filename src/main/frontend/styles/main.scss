@@ -18,7 +18,6 @@
 @import 'partials/hero';
 @import 'partials/navbar';
 @import 'partials/search-results';
-@import 'partials/pagination';
 @import 'partials/footer';
 @import 'partials/block-images';
 @import 'partials/card';
@@ -339,5 +338,20 @@ blockquote {
     transform: scale(1);
     filter: saturate(0.7) brightness(0.6);
     transition: all 1.2s ease-in-out;
+  }
+}
+
+.related {
+  position: relative;
+
+  &__tag {
+    position: absolute;
+    background: $color-purple;
+    padding: 0.3em 0.65em;
+    color: $color-blue;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.7em;
+    top: -4.25em;
   }
 }

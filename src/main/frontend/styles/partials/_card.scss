@@ -16,13 +16,30 @@
   &__body {
     max-width: 600px;
     position: relative;
-    background: $color-blue-light;
+    background: white;
     padding: 1em;
     margin-top: -3em;
     width: calc(100% - 3em);
+    box-shadow: 0 2px 5px rgba(black, 0.12);
+  }
 
-    > .title {
-      margin: 0 0 0.25em;
+  &__title {
+    font-weight: 500;
+    font-size: 1.1em;
+  }
+
+  &__category {
+    position: relative;
+    margin-bottom: 1.5rem;
+    font-size: 0.9em;
+    &::after {
+      content: '';
+      position: absolute;
+      height: 0.35rem;
+      width: 0.35rem;
+      bottom: -0.9rem;
+      left: 0;
+      background: $color-green;
     }
   }
 

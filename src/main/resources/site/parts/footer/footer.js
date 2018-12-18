@@ -11,11 +11,14 @@ exports.get = function(req) {
     var config = component.config
   }
 
-  if (config.siteName) {
-    model.siteName = config.siteName
+  if (config.heading) {
+    model.heading = config.heading
   }
-  if (config.siteDescription) {
-    model.siteDescription = config.siteDescription
+  if (config.description) {
+    model.description = config.description
+  }
+  if (config.copyright) {
+    model.copyright = config.copyright
   }
   if (config.menuName) {
     model.menuName = config.menuName
@@ -25,7 +28,10 @@ exports.get = function(req) {
     var items = ids.map(function(id) {
       var resultItem = contentLib.get({ key: id })
       var url = portal.pageUrl({ path: resultItem._path })
-      var name = resultItem.data && resultItem.data.header ? resultItem.data.header : resultItem.displayName
+      var name =
+        resultItem.data && resultItem.data.header
+          ? resultItem.data.header
+          : resultItem.displayName
       return { name: name, url: url }
     })
     model.menuElements = items

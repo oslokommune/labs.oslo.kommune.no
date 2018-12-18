@@ -1,64 +1,69 @@
 .footer {
-  color: $color-purple;
+  color: white;
   font-weight: 500;
-  background: $color-grayscale-5;
-  border-top: 1px solid $color-grayscale-20;
-
-  &__column {
-    padding-right: 1.5em;
-    margin-bottom: 1.5em;
-
-    > .title {
-      position: relative;
-      padding-top: 0.75rem;
-      color: $color-purple;
-
-      &::before {
-        content: '';
-        position: absolute;
-        width: 3rem;
-        height: 4px;
-        left: 0;
-        top: -0.2rem;
-      }
-    }
-
-    &:nth-of-type(1) > .title {
-      padding-top: 0.5rem;
-      margin-bottom: 0.85rem;
-    }
-
-    &:nth-of-type(1) > .title::before {
-      background: $color-blue;
-    }
-    &:nth-of-type(2) > .title::before {
-      background: $color-green;
-    }
-    &:nth-of-type(3) > .title::before {
-      background: $color-orange;
-    }
-    &:nth-of-type(4) > .title::before {
-      background: $color-red;
-    }
-  }
+  background: darken($color-purple, 12%);
 
   &__content {
-    font-size: 0.8em;
-
     li {
       display: flex;
       align-items: center;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
     }
   }
 
-  &__logocontainer {
-    background: $color-purple;
-    padding: 2em;
+  &__column {
+    margin-bottom: 1.5em;
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 2em;
+    li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5em;
+
+      & + li {
+        margin-left: 1em;
+      }
+    }
+  }
+
+  &__title {
+    color: $color-orange;
   }
 
   a {
-    color: $color-purple !important;
-    text-decoration: underline;
+    color: rgba(white, 0.8) !important;
     font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__bottom {
+    background: darken($color-purple, 18%);
+  }
+
+  &__form {
+    margin-top: 1.5em;
+  }
+
+  &__field {
+    background: rgba(white, 0.05);
+    border: 2px solid $color-orange;
+  }
+
+  &__submit {
+    background: $color-orange;
+    border: none;
+
+    &:focus {
+      outline-color: 2px solid $color-blue;
+    }
   }
 }
