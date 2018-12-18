@@ -11,15 +11,8 @@ export default {
     },
     sizes: {
       type: String,
-      default: '100%'
+      default: "100%"
     }
   }
-}
+};
 </script>
-
-<style scoped>
-img {
-  vertical-align: bottom;
-  width: 100%;
-}
-</style>
