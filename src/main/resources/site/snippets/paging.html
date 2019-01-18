@@ -1,0 +1,17 @@
+<div data-th-fragment="paging" data-th-if="${paging}" data-th-object="${paging}">
+  <div data-th-if="!*{prev}">
+    (PREV)
+  </div>
+  <div data-th-if="*{prev}">
+    <a data-th-href="*{prev}">PREV</a>
+  </div>
+  <div data-th-if="*{currentPage && totalPages}">
+    [[*{currentPage}]] / [[*{totalPages}]]
+  </div>
+  <div data-th-if="*{next}">
+    <a data-th-href="*{next}">NEXT</a>
+  </div>
+  <div data-th-if="!*{next}">
+    (NEXT)
+  </div>
+</div>

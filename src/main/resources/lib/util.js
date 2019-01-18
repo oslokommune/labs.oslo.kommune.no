@@ -123,3 +123,11 @@ exports.ymdDate = function(datestr) {
   var ymdDate = [('0000' + year).slice(-4), ('00' + month).slice(-2), ('00' + day).slice(-2)].join('-')
   return ymdDate
 }
+
+exports.isInt = function(value) {
+  if (isNaN(value)) {
+    return false
+  }
+  var x = parseFloat(value)
+  return (x | 0) === x
+}

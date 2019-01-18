@@ -3,52 +3,79 @@ var thymeleaf = require('/lib/xp/thymeleaf')
 var util = require('util')
 var cUtil = require('content-util')
 var contentLib = require('/lib/xp/content')
+var cacheLib = require('/lib/xp/cache')
+var related = require('related')
+
+var articleCache = cacheLib.newCache({
+  size: 300,
+  expire: 60 * 60 * 24
+})
 
 exports.get = function(req) {
+
+  var startTime = +new Date()
+
+  var content = portal.getContent()
   var component = portal.getComponent()
   var config = component.config
   var model = {}
-  var featured = null
 
-  model.heading = config.heading || null
+  model.heading = config.heading
 
-  // Increase max articles when featured is defined
-  // To ensure that the article list contains the
-  // correct amount of items (excluding featured)
-  if (config.featured) {
-    featured = contentLib.get({ key: config.featured })
-    config.max++
+  var queryConfig = {
+    start: req.params.start,
+    count: config.count,
+    path: content._path,
+    selectedItems: config.featured,
+    contentTypes: [
+      'article'
+    ],
+    categoryFilter: config.categories
   }
 
-  // Find articles
-  var siteReferencePath = portal.getContent()._path.split('/')[1]
-  var result = contentLib.query({
-    start: 0,
-    count: config.max || 100,
-    contentTypes: [app.name + ':article'],
-    query: "_path LIKE '/content/" + siteReferencePath + "/*'",
-    sort: 'createdTime DESC'
-  })
+  var result = related.getContentList(queryConfig);
 
-  if (featured && featured._id) {
-    result.hits = result.hits.filter(function(item) {
-      return item._id != featured._id
-    })
-
-    if (result.hits.length > config.max) {
-      result.hits.pop()
+  if (result) {
+    if (result.selectedHits && result.selectedHits.length) {
+      // model.featuredHits = prepareData(result.selectedHits, req.mode);
+      model.featured = prepareData(result.selectedHits, 'block(3,2)', req.mode)
     }
-
-    model.featured = cUtil.prepareFeaturedArticle(featured, 'block(3,2)')
+    if (result.queryHits && result.queryHits.length) {
+      // model.hits = prepareData(result.queryHits, req.mode);
+      model.articles = prepareData(result.queryHits, 'block(3,2)', req.mode)
+    }
+    if (result.hasOwnProperty('firstPage')) {
+      model.firstPage = result.firstPage
+    }
+    if (result.paging) {
+      model.paging = result.paging;
+    }
   }
 
-  // Prepare model
-  model.articles = cUtil.prepareArticleList(result, 'block(3,2)')
-
+  model.live = req.mode == 'live'
+  model.hasContent = ((model.featured && model.featured.length) || (model.articles && model.articles.length))
+  var endTime = +new Date()
+  model.controllerPageTime = 'Controller time: ' + String(endTime - startTime) + 'ms'
   var view = resolve('./article-list.html')
   var body = thymeleaf.render(view, model)
   return {
     body: body,
     contentType: 'text/html'
   }
+
+}
+
+function prepareData(hits, scale, mode) {
+  return hits.map(function(resultItem) {
+    return articleCache.get(resultItem._id + resultItem.modifiedTime + mode, function() {
+      if (resultItem.data) {
+        resultItem.data = cUtil.prepareFeaturedArticle(resultItem, scale);
+        var categories = related.getCategories(resultItem)
+        if (categories.length) {
+          resultItem.data.categories = categories
+        }
+      }
+      return resultItem.data
+    })
+  })
 }

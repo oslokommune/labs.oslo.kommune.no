@@ -4,18 +4,16 @@
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
     </input>
-    <input name="max" type="Long">
+    <input name="count" type="Long">
       <label i18n="parts.articleList.max">Max number of items</label>
     </input>
-
     <input name="featured" type="ContentSelector">
-      <label i18n="parts.articleList.featured">Featured article</label>
-      <occurrences minimum="0" maximum="1" />
+      <label i18n="parts.articleList.featured">Featured articles</label>
+      <occurrences minimum="0" maximum="3" />
       <config>
         <allowContentType>article</allowContentType>
-        <showStatus>true</showStatus>
-        <hideToggleIcon>true</hideToggleIcon>
       </config>
     </input>
+    <inline mixin="categories" />
   </config>
 </part>

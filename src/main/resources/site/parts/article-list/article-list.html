@@ -1,22 +1,18 @@
 <div data-th-remove="tag">
   <article class="section is-paddingless-top">
-    <div class="container" data-th-if="${articles.isEmpty()}"><h1>No articles found</h1></div>
-    <div
-      class="container"
-      data-th-with="item=${featured}"
-      data-th-if="${featured}"
-      data-th-insert="/site/snippets/article-card.html :: card('big')"
-    ></div>
-    <div class="container" data-th-if="${!articles.isEmpty()}">
-      <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
+    <div class="container" data-th-if="${!articles}">
+      <h1>No articles found</h1>
+    </div>
+    <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
+    <div class="container" data-th-if="${featured}">
+      <div data-th-each="article : ${featured}" data-th-with="item=${article}" data-th-insert="/site/snippets/article-card.html :: card('big')"></div>
+    </div>
+    <div class="container" data-th-if="${articles}">
       <div class="columns is-multiline">
-        <div
-          class="column is-6-tablet is-4-desktop"
-          data-th-each="article : ${articles}"
-          data-th-with="item=${article}"
-          data-th-insert="/site/snippets/article-card.html :: card('small')"
-        ></div>
+        <div class="column is-6-tablet is-4-desktop" data-th-each="article : ${articles}" data-th-with="item=${article}"
+             data-th-insert="/site/snippets/article-card.html :: card('small')"></div>
       </div>
     </div>
+    <div data-th-if="${paging}" data-th-replace="/site/snippets/paging">Paging</div>
   </article>
 </div>

@@ -23,29 +23,30 @@ exports.prepareHeroContents = function(data, scale) {
   return data
 }
 
-exports.prepareFeaturedArticle = function(data, scale) {
+var prepareFeaturedArticle = function(content, scale) {
   scale = scale || 'block(5,2)'
 
   var article = {}
-  article.id = data._id
+  article.id = content._id
   article.path = portal.pageUrl({
-    path: data._path
+    path: content._path
   })
-  article.created = data.createdTime
-  article.modifiedTime = data.modifiedTime ? data.modifiedTime : null
-  article.heading = data.displayName
+  article.created = content.createdTime
+  article.modifiedTime = content.modifiedTime ? content.modifiedTime : null
+  article.heading = content.displayName
 
-  if (!data.data) return article
+  if (!content.data) return article
 
-  article.image = data.data.image
-    ? imageLib.image.create(data.data.image, scale)
-    : imageLib.image.placeholder(scale)
-  article.authors = data.data.authors ? data.data.authors : null
-  article.heading = data.data.heading ? data.data.heading : res.displayName
-  article.lead = data.data.lead ? data.data.lead : null
+  article.image = content.data.image ?
+    imageLib.image.create(content.data.image, scale) :
+    imageLib.image.placeholder(scale)
+  article.heading = content.data.heading ? content.data.heading : content.displayName
+  article.lead = content.data.lead
 
   return article
 }
+
+exports.prepareFeaturedArticle = prepareFeaturedArticle
 
 exports.prepareExperimentList = function(data, scalePortrait, scaleLandscape) {
   if (!data.count) return []
@@ -55,7 +56,9 @@ exports.prepareExperimentList = function(data, scalePortrait, scaleLandscape) {
   var list = data.hits.map(function(res) {
     var article = {}
     article.id = res._id
-    article.path = portal.pageUrl({ path: res._path })
+    article.path = portal.pageUrl({
+      path: res._path
+    })
     article.heading = res.displayName
 
     if (!res.data) return article
@@ -63,13 +66,13 @@ exports.prepareExperimentList = function(data, scalePortrait, scaleLandscape) {
     article.heading = res.data.heading ? res.data.heading : res.displayName
 
     article.image = {}
-    article.image.portrait = res.data.image
-      ? imageLib.image.create(res.data.image, scalePortrait)
-      : imageLib.image.placeholder(scalePortrait)
+    article.image.portrait = res.data.image ?
+      imageLib.image.create(res.data.image, scalePortrait) :
+      imageLib.image.placeholder(scalePortrait)
 
-    article.image.landscape = res.data.image
-      ? imageLib.image.create(res.data.image, scaleLandscape)
-      : imageLib.image.placeholder(scaleLandscape)
+    article.image.landscape = res.data.image ?
+      imageLib.image.create(res.data.image, scaleLandscape) :
+      imageLib.image.placeholder(scaleLandscape)
 
     return article
   })
@@ -80,29 +83,9 @@ exports.prepareExperimentList = function(data, scalePortrait, scaleLandscape) {
 exports.prepareArticleList = function(data, scale, featured) {
   if (!data.count) return []
   scale = scale || 'block(5,2)'
-
   var list = data.hits.map(function(res) {
-    var article = {}
-    article.id = res._id
-    article.path = portal.pageUrl({
-      path: res._path
-    })
-    article.created = res.createdTime
-    article.heading = res.displayName
-
-    if (!res.data) return article
-
-    article.modifiedTime = res.modifiedTime ? res.modifiedTime : null
-    article.image = res.data.image
-      ? imageLib.image.create(res.data.image, scale)
-      : imageLib.image.placeholder(scale)
-    article.authors = res.data.authors ? res.data.authors : null
-    article.heading = res.data.heading ? res.data.heading : res.displayName
-    article.lead = res.data.lead ? res.data.lead : null
-
-    return article
+    return prepareFeaturedArticle(res, scale)
   })
-
   return list
 }
 
@@ -459,4 +442,61 @@ exports.getHeading = function(content) {
   if (content && content.data && content.data.title) return content.data.title
   if (content) return content.displayName
   return false
+}
+
+/**
+ *
+ * @param path
+ * @param totalPosts
+ * @param start
+ * @param configCount
+ * @returns {{}}
+ */
+exports.calculatePaging = function(path, totalPosts, start, configCount) {
+  var p = {}
+  var params
+
+  if (configCount > 0 && start < totalPosts) {
+    p.currentPage = String(Math.floor((start + 1) / configCount) + 1)
+    p.totalPages = String(Math.ceil(totalPosts / configCount))
+  }
+
+  var nextPageStart = start + configCount
+  if (totalPosts > nextPageStart) {
+    // Show next link
+    params = {
+      start: String(nextPageStart)
+    }
+    p.next = portal.pageUrl({
+      path: path,
+      params: params
+    })
+  }
+
+  if (start > 0) {
+    var prevPageStart = start - configCount
+    if (prevPageStart < 1) {
+      // Shouldn't happen, but someone could be playing with the params
+      p.prev = portal.pageUrl({
+        path: path
+      })
+    } else {
+      // Show prev link
+      params = {
+        start: String(prevPageStart)
+      }
+      p.prev = portal.pageUrl({
+        path: path,
+        params: params
+      })
+    }
+    if (prevPageStart > 0) {
+      // Also display "home" link, if prev link > beginning
+      p.home = portal.pageUrl({
+        path: path
+      })
+    }
+  }
+
+  return p
 }
