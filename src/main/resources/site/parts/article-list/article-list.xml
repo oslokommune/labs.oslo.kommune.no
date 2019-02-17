@@ -5,7 +5,7 @@
       <label i18n="txt.heading">Heading</label>
     </input>
     <input name="count" type="Long">
-      <label i18n="parts.articleList.max">Max number of items</label>
+      <label i18n="parts.articleList.count">Items per page</label>
     </input>
     <input name="featured" type="ContentSelector">
       <label i18n="parts.articleList.featured">Featured articles</label>
@@ -15,5 +15,18 @@
       </config>
     </input>
     <inline mixin="categories" />
+    <input name="paging" type="CheckBox">
+      <label i18n="parts.articleList.paging">Show paging links</label>
+      <default>checked</default>
+    </input>
+    <input name="presentationMode" type="RadioButton">
+      <label i18n="parts.articleList.presentationMode">Presentation mode</label>
+      <occurrences minimum="1" maximum="1"/>
+      <config>
+        <option value="normal" i18n="parts.articleList.option.normal">Normal</option>
+        <option value="compact" i18n="parts.articleList.option.compact">Compact</option>
+      </config>
+      <default>normal</default>
+    </input>
   </config>
 </part>

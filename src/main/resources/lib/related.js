@@ -126,7 +126,7 @@ exports.getRelatedContent = function(content, config) {
         }
       }
 
-      //log.info(JSON.stringify(queryParams, null, 2));
+      //log.info(JSON.stringify(queryParams, null, 2))
 
       var result = contentLib.query(queryParams)
 
@@ -157,7 +157,7 @@ exports.getRelatedContent = function(content, config) {
       data.prettyModifiedTime = util.dmyDate(item.modifiedTime)
     }
     return item
-  });
+  })
 
   return model
 
@@ -179,27 +179,27 @@ exports.getContentList = function(config) {
     selectedItems = util.forceArray(config.selectedItems),
     paging,
     path,
-    categoryFilter;
+    categoryFilter
 
   // Paging param
   if (util.isInt(config.start)) {
-    start = parseInt(config.start);
+    start = parseInt(config.start)
   }
 
   if (config.categoryFilter) {
-    categoryFilter = util.forceArray(config.categoryFilter);
+    categoryFilter = util.forceArray(config.categoryFilter)
   }
 
   // Path (for paging)
-  path = config.path || portal.getContent()._path;
+  path = config.path || portal.getContent()._path
 
   // Override items per page if configured. Minimum > featured items
   if (util.isInt(config.count)) {
-    count = parseInt(config.count);
+    count = parseInt(config.count)
     if (count < 3) {
-      count = 3;
+      count = 3
     }
-    configCount = count;
+    configCount = count
   }
 
   // Featured items
@@ -210,37 +210,37 @@ exports.getContentList = function(config) {
         key: item
       })
       if (currentItem) {
-        selectedHits.push(currentItem);
+        selectedHits.push(currentItem)
       } else {
-        log.error('Failed to retrieve content with id ' + item);
+        log.error('Failed to retrieve content with id ' + item)
       }
     })
     if (selectedHits.length <= count) {
-      count -= selectedHits.length;
+      count -= selectedHits.length
     }
   }
 
-  queryStart = start - selectedItems.length;
+  queryStart = start - selectedItems.length
   if (queryStart < 0) {
-    queryStart = 0;
+    queryStart = 0
   }
 
   if (!config.contentTypes) {
-    log.error("Please provide contentTypes to search for!");
+    log.error("Please provide contentTypes to search for!")
   } else {
     contentTypes =
       util
       .forceArray(config.contentTypes)
       .map(function(item) {
-        return app.name + ':' + item;
-      });
+        return app.name + ':' + item
+      })
   }
 
-  var siteReferencePath = path.split('/')[1];
+  var siteReferencePath = path.split('/')[1]
 
-  var query = "_path LIKE '/content/" + siteReferencePath + "/*' ";
+  var query = "_path LIKE '/content/" + siteReferencePath + "/*' "
   if (selectedItems.length) {
-    query += " AND _id NOT IN ('" + selectedItems.join("','") + "') ";
+    query += " AND _id NOT IN ('" + selectedItems.join("','") + "') "
   }
 
   var queryParams = {
@@ -249,7 +249,7 @@ exports.getContentList = function(config) {
     contentTypes: contentTypes,
     query: query,
     sort: "createdTime DESC"
-  };
+  }
 
   if (categoryFilter) {
     queryParams.filters = {
@@ -261,18 +261,20 @@ exports.getContentList = function(config) {
           }]
         }
       }
-    };
+    }
   }
 
-  var result = contentLib.query(queryParams);
+  var result = contentLib.query(queryParams)
 
   if (result.count) {
-    queryHits = result.hits;
+    queryHits = result.hits
   }
 
-  var totalPosts = selectedItems.length + result.total;
-  if (totalPosts > configCount) {
-    paging = cUtil.calculatePaging(path, totalPosts, start, configCount);
+  if (config.paging) {
+    var totalPosts = selectedItems.length + result.total
+    if (totalPosts > configCount) {
+      paging = cUtil.calculatePaging(path, totalPosts, start, configCount)
+    }
   }
 
   return {
@@ -281,10 +283,10 @@ exports.getContentList = function(config) {
     paging: paging,
     firstPage: start === 0
   }
-};
+}
 
 exports.getCategories = function(content) {
-  var categories = [];
+  var categories = []
   if (content &&
     content.x &&
     content.x[xAppName] &&

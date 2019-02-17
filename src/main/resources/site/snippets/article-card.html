@@ -5,16 +5,18 @@
   data-th-classappend="${size == 'big'} ? card--featured : ''"
 >
   <div class="card__imagecontainer">
-    <img
-      data-th-if="*{item.image}"
-      data-th-src="*{item.image.placeholderSrc}"
-      data-th-srcset="*{item.image.srcSet}"
-      data-th-alt="*{item.image.alt}"
-      class="card__image"
-      data-th-sizes="${size == 'big'} ? 
-          '(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px' :
-          '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'"
-    />
+    <picture data-th-if="*{item.image}">
+      <source data-th-if="*{item.image.portrait}" media="(max-width:768px)" data-th-srcset="*{item.image.portrait.srcSet}" sizes="'95vw'" />
+      <img
+        data-th-src="*{item.image.placeholderSrc}"
+        data-th-srcset="*{item.image.srcSet}"
+        data-th-alt-title="*{item.image.alt}"
+        class="card__image"
+        data-th-sizes="${size == 'big'} ? 
+            '(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px' :
+            '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'"
+      />
+    </picture>
   </div>
   <div class="card__body">
     <div class="card__category">Artikkel</div>

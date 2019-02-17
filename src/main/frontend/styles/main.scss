@@ -291,7 +291,7 @@ blockquote {
   $p: &;
 
   &__tile {
-    height: 24em;
+    //height: 24em;
     position: relative;
 
     &:hover #{$p}__image {

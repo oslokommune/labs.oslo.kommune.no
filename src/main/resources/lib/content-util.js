@@ -23,8 +23,8 @@ exports.prepareHeroContents = function(data, scale) {
   return data
 }
 
-var prepareFeaturedArticle = function(content, scale) {
-  scale = scale || 'block(5,2)'
+var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
+  var singleImage = (scaleLandscape === scalePortrait) || (scalePortrait == null)
 
   var article = {}
   article.id = content._id
@@ -37,9 +37,18 @@ var prepareFeaturedArticle = function(content, scale) {
 
   if (!content.data) return article
 
-  article.image = content.data.image ?
-    imageLib.image.create(content.data.image, scale) :
-    imageLib.image.placeholder(scale)
+  if (singleImage) {
+    article.image = content.data.image ?
+      imageLib.image.create(content.data.image, scaleLandscape) :
+      imageLib.image.placeholder(scaleLandscape)
+  } else {
+    article.image = content.data.image ?
+      imageLib.image.create(content.data.image, scaleLandscape) :
+      imageLib.image.placeholder(scaleLandscape)
+    article.image.portrait = content.data.image ?
+      imageLib.image.create(content.data.image, scalePortrait) :
+      imageLib.image.placeholder(scalePortrait)
+  }
   article.heading = content.data.heading ? content.data.heading : content.displayName
   article.lead = content.data.lead
 
@@ -80,7 +89,7 @@ exports.prepareExperimentList = function(data, scalePortrait, scaleLandscape) {
   return list
 }
 
-exports.prepareArticleList = function(data, scale, featured) {
+exports.prepareArticleList = function(data, scaleLandscape, scalePortrait) {
   if (!data.count) return []
   scale = scale || 'block(5,2)'
   var list = data.hits.map(function(res) {

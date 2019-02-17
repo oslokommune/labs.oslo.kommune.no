@@ -1,8 +1,6 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/xp/thymeleaf')
-var util = require('util')
 var cUtil = require('content-util')
-var contentLib = require('/lib/xp/content')
 var cacheLib = require('/lib/xp/cache')
 var related = require('related')
 
@@ -21,6 +19,19 @@ exports.get = function(req) {
   var model = {}
 
   model.heading = config.heading
+  model.presentationMode = config.presentationMode
+
+  var scaleLandscapeFeatured = 'block(3,2)'
+  var scaleLandscape = 'block(3,2)'
+  var scalePortraitFeatured = 'block(1,1)'
+  var scalePortrait = 'block(1,1)'
+
+  if ('compact' === config.presentationMode) {
+    scaleLandscapeFeatured = 'block(3,1)'
+    scaleLandscape = 'block(1,1)'
+    scalePortraitFeatured = 'block(4,3)'
+    scalePortrait = 'block(3,2)'
+  }
 
   var queryConfig = {
     start: req.params.start,
@@ -30,7 +41,8 @@ exports.get = function(req) {
     contentTypes: [
       'article'
     ],
-    categoryFilter: config.categories
+    categoryFilter: config.categories,
+    paging: config.paging
   }
 
   var result = related.getContentList(queryConfig);
@@ -38,11 +50,11 @@ exports.get = function(req) {
   if (result) {
     if (result.selectedHits && result.selectedHits.length) {
       // model.featuredHits = prepareData(result.selectedHits, req.mode);
-      model.featured = prepareData(result.selectedHits, 'block(3,2)', req.mode)
+      model.featured = prepareData(result.selectedHits, scaleLandscapeFeatured, scalePortraitFeatured, req.mode, config.presentationMode)
     }
     if (result.queryHits && result.queryHits.length) {
       // model.hits = prepareData(result.queryHits, req.mode);
-      model.articles = prepareData(result.queryHits, 'block(3,2)', req.mode)
+      model.articles = prepareData(result.queryHits, scaleLandscape, scalePortrait, req.mode, config.presentationMode)
     }
     if (result.hasOwnProperty('firstPage')) {
       model.firstPage = result.firstPage
@@ -51,6 +63,8 @@ exports.get = function(req) {
       model.paging = result.paging;
     }
   }
+
+  log.info(JSON.stringify(model, null, 2))
 
   model.live = req.mode == 'live'
   model.hasContent = ((model.featured && model.featured.length) || (model.articles && model.articles.length))
@@ -65,11 +79,11 @@ exports.get = function(req) {
 
 }
 
-function prepareData(hits, scale, mode) {
+function prepareData(hits, scaleLandscape, scalePortrait, mode, presentationMode) {
   return hits.map(function(resultItem) {
-    return articleCache.get(resultItem._id + resultItem.modifiedTime + mode, function() {
+    return articleCache.get(resultItem._id + resultItem.modifiedTime + mode + presentationMode, function() {
       if (resultItem.data) {
-        resultItem.data = cUtil.prepareFeaturedArticle(resultItem, scale);
+        resultItem.data = cUtil.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait);
         var categories = related.getCategories(resultItem)
         if (categories.length) {
           resultItem.data.categories = categories

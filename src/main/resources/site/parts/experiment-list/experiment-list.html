@@ -1,46 +1,22 @@
 <section class="section">
   <div class="container">
-    <h2
-      class="title is-2"
-      data-th-if="${heading}"
-      data-th-text="${heading}"
-    ></h2>
+    <h2 class="title is-2" data-th-if="${heading}" data-th-text="${heading}"></h2>
     <ul class="columns is-multiline">
-      <div
-        data-th-each="experiment, i: ${articles}"
-        data-th-object="${experiment}"
-        data-th-remove="tag"
-      >
-        <li
-          class="column experiment__tile has-text-white"
-          data-th-classappend="${i.index} == 0 ? 'is-12 experiment__tile--large' : is-4"
-        >
+      <div data-th-each="experiment, i: ${articles}" data-th-object="${experiment}" data-th-remove="tag">
+        <li class="column experiment__tile has-text-white" data-th-classappend="${i.index} == 0 ? 'is-12 experiment__tile--large' : is-4">
           <a data-th-href="*{path}">
             <div class="experiment__imagecontainer">
               <picture>
-                <source
-                  media="(min-width:768px)"
-                  data-th-srcset="*{image.landscape.srcSet}"
-                  sizes="'(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px'"
-                  data-th-if="${i.index} == 0"
-                />
-                <img
-                  class="experiment__image"
-                  data-th-src="*{image.portrait.placeholderSrc}"
-                  data-th-srcset="*{image.portrait.srcSet}"
-                  data-th-alt="*{image.portrait.alt}"
-                  data-th-title="*{image.portrait.alt}"
-                  data-th-sizes="${i.index == 0} 
+                <source media="(min-width:768px)" data-th-srcset="*{image.landscape.srcSet}" sizes="'(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px'"
+                        data-th-if="${i.index} == 0" />
+                <img class="experiment__image" data-th-src="*{image.portrait.placeholderSrc}" data-th-srcset="*{image.portrait.srcSet}"
+                     data-th-alt="*{image.portrait.alt}" data-th-title="*{image.portrait.alt}" data-th-sizes="${i.index == 0} 
                     ? '(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px' 
-                    : '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'"
-                />
+                    : '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'" />
               </picture>
             </div>
             <div class="experiment__tag">Eksperiment / Teknologi</div>
-            <h3
-              class="title is-3 experiment__heading has-text-white"
-              data-th-text="*{heading}"
-            ></h3>
+            <h3 class="title is-3 experiment__heading has-text-white" data-th-text="*{heading}"></h3>
           </a>
         </li>
       </div>

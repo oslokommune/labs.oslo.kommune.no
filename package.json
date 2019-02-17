@@ -23,12 +23,12 @@
   },
   "homepage": "https://github.com/oslokommune/labs.oslo.kommune.no#readme",
   "devDependencies": {
-    "@babel/core": "^7.2.2",
+    "@babel/core": "^7.3.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.2.3",
+    "@babel/preset-env": "^7.3.1",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "babel-loader": "^8.0.5",
-    "bulma": "^0.7.2",
+    "bulma": "^0.7.4",
     "copy-webpack-plugin": "^4.6.0",
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",
@@ -38,18 +38,18 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.5.0",
     "sass-loader": "^7.1.0",
-    "vue": "^2.5.22",
-    "vue-loader": "^15.5.1",
+    "vue": "^2.6.6",
+    "vue-loader": "^15.6.2",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.22",
-    "webpack": "^4.28.4",
-    "webpack-bundle-analyzer": "^3.0.3",
-    "webpack-cli": "^3.2.1"
+    "vue-template-compiler": "^2.6.6",
+    "webpack": "^4.29.4",
+    "webpack-bundle-analyzer": "^3.0.4",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "moment": "^2.23.0",
-    "vue-i18n": "^8.7.0",
-    "vue2-google-maps": "^0.10.5"
+    "moment": "^2.24.0",
+    "vue-i18n": "^8.8.1",
+    "vue2-google-maps": "^0.10.6"
   }
 }
