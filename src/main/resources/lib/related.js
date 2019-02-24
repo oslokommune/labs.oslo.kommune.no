@@ -27,6 +27,7 @@ exports.getRelatedContent = function(content, config) {
     selectedItems = [],
     sort = 'createdTime DESC'
 
+  // Start by fetching featured items
   if (config.selectedItems) {
     selectedItems = util.forceArray(config.selectedItems)
     var currentItem
@@ -164,7 +165,7 @@ exports.getRelatedContent = function(content, config) {
 }
 
 /**
- * Fetch list of contents types for browsing pages. Typically references, blog posts
+ * Fetch list of contents for browsing pages. Typically blog posts
  * @param config
  * @returns {{featuredItems: *, resultItems: *, paging: *}}
  */
@@ -177,6 +178,7 @@ exports.getContentList = function(config) {
     selectedHits = [],
     queryHits = [],
     selectedItems = util.forceArray(config.selectedItems),
+    onlyChildren = config.onlyChildren,
     paging,
     path,
     categoryFilter
@@ -237,6 +239,9 @@ exports.getContentList = function(config) {
   }
 
   var siteReferencePath = path.split('/')[1]
+  if (onlyChildren) {
+    siteReferencePath = path.substring(path.indexOf('/') + 1)
+  }
 
   var query = "_path LIKE '/content/" + siteReferencePath + "/*' "
   if (selectedItems.length) {

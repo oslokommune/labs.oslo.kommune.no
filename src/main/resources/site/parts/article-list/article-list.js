@@ -42,6 +42,7 @@ exports.get = function(req) {
       'article'
     ],
     categoryFilter: config.categories,
+    onlyChildren: config.onlyChildren,
     paging: config.paging
   }
 
@@ -63,8 +64,6 @@ exports.get = function(req) {
       model.paging = result.paging;
     }
   }
-
-  log.info(JSON.stringify(model, null, 2))
 
   model.live = req.mode == 'live'
   model.hasContent = ((model.featured && model.featured.length) || (model.articles && model.articles.length))

@@ -15,6 +15,10 @@
       </config>
     </input>
     <inline mixin="categories" />
+    <input name="onlyChildren" type="CheckBox">
+      <label i18n="parts.articleList.onlyChildren">Include only children of current page</label>
+      <default>unchecked</default>
+    </input>
     <input name="paging" type="CheckBox">
       <label i18n="parts.articleList.paging">Show paging links</label>
       <default>checked</default>
