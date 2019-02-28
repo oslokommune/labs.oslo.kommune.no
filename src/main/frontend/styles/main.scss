@@ -22,6 +22,7 @@
 @import 'partials/block-images';
 @import 'partials/card';
 @import 'partials/bio';
+@import 'partials/categories';
 
 ::placeholder {
   color: $color-grayscale-50;
@@ -202,7 +203,7 @@ blockquote {
 
 // Remove padding between white content blocks
 .article-blocks {
-  .section:not(.has-background) + .section:not(.has-background) {
+  .section:not(.has-background)+.section:not(.has-background) {
     margin-top: -4em;
   }
 }
