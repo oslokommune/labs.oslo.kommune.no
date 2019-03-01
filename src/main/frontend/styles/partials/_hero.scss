@@ -198,7 +198,7 @@
   border-bottom: 1px solid $color-grayscale-30;
   font-weight: 500;
 
-  > li {
+  >li {
     flex: 1 0 50%;
   }
 
@@ -215,15 +215,25 @@
       font-size: 0.75rem;
     }
 
-    > span + span {
+    >span+span {
       &::before {
         content: ', ';
       }
     }
 
-    > span:last-child:not(:first-child)::before {
+    >span:last-child:not(:first-child)::before {
       content: '\00a0og ';
     }
+  }
+}
+
+.categoryline {
+  margin-top: 0.4rem;
+  font-weight: 500;
+
+  & a {
+    font-size: 0.75rem;
+    text-transform: uppercase;
   }
 }
 
@@ -272,7 +282,7 @@
   }
 
   // Show list when checkbox is checked
-  &__toggle:checked ~ &__list {
+  &__toggle:checked~&__list {
     max-height: 25em;
   }
 }

@@ -1,42 +1,19 @@
 <section class="section home-header">
   <div class="container">
     <div class="columns is-multiline home-header__columns">
-      <div
-        class="column is-offset-1-tablet is-offset-2-desktop is-5-tablet home-header__image-column"
-      >
+      <div class="column is-offset-1-tablet is-offset-2-desktop is-5-tablet home-header__image-column">
         <div class="home-header__image-container">
-          <img
-            data-th-if="${image}"
-            class="home-header__image"
-            data-th-src="${image.src}"
-            alt=""
-          />
+          <img data-th-if="${image}" class="home-header__image" data-th-src="${image.src}" alt="" />
         </div>
       </div>
-      <div
-        class="column is-6-tablet is-5-desktop home-header__text-column has-text-centered-mobile"
-      >
-        <h1
-          data-th-if="${heading}"
-          class="title is-1"
-          data-th-text="${heading}"
-        ></h1>
+      <div class="column is-6-tablet is-5-desktop home-header__text-column has-text-centered-mobile">
+        <h1 data-th-if="${heading}" class="title is-1" data-th-text="${heading}"></h1>
         <p data-th-if="${subheading}" data-th-text="${subheading}"></p>
         <p class="home-header__links">
-          <a
-            data-th-if="${primary}"
-            data-th-href="${primary.url}"
-            data-th-text="${primary.label}"
-            class="button is-primary"
-            >Call to Action</a
-          >
-          <a
-            data-th-if="${secondary}"
-            data-th-href="${secondary.url}"
-            data-th-text="${secondary.label}"
-            class="button is-primary is-outlined"
-            >Call to Action</a
-          >
+          <a data-th-if="${primary}" data-th-href="${primary.url}" data-th-text="${primary.label}" class="button is-primary">Call
+            to Action</a>
+          <a data-th-if="${secondary}" data-th-href="${secondary.url}" data-th-text="${secondary.label}" class="button is-primary is-outlined">Call
+            to Action</a>
         </p>
       </div>
     </div>

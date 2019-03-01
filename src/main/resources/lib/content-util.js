@@ -121,6 +121,10 @@ function processCommonFields(data, scale) {
       .fromNow()
   }
 
+  data.body && (data.body = portal.processHtml({
+    value: data.body
+  }))
+
   return data
 }
 

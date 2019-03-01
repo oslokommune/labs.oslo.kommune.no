@@ -18,6 +18,15 @@ exports.get = function(req) {
   var config = component.config
   var model = {}
 
+  /**
+   * Small hack to enable this part to be used as a template part.
+   * If content type is a category itself we override category filter
+   */
+  var categories = config.categories
+  if (content.type === app.name + ':category') {
+    categories = content._id
+  }
+
   model.heading = config.heading
   model.presentationMode = config.presentationMode
 
@@ -41,7 +50,7 @@ exports.get = function(req) {
     contentTypes: [
       'article'
     ],
-    categoryFilter: config.categories,
+    categoryFilter: categories,
     onlyChildren: config.onlyChildren,
     paging: config.paging
   }

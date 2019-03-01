@@ -1,0 +1,25 @@
+<div data-th-remove="tag">
+  <article>
+    <header class="hero" data-th-classappend="${image} ? '' : ' hero--no-image'">
+      <div class="container-fluid" data-th-if="${image}">
+        <img data-th-if="*{image}" data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}" data-th-sizes="'100vw'"
+             data-th-alt-title="*{image.alt}" class="hero__img" />
+      </div>
+
+      <div class="hero-foot section is-paddingless-top-bottom">
+        <div class="container">
+          <div class="hero__text">
+            <h1 class="title is-1" data-th-if="${heading}" data-th-text="${heading}"></h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="section is-paddingless-top-bottom">
+        <div class="container">
+          <p class="lead" data-th-text="${lead}">Lead</p>
+          <div class="body" data-th-utext="${body}">Body</div>
+        </div>
+      </div>
+    </header>
+  </article>
+</div>
