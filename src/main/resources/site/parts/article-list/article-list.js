@@ -89,7 +89,7 @@ exports.get = function(req) {
 
 function prepareData(hits, scaleLandscape, scalePortrait, mode, presentationMode) {
   return hits.map(function(resultItem) {
-    return articleCache.get(resultItem._id + resultItem.modifiedTime + mode + presentationMode, function() {
+    return articleCache.get(resultItem._id + resultItem.modifiedTime + scaleLandscape + scalePortrait + mode + presentationMode, function() {
       if (resultItem.data) {
         resultItem.data = cUtil.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait);
         var categories = related.getCategories(resultItem)
