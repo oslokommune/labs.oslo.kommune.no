@@ -2,6 +2,7 @@ var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/xp/thymeleaf')
 var imageLib = require('image')
 var util = require('util')
+var cUtil = require('content-util')
 
 exports.get = function(req) {
   var component = portal.getComponent()
@@ -9,13 +10,7 @@ exports.get = function(req) {
   var model = {}
 
   model.heading = config.heading || null
-  model.categories = []
-
-  util.forceArray(config.categories).forEach(function(cat) {
-    cat.image = imageLib.image.create(cat.image, 'block(1,1)')
-    cat.color = util.getColorValueFromName(cat.color)
-    model.categories.push(cat)
-  })
+  model.categories = cUtil.processCategoryLinkList(config.categories, 'square(1)')
 
   var view = resolve('./category-link-list.html')
   var body = thymeleaf.render(view, model)

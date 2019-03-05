@@ -371,6 +371,33 @@ var processBlockLinkList = function(b) {
 }
 exports.processBlockLinkList = processBlockLinkList
 
+var processCategoryLinkList = function(categories, scale) {
+  var c = []
+  util.forceArray(categories).forEach(function(item) {
+    item.image && (item.image = imageLib.image.create(item.image, scale))
+    item.color = util.getColorValueFromName(item.color)
+    var link = {
+      href: '#'
+    }
+    if (item.internalLink || item.externalLink) {
+      if (item.internalLink) {
+        link.href = portal.pageUrl({
+          id: item.internalLink
+        })
+      } else {
+        link.href = item.externalLink
+        if (!/^https?:\/\//i.test(link.href)) {
+          link.href = 'https://' + link.href // Add protocol to href if missing...
+        }
+      }
+    }
+    item.link = link
+    c.push(item)
+  })
+  return c
+}
+exports.processCategoryLinkList = processCategoryLinkList
+
 var processBlockImages = function(b) {
   b.images = util.forceArray(b.images)
   b.isSingleImage = b.images.length === 1
