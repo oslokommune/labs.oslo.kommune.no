@@ -1,5 +1,5 @@
 plugins {
-    id 'com.enonic.xp.app' version '1.1.0'
+    id 'com.enonic.xp.app' version '1.2.0'
     id 'com.moowork.node' version '1.2.0'
 }
 
@@ -12,7 +12,7 @@ app {
 }
 
 node {
-    version = '10.12.0'
+    version = '10.15.2'
     download = true
 }
 
@@ -25,7 +25,7 @@ dependencies {
     include "com.enonic.xp:lib-i18n:${xpVersion}"
     include 'com.enonic.lib:lib-cache:1.1.0'
     include 'com.enonic.lib:menu:2.0.1'
-    webjar 'org.webjars.bower:moment:2.22.2'
+    webjar 'org.webjars.bower:moment:2.24.0'
 }
 
 repositories {
