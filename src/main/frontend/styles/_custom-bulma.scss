@@ -1,6 +1,8 @@
 $body-size: 16px;
 $body-line-height: 1.65;
-$family-sans-serif: 'Oslo', Helvetica, Arial;
+$family-sans-serif: 'Oslo',
+Helvetica,
+Arial;
 $body-family: $family-sans-serif;
 // $body-background-color: $color-grayscale-5;
 
@@ -19,6 +21,7 @@ img {
 $primary: $color-purple;
 
 .has-text-white .content {
+
   h1,
   h2,
   h3,
@@ -77,4 +80,29 @@ $primary: $color-purple;
   background: inherit;
   box-shadow: inherit;
   color: inherit;
+}
+
+.content {
+  & figure {
+    margin-left: 0;
+    margin-right: 0;
+
+    & figcaption {
+      font-size: 0.8em;
+      font-style: normal;
+      line-height: 1.2em;
+      font-weight: 300;
+      margin-top: 0;
+      padding-top: 0;
+      color: $color-grayscale-60;
+    }
+  }
+
+  & figure:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  & figure:not(:first-child) {
+    margin-top: 1em;
+  }
 }

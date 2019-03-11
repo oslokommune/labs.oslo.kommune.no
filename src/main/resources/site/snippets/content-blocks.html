@@ -6,22 +6,13 @@
 
 <!-- /* Quote */ -->
 <div data-th-fragment="ctbQuote" data-th-remove="tag">
-  <div
-    class="column"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
-  >
+  <div class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <blockquote class="quote-initial-letter">
       <p data-th-utext="${block.ctbQuote.quoteText}"></p>
       <footer>
         <cite>
-          <span
-            data-th-utext="${block.ctbQuote.quoteSource}"
-            data-th-remove="tag"
-          ></span>
-          <span
-            data-th-utext="${block.ctbQuote.quoteSourceDescription}"
-            data-th-remove="tag"
-          ></span>
+          <span data-th-utext="${block.ctbQuote.quoteSource}" data-th-remove="tag"></span>
+          <span data-th-utext="${block.ctbQuote.quoteSourceDescription}" data-th-remove="tag"></span>
         </cite>
       </footer>
     </blockquote>
@@ -31,10 +22,7 @@
 
 <!-- /* Textblock */ -->
 <div data-th-fragment="ctbText" data-th-remove="tag">
-  <div
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
-  >
+  <div class="column content" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <div data-th-utext="${block.ctbText.content}" data-th-remove="tag"></div>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
@@ -42,76 +30,45 @@
 
 <!-- /* Map */ -->
 <div data-th-fragment="ctbMap" data-th-remove="tag">
-  <div
-    data-js="map-block"
-    data-th-center="${block.ctbMap.mapCoordinates}"
-    data-th-zoom="${block.ctbMap.mapZoom}"
-    data-th-markers="${block.ctbMap.mapMarkers}"
-    data-th-geoJSON="${block.ctbMap.mapGeoJSON}"
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
-  >
+  <div data-js="map-block" data-th-center="${block.ctbMap.mapCoordinates}" data-th-zoom="${block.ctbMap.mapZoom}"
+       data-th-markers="${block.ctbMap.mapMarkers}" data-th-geoJSON="${block.ctbMap.mapGeoJSON}" class="column content"
+       data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <div class="columns">
-      <div
-        class="column is-paddingless-top-bottom"
-        data-th-classappend="${block.isFullWidth} ? ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : ''"
-      >
-        <h3
-          class="title is-marginless"
-          data-th-text="${block.ctbMap.mapTitle}"
-        ></h3>
+      <div class="column is-paddingless-top-bottom" data-th-classappend="${block.isFullWidth} ? ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : ''">
+        <h3 class="title is-marginless" data-th-text="${block.ctbMap.mapTitle}"></h3>
       </div>
     </div>
-    <div class="mapcontainer"><!-- Vue Component gets inserted here --></div>
+    <div class="mapcontainer">
+      <!-- Vue Component gets inserted here -->
+    </div>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Text with quotebox */ -->
 <div data-th-fragment="ctbTextQuote" data-th-remove="tag">
-  <div
-    class="column is-full-mobile is-one-fifth-tablet is-one-quarter-widescreen is-2-fullhd"
-  >
+  <div class="column is-full-mobile is-one-fifth-tablet is-one-quarter-widescreen is-2-fullhd">
     <blockquote>
       <p data-th-utext="${block.ctbTextQuote.quoteText}"></p>
       <footer>
         <cite>
-          <span
-            data-th-utext="${block.ctbTextQuote.quoteSource}"
-            data-th-remove="tag"
-          ></span>
-          <span
-            data-th-utext="${block.ctbTextQuote.quoteSourceDescription}"
-            data-th-remove="tag"
-          ></span>
+          <span data-th-utext="${block.ctbTextQuote.quoteSource}" data-th-remove="tag"></span>
+          <span data-th-utext="${block.ctbTextQuote.quoteSourceDescription}" data-th-remove="tag"></span>
         </cite>
       </footer>
     </blockquote>
   </div>
-  <div
-    class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen content"
-    data-th-utext="${block.ctbTextQuote.content}"
-  ></div>
+  <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen content" data-th-utext="${block.ctbTextQuote.content}"></div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Video */ -->
 <div data-th-fragment="ctbVideo" data-th-remove="tag">
-  <div
-    class="column"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
-  >
-    <div
-      data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'"
-    >
-      <iframe
-        data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?color=da28d3&title=0&byline=0&portrait=0'"
-        style="position:absolute;top:0;left:0;width:100%;height:100%;"
-        frameborder="0"
-        webkitallowfullscreen
-        mozallowfullscreen
-        allowfullscreen
-      >
+  <div class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
+    <div data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'">
+      <iframe data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?color=da28d3&title=0&byline=0&portrait=0'"
+              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
+              mozallowfullscreen allowfullscreen>
       </iframe>
     </div>
   </div>
@@ -121,41 +78,20 @@
 <!-- /* Link block */ -->
 <div data-th-fragment="ctbLinks" data-th-remove="tag">
   <div data-th-if="${block.ctbLinks.links}" data-th-remove="tag">
-    <div
-      class="column"
-      data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
-    >
-      <div
-        data-th-replace="block-link-list.html(data=${block.ctbLinks}, settings=${block.settings})"
-        data-th-remove="tag"
-      ></div>
+    <div class="column" data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
+      <div data-th-replace="block-link-list.html(data=${block.ctbLinks}, settings=${block.settings})" data-th-remove="tag"></div>
     </div>
     <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
   </div>
 </div>
 
 <!-- /* Image block */ -->
-<div
-  data-th-fragment="ctbImages"
-  data-th-if="${block.ctbImages.images}"
-  class="column"
-  data-th-insert="block-images.html(data=${block.ctbImages})"
-></div>
+<div data-th-fragment="ctbImages" data-th-if="${block.ctbImages.images}" class="column" data-th-insert="block-images.html(data=${block.ctbImages})"></div>
 
 <!-- Sidebar box which should get inserted into each block -->
-<div
-  data-th-fragment="sidebarbox"
-  data-th-if="${block.sidebarbox}"
-  class="column is-4-tablet is-3-desktop is-offset-1-desktop"
->
+<div data-th-fragment="sidebarbox" data-th-if="${block.sidebarbox}" class="column is-4-tablet is-3-desktop is-offset-1-desktop">
   <div class="sidebarbox section">
-    <div
-      class="icon sidebarbox__icon"
-      data-th-classappend="'icon-sidebar--'+${block.sidebarbox.icon}"
-    ></div>
-    <div
-      class="sidebarbox__content content"
-      data-th-utext="${block.sidebarbox.contents}"
-    ></div>
+    <div class="icon sidebarbox__icon" data-th-classappend="'icon-sidebar--'+${block.sidebarbox.icon}"></div>
+    <div class="sidebarbox__content content" data-th-utext="${block.sidebarbox.contents}"></div>
   </div>
 </div>

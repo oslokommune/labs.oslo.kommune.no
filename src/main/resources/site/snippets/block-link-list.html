@@ -6,11 +6,7 @@
 -->
 <div data-th-fragment="block-link-list" data-th-remove="tag">
   <div data-th-if="${data.links}" data-th-remove="tag">
-    <h2
-      class="title"
-      data-th-if="${data.heading}"
-      data-th-text="${data.heading}"
-    >
+    <h2 class="title" data-th-if="${data.heading}" data-th-text="${data.heading}">
       Heading
     </h2>
     <p data-th-if="${data.lead}" data-th-text="${data.lead}">Lead</p>

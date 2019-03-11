@@ -161,7 +161,7 @@
                   <occurrences minimum="0" maximum="1"/>
                   <config>
                     <exclude>*</exclude>
-                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table</include>
+                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image</include>
                   </config>
                 </input>
               </items>
@@ -247,27 +247,27 @@
                   <config/>
                 </input>
                 <input name="mapDistricts" type="ComboBox">
-                    <label i18n="ct.article.ctbMapDistricts">District overlays</label>
-                    <occurrences minimum="0" maximum="0"/>
-                    <config>
-                      <option value="Bydel Søndre Nordstrand">Bydel Søndre Nordstrand</option>
-                      <option value="Bydel Nordstrand">Bydel Nordstrand</option>
-                      <option value="Bydel Østensjø">Bydel Østensjø</option>
-                      <option value="Sentrum">Sentrum</option>
-                      <option value="Bydel Gamle Oslo">Bydel Gamle Oslo</option>
-                      <option value="Bydel Frogner">Bydel Frogner</option>
-                      <option value="Bydel Grünerløkka">Bydel Grünerløkka</option>
-                      <option value="Bydel Ullern">Bydel Ullern</option>
-                      <option value="Bydel St. Hanshaugen">Bydel St. Hanshaugen</option>
-                      <option value="Bydel Sagene">Bydel Sagene</option>
-                      <option value="Bydel Alna">Bydel Alna</option>
-                      <option value="Bydel Bjerke">Bydel Bjerke</option>
-                      <option value="Bydel Nordre Aker">Bydel Nordre Aker</option>
-                      <option value="Bydel Stovner">Bydel Stovner</option>
-                      <option value="Bydel Vestre Aker">Bydel Vestre Aker</option>
-                      <option value="Bydel Grorud">Bydel Grorud</option>
-                    </config>
-                  </input>
+                  <label i18n="ct.article.ctbMapDistricts">District overlays</label>
+                  <occurrences minimum="0" maximum="0"/>
+                  <config>
+                    <option value="Bydel Søndre Nordstrand">Bydel Søndre Nordstrand</option>
+                    <option value="Bydel Nordstrand">Bydel Nordstrand</option>
+                    <option value="Bydel Østensjø">Bydel Østensjø</option>
+                    <option value="Sentrum">Sentrum</option>
+                    <option value="Bydel Gamle Oslo">Bydel Gamle Oslo</option>
+                    <option value="Bydel Frogner">Bydel Frogner</option>
+                    <option value="Bydel Grünerløkka">Bydel Grünerløkka</option>
+                    <option value="Bydel Ullern">Bydel Ullern</option>
+                    <option value="Bydel St. Hanshaugen">Bydel St. Hanshaugen</option>
+                    <option value="Bydel Sagene">Bydel Sagene</option>
+                    <option value="Bydel Alna">Bydel Alna</option>
+                    <option value="Bydel Bjerke">Bydel Bjerke</option>
+                    <option value="Bydel Nordre Aker">Bydel Nordre Aker</option>
+                    <option value="Bydel Stovner">Bydel Stovner</option>
+                    <option value="Bydel Vestre Aker">Bydel Vestre Aker</option>
+                    <option value="Bydel Grorud">Bydel Grorud</option>
+                  </config>
+                </input>
               </items>
             </option>
 

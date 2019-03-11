@@ -181,8 +181,9 @@ function processContentBlocks(ctbs) {
           block.ctb.sidebarbox.icon =
             block.ctbSettings.sidebarbox.sidebarboxIcon
         }
-        block.ctb.sidebarbox.contents =
-          block.ctbSettings.sidebarbox.sidebarboxContents
+        block.ctb.sidebarbox.contents = portal.processHtml({
+          value: block.ctbSettings.sidebarbox.sidebarboxContents
+        })
       }
 
       // Full Width
@@ -251,6 +252,13 @@ function processContentBlocks(ctbs) {
           block.ctb.gradient = gradient
         }
       }
+    }
+
+    // Process text block. Mainly for fixing image references
+    if (block.ctb._selected === 'ctbText' && block.ctb.ctbText) {
+      block.ctb.ctbText.content = portal.processHtml({
+        value: block.ctb.ctbText.content
+      })
     }
 
     // Define height of video player based on aspect ratio
