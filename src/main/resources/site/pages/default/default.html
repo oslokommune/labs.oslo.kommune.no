@@ -1,39 +1,29 @@
 <!DOCTYPE html>
-<html lang="no">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Origo labs</title>
-  </head>
+<html data-th-lang="${siteLanguage}">
 
-  <body data-portal-component-type="page">
-    <div>
-      <a
-        href="#main"
-        data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}"
-        z-index="0"
-      ></a>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title></title>
+</head>
+
+<body data-portal-component-type="page">
+  <div>
+    <a href="#main" data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}" z-index="0"></a>
+  </div>
+
+  <header data-th-replace="/site/snippets/navbar.html"></header>
+  <main id="main" role="main" class="main" data-portal-component-type="region" data-portal-region="main">
+    <div data-th-each="component : ${main.components}" data-th-remove="tag">
+      <div data-portal-component="${component.path}" data-th-remove="tag"></div>
     </div>
+  </main>
+  <script data-th-inline="javascript">
+    var labsSiteLanguage = /*[[${siteLanguage}]]*/ false
+    var googleMapsKey = /*[[${googleMapsKey}]]*/ ''
 
-    <header data-th-replace="/site/snippets/navbar.html"></header>
-    <main
-      id="main"
-      role="main"
-      class="main"
-      data-portal-component-type="region"
-      data-portal-region="main"
-    >
-      <div data-th-each="component : ${main.components}" data-th-remove="tag">
-        <div
-          data-portal-component="${component.path}"
-          data-th-remove="tag"
-        ></div>
-      </div>
-    </main>
-    <script data-th-inline="javascript">
-      var labsSiteLanguage = /*[[${siteLanguage}]]*/ false
-      var googleMapsKey = /*[[${googleMapsKey}]]*/ ''
-    </script>
-  </body>
+  </script>
+</body>
+
 </html>

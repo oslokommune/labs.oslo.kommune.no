@@ -4,6 +4,10 @@
     <field-set name="siteSettings">
       <label>Site settings</label>
       <items>
+        <input name="siteName" type="TextLine">
+          <label i18n="site.siteName">Site name</label>
+          <occurrences minimum="1" maximum="1" />
+        </input>
         <input name="searchPage" type="ContentSelector">
           <label i18n="site.searchPage">Search results page</label>
           <occurrences minimum="0" maximum="1" />
@@ -15,7 +19,6 @@
         </input>
         <input name="googleMapsKey" type="TextLine">
           <label i18n="site.googleMapsKey">Google Maps key</label>
-          <config />
         </input>
       </items>
     </field-set>

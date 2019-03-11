@@ -7,8 +7,11 @@ exports.get = function(req) {
   var model = {}
   var content = portal.getContent()
 
-  // Store URL to search page
   var siteConfig = portal.getSiteConfig()
+
+  model.siteName = siteConfig.siteName
+
+  // Store URL to search page
   if (siteConfig && siteConfig.searchPage) {
     model.searchPageUrl = portal.pageUrl({
       id: siteConfig.searchPage
@@ -21,9 +24,7 @@ exports.get = function(req) {
     type: 'absolute'
   })
 
-  model.googleMapsKey = siteConfig.googleMapsKey
-    ? siteConfig.googleMapsKey
-    : null
+  siteConfig.googleMapsKey && (model.googleMapsKey = siteConfig.googleMapsKey)
 
   // Local hack for development
   // Store Site Path
@@ -47,9 +48,9 @@ exports.get = function(req) {
     serverName === 'prod' ||
     serverName === 'test'
   var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  var vendorScriptsPath = isProd
-    ? 'scripts/vendors.bundle.min.js'
-    : 'scripts/vendors.bundle.js'
+  var vendorScriptsPath = isProd ?
+    'scripts/vendors.bundle.min.js' :
+    'scripts/vendors.bundle.js'
   var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
   var vendorScripts =
     '<script defer src="' +
