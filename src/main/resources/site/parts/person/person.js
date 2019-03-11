@@ -12,7 +12,7 @@ exports.get = function(req) {
   var query = "_path LIKE '/content/*'"
   var result = contentLib.query({
     start: 0,
-    count: 10,
+    count: 20,
     query: query,
     contentTypes: [app.name + ':article'],
     sort: 'createdTime DESC',
@@ -24,8 +24,7 @@ exports.get = function(req) {
     }
   })
 
-  model.articles = cUtil.prepareArticleList(result, 'block(3,2)')
-
+  model.articles = cUtil.prepareArticleList(result, 'block(4,3)')
 
   if (content.data && content.data.name) {
     model.name = content.data.name
