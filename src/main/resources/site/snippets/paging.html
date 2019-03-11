@@ -1,17 +1,17 @@
-<div data-th-fragment="paging" data-th-if="${paging}" data-th-object="${paging}">
-  <div data-th-if="!*{prev}">
-    (PREV)
-  </div>
-  <div data-th-if="*{prev}">
-    <a data-th-href="*{prev}">PREV</a>
-  </div>
-  <div data-th-if="*{currentPage && totalPages}">
-    [[*{currentPage}]] / [[*{totalPages}]]
-  </div>
-  <div data-th-if="*{next}">
-    <a data-th-href="*{next}">NEXT</a>
-  </div>
-  <div data-th-if="!*{next}">
-    (NEXT)
-  </div>
+<div data-th-fragment="paging" data-th-if="${paging}" data-th-object="${paging}" class="paging container">
+  <ol class="columns is-mobile is-multiline is-centered">
+    <li data-th-if="*{prev}" class="column is-narrow">
+      <a data-th-href="*{prev}">
+        [[${portal.localize({'_key=txt.previousPage'})}]]
+      </a>
+    </li>
+    <li data-th-if="*{currentPage && totalPages}" class="column is-narrow">
+      [[*{currentPage}]] / [[*{totalPages}]]
+    </li>
+    <li data-th-if="*{next}" class="column is-narrow">
+      <a data-th-href="*{next}">
+        [[${portal.localize({'_key=txt.nextPage'})}]]
+      </a>
+    </li>
+  </ol>
 </div>
