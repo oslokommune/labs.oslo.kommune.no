@@ -130,33 +130,39 @@ body {
   }
 }
 
-blockquote {
-  font-size: 0.95em;
-  padding-left: 1em;
-  line-height: 1.85em;
+.quote {
+  font-size: 1.25em;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  line-height: 1.5em;
   position: relative;
+  margin: 1rem 0;
 
   &::before {
     position: absolute;
     content: ' ';
     top: -1em;
     bottom: -1em;
-    left: -4px;
+    left: 0px;
     width: 4px;
     background: rgba(black, 0.1);
   }
 
-  &.quote-initial-letter {
-    &:first-letter {
-      opacity: 0.4;
-      float: left;
-      font-size: 4em;
-      padding-top: 0.2em;
-      padding-right: 0.05em;
-      font-weight: bold;
-      margin-left: -0.06em;
-      position: relative;
-    }
+  footer > cite {
+    font-size: 0.85rem;
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.55em;
+  }
+
+  &__source {
+    font-weight: 500;
+    margin-top: 1rem;
+  }
+
+  &__source-description {
+    margin: 0;
   }
 }
 
@@ -203,7 +209,7 @@ blockquote {
 
 // Remove padding between white content blocks
 .article-blocks {
-  .section:not(.has-background)+.section:not(.has-background) {
+  .section:not(.has-background) + .section:not(.has-background) {
     margin-top: -4em;
   }
 }
@@ -245,7 +251,12 @@ blockquote {
 
     @media screen and (min-width: $tablet) {
       width: auto;
+      max-height: 25vh;
       transform: scale(1.3) translateY(-1em);
+    }
+
+    @media screen and (min-width: $fullhd) {
+      transform: scale(1.55) translateY(-2em);
     }
   }
 }
