@@ -27,6 +27,7 @@
     </blockquote>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Textblock */ -->
@@ -38,6 +39,7 @@
     <div data-th-utext="${block.ctbText.content}" data-th-remove="tag"></div>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Map */ -->
@@ -67,6 +69,7 @@
     </div>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Text with quotebox */ -->
@@ -95,6 +98,7 @@
     data-th-utext="${block.ctbTextQuote.content}"
   ></div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Video */ -->
@@ -118,6 +122,7 @@
     </div>
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
 <!-- /* Link block */ -->
@@ -133,6 +138,7 @@
       ></div>
     </div>
     <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+    <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
   </div>
 </div>
 
@@ -159,5 +165,24 @@
       class="sidebarbox__content content"
       data-th-utext="${block.sidebarbox.contents}"
     ></div>
+  </div>
+</div>
+
+<!-- Sidebar Image which should get inserted into each block -->
+<div
+  data-th-fragment="sidebarImage"
+  data-th-if="${block.sidebarImage}"
+  class="column is-4-tablet is-3-desktop is-offset-1-desktop"
+>
+  <div class="sidebarImage">
+    <figure data-th-object="${block.sidebarImage.image}">
+      <img
+        data-th-src="*{placeholderSrc}"
+        data-th-srcset="*{srcSet}"
+        data-th-alt-title="*{alt}"
+        data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 300px, (max-width:1279px) 300px, (max-width:1471px) 300px, 300px'"
+      />
+    </figure>
+    <div class="content" data-th-utext="${block.sidebarImage.caption}"></div>
   </div>
 </div>

@@ -24,7 +24,7 @@ exports.prepareHeroContents = function(data, scale) {
 }
 
 var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
-  var singleImage = (scaleLandscape === scalePortrait) || (scalePortrait == null)
+  var singleImage = scaleLandscape === scalePortrait || scalePortrait == null
 
   var article = {}
   article.id = content._id
@@ -38,18 +38,20 @@ var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
   if (!content.data) return article
 
   if (singleImage) {
-    article.image = content.data.image ?
-      imageLib.image.create(content.data.image, scaleLandscape) :
-      imageLib.image.placeholder(scaleLandscape)
+    article.image = content.data.image
+      ? imageLib.image.create(content.data.image, scaleLandscape)
+      : imageLib.image.placeholder(scaleLandscape)
   } else {
-    article.image = content.data.image ?
-      imageLib.image.create(content.data.image, scaleLandscape) :
-      imageLib.image.placeholder(scaleLandscape)
-    article.image.portrait = content.data.image ?
-      imageLib.image.create(content.data.image, scalePortrait) :
-      imageLib.image.placeholder(scalePortrait)
+    article.image = content.data.image
+      ? imageLib.image.create(content.data.image, scaleLandscape)
+      : imageLib.image.placeholder(scaleLandscape)
+    article.image.portrait = content.data.image
+      ? imageLib.image.create(content.data.image, scalePortrait)
+      : imageLib.image.placeholder(scalePortrait)
   }
-  article.heading = content.data.heading ? content.data.heading : content.displayName
+  article.heading = content.data.heading
+    ? content.data.heading
+    : content.displayName
   article.lead = content.data.lead
 
   return article
@@ -89,9 +91,10 @@ function processCommonFields(data, scale) {
       .fromNow()
   }
 
-  data.body && (data.body = portal.processHtml({
-    value: data.body
-  }))
+  data.body &&
+    (data.body = portal.processHtml({
+      value: data.body
+    }))
 
   return data
 }
@@ -184,6 +187,20 @@ function processContentBlocks(ctbs) {
         block.ctb.sidebarbox.contents = portal.processHtml({
           value: block.ctbSettings.sidebarbox.sidebarboxContents
         })
+      }
+
+      // SidebarImage
+      if (selected.indexOf('sidebarImage') > -1) {
+        block.ctb.sidebarImage = {}
+        if (block.ctbSettings.sidebarImage.image) {
+          var image = block.ctbSettings.sidebarImage.image
+          block.ctb.sidebarImage.image = imageLib.image.create(image)
+        }
+        if (block.ctbSettings.sidebarImage.caption) {
+          block.ctb.sidebarImage.caption = portal.processHtml({
+            value: block.ctbSettings.sidebarImage.caption
+          })
+        }
       }
 
       // Full Width
