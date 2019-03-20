@@ -10,19 +10,11 @@ export default function init(videoElements) {
       this.currentTime = this.duration / 2
     }
 
-    let parent = video.parentElement.parentElement
+    video.play()
 
-    parent.addEventListener('mouseenter', function() {
-      video.play()
-    })
-    parent.addEventListener('mouseleave', function() {
-      video.pause()
-    })
-
-    // if (!video.autoplay || !video.loop) return
     video.addEventListener('timeupdate', function() {
-      if (this.currentTime >= this.duration - 1) {
-        this.currentTime = 0.5
+      if (this.currentTime >= this.duration - 0.1) {
+        this.currentTime = 0
       }
     })
   })
