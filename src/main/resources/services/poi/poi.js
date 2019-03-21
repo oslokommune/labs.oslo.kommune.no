@@ -32,14 +32,16 @@ exports.get = function(req) {
 
   if (r && r.count) {
     total = r.total
+    var d
     r.hits.map(function(item) {
       if (item.data) {
-        searchResults.push({
-          heading: item.data.heading,
-          lead: item.data.lead,
-          image: getImage(item),
-          coordinates: item.data.coordinates
-        })
+        d = item.data
+        d.lead && (d.leadHtml = util.paragraphify(d.lead))
+        d.body && (d.body = portalLib.processHtml({
+          value: d.body
+        }))
+        d.image && (d.image = getImageFromCache(d.image))
+        searchResults.push(d)
       }
     })
   }
@@ -58,19 +60,8 @@ exports.get = function(req) {
   }
 }
 
-/**
- * Helper function to build and cache image urls, as these are quite heavy
- * @param {*} content The content object from the result
- */
-function getImage(content) {
-  if (content && content.data && content.data.image)
-    return getImageFromCache(content.data.image)
-  return false
-}
-
 function getImageFromCache(imageId) {
   return imageCache.get(imageId, function() {
     return imageLib.image.create(imageId, 'block(1600,900)', null, null, 80, false, true)
-    // key, scale, filter, format, quality, responsive, type
   })
 }
