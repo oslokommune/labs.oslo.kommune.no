@@ -14,12 +14,8 @@ exports.get = function(req) {
     contentTypes: [app.name + ':article'],
     query: "_path like '/content" + site._path + "/*'",
     filters: {
-      boolean: {
-        must: {
-          exists: {
-            field: "x.no-kommune-oslo-labs.categories.categories"
-          }
-        }
+      exists: {
+        field: "x.no-kommune-oslo-labs.categories.categories"
       }
     },
     aggregations: {
@@ -54,6 +50,11 @@ exports.get = function(req) {
         count: 10000,
         contentTypes: [app.name + ':category'],
         query: "_path like '/content" + site._path + "/*'",
+        filters: {
+          ids: {
+            values: categoryKeys
+          }
+        }
       }
       var r2 = contentLib.query(q2)
 
@@ -75,6 +76,9 @@ exports.get = function(req) {
             })
             category.count = categoryCount[key]
             category.image && (category.image = imageLib.image.create(category.image, 'block(16,9)'))
+            category.body && (category.body = portalLib.processHtml({
+              value: category.body
+            }))
             return category
           })
         }
