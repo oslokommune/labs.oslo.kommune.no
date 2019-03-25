@@ -198,7 +198,7 @@
   border-bottom: 1px solid $color-grayscale-30;
   font-weight: 500;
 
-  >li {
+  > li {
     flex: 1 0 50%;
   }
 
@@ -215,13 +215,13 @@
       font-size: 0.75rem;
     }
 
-    >span+span {
+    > span + span {
       &::before {
         content: ', ';
       }
     }
 
-    >span:last-child:not(:first-child)::before {
+    > span:last-child:not(:first-child)::before {
       content: '\00a0og ';
     }
   }
@@ -282,7 +282,7 @@
   }
 
   // Show list when checkbox is checked
-  &__toggle:checked~&__list {
+  &__toggle:checked ~ &__list {
     max-height: 25em;
   }
 }
@@ -292,5 +292,33 @@
 
   @media screen and (min-width: $tablet) {
     margin: 0;
+  }
+}
+
+.category-hero {
+  &__imgwrapper {
+    position: relative;
+    height: 10rem;
+  }
+
+  &__img {
+    object-fit: cover;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    filter: brightness(0.5);
+  }
+
+  &__heading {
+    padding: 1rem;
+    position: absolute;
+    top: 1rem;
+    text-align: center;
+    color: white;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-1em);
+    text-shadow: 0 3px 6px rgba(black, 0.7);
   }
 }
