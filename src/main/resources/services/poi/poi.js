@@ -25,12 +25,41 @@ exports.get = function(req) {
     start: 0,
     sort: "geoDistance('data.coordinates', '" + latlong + "') ASC",
     contentTypes: [app.name + ':poi'],
-    query: "_path like '/content" + site._path + "/*'"
+    query: "_path like '/content" + site._path + "/*'",
+    aggregations: {
+      distance: {
+        geoDistance: {
+          field: "data.coordinates",
+          unit: "m",
+          origin: {
+            lat: latlong.split(',')[0],
+            lon: latlong.split(',')[1]
+          },
+          ranges: [{
+              from: 0,
+              to: 1000
+            },
+            {
+              from: 1000,
+              to: 2000
+            },
+            {
+              from: 2000,
+              to: 3000
+            },
+            {
+              from: 3000
+            }
+          ]
+        }
+      }
+    }
   }
 
   var r = contentLib.query(queryParams)
 
   if (r && r.count) {
+    //log.info(JSON.stringify(r, null, 2))
     total = r.total
     var d
     r.hits.map(function(item) {
