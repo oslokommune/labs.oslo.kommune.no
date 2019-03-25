@@ -241,6 +241,7 @@
   position: absolute;
   border-left: 2px solid $color-grayscale-30;
   padding-left: 1em;
+  z-index: 1;
 
   &--hidden {
     display: none;
