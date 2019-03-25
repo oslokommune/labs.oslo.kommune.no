@@ -16,22 +16,6 @@
     margin-bottom: 1.5em;
   }
 
-  &__social {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 2em;
-    li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5em;
-
-      & + li {
-        margin-left: 1em;
-      }
-    }
-  }
-
   &__title {
     color: $color-orange;
   }

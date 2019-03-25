@@ -48,21 +48,6 @@ exports.get = function(req) {
   if (config.contactEmail) {
     model.contactEmail = config.contactEmail
   }
-  if (config.socialTitle) {
-    model.socialTitle = config.socialTitle
-  }
-  if (config.facebook) {
-    model.facebook = config.facebook
-  }
-  if (config.twitter) {
-    model.twitter = config.twitter
-  }
-  if (config.vimeo) {
-    model.vimeo = config.vimeo
-  }
-  if (config.instagram) {
-    model.instagram = config.instagram
-  }
 
   var view = resolve('./footer.html')
   var body = thymeleaf.render(view, model)
