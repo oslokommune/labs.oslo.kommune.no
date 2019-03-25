@@ -39,26 +39,6 @@
       <label i18n="parts.footer.contactEmail">Contact Email</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
-    <input name="socialTitle" type="TextLine">
-      <label i18n="parts.footer.socialTitle">Social header</label>
-      <occurrences minimum="1" maximum="1"/>
-    </input>
-    <input name="facebook" type="TextLine">
-      <label i18n="parts.footer.facebook">Facebook URL</label>
-      <occurrences minimum="0" maximum="1"/>
-    </input>
-    <input name="twitter" type="TextLine">
-      <label i18n="parts.footer.twitter">Twitter URL</label>
-      <occurrences minimum="0" maximum="1"/>
-    </input>
-    <input name="vimeo" type="TextLine">
-      <label i18n="parts.footer.vimeo">Vimeo URL</label>
-      <occurrences minimum="0" maximum="1"/>
-    </input>
-    <input name="instagram" type="TextLine">
-      <label i18n="parts.footer.instagram">Instagram URL</label>
-      <occurrences minimum="0" maximum="1"/>
-    </input>
     <input name="copyright" type="TextLine">
       <label i18n="parts.footer.copyright">Copyright text</label>
       <occurrences minimum="0" maximum="1"/>
