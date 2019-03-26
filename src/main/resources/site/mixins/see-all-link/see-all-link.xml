@@ -1,0 +1,18 @@
+<mixin>
+  <display-name>See all link</display-name>
+  <items>
+    <input name="seeAllLink" type="ContentSelector">
+      <label i18n="txt.seeAllLink">See all link</label>
+      <config>
+        <relationshipType>system:reference</relationshipType>
+        <allowContentType>article</allowContentType>
+        <allowContentType>landing-page</allowContentType>
+        <allowContentType>category</allowContentType>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+    <input name="seeAllLinkText" type="TextLine">
+      <label i18n="txt.seeAllLinkText">Text for see all link</label>
+    </input>
+  </items>
+</mixin>

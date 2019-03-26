@@ -32,5 +32,6 @@
       </config>
       <default>normal</default>
     </input>
+    <inline mixin="see-all-link" />
   </config>
 </part>

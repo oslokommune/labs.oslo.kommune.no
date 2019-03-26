@@ -1,7 +1,6 @@
 var portal = require('/lib/xp/portal')
+var contentLib = require('/lib/xp/content')
 var thymeleaf = require('/lib/xp/thymeleaf')
-var imageLib = require('image')
-var util = require('util')
 var cUtil = require('content-util')
 
 exports.get = function(req) {
@@ -11,6 +10,20 @@ exports.get = function(req) {
 
   model.heading = config.heading || null
   model.categories = cUtil.processCategoryTeaser(config.categories, 'square(1)')
+
+  if (config.seeAllLink) {
+    model.seeAllLink = {}
+    model.seeAllLink.href = portal.pageUrl({
+      id: config.seeAllLink
+    })
+    if (config.seeAllLinkText) {
+      model.seeAllLink.text = config.seeAllLinkText
+    } else {
+      model.seeAllLink.text = contentLib.get({
+        key: config.seeAllLink
+      }).displayName
+    }
+  }
 
   var view = resolve('./category-teaser.html')
   var body = thymeleaf.render(view, model)

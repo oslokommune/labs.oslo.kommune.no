@@ -55,6 +55,10 @@ ol.categories li:last-child:after {
     mix-blend-mode: multiply;
     transition: all 0.2s;
   }
+
+  & .see-all {
+    padding-top: 0.75em;
+  }
 }
 
 .category-list {

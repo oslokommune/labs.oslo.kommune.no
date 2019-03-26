@@ -1,4 +1,5 @@
 var portal = require('/lib/xp/portal')
+var contentLib = require('/lib/xp/content')
 var thymeleaf = require('/lib/xp/thymeleaf')
 var cUtil = require('content-util')
 var cacheLib = require('/lib/xp/cache')
@@ -83,6 +84,20 @@ exports.get = function(req) {
     }
   }
 
+  if (config.seeAllLink && !model.paging) {
+    model.seeAllLink = {}
+    model.seeAllLink.href = portal.pageUrl({
+      id: config.seeAllLink
+    })
+    if (config.seeAllLinkText) {
+      model.seeAllLink.text = config.seeAllLinkText
+    } else {
+      model.seeAllLink.text = contentLib.get({
+        key: config.seeAllLink
+      }).displayName
+    }
+  }
+
   model.live = req.mode == 'live'
   model.hasContent =
     (model.featured && model.featured.length) ||
@@ -108,12 +123,12 @@ function prepareData(
   return hits.map(function(resultItem) {
     return articleCache.get(
       resultItem._id +
-        resultItem._path +
-        resultItem.modifiedTime +
-        scaleLandscape +
-        scalePortrait +
-        mode +
-        presentationMode,
+      resultItem._path +
+      resultItem.modifiedTime +
+      scaleLandscape +
+      scalePortrait +
+      mode +
+      presentationMode,
       function() {
         if (resultItem.data) {
           resultItem.data = cUtil.prepareFeaturedArticle(
