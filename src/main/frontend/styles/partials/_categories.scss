@@ -58,10 +58,26 @@ ol.categories li:last-child:after {
 }
 
 .category-list {
-  margin-bottom: 2em !important;
+  margin-bottom: 3em !important;
+
+  @media screen and (min-width: $tablet) {
+    margin-top: 1em !important;
+  }
+
+  @media screen and (min-width: $fullhd) {
+    margin-top: 2em !important;
+  }
 
   &__item {
     display: flex;
+
+    @media screen and (min-width: $tablet) {
+      padding-right: 1em;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-right: 2em;
+    }
   }
 
   &__imagewrapper {
