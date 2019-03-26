@@ -1,6 +1,8 @@
 $body-size: 16px;
 $body-line-height: 1.65;
-$family-sans-serif: 'Oslo', Helvetica, Arial;
+$family-sans-serif: 'Oslo',
+Helvetica,
+Arial;
 $body-family: $family-sans-serif;
 // $body-background-color: $color-grayscale-5;
 
@@ -19,6 +21,7 @@ img {
 $primary: $color-purple;
 
 .has-text-white .content {
+
   h1,
   h2,
   h3,
@@ -44,6 +47,7 @@ $primary: $color-purple;
   font-size: 1.8em;
   line-height: 1.1em;
   letter-spacing: -0.02em;
+  hyphens: auto;
 }
 
 .content h2,
@@ -52,6 +56,7 @@ $primary: $color-purple;
   font-size: 1.65em;
   line-height: 1.3em;
   letter-spacing: -0.01em;
+  hyphens: auto;
 }
 
 .content h3,
@@ -60,6 +65,7 @@ $primary: $color-purple;
   font-size: 1.5em;
   line-height: 1.4em;
   letter-spacing: -0.005em;
+  hyphens: auto;
 }
 
 .content h4,
@@ -67,6 +73,7 @@ $primary: $color-purple;
   font-weight: 500;
   font-size: 1.3em;
   line-height: 1.4em;
+  hyphens: auto;
 }
 
 .footer {
@@ -111,7 +118,7 @@ $primary: $color-purple;
     padding: 2rem 1.5rem;
   }
 
-  & + section {
+  &+section {
     padding-top: 1.5rem;
   }
 }

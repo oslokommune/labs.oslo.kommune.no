@@ -12,7 +12,7 @@ var imageCache = cacheLib.newCache({
 })
 
 var nameCache = cacheLib.newCache({
-  size: 2 /* /no and /en namespaces*/,
+  size: 2 /* /no and /en namespaces*/ ,
   expire: 60 * 60 * 24
 })
 
@@ -40,12 +40,10 @@ exports.get = function(req) {
     filters: {
       boolean: {
         mustNot: {
-          hasValue: [
-            {
-              field: 'data.hideFromList',
-              values: ['true']
-            }
-          ]
+          hasValue: [{
+            field: 'data.hideFromList',
+            values: ['true']
+          }]
         }
       }
     }
@@ -157,10 +155,14 @@ function getAuthors(item) {
   var authors = []
   if (item.data && item.data.authors) {
     authors = util.forceArray(item.data.authors).map(function(authorId) {
-      var author = contentLib.get({ key: authorId })
+      var author = contentLib.get({
+        key: authorId
+      })
       return {
         name: author.data.name,
-        url: portalLib.pageUrl({ id: authorId })
+        url: portalLib.pageUrl({
+          id: authorId
+        })
       }
     })
   }
@@ -187,6 +189,7 @@ function getImage(content) {
     return getImageFromCache(content.data.image)
   return false
 }
+
 function getImageFromCache(imageId) {
   return imageCache.get(imageId, function() {
     return imageLib.image.create(imageId, 'square')
@@ -208,6 +211,9 @@ function getContentTypes(pathKey) {
     })
     contentTypes[app.name + ':person'] = i18nLib.localize({
       key: 'search.person'
+    })
+    contentTypes[app.name + ':category'] = i18nLib.localize({
+      key: 'search.category'
     })
     return contentTypes
   })
