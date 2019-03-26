@@ -1,4 +1,9 @@
 <part>
   <display-name i18n="parts.contentImageHeadingLeadBody">Image, heading, lead, body from content</display-name>
-  <config/>
+  <config>
+    <input name="hideLead" type="CheckBox">
+      <label>Hide lead</label>
+      <default>unchecked</default>
+    </input>
+  </config>
 </part>
