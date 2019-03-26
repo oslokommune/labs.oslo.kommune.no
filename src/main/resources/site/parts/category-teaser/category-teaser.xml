@@ -58,7 +58,7 @@
           </config>
         </input>
       </items>
-      <occurrences minimum="0" maximum="12"/>
+      <occurrences minimum="0" maximum="4"/>
     </item-set>
   </config>
 </part>
