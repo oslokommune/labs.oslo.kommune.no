@@ -258,46 +258,8 @@ body {
     }
 
     @media screen and (min-width: $fullhd) {
-      transform: scale(1.55) translateY(-2em);
+      transform: scale(1.4) translateY(-2em);
     }
-  }
-}
-
-.category-list {
-  $p: &; // temporarily store the parent selector
-
-  &__item {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s;
-
-    &:hover {
-      background-color: white !important;
-
-      #{$p}__text {
-        // color: red;
-      }
-
-      #{$p}__image {
-        // mix-blend-mode: normal;
-      }
-    }
-  }
-
-  &__text {
-    position: absolute;
-    color: white;
-    font-weight: 700;
-    font-size: 1.15em;
-    text-shadow: 0 2px 3px black;
-  }
-
-  &__image {
-    margin: 0;
-    mix-blend-mode: multiply;
-    transition: all 0.2s;
   }
 }
 
