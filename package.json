@@ -23,13 +23,13 @@
   },
   "homepage": "https://github.com/oslokommune/labs.oslo.kommune.no#readme",
   "devDependencies": {
-    "@babel/core": "^7.3.4",
+    "@babel/core": "^7.4.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-env": "^7.4.2",
     "@kazupon/vue-i18n-loader": "^0.3.0",
     "babel-loader": "^8.0.5",
     "bulma": "^0.7.4",
-    "copy-webpack-plugin": "^5.0.0",
+    "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
     "mini-css-extract-plugin": "^0.5.0",
@@ -38,13 +38,13 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.6.0",
     "sass-loader": "^7.1.0",
-    "vue": "^2.6.8",
+    "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.8",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.3.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
