@@ -10,9 +10,9 @@ exports.get = function(req) {
   var model = {}
 
   model.heading = config.heading || null
-  model.categories = cUtil.processCategoryLinkList(config.categories, 'square(1)')
+  model.categories = cUtil.processCategoryTeaser(config.categories, 'square(1)')
 
-  var view = resolve('./category-link-list.html')
+  var view = resolve('./category-teaser.html')
   var body = thymeleaf.render(view, model)
   return {
     body: body,

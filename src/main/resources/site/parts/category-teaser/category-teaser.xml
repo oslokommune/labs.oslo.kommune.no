@@ -1,5 +1,5 @@
 <part>
-  <display-name i18n="parts.categoryList">Category list</display-name>
+  <display-name i18n="parts.categoryTeaser">Category teaser</display-name>
   <config>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
@@ -7,9 +7,9 @@
     </input>
 
     <item-set name="categories">
-      <label i18n="parts.categoryList.category">Category</label>
+      <label i18n="parts.categoryTeaser.category">Category</label>
       <items>
-        <input i18n="parts.categoryList.label" name="label" type="TextLine">
+        <input i18n="parts.categoryTeaser.label" name="label" type="TextLine">
           <label>Label</label>
           <occurrences minimum="1" maximum="1"/>
         </input>
@@ -34,7 +34,7 @@
           </config>
         </input>
         <input name="color" type="ComboBox">
-          <label i18n="parts.categoryList.color">Tile color</label>
+          <label i18n="parts.categoryTeaser.color">Tile color</label>
           <config>
             <option value="blue" i18n="colors.blue">Blue</option>
             <option value="blue-light" i18n="colors.blue-light">Blue light</option>

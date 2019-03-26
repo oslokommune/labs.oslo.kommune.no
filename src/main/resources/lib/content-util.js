@@ -364,8 +364,8 @@ var processBlockLinkList = function(b) {
 }
 exports.processBlockLinkList = processBlockLinkList
 
-var processCategoryLinkList = function(categories, scale) {
-  var c = []
+var processCategoryTeaser = function(categories, scale) {
+  var teaserList = []
   util.forceArray(categories).forEach(function(item) {
     item.image && (item.image = imageLib.image.create(item.image, scale))
     item.color = util.getColorValueFromName(item.color)
@@ -385,11 +385,11 @@ var processCategoryLinkList = function(categories, scale) {
       }
     }
     item.link = link
-    c.push(item)
+    teaserList.push(item)
   })
-  return c
+  return teaserList
 }
-exports.processCategoryLinkList = processCategoryLinkList
+exports.processCategoryTeaser = processCategoryTeaser
 
 var processBlockImages = function(b) {
   b.images = util.forceArray(b.images)
