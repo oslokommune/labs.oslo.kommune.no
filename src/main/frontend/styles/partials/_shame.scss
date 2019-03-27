@@ -1,0 +1,25 @@
+// Style overrides for IE
+body.is-ie {
+  .category-hero__img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    position: relative;
+  }
+
+  .category-hero__imgwrapper {
+    height: auto;
+  }
+
+  .hero {
+    // Reset flex
+    display: block;
+
+    // Hack to avoid issue for 'object-fit: cover'
+    &__img {
+      width: 100%;
+      height: auto;
+      max-height: none;
+    }
+  }
+}

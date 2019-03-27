@@ -6,7 +6,7 @@
     >
       <div
         class="category-hero__imgwrapper container-fluid"
-        data-th-if="${image}"
+        data-th-if="*{image}"
       >
         <img
           data-th-if="*{image}"
@@ -18,7 +18,6 @@
         />
         <h1
           class="category-hero__heading title is-1"
-          data-th-if="${heading}"
           data-th-text="${heading}"
         ></h1>
       </div>
@@ -27,6 +26,11 @@
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-8-tablet is-7-widescreen is-6-fullhd">
+              <h1
+                class="title is-1"
+                data-th-text="${heading}"
+                data-th-unless="*{image}"
+              ></h1>
               <p class="lead" data-th-text="${lead}">Lead</p>
             </div>
           </div>

@@ -6,21 +6,6 @@
   }
 }
 
-// Style overrides for IE
-body.is-ie {
-  .hero {
-    // Reset flex
-    display: block;
-
-    // Hack to avoid issue for 'object-fit: cover'
-    &__img {
-      width: 100%;
-      height: auto;
-      max-height: none;
-    }
-  }
-}
-
 .hero {
   &__text {
     @media screen and (min-width: $desktop) {

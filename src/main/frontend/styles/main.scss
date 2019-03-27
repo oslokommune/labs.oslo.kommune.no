@@ -24,6 +24,8 @@
 @import 'partials/bio';
 @import 'partials/categories';
 
+@import 'partials/shame';
+
 ::placeholder {
   color: $color-grayscale-50;
 }
@@ -148,7 +150,7 @@ body {
     background: rgba(black, 0.1);
   }
 
-  footer>cite {
+  footer > cite {
     font-size: 0.85rem;
     font-style: normal;
     display: flex;
@@ -333,7 +335,7 @@ body {
 }
 
 // Remove padding between white content blocks
-.section:not(.has-background)+.section:not(.has-background) {
+.section:not(.has-background) + .section:not(.has-background) {
   padding-top: 0;
 }
 
@@ -341,6 +343,6 @@ body {
   padding-top: 1em;
 
   &-button:hover {
-    color: currentColor
+    color: currentColor;
   }
 }
