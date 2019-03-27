@@ -6,11 +6,19 @@
   }
 }
 
-// Hack to avoid issue for 'object-fit: cover' on ie11
-body.is-ie .hero__img {
-  width: 100%;
-  height: auto;
-  max-height: none;
+// Style overrides for IE
+body.is-ie {
+  .hero {
+    // Reset flex
+    display: block;
+
+    // Hack to avoid issue for 'object-fit: cover'
+    &__img {
+      width: 100%;
+      height: auto;
+      max-height: none;
+    }
+  }
 }
 
 .hero {
