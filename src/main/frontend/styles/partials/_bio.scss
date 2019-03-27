@@ -9,7 +9,7 @@ $bioImageSizeDesktop: 12em;
   }
 
   &__text {
-    flex: 1;
+    flex: 100%;
   }
 
   &__textcontainer {
@@ -48,6 +48,7 @@ $bioImageSizeDesktop: 12em;
     display: flex;
     flex-direction: column;
     min-width: 0;
+    width: 100%;
 
     @media screen and (min-width: $fullhd) {
       flex-direction: row;
