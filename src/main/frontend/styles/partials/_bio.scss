@@ -101,6 +101,7 @@ $bioImageSizeDesktop: 12em;
 
   &__name {
     margin-bottom: 0.15rem !important;
+    color: $color-purple;
   }
   &__meta {
     margin-bottom: 0.5rem !important;
@@ -111,6 +112,7 @@ $bioImageSizeDesktop: 12em;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.03em;
+    color: $color-purple;
 
     > span + span {
       display: inline-block;
