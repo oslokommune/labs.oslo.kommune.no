@@ -9,7 +9,9 @@
     "analyze": "webpack --mode production --env=analyze --progress --colors"
   },
   "browserslist": [
-    "last 2 versions"
+    "last 2 versions",
+    "> 1%",
+    "not dead"
   ],
   "repository": {
     "type": "git",
