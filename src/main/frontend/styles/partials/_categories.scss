@@ -48,6 +48,9 @@ ol.categories li:last-child:after {
     font-weight: 700;
     font-size: 1.15em;
     text-shadow: 0 2px 3px black;
+    text-align: center;
+    width: 100%;
+    left: 0;
   }
 
   &__image {
