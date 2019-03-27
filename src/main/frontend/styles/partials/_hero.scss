@@ -6,6 +6,13 @@
   }
 }
 
+// Hack to avoid issue for 'object-fit: cover' on ie11
+body.is-ie .hero__img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+}
+
 .hero {
   &__text {
     @media screen and (min-width: $desktop) {
@@ -38,7 +45,6 @@
   &__img {
     max-height: 44vh;
     object-fit: cover;
-    width: 100%;
   }
 
   &__videowrapper {
