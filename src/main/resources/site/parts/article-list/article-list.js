@@ -58,23 +58,11 @@ exports.get = function(req) {
   if (result) {
     if (result.selectedHits && result.selectedHits.length) {
       // model.featuredHits = prepareData(result.selectedHits, req.mode);
-      model.featured = prepareData(
-        result.selectedHits,
-        scaleLandscapeFeatured,
-        scalePortraitFeatured,
-        req.mode,
-        config.presentationMode
-      )
+      model.featured = prepareData(result.selectedHits, scaleLandscapeFeatured, scalePortraitFeatured, req.mode, config.presentationMode)
     }
     if (result.queryHits && result.queryHits.length) {
       // model.hits = prepareData(result.queryHits, req.mode);
-      model.articles = prepareData(
-        result.queryHits,
-        scaleLandscape,
-        scalePortrait,
-        req.mode,
-        config.presentationMode
-      )
+      model.articles = prepareData(result.queryHits, scaleLandscape, scalePortrait, req.mode, config.presentationMode)
     }
     if (result.hasOwnProperty('firstPage')) {
       model.firstPage = result.firstPage
@@ -103,8 +91,7 @@ exports.get = function(req) {
     (model.featured && model.featured.length) ||
     (model.articles && model.articles.length)
   var endTime = +new Date()
-  model.controllerPageTime =
-    'Controller time: ' + String(endTime - startTime) + 'ms'
+  model.controllerPageTime = 'Controller time: ' + String(endTime - startTime) + 'ms'
   var view = resolve('./article-list.html')
   var body = thymeleaf.render(view, model)
   return {
@@ -113,36 +100,17 @@ exports.get = function(req) {
   }
 }
 
-function prepareData(
-  hits,
-  scaleLandscape,
-  scalePortrait,
-  mode,
-  presentationMode
-) {
+function prepareData(hits, scaleLandscape, scalePortrait, mode, presentationMode) {
   return hits.map(function(resultItem) {
-    return articleCache.get(
-      resultItem._id +
-      resultItem._path +
-      resultItem.modifiedTime +
-      scaleLandscape +
-      scalePortrait +
-      mode +
-      presentationMode,
-      function() {
-        if (resultItem.data) {
-          resultItem.data = cUtil.prepareFeaturedArticle(
-            resultItem,
-            scaleLandscape,
-            scalePortrait
-          )
-          var categories = related.getCategories(resultItem)
-          if (categories.length) {
-            resultItem.data.categories = categories
-          }
+    return articleCache.get(resultItem._id + resultItem._path + resultItem.modifiedTime + scaleLandscape + scalePortrait + mode + presentationMode, function() {
+      if (resultItem.data) {
+        resultItem.data = cUtil.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait)
+        var categories = related.getCategories(resultItem)
+        if (categories.length) {
+          resultItem.data.categories = categories
         }
-        return resultItem.data
       }
-    )
+      return resultItem.data
+    })
   })
 }

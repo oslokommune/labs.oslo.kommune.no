@@ -308,8 +308,8 @@ exports.getCategories = function(content) {
           category.data.path = portal.pageUrl({
             path: category._path
           })
+          return category.data
         }
-        return category.data
       })
   }
   return categories
