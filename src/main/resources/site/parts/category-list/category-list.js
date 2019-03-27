@@ -8,90 +8,71 @@ exports.get = function(req) {
 
   var model = {}
 
-  // First we fetch all content (articles) and aggregate on categories
   var q1 = {
     count: 10000,
-    contentTypes: [app.name + ':article'],
-    query: "_path like '/content" + site._path + "/*'",
-    filters: {
-      exists: {
-        field: 'x.no-kommune-oslo-labs.categories.categories'
-      }
-    },
-    aggregations: {
-      categories: {
-        terms: {
-          field: 'x.no-kommune-oslo-labs.categories.categories',
-          order: '_count desc',
-          size: 1000
-        }
-      }
-    }
+    contentTypes: [app.name + ':category'],
+    query: "_path like '/content" + site._path + "/*'"
   }
-
   var r1 = contentLib.query(q1)
 
-  var categoryCount = {}
-
-  if (
-    r1 &&
-    r1.count &&
-    r1.aggregations &&
-    r1.aggregations.categories &&
-    r1.aggregations.categories.buckets
-  ) {
-    //log.info(JSON.stringify(r, null, 2))
-    r1.aggregations.categories.buckets.forEach(function(item) {
-      if (item.key && item.docCount) {
-        categoryCount[item.key] = item.docCount
-      }
+  var categoryList = {}
+  if (r1 && r1.count && r1.hits) {
+    r1.hits.forEach(function(item) {
+      categoryList[item._id] = item.data
     })
 
-    var categoryKeys = Object.keys(categoryCount)
-    if (categoryKeys.length) {
-      // OK, we have category bucket count. Let's fetch the categories themselves.
+    var categoryKeys = Object.keys(categoryList)
 
-      var q2 = {
-        count: 10000,
-        contentTypes: [app.name + ':category'],
-        query: "_path like '/content" + site._path + "/*'",
-        filters: {
-          ids: {
-            values: categoryKeys
+    // First we fetch all content (articles) and aggregate on categories
+    var q2 = {
+      count: 10000,
+      contentTypes: [app.name + ':article'],
+      query: "_path like '/content" + site._path + "/*'",
+      filters: {
+        hasValue: {
+          field: 'x.no-kommune-oslo-labs.categories.categories',
+          values: categoryKeys
+        }
+      },
+      aggregations: {
+        categories: {
+          terms: {
+            field: 'x.no-kommune-oslo-labs.categories.categories',
+            order: '_count desc',
+            size: 1000
           }
         }
       }
-      var r2 = contentLib.query(q2)
+    }
+    var r2 = contentLib.query(q2)
 
-      var categoryList = {}
-      if (r2 && r2.count && r2.hits) {
-        r2.hits.forEach(function(item) {
-          categoryList[item._id] = item.data
-        })
-
-        if (Object.keys(categoryList).length) {
-          // We now also have the categories. Lets combine and prepare.
-
-          var category = {}
-          model.categories = categoryKeys.map(function(key) {
-            category = categoryList[key]
-            category.url = portalLib.pageUrl({
-              id: key
-            })
-            category.count = categoryCount[key]
-            category.image &&
-              (category.image = imageLib.image.create(
-                category.image,
-                'block(1,1)'
-              ))
-            category.body &&
-              (category.body = portalLib.processHtml({
-                value: category.body
-              }))
-            return category
-          })
+    var categoryCount = {}
+    if (r2 && r2.count && r2.aggregations && r2.aggregations.categories && r2.aggregations.categories.buckets) {
+      r2.aggregations.categories.buckets.forEach(function(item) {
+        if (item.key && item.docCount) {
+          categoryCount[item.key] = item.docCount
         }
-      }
+      })
+
+      // We now have both categories and counts. Lets combine and prepare.
+      categoryKeys = Object.keys(categoryCount) // This one is sorted by count
+      var category
+      model.categories = []
+
+      categoryKeys.forEach(function(key) {
+        if (categoryCount[key] && categoryList[key]) {
+          category = categoryList[key]
+          category.url = portalLib.pageUrl({
+            id: key
+          })
+          category.count = categoryCount[key]
+          category.image && (category.image = imageLib.image.create(category.image, 'block(1,1)'))
+          category.body && (category.body = portalLib.processHtml({
+            value: category.body
+          }))
+          model.categories.push(category)
+        }
+      })
     }
   }
 
