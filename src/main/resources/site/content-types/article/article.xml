@@ -1,5 +1,6 @@
 <content-type>
   <display-name i18n="ct.article">Article</display-name>
+  <content-display-name-script>$('heading')</content-display-name-script>
   <super-type>base:structured</super-type>
   <form>
 
@@ -49,7 +50,7 @@
                   <occurrences minimum="0" maximum="1"/>
                   <config>
                     <exclude>*</exclude>
-                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image</include>
+                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image Macro</include>
                   </config>
                 </input>
               </items>
@@ -183,7 +184,7 @@
                   <occurrences minimum="0" maximum="1"/>
                   <config>
                     <exclude>*</exclude>
-                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image</include>
+                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image Macro</include>
                   </config>
                 </input>
               </items>
