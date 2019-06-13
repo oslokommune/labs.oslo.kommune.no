@@ -1,6 +1,6 @@
 var portal = require('/lib/xp/portal')
-var thymeleaf = require('/lib/xp/thymeleaf')
-var imageLib = require('image')
+var thymeleaf = require('/lib/thymeleaf')
+var imageLib = require('/lib/image.js')
 var contentLib = require('/lib/xp/content')
 
 exports.get = function(req) {
@@ -10,27 +10,29 @@ exports.get = function(req) {
   model.image = model.image && imageLib.image.create(model.image)
 
   if (model.primaryLink) {
-    var page = contentLib.get({ key: model.primaryLink })
+    var page = contentLib.get({
+      key: model.primaryLink
+    })
 
     model.primary = {
       url: portal.pageUrl({
         id: model.primaryLink
       }),
-      label:
-        model.primaryLinkLabel ||
+      label: model.primaryLinkLabel ||
         (page && page.data && page.data.heading) ||
         page.displayName
     }
   }
 
   if (model.secondaryLink) {
-    var page = contentLib.get({ key: model.secondaryLink })
+    var page = contentLib.get({
+      key: model.secondaryLink
+    })
     model.secondary = {
       url: portal.pageUrl({
         id: model.secondaryLink
       }),
-      label:
-        model.secondaryLinkLabel ||
+      label: model.secondaryLinkLabel ||
         (page && page.data && page.data.heading) ||
         page.displayName
     }

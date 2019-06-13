@@ -1,6 +1,6 @@
 <mixin>
   <display-name>See all link</display-name>
-  <items>
+  <form>
     <input name="seeAllLink" type="ContentSelector">
       <label i18n="txt.seeAllLink">See all link</label>
       <config>
@@ -14,5 +14,5 @@
     <input name="seeAllLinkText" type="TextLine">
       <label i18n="txt.seeAllLinkText">Text for see all link</label>
     </input>
-  </items>
+  </form>
 </mixin>

@@ -1,6 +1,6 @@
 <mixin>
   <display-name>Link list mixin</display-name>
-  <items>
+  <form>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
     </input>
@@ -29,5 +29,5 @@
         </input>
       </items>
     </item-set>
-  </items>
+  </form>
 </mixin>

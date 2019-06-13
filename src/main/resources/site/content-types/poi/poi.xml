@@ -1,6 +1,6 @@
 <content-type>
   <display-name i18n="ct.poi">Point of interest</display-name>
-  <content-display-name-script>$('heading')</content-display-name-script>
+  <display-name-expression>${heading}</display-name-expression>
   <super-type>base:structured</super-type>
   <form>
     <input name="heading" type="TextLine">

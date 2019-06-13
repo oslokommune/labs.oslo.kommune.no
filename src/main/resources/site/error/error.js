@@ -1,4 +1,4 @@
-var thymeleaf = require('/lib/xp/thymeleaf')
+var thymeleaf = require('/lib/thymeleaf')
 
 exports.handle404 = function(err) {
   var msg = 'LOAD"' + decodeURI(err.request.url) + '",8,1'

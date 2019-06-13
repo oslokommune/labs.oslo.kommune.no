@@ -9,7 +9,7 @@ var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var imageLib = require('image')
 var districts = require('labs-oslo-districts')
-var moment = require('/assets/moment/2.22.2/moment.js')
+var moment = require('/assets/moment/2.24.0/moment.js')
 
 exports.prepareArticleContents = function(data, scale) {
   data = processCommonFields(data, scale)
@@ -38,20 +38,20 @@ var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
   if (!content.data) return article
 
   if (singleImage) {
-    article.image = content.data.image
-      ? imageLib.image.create(content.data.image, scaleLandscape)
-      : imageLib.image.placeholder(scaleLandscape)
+    article.image = content.data.image ?
+      imageLib.image.create(content.data.image, scaleLandscape) :
+      imageLib.image.placeholder(scaleLandscape)
   } else {
-    article.image = content.data.image
-      ? imageLib.image.create(content.data.image, scaleLandscape)
-      : imageLib.image.placeholder(scaleLandscape)
-    article.image.portrait = content.data.image
-      ? imageLib.image.create(content.data.image, scalePortrait)
-      : imageLib.image.placeholder(scalePortrait)
+    article.image = content.data.image ?
+      imageLib.image.create(content.data.image, scaleLandscape) :
+      imageLib.image.placeholder(scaleLandscape)
+    article.image.portrait = content.data.image ?
+      imageLib.image.create(content.data.image, scalePortrait) :
+      imageLib.image.placeholder(scalePortrait)
   }
-  article.heading = content.data.heading
-    ? content.data.heading
-    : content.displayName
+  article.heading = content.data.heading ?
+    content.data.heading :
+    content.displayName
   article.lead = content.data.lead
 
   return article

@@ -1,6 +1,6 @@
 <mixin>
   <display-name>Hero mixin</display-name>
-  <items>
+  <form>
 
     <!-- Headings -->
     <input name="heading" type="TextLine">
@@ -37,5 +37,5 @@
     <input name="stickyVideo" type="Checkbox">
       <label i18n="txt.stickyVideo">Sticky hero video</label>
     </input>
-  </items>
+  </form>
 </mixin>

@@ -60,6 +60,6 @@
       </items>
       <occurrences minimum="0" maximum="4"/>
     </item-set>
-    <inline mixin="see-all-link" />
+    <mixin name="see-all-link" />
   </config>
 </part>

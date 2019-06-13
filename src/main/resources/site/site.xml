@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-  <config>
+  <form>
     <field-set name="siteSettings">
       <label>Site settings</label>
       <items>
@@ -22,7 +22,7 @@
         </input>
       </items>
     </field-set>
-  </config>
-  <x-data mixin="categories" />
-  <x-data mixin="menu-item" />
+  </form>
+  <x-data name="categories" />
+  <x-data name="menu-item" />
 </site>

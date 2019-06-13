@@ -2,6 +2,6 @@
   <display-name i18n="ct.category">Category</display-name>
   <super-type>base:structured</super-type>
   <form>
-    <inline mixin="image-heading-lead-body" />
+    <mixin name="image-heading-lead-body" />
   </form>
 </content-type>

@@ -1,6 +1,6 @@
 var portal = require('/lib/xp/portal')
-var thymeleaf = require('/lib/xp/thymeleaf')
-var util = require('util')
+var thymeleaf = require('/lib/thymeleaf')
+var util = require('/lib/util.js')
 
 exports.get = function(req) {
   var component = portal.getComponent()
@@ -10,7 +10,9 @@ exports.get = function(req) {
       model.lead = util.paragraphify(model.lead)
     }
     if (model.body) {
-      model.body = portal.processHtml({ value: model.body })
+      model.body = portal.processHtml({
+        value: model.body
+      })
     }
   }
 

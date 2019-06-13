@@ -1,6 +1,6 @@
 <mixin>
   <display-name>Basic fields mixin</display-name>
-  <items>
+  <form>
     <input name="image" type="ImageSelector">
       <label i18n="txt.image">Image</label>
       <config>
@@ -18,5 +18,5 @@
     <input name="body" type="HtmlArea">
       <label i18n="txt.body">Body text</label>
     </input>
-  </items>
+  </form>
 </mixin>

@@ -14,7 +14,7 @@
         <allowContentType>article</allowContentType>
       </config>
     </input>
-    <inline mixin="categories" />
+    <mixin name="categories" />
     <input name="onlyChildren" type="CheckBox">
       <label i18n="parts.articleList.onlyChildren">Include only children of current page</label>
       <default>unchecked</default>
@@ -32,6 +32,6 @@
       </config>
       <default>normal</default>
     </input>
-    <inline mixin="see-all-link" />
+    <mixin name="see-all-link" />
   </config>
 </part>

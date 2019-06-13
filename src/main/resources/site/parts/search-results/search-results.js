@@ -1,11 +1,14 @@
 var portal = require('/lib/xp/portal')
-var thymeleaf = require('/lib/xp/thymeleaf')
-var imageLib = require('image')
+var thymeleaf = require('/lib/thymeleaf')
+var imageLib = require('/lib/image.js')
 
 exports.get = function(req) {
   var component = portal.getComponent()
   var model = {}
-  model.searchURL = portal.serviceUrl({ service: 'search', type: 'absolute' })
+  model.searchURL = portal.serviceUrl({
+    service: 'search',
+    type: 'absolute'
+  })
 
   if (component.config && component.config.image) {
     model.image = imageLib.image.create(component.config.image, 'block(6,1)')

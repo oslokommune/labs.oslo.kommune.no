@@ -1,14 +1,14 @@
-<mixin>
+<x-data>
   <display-name>Categories</display-name>
-  <items>
+  <form>
     <input name="categories" type="ContentSelector">
       <label i18n="txt.categories">Categories</label>
       <occurrences minimum="0" maximum="0"/>
-      <config>
+      <form>
         <relationshipType>system:reference</relationshipType>
         <allowContentType>category</allowContentType>
         <allowPath>${site}/*</allowPath>
-      </config>
+      </form>
     </input>
-  </items>
-</mixin>
+  </form>
+</x-data>

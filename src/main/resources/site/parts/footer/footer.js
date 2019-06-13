@@ -1,7 +1,7 @@
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
-var thymeleaf = require('/lib/xp/thymeleaf')
-var util = require('util')
+var thymeleaf = require('/lib/thymeleaf')
+var util = require('/lib/util.js')
 
 exports.get = function(req) {
   var component = portal.getComponent()
@@ -26,13 +26,20 @@ exports.get = function(req) {
   if (config.menuElement) {
     var ids = util.forceArray(config.menuElement)
     var items = ids.map(function(id) {
-      var resultItem = contentLib.get({ key: id })
-      var url = portal.pageUrl({ path: resultItem._path })
+      var resultItem = contentLib.get({
+        key: id
+      })
+      var url = portal.pageUrl({
+        path: resultItem._path
+      })
       var name =
-        resultItem.data && resultItem.data.header
-          ? resultItem.data.header
-          : resultItem.displayName
-      return { name: name, url: url }
+        resultItem.data && resultItem.data.header ?
+        resultItem.data.header :
+        resultItem.displayName
+      return {
+        name: name,
+        url: url
+      }
     })
     model.menuElements = items
   }

@@ -1,11 +1,11 @@
 <content-type>
   <display-name i18n="ct.article">Article</display-name>
-  <content-display-name-script>$('heading')</content-display-name-script>
+  <display-name-expression>${heading}</display-name-expression>
   <super-type>base:structured</super-type>
   <form>
 
     <!-- Hero controls -->
-    <inline mixin="hero"/>
+    <mixin name="hero"/>
 
     <!-- Authors -->
     <input name="authors" type="ContentSelector">
@@ -326,7 +326,7 @@
             <option name="ctbLinks">
               <label i18n="ct.article.ctbLinks">Link list</label>
               <items>
-                <inline mixin="block-link-list" />
+                <mixin name="block-link-list" />
               </items>
             </option>
 
@@ -334,7 +334,7 @@
             <option name="ctbImages">
               <label i18n="ct.article.ctbImages">Images</label>
               <items>
-                <inline mixin="block-images" />
+                <mixin name="block-images" />
               </items>
             </option>
 
