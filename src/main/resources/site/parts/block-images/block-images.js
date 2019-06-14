@@ -1,12 +1,11 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
-var util = require('/lib/util.js')
-var cUtil = require('/lib/content-util.js')
+var contentPrep = require('/lib/labs-content-prep.js')
 
 exports.get = function(req) {
   var component = portal.getComponent()
   var model = {}
-  model.data = cUtil.processBlockImages(component.config)
+  model.data = contentPrep.processBlockImages(component.config)
   var settings = {}
   settings.isFullWidth = true
   model.settings = settings

@@ -1,9 +1,9 @@
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var thymeleaf = require('/lib/thymeleaf')
-var cUtil = require('/lib/content-util.js')
+var contentPrep = require('/lib/labs-content-prep.js')
 var cacheLib = require('/lib/cache')
-var related = require('/lib/related.js')
+var related = require('/lib/labs-related.js')
 
 var articleCache = cacheLib.newCache({
   size: 300,
@@ -104,7 +104,7 @@ function prepareData(hits, scaleLandscape, scalePortrait, mode, presentationMode
   return hits.map(function(resultItem) {
     return articleCache.get(resultItem._id + resultItem._path + resultItem.modifiedTime + scaleLandscape + scalePortrait + mode + presentationMode, function() {
       if (resultItem.data) {
-        resultItem.data = cUtil.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait)
+        resultItem.data = contentPrep.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait)
         var categories = related.getCategories(resultItem)
         if (categories.length) {
           resultItem.data.categories = categories

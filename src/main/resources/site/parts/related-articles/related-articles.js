@@ -1,7 +1,6 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
-var related = require('/lib/related.js')
-var util = require('/lib/util.js')
+var related = require('/lib/labs-related.js')
 
 exports.get = function(req) {
 

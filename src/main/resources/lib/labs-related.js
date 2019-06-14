@@ -1,8 +1,8 @@
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
-var util = require('util')
-var cUtil = require('content-util')
-var imageLib = require('image')
+var util = require('/lib/labs-util.js')
+var cUtil = require('/lib/labs-content-prep.js')
+var imageLib = require('/lib/labs-image.js')
 
 var xAppName = app.name.replace(/\./g, '-')
 

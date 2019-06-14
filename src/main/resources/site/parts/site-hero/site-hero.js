@@ -1,6 +1,6 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
-var imageLib = require('/lib/image.js')
+var imageLib = require('/lib/labs-image.js')
 var contentLib = require('/lib/xp/content')
 
 exports.get = function(req) {

@@ -1,7 +1,7 @@
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var thymeleaf = require('/lib/thymeleaf')
-var cUtil = require('/lib/content-util.js')
+var contentPrep = require('/lib/labs-content-prep.js')
 
 exports.get = function(req) {
   var component = portal.getComponent()
@@ -9,7 +9,7 @@ exports.get = function(req) {
   var model = {}
 
   model.heading = config.heading || null
-  model.categories = cUtil.processCategoryTeaser(config.categories, 'square(1)')
+  model.categories = contentPrep.processCategoryTeaser(config.categories, 'square(1)')
 
   if (config.seeAllLink) {
     model.seeAllLink = {}

@@ -1,8 +1,7 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
 var contentLib = require('/lib/xp/content')
-var cUtil = require('/lib/content-util.js')
-var imageLib = require('/lib/image.js')
+var contentPrep = require('/lib/labs-content-prep.js')
 
 exports.get = function(req) {
   var content = portal.getContent()
@@ -24,7 +23,7 @@ exports.get = function(req) {
     }
   })
 
-  model.articles = cUtil.prepareArticleList(result, 'block(4,3)')
+  model.articles = contentPrep.prepareArticleList(result, 'block(4,3)')
 
   if (content.data && content.data.name) {
     model.name = content.data.name

@@ -1,12 +1,12 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
-var cUtil = require('/lib/content-util.js')
+var contentPrep = require('/lib/labs-content-prep.js')
 
 exports.get = function(req) {
   var content = portal.getContent()
   var component = portal.getComponent()
 
-  var model = cUtil.prepareHeroContents(content.data, 'block(5,1)')
+  var model = contentPrep.prepareHeroContents(content.data, 'block(5,1)')
   model.content = JSON.stringify(model, null, 2)
   model.hideLead = component && component.config && component.config.hideLead
 
