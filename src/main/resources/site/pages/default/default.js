@@ -1,13 +1,13 @@
-var portal = require('/lib/xp/portal')
-var thymeleaf = require('/lib/thymeleaf')
-var menuLib = require('/lib/menu')
-var util = require('/lib/labs-util.js')
+const portal = require('/lib/xp/portal')
+const thymeleaf = require('/lib/thymeleaf')
+const menuLib = require('/lib/menu')
+const util = require('/lib/labs-util.js')
 
 exports.get = function(req) {
-  var model = {}
-  var content = portal.getContent()
+  const model = {}
+  const content = portal.getContent()
 
-  var siteConfig = portal.getSiteConfig()
+  const siteConfig = portal.getSiteConfig()
 
   model.siteName = siteConfig.siteName
 
@@ -28,7 +28,7 @@ exports.get = function(req) {
 
   // Local hack for development
   // Store Site Path
-  var site = portal.getSite()
+  const site = portal.getSite()
   model.sitePath = '/'
   if (req.host === 'localhost' && site._path) {
     model.sitePath = site._path
@@ -42,37 +42,17 @@ exports.get = function(req) {
   model.breadcrumbItems = menuLib.getBreadcrumbMenu({}) // Get a breadcrumb menu for current content.
   model.subMenuItems = menuLib.getSubMenus(content, 1) // Get 1 level of submenu (from current content)
 
-  var serverName = util.getServerName().toLowerCase()
-  var isProd =
-    serverName === 'production' ||
-    serverName === 'prod' ||
-    serverName === 'test'
-  var stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  var vendorScriptsPath = isProd ?
-    'scripts/vendors.bundle.min.js' :
-    'scripts/vendors.bundle.js'
-  var scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
-  var vendorScripts =
-    '<script defer src="' +
-    portal.assetUrl({
-      path: vendorScriptsPath
-    }) +
-    '"></script>'
-  var scripts =
-    '<script defer src="' +
-    portal.assetUrl({
-      path: scriptsPath
-    }) +
-    '"></script>'
-  var styles =
-    '<link rel="stylesheet" href="' +
-    portal.assetUrl({
-      path: stylesPath
-    }) +
-    '">'
+  const serverName = util.getServerName().toLowerCase()
+  const isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test'
+  const stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
+  const vendorScriptsPath = isProd ? 'scripts/vendors.bundle.min.js' : 'scripts/vendors.bundle.js'
+  const scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
+  const vendorScripts = `<script defer src='${portal.assetUrl({ path: vendorScriptsPath })}'></script>`
+  const scripts = `<script defer src='${portal.assetUrl({ path: scriptsPath })}'></script>`
+  const styles = `<link rel='stylesheet' href='${portal.assetUrl({ path: stylesPath })}'>`
 
-  var view = resolve('default.html')
-  var body = thymeleaf.render(view, model)
+  const view = resolve('default.html')
+  const body = thymeleaf.render(view, model)
 
   return {
     body: body,
