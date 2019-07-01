@@ -44,9 +44,9 @@
     "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.33.0",
+    "webpack": "^4.35.2",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.4"
+    "webpack-cli": "^3.3.5"
   },
   "dependencies": {
     "axios": "^0.19.0",

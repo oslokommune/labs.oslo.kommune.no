@@ -4,11 +4,11 @@
     <input name="categories" type="ContentSelector">
       <label i18n="txt.categories">Categories</label>
       <occurrences minimum="0" maximum="0"/>
-      <form>
+      <config>
         <relationshipType>system:reference</relationshipType>
         <allowContentType>category</allowContentType>
         <allowPath>${site}/*</allowPath>
-      </form>
+      </config>
     </input>
   </form>
 </x-data>
