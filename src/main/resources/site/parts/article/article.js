@@ -1,8 +1,8 @@
 var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
-var util = require('/lib/labs-util.js')
-var contentPrep = require('/lib/labs-content-prep.js')
-var related = require('/lib/labs-related.js')
+var util = require('/lib/labs/util.js')
+var contentPrep = require('/lib/labs/content-prep.js')
+var related = require('/lib/labs/related.js')
 
 exports.get = function(req) {
   var content = portal.getContent()

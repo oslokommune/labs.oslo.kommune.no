@@ -6,9 +6,9 @@
 
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
-var util = require('/lib/labs-util.js')
-var imageLib = require('/lib/labs-image.js')
-var districts = require('/lib/labs-oslo-districts.js')
+var util = require('/lib/labs/util.js')
+var imageLib = require('/lib/labs/image.js')
+var districts = require('/lib/labs/oslo-districts.js')
 var moment = require('/assets/moment/2.24.0/moment.js')
 
 exports.prepareArticleContents = function(data, scale) {

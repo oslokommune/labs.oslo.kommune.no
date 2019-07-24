@@ -1,9 +1,9 @@
 var portal = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var thymeleaf = require('/lib/thymeleaf')
-var contentPrep = require('/lib/labs-content-prep.js')
+var contentPrep = require('/lib/labs/content-prep.js')
 var cacheLib = require('/lib/cache')
-var related = require('/lib/labs-related.js')
+var related = require('/lib/labs/related.js')
 
 var articleCache = cacheLib.newCache({
   size: 300,

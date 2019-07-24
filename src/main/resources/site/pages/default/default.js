@@ -1,7 +1,7 @@
 const portal = require('/lib/xp/portal')
 const thymeleaf = require('/lib/thymeleaf')
 const menuLib = require('/lib/menu')
-const util = require('/lib/labs-util.js')
+const util = require('/lib/labs/util.js')
 
 exports.get = function(req) {
   const model = {}

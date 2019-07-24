@@ -2,9 +2,9 @@ var portalLib = require('/lib/xp/portal')
 var contentLib = require('/lib/xp/content')
 var cacheLib = require('/lib/cache')
 var i18nLib = require('/lib/xp/i18n')
-var imageLib = require('/lib/labs-image.js')
-var util = require('/lib/labs-util.js')
-var contentPrep = require('/lib/labs-content-prep.js')
+var imageLib = require('/lib/labs/image.js')
+var util = require('/lib/labs/util.js')
+var contentPrep = require('/lib/labs/content-prep.js')
 
 var imageCache = cacheLib.newCache({
   size: 100,
