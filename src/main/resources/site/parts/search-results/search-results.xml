@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="part.searchResults">Search results</display-name>
-  <config>
+  <form>
     <input name="image" type="ImageSelector">
       <label i18n="ct.article.image">Main image</label>
       <occurrences minimum="0" maximum="1" />
@@ -8,5 +8,5 @@
         <allowPath>${site}/*</allowPath>
       </config>
     </input>
-  </config>
+  </form>
 </part>

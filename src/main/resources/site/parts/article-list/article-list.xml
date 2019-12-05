@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.articleList">Article list</display-name>
-  <config>
+  <form>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
     </input>
@@ -14,7 +14,15 @@
         <allowContentType>article</allowContentType>
       </config>
     </input>
-    <mixin name="categories" />
+    <input name="categories" type="ContentSelector">
+      <label i18n="txt.categories">Categories</label>
+      <occurrences minimum="0" maximum="0"/>
+      <config>
+        <relationshipType>system:reference</relationshipType>
+        <allowContentType>category</allowContentType>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
     <input name="onlyChildren" type="CheckBox">
       <label i18n="parts.articleList.onlyChildren">Include only children of current page</label>
       <default>unchecked</default>
@@ -33,5 +41,5 @@
       <default>normal</default>
     </input>
     <mixin name="see-all-link" />
-  </config>
+  </form>
 </part>

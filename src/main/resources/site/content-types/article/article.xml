@@ -50,7 +50,7 @@
                   <occurrences minimum="0" maximum="1"/>
                   <config>
                     <exclude>*</exclude>
-                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image Macro</include>
+                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
                   </config>
                 </input>
               </items>
@@ -79,7 +79,10 @@
                 <input name="sidebarboxContents" type="HtmlArea">
                   <label i18n="ct.article.sidebarContent">Box contents</label>
                   <occurrences minimum="1" maximum="1"/>
-                  <config/>
+                  <config>
+                    <exclude>*</exclude>
+                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
+                  </config>
                 </input>
               </items>
             </option>
@@ -184,7 +187,7 @@
                   <occurrences minimum="0" maximum="1"/>
                   <config>
                     <exclude>*</exclude>
-                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table Image Macro</include>
+                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
                   </config>
                 </input>
               </items>
@@ -216,7 +219,7 @@
                   <occurrences minimum="1" maximum="1"/>
                   <config>
                     <exclude>*</exclude>
-                    <include>Styleselect | Bold Italic Underline Blockquote Strikethrough | Bullist Numlist | Link Table</include>
+                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
                   </config>
                 </input>
                 <input name="quoteText" type="TextArea">

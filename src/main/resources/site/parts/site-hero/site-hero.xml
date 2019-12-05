@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.siteHero">Site hero</display-name>
-  <config>
+  <form>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
       <occurrences minimum="0" maximum="1"/>
@@ -49,5 +49,5 @@
       </config>
     </input>
 
-  </config>
+  </form>
 </part>

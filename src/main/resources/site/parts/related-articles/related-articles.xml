@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.relatedArticles">Related Articles</display-name>
-  <config>
+  <form>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading text</label>
     </input>
@@ -22,5 +22,5 @@
       <label i18n="txt.fallbackIfNoMatch">Fallback to all content if no match</label>
       <default>false</default>
     </input>
-  </config>
+  </form>
 </part>

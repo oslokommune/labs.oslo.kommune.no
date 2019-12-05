@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.blockImages">Generic images block</display-name>
-  <config>
+  <form>
     <mixin name="block-images" />
-  </config>
+  </form>
 </part>

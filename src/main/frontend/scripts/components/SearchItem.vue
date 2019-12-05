@@ -1,16 +1,22 @@
 <template>
-  <article class="search-list-item" v-bind:class="{ 'isFocus': focus}">
+  <article class="search-list-item" v-bind:class="{ isFocus: focus }">
     <div class="search-list-item__text">
       <header class="search-list-item__header">
-        <div v-if="item.type" class="search-list-item__tag">{{ item.type }}</div>
+        <div v-if="item.type" class="search-list-item__tag">
+          {{ item.type }}
+        </div>
         <div class="search-list-item__date">
           <span class="icon icon--calendar"></span>
-          <time :datetime="item.date.iso">{{item.date.pretty}}</time>
+          <time :datetime="item.date.iso">{{ item.date.pretty }}</time>
         </div>
         <div class="search-list-item__authors">
-          <div class="search-list-item__author" v-for="(author,i) in item.authors" :key="i">
+          <div
+            class="search-list-item__author"
+            v-for="(author, i) in item.authors"
+            :key="i"
+          >
             <span class="icon icon--user"></span>
-            <a :href="author.url">{{author.name}}</a>
+            <a :href="author.url">{{ author.name }}</a>
           </div>
         </div>
       </header>

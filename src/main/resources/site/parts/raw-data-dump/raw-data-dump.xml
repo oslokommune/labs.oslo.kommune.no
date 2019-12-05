@@ -1,4 +1,4 @@
 <part>
   <display-name i18n="parts.dataDump">Raw JSON data dump</display-name>
-  <config/>
+  <form/>
 </part>

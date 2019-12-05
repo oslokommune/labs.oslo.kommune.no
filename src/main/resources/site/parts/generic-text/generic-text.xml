@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.genericText">Generic text block</display-name>
-  <config>
+  <form>
     <input name="preHeading" type="TextLine">
       <label i18n="txt.preHeading">Pre heading</label>
     </input>
@@ -16,5 +16,5 @@
     <input name="body" type="HtmlArea">
       <label i18n="parts.genericText.body">Rich text</label>
     </input>
-  </config>
+  </form>
 </part>

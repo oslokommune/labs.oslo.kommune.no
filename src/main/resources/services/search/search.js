@@ -5,6 +5,7 @@ var i18nLib = require('/lib/xp/i18n')
 var imageLib = require('/lib/labs/image.js')
 var util = require('/lib/labs/util.js')
 var contentPrep = require('/lib/labs/content-prep.js')
+var ASCIIFolder = require('/lib/labs/ascii-folder.js')
 
 var imageCache = cacheLib.newCache({
   size: 100,
@@ -12,7 +13,7 @@ var imageCache = cacheLib.newCache({
 })
 
 var nameCache = cacheLib.newCache({
-  size: 2 /* /no and /en namespaces*/ ,
+  size: 2 /* /no and /en namespaces*/,
   expire: 60 * 60 * 24
 })
 
@@ -40,13 +41,26 @@ exports.get = function(req) {
     filters: {
       boolean: {
         mustNot: {
-          hasValue: [{
-            field: 'data.hideFromList',
-            values: ['true']
-          }]
+          hasValue: [
+            {
+              field: 'data.hideFromList',
+              values: ['true']
+            }
+          ]
         }
       }
     }
+    /*,
+        highlight: {
+          preTag: '',
+          postTag: '',
+          numberOfFragments: 2,
+          order: 'score',
+          requireFieldMatch: false,
+          properties: {
+            _alltext: {}
+          }
+        }*/
   }
 
   if (req.params.start) {
@@ -57,29 +71,20 @@ exports.get = function(req) {
 
   if (req.params.q) {
     q = util.sanitizeParam(req.params.q)
+    q = ASCIIFolder.foldMaintaining(q)
 
-    // Ngram only supports words up to 12 chars
     qArr = q.split(' ')
     qArr = qArr.map(function(word) {
-      if (word.length > 12) {
-        word = word.substr(0, 12)
-      }
-      return word
+      return word + '*'
     })
     qMod = qArr.join(' ')
 
+    //log.info(qMod)
+
     queryParams.query +=
-      " AND ( ngram('displayName^5, _allText', '" + qMod + "', 'AND')"
-    if (qArr.length === 1) {
-      // Single word query. Also look at path
-      queryParams.query +=
-        " OR ( ngram('displayName^5, _allText', '" +
-        qMod +
-        "', 'AND') AND _path like '*" +
-        qMod +
-        "*')"
-      queryParams.query += " OR _path like '*" + qMod + "*'"
-    }
+      " AND ( fulltext('data.heading^10,data.name^10,data.title^10,displayName^10,_path^5,data.lead^5,data.bio^5,_alltext', '" +
+      qMod +
+      "', 'AND')"
     queryParams.query += ' )'
   } else {
     queryParams.sort = 'publish.from DESC'
@@ -88,8 +93,10 @@ exports.get = function(req) {
   var r = contentLib.query(queryParams)
 
   if (r && r.count) {
+    // log.info(JSON.stringify(r.highlight, null, 2))
+    var formattedItem = {}
     r.hits.map(function(item) {
-      searchResults.push({
+      formattedItem = {
         type: getTypeString(item, contentTypes),
         date: {
           iso: util.ymdDate(item.publish.from),
@@ -102,7 +109,13 @@ exports.get = function(req) {
         url: portalLib.pageUrl({
           path: item._path
         })
-      })
+      }
+      /*
+      if (q.length) {
+        formattedItem.highlight = getHighlight(item, r.highlight)
+      }
+      */
+      searchResults.push(formattedItem)
     })
     total = r.total
     nextPageStart = queryParams.start + queryParams.count
@@ -178,6 +191,16 @@ function getLead(content) {
   if (content && content.data && content.data.lead) return content.data.lead
   if (content && content.data && content.data.bio) return content.data.bio
   return false
+}
+
+function getHighlight(content, highlight) {
+  //log.info(content._id)
+  //log.info(JSON.stringify(highlight[content._id], null, 2))
+  if (content && content._id && content._id in highlight) {
+    //return JSON.stringify(highlight[content._id]['_alltext'], null, 2)
+    return highlight[content._id]['_alltext'].join(' ... ')
+  }
+  return getLead(content)
 }
 
 /**

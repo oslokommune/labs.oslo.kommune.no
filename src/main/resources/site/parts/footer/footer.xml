@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.footer">Footer</display-name>
-  <config>
+  <form>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
       <occurrences minimum="1" maximum="1"/>
@@ -43,5 +43,5 @@
       <label i18n="parts.footer.copyright">Copyright text</label>
       <occurrences minimum="0" maximum="1"/>
     </input>
-  </config>
+  </form>
 </part>

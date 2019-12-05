@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.categoryTeaser">Category teaser</display-name>
-  <config>
+  <form>
     <input name="heading" type="TextLine">
       <label i18n="txt.heading">Heading</label>
       <occurrences minimum="1" maximum="1"/>
@@ -61,5 +61,5 @@
       <occurrences minimum="0" maximum="4"/>
     </item-set>
     <mixin name="see-all-link" />
-  </config>
+  </form>
 </part>
