@@ -92,18 +92,18 @@ exports.image.createUrl = function(key, scale, filter, format, quality, absolute
   })
 }
 
-
 /**
  * Creates placeholder image
  * @param {String} scale - Scaling filter
  * @return {Object} The image srcset
  */
 exports.image.placeholder = function(scale) {
-
   var image = {}
-  var ar = scale.split('block(')[1].split(')')[0].split(',')
-  var placeholder = 'data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
+  var ar = scale
+    .split('block(')[1]
+    .split(')')[0]
+    .split(',')
+  var placeholder = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
 
   image.src = ''
   image.srcSet = placeholder
@@ -111,8 +111,6 @@ exports.image.placeholder = function(scale) {
 
   return image
 }
-
-
 
 /**
  * Creates image responsive srcset.
@@ -237,9 +235,7 @@ function createScaledPlaceholder(image, scale, width) {
   placeholder.y = String(Math.round(height))
   placeholder.heightPercentage = String((100 * height) / width)
 
-  placeholder.src =
-    'data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y))
+  placeholder.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y))
 
   return placeholder
 }

@@ -2,17 +2,26 @@
   <div class="container">
     <h4 data-th-if="${heading}" class="title is-4 has-text-centered" data-th-text="${heading}"></h4>
     <div class="columns is-multiline is-marginless is-centered is-mobile">
-      <a data-th-each="category : ${categories}" data-th-object="${category}"
-         class="column is-3-tablet is-one-fifth-widescreen is-6-mobile category-teaser__item is-paddingless"
-         data-th-style="'background-color:' + *{color}" data-th-href="*{link.href}">
-        <img data-th-if="*{image}" data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}"
-             data-th-sizes="200px" data-th-alt="*{image.alt}" class="category-teaser__image" />
+      <a
+        data-th-each="category : ${categories}"
+        data-th-object="${category}"
+        class="column is-3-tablet is-one-fifth-widescreen is-6-mobile category-teaser__item is-paddingless"
+        data-th-style="'background-color:' + *{color}"
+        data-th-href="*{link.href}"
+      >
+        <img
+          data-th-if="*{image}"
+          data-th-src="*{image.placeholderSrc}"
+          data-th-srcset="*{image.srcSet}"
+          data-th-sizes="200px"
+          data-th-alt="*{image.alt}"
+          class="category-teaser__image"
+        />
         <span data-th-text="*{label}" class="category-teaser__text"></span>
       </a>
     </div>
     <div class="columns see-all" data-th-if="${seeAllLink}">
-      <a class="column has-text-centered" data-th-href="${seeAllLink.href}" data-th-text="${seeAllLink.text}">See
-        all</a>
+      <a class="column has-text-centered" data-th-href="${seeAllLink.href}" data-th-text="${seeAllLink.text}">See all</a>
     </div>
   </div>
 </section>

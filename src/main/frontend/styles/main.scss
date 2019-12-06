@@ -153,7 +153,7 @@ body {
     background: rgba(black, 0.1);
   }
 
-  footer>cite {
+  footer > cite {
     font-size: 0.85rem;
     font-style: normal;
     display: flex;
@@ -338,7 +338,7 @@ body {
 }
 
 // Remove padding between white content blocks
-.section:not(.has-background)+.section:not(.has-background) {
+.section:not(.has-background) + .section:not(.has-background) {
   padding-top: 0;
 }
 

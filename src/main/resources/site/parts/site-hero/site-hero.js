@@ -18,9 +18,7 @@ exports.get = function(req) {
       url: portal.pageUrl({
         id: model.primaryLink
       }),
-      label: model.primaryLinkLabel ||
-        (page && page.data && page.data.heading) ||
-        page.displayName
+      label: model.primaryLinkLabel || (page && page.data && page.data.heading) || page.displayName
     }
   }
 
@@ -32,9 +30,7 @@ exports.get = function(req) {
       url: portal.pageUrl({
         id: model.secondaryLink
       }),
-      label: model.secondaryLinkLabel ||
-        (page && page.data && page.data.heading) ||
-        page.displayName
+      label: model.secondaryLinkLabel || (page && page.data && page.data.heading) || page.displayName
     }
   }
 

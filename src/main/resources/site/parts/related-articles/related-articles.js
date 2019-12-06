@@ -3,20 +3,18 @@ var thymeleaf = require('/lib/thymeleaf')
 var related = require('/lib/labs/related.js')
 
 exports.get = function(req) {
-
   var content = portal.getContent()
   var component = portal.getComponent()
   var config = component.config
 
-  var model = related.getRelatedContent(content, {
-    count: config.count,
-    fallback: config.fallback || false,
-    contentTypes: [
-      'article'
-    ],
-    selectedItems: config.selectedItems,
-    scale: 'block(16,9)'
-  }) || {}
+  var model =
+    related.getRelatedContent(content, {
+      count: config.count,
+      fallback: config.fallback || false,
+      contentTypes: ['article'],
+      selectedItems: config.selectedItems,
+      scale: 'block(16,9)'
+    }) || {}
 
   model.heading = config.heading
 
@@ -30,5 +28,4 @@ exports.get = function(req) {
     body: body,
     contentType: 'text/html'
   }
-
 }

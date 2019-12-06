@@ -82,9 +82,7 @@ exports.get = function(req) {
     //log.info(qMod)
 
     queryParams.query +=
-      " AND ( fulltext('data.heading^10,data.name^10,data.title^10,displayName^10,_path^5,data.lead^5,data.bio^5,_alltext', '" +
-      qMod +
-      "', 'AND')"
+      " AND ( fulltext('data.heading^10,data.name^10,data.title^10,displayName^10,_path^5,data.lead^5,data.bio^5,_alltext', '" + qMod + "', 'AND')"
     queryParams.query += ' )'
   } else {
     queryParams.sort = 'publish.from DESC'
@@ -208,8 +206,7 @@ function getHighlight(content, highlight) {
  * @param {*} content The content object from the result
  */
 function getImage(content) {
-  if (content && content.data && content.data.image)
-    return getImageFromCache(content.data.image)
+  if (content && content.data && content.data.image) return getImageFromCache(content.data.image)
   return false
 }
 

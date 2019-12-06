@@ -5,37 +5,44 @@
   <div data-th-if="${hasContent}" data-th-remove="tag">
     <section class="section">
       <div class="container">
-
         <div data-th-if="${presentationMode == 'normal'}" data-th-remove="tag">
           <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
-          <div data-th-if="${featured}" data-th-each="article : ${featured}" data-th-with="item=${article}"
-               data-th-insert="/site/snippets/article-card.html :: card('big')"></div>
+          <div
+            data-th-if="${featured}"
+            data-th-each="article : ${featured}"
+            data-th-with="item=${article}"
+            data-th-insert="/site/snippets/article-card.html :: card('big')"
+          ></div>
           <div data-th-if="${articles}" class="columns is-multiline">
-            <div class="column is-6-tablet is-4-desktop" data-th-each="article : ${articles}"
-                 data-th-with="item=${article}" data-th-insert="/site/snippets/article-card.html :: card('small')">
-            </div>
+            <div
+              class="column is-6-tablet is-4-desktop"
+              data-th-each="article : ${articles}"
+              data-th-with="item=${article}"
+              data-th-insert="/site/snippets/article-card.html :: card('small')"
+            ></div>
           </div>
         </div>
 
         <div data-th-if="${presentationMode == 'compact'}" data-th-remove="tag">
           <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
           <ul data-th-if="${featured}" class="columns is-multiline">
-            <li data-th-each="article, i: ${featured}" data-th-object="${article}"
-                class="column experiment__tile has-text-white is-12 experiment__tile--large">
+            <li data-th-each="article, i: ${featured}" data-th-object="${article}" class="column experiment__tile has-text-white is-12 experiment__tile--large">
               <a data-th-href="*{path}">
                 <div class="experiment__imagecontainer">
                   <picture>
-                    <source data-th-if="*{image.portrait}" media="(max-width:768px)"
-                            data-th-srcset="*{image.portrait.srcSet}" sizes="'95vw'" />
-                    <img class="experiment__image" data-th-src="*{image.placeholderSrc}"
-                         data-th-srcset="*{image.srcSet}" data-th-alt-title="*{image.alt}"
-                         data-th-sizes="'(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px'" />
+                    <source data-th-if="*{image.portrait}" media="(max-width:768px)" data-th-srcset="*{image.portrait.srcSet}" sizes="'95vw'" />
+                    <img
+                      class="experiment__image"
+                      data-th-src="*{image.placeholderSrc}"
+                      data-th-srcset="*{image.srcSet}"
+                      data-th-alt-title="*{image.alt}"
+                      data-th-sizes="'(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px'"
+                    />
                   </picture>
                 </div>
                 <div data-th-if="*{categories}" class="experiment__tag">
                   <ol class="categories">
-                    <li data-th-each="category, i: *{categories}" data-th-object="${category}"
-                        data-th-text="*{heading}">Category</li>
+                    <li data-th-each="category, i: *{categories}" data-th-object="${category}" data-th-text="*{heading}">Category</li>
                   </ol>
                 </div>
                 <h3 class="title is-3 experiment__heading has-text-white" data-th-text="*{heading}"></h3>
@@ -43,22 +50,23 @@
             </li>
           </ul>
           <ul data-th-if="${articles}" class="columns is-multiline">
-            <li data-th-each="article, i: ${articles}" data-th-object="${article}"
-                class="column experiment__tile has-text-white is-4">
+            <li data-th-each="article, i: ${articles}" data-th-object="${article}" class="column experiment__tile has-text-white is-4">
               <a data-th-href="*{path}">
                 <div class="experiment__imagecontainer">
                   <picture>
-                    <source data-th-if="*{image.portrait}" media="(max-width:768px)"
-                            data-th-srcset="*{image.portrait.srcSet}" sizes="'95vw'" />
-                    <img class="experiment__image" data-th-src="*{image.placeholderSrc}"
-                         data-th-srcset="*{image.srcSet}" data-th-alt-title="*{image.alt}"
-                         data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'" />
+                    <source data-th-if="*{image.portrait}" media="(max-width:768px)" data-th-srcset="*{image.portrait.srcSet}" sizes="'95vw'" />
+                    <img
+                      class="experiment__image"
+                      data-th-src="*{image.placeholderSrc}"
+                      data-th-srcset="*{image.srcSet}"
+                      data-th-alt-title="*{image.alt}"
+                      data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px'"
+                    />
                   </picture>
                 </div>
                 <div data-th-if="*{categories}" class="experiment__tag">
                   <ol class="categories">
-                    <li data-th-each="category, i: *{categories}" data-th-object="${category}"
-                        data-th-text="*{heading}">Category</li>
+                    <li data-th-each="category, i: *{categories}" data-th-object="${category}" data-th-text="*{heading}">Category</li>
                   </ol>
                 </div>
                 <h3 class="title is-3 experiment__heading has-text-white" data-th-text="*{heading}"></h3>
@@ -70,11 +78,8 @@
         <div data-th-if="${paging}" data-th-insert="/site/snippets/paging">Paging</div>
 
         <div data-th-if="${seeAllLink}" class="columns">
-          <a class="column has-text-centered is-paddingless-top" data-th-href="${seeAllLink.href}"
-             data-th-text="${seeAllLink.text}">See
-            all</a>
+          <a class="column has-text-centered is-paddingless-top" data-th-href="${seeAllLink.href}" data-th-text="${seeAllLink.text}">See all</a>
         </div>
-
       </div>
     </section>
   </div>

@@ -82,13 +82,11 @@
         }
         &:nth-child(2) {
           transform: translateY(1em) rotate(45deg);
-          transition: transform 0.4s ease-in-out 0.4s,
-            opacity 0.4s ease-in-out 0.4s;
+          transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s;
         }
         &:nth-child(3) {
           transform: translateY(1em) rotate(-45deg);
-          transition: transform 0.4s ease-in-out 0.4s,
-            opacity 0.4s ease-in-out 0.4s;
+          transition: transform 0.4s ease-in-out 0.4s, opacity 0.4s ease-in-out 0.4s;
         }
       }
     }
@@ -96,8 +94,7 @@
 
   &__search {
     z-index: 1;
-    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s,
-      opacity 0s linear 1s;
+    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s, opacity 0s linear 1s;
     position: absolute;
     right: 0;
     transform: translateY($header-height);
@@ -145,8 +142,7 @@
 
       &:nth-child(1) {
         transform: translateY($center - 0.35em) rotate(0deg);
-        transition: transform 0.15s ease-in-out 0.3s,
-          opacity 0.15s ease-in-out 0.3s;
+        transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s;
       }
       &:nth-child(2),
       &:nth-child(3) {
@@ -155,8 +151,7 @@
       }
       &:nth-child(4) {
         transform: translateY($center + 0.35em + $bar-height) rotate(0deg);
-        transition: transform 0.15s ease-in-out 0.3s,
-          opacity 0.15s ease-in-out 0.3s;
+        transition: transform 0.15s ease-in-out 0.3s, opacity 0.15s ease-in-out 0.3s;
       }
     }
   }

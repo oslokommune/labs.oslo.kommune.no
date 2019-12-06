@@ -36,21 +36,13 @@ function map(containerElement) {
 
   let options = {}
 
-  options.center = containerElement.getAttribute('center')
-    ? containerElement.getAttribute('center')
-    : '0,0'
+  options.center = containerElement.getAttribute('center') ? containerElement.getAttribute('center') : '0,0'
 
-  options.zoom = containerElement.getAttribute('zoom')
-    ? +containerElement.getAttribute('zoom')
-    : +10
+  options.zoom = containerElement.getAttribute('zoom') ? +containerElement.getAttribute('zoom') : +10
 
-  options.markers = containerElement.getAttribute('markers')
-    ? JSON.parse(containerElement.getAttribute('markers'))
-    : []
+  options.markers = containerElement.getAttribute('markers') ? JSON.parse(containerElement.getAttribute('markers')) : []
 
-  options.geoJSON = containerElement.getAttribute('geoJSON')
-    ? JSON.parse(containerElement.getAttribute('geoJSON'))
-    : []
+  options.geoJSON = containerElement.getAttribute('geoJSON') ? JSON.parse(containerElement.getAttribute('geoJSON')) : []
 
   new Vue({
     i18n,

@@ -17,7 +17,7 @@
 
 <template>
   <div class="header__search" role="menuitem" @keyup="nav">
-    <div class="minisearch__box" :class="{expanded: expanded}">
+    <div class="minisearch__box" :class="{ expanded: expanded }">
       <form v-if="expanded" class="minisearch__form" @submit="submitSearch">
         <input
           class="minisearch__field"
@@ -30,23 +30,18 @@
           @input="doSearch"
           @focus="focus(-1)"
           @blur="focus(-2)"
-        >
+        />
       </form>
       <div class="minisearch__results" v-if="expanded">
         <ul v-if="hits">
-          <li v-for="(hit,i) in hits" :key="i" class="minisearch__item">
-            <a :href="hit.url" @focus="focus(i)" @blur="focus(-2)" ref="searchItem">{{hit.heading}}</a>
+          <li v-for="(hit, i) in hits" :key="i" class="minisearch__item">
+            <a :href="hit.url" @focus="focus(i)" @blur="focus(-2)" ref="searchItem">{{ hit.heading }}</a>
           </li>
           <li class="minisearch__item minisearch__item--hitcount">
-            <a
-              :href="searchPageUrl + '?q=' + encodeURIComponent(q)"
-              ref="hitcount"
-              @focus="focus(hits.length)"
-              @blur="focus(-2)"
-            >
+            <a :href="searchPageUrl + '?q=' + encodeURIComponent(q)" ref="hitcount" @focus="focus(hits.length)" @blur="focus(-2)">
               <small>
-                <span v-if="q.length > 0">{{$tc('hitsString', total, {total: total, q: q})}}</span>
-                <span v-else>{{$t('goToSearchPage')}}</span>
+                <span v-if="q.length > 0">{{ $tc('hitsString', total, { total: total, q: q }) }}</span>
+                <span v-else>{{ $t('goToSearchPage') }}</span>
               </small>
             </a>
           </li>
@@ -55,7 +50,7 @@
     </div>
     <button
       class="header__searchbutton"
-      :class="{active : expanded}"
+      :class="{ active: expanded }"
       ref="toggleButton"
       :aria-label="$t('searchLabel')"
       @click="toggle"
@@ -65,7 +60,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
   data: () => ({
@@ -82,7 +77,7 @@ export default {
     limit: 3,
 
     // Query
-    q: "",
+    q: '',
 
     // Total number of hits available
     total: 0,
@@ -100,13 +95,13 @@ export default {
     // the corresponding list item (or field)
     focused(to, from) {
       if (to === -2) {
-        return;
+        return
       } else if (to === -1) {
-        this.$refs.searchField.focus();
+        this.$refs.searchField.focus()
       } else if (to === this.hits.length) {
-        this.$refs.hitcount.focus();
+        this.$refs.hitcount.focus()
       } else {
-        this.$refs.searchItem[to].focus();
+        this.$refs.searchItem[to].focus()
       }
     }
   },
@@ -114,79 +109,79 @@ export default {
   created() {
     // Listen to keyboard navigation to prevent the page from scrolling
     // when navigating the minisearch results list
-    document.addEventListener("keydown", event => {
+    document.addEventListener('keydown', event => {
       if (this.focused !== -2) {
         // Arrow keys to navigate list
         if (event.keyCode === 38 || event.keyCode === 40) {
-          event.preventDefault();
+          event.preventDefault()
         }
 
         // Escape from anywhere
         if (event.keyCode === 27) {
-          this.toggle();
+          this.toggle()
         }
       }
-    });
+    })
   },
 
   methods: {
     // Show/hide the minisearch, reset the query, and focus the text field
     toggle() {
-      this.q = "";
-      this.hits = [];
-      this.expanded = !this.expanded;
+      this.q = ''
+      this.hits = []
+      this.expanded = !this.expanded
 
       if (this.expanded) {
         setTimeout(() => {
-          this.$refs.searchField.focus();
-        }, 300);
+          this.$refs.searchField.focus()
+        }, 300)
       }
     },
 
     // Keyboard navigate to the close search button when pressing right
     // on the text field (text cursor at the end of the string)
     selectExitButton(event) {
-      console.log(this.focused);
+      console.log(this.focused)
       if (event.target.selectionStart === this.q.length) {
-        this.focused = -2;
-        this.$refs.toggleButton.focus();
+        this.focused = -2
+        this.$refs.toggleButton.focus()
       }
     },
 
     // Handler for the @focus and @blur events (allowing for navigation with tab key)
     focus(i) {
-      this.focused = i;
+      this.focused = i
     },
 
     // Set the correct focus when navigating the search list with arrow keys
     nav: function(event) {
       if (event.keyCode === 40) {
-        event.preventDefault();
+        event.preventDefault()
 
         if (this.focused < this.hits.length) {
-          this.focused++;
+          this.focused++
         }
       } else if (event.keyCode === 38) {
-        event.preventDefault();
+        event.preventDefault()
 
         if (this.focused > -1) {
-          this.focused--;
+          this.focused--
         }
       }
     },
 
     // Include the search query to the search page URL
     submitSearch(event) {
-      event.preventDefault();
-      window.location.href = `${this.searchPageUrl}?q=${this.q}`;
+      event.preventDefault()
+      window.location.href = `${this.searchPageUrl}?q=${this.q}`
     },
 
     // Execute asyncronous search function and populate the
     // 'hits' and 'total' variables
     doSearch: function(event) {
       if (this.q.length === 0) {
-        this.hits = [];
-        return;
+        this.hits = []
+        return
       }
 
       // Perform search and store the results
@@ -198,14 +193,14 @@ export default {
           }
         })
         .then(res => {
-          const data = res.data;
-          this.total = data.total;
-          this.hits = data.hits;
+          const data = res.data
+          this.total = data.total
+          this.hits = data.hits
         })
         .catch(error => {
-          console.log(error);
-        });
+          console.log(error)
+        })
     }
   }
-};
+}
 </script>

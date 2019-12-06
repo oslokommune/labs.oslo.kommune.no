@@ -1,43 +1,35 @@
 <!DOCTYPE html>
 <html data-th-lang="${siteLanguage}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+  </head>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title></title>
-</head>
-
-<body data-portal-component-type="page">
-  <div>
-    <a href="#main" data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}" z-index="0"></a>
-  </div>
-
-  <header data-th-replace="/site/snippets/navbar.html"></header>
-  <main id="main" role="main" class="main" data-portal-component-type="region" data-portal-region="main">
-    <div data-th-each="component : ${main.components}" data-th-remove="tag">
-      <div data-portal-component="${component.path}" data-th-remove="tag"></div>
+  <body data-portal-component-type="page">
+    <div>
+      <a href="#main" data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}" z-index="0"></a>
     </div>
-  </main>
-  <script data-th-inline="javascript">
-    var labsSiteLanguage = /*[[${siteLanguage}]]*/ false
-    var googleMapsKey = /*[[${googleMapsKey}]]*/ ''
 
-  </script>
+    <header data-th-replace="/site/snippets/navbar.html"></header>
+    <main id="main" role="main" class="main" data-portal-component-type="region" data-portal-region="main">
+      <div data-th-each="component : ${main.components}" data-th-remove="tag">
+        <div data-portal-component="${component.path}" data-th-remove="tag"></div>
+      </div>
+    </main>
+    <script data-th-inline="javascript">
+      var labsSiteLanguage = /*[[${siteLanguage}]]*/ false
+      var googleMapsKey = /*[[${googleMapsKey}]]*/ ''
+    </script>
 
-  <script type="text/javascript">
-    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
-      document.write(
-        '<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"><\/script>'
-      )
-      document.write(
-        '<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"><\/script>'
-      )
+    <script type="text/javascript">
+      if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.0/polyfill.min.js"><\/script>')
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/picturefill/3.0.3/picturefill.min.js"><\/script>')
 
-      document.querySelector('body').classList.add('is-ie')
-    }
-
-  </script>
-</body>
-
+        document.querySelector('body').classList.add('is-ie')
+      }
+    </script>
+  </body>
 </html>

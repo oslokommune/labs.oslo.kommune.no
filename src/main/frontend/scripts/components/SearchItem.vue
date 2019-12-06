@@ -10,23 +10,14 @@
           <time :datetime="item.date.iso">{{ item.date.pretty }}</time>
         </div>
         <div class="search-list-item__authors">
-          <div
-            class="search-list-item__author"
-            v-for="(author, i) in item.authors"
-            :key="i"
-          >
+          <div class="search-list-item__author" v-for="(author, i) in item.authors" :key="i">
             <span class="icon icon--user"></span>
             <a :href="author.url">{{ author.name }}</a>
           </div>
         </div>
       </header>
       <div class="search-list-item__body">
-        <a
-          :href="item.url"
-          class="search-list-item__title title is-4 is-marginless"
-          v-html="highlight(item.heading)"
-          ref="link"
-        ></a>
+        <a :href="item.url" class="search-list-item__title title is-4 is-marginless" v-html="highlight(item.heading)" ref="link"></a>
         <div class="search-list-item__slug" v-html="highlight(item.url)"></div>
         <p class="search-list-item__lead" v-html="highlight(item.lead)"></p>
       </div>

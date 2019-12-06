@@ -67,9 +67,10 @@ exports.get = function(req) {
           })
           category.count = categoryCount[key]
           category.image && (category.image = imageLib.image.create(category.image, 'block(1,1)'))
-          category.body && (category.body = portalLib.processHtml({
-            value: category.body
-          }))
+          category.body &&
+            (category.body = portalLib.processHtml({
+              value: category.body
+            }))
           model.categories.push(category)
         }
       })

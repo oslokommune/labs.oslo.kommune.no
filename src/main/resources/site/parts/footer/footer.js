@@ -32,10 +32,7 @@ exports.get = function(req) {
       var url = portal.pageUrl({
         path: resultItem._path
       })
-      var name =
-        resultItem.data && resultItem.data.header ?
-        resultItem.data.header :
-        resultItem.displayName
+      var name = resultItem.data && resultItem.data.header ? resultItem.data.header : resultItem.displayName
       return {
         name: name,
         url: url

@@ -87,9 +87,7 @@ exports.get = function(req) {
   }
 
   model.live = req.mode == 'live'
-  model.hasContent =
-    (model.featured && model.featured.length) ||
-    (model.articles && model.articles.length)
+  model.hasContent = (model.featured && model.featured.length) || (model.articles && model.articles.length)
   var endTime = +new Date()
   model.controllerPageTime = 'Controller time: ' + String(endTime - startTime) + 'ms'
   var view = resolve('./article-list.html')

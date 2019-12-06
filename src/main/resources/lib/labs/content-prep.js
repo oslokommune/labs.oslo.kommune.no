@@ -13,8 +13,7 @@ var moment = require('/assets/moment/2.24.0/moment.js')
 
 exports.prepareArticleContents = function(data, scale) {
   data = processCommonFields(data, scale)
-  data.contentBlocks &&
-    (data.contentBlocks = processContentBlocks(data.contentBlocks))
+  data.contentBlocks && (data.contentBlocks = processContentBlocks(data.contentBlocks))
   return data
 }
 
@@ -38,20 +37,12 @@ var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
   if (!content.data) return article
 
   if (singleImage) {
-    article.image = content.data.image ?
-      imageLib.image.create(content.data.image, scaleLandscape) :
-      imageLib.image.placeholder(scaleLandscape)
+    article.image = content.data.image ? imageLib.image.create(content.data.image, scaleLandscape) : imageLib.image.placeholder(scaleLandscape)
   } else {
-    article.image = content.data.image ?
-      imageLib.image.create(content.data.image, scaleLandscape) :
-      imageLib.image.placeholder(scaleLandscape)
-    article.image.portrait = content.data.image ?
-      imageLib.image.create(content.data.image, scalePortrait) :
-      imageLib.image.placeholder(scalePortrait)
+    article.image = content.data.image ? imageLib.image.create(content.data.image, scaleLandscape) : imageLib.image.placeholder(scaleLandscape)
+    article.image.portrait = content.data.image ? imageLib.image.create(content.data.image, scalePortrait) : imageLib.image.placeholder(scalePortrait)
   }
-  article.heading = content.data.heading ?
-    content.data.heading :
-    content.displayName
+  article.heading = content.data.heading ? content.data.heading : content.displayName
   article.lead = content.data.lead
 
   return article
@@ -181,8 +172,7 @@ function processContentBlocks(ctbs) {
       if (selected.indexOf('sidebarbox') > -1) {
         block.ctb.sidebarbox = {}
         if (block.ctbSettings.sidebarbox.sidebarboxIcon) {
-          block.ctb.sidebarbox.icon =
-            block.ctbSettings.sidebarbox.sidebarboxIcon
+          block.ctb.sidebarbox.icon = block.ctbSettings.sidebarbox.sidebarboxIcon
         }
         block.ctb.sidebarbox.contents = portal.processHtml({
           value: block.ctbSettings.sidebarbox.sidebarboxContents
@@ -213,16 +203,7 @@ function processContentBlocks(ctbs) {
         var colors = block.ctbSettings.bgFill
 
         // Which bg colors require white text
-        var darkBgs = [
-          'purple',
-          'grey-dark',
-          'grey-darker',
-          'green-dark',
-          'green-faded',
-          'orange',
-          'red',
-          'black'
-        ]
+        var darkBgs = ['purple', 'grey-dark', 'grey-darker', 'green-dark', 'green-faded', 'orange', 'red', 'black']
 
         if (darkBgs.indexOf(colors.colorMain) > -1) {
           block.ctb.hasWhiteText = true
@@ -295,9 +276,7 @@ function processContentBlocks(ctbs) {
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       if (block.ctb.ctbMap.mapDistricts) {
         var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
-        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(
-          districts.generateGeoJSON(selectedDistricts)
-        )
+        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(districts.generateGeoJSON(selectedDistricts))
       }
 
       if (block.ctb.ctbMap.mapMarkers) {
@@ -450,11 +429,7 @@ function getImageDimensions(image) {
     y: imageInfo['imageHeight']
   }
   // Check for rotated images. Enonic doesn't seem to recognize this in the java layer.
-  if (
-    cameraInfo &&
-    cameraInfo.orientation &&
-    /(90|270)/.test(cameraInfo.orientation)
-  ) {
+  if (cameraInfo && cameraInfo.orientation && /(90|270)/.test(cameraInfo.orientation)) {
     imageDimensions = {
       x: imageInfo['imageHeight'],
       y: imageInfo['imageWidth']
@@ -469,8 +444,7 @@ function getImageDimensions(image) {
  * @param {*} content   The content object from the result
  */
 exports.getHeading = function(content) {
-  if (content && content.data && content.data.heading)
-    return content.data.heading
+  if (content && content.data && content.data.heading) return content.data.heading
   if (content && content.data && content.data.name) return content.data.name
   if (content && content.data && content.data.title) return content.data.title
   if (content) return content.displayName

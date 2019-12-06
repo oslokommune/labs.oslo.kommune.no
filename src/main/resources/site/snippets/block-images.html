@@ -9,13 +9,25 @@
   <!-- /* Layout for single image */ -->
   <div data-th-if="${#lists.size(data.images) == 1}" data-th-remove="tag">
     <figure data-th-object="${data.images[0]}" class="columns is-multiline">
-      <div class="column is-paddingless-top-bottom" data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
-        <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt-title="*{alt}" data-th-sizes="${data.isFullWidth} ? 
+      <div
+        class="column is-paddingless-top-bottom"
+        data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+      >
+        <img
+          data-th-src="*{placeholderSrc}"
+          data-th-srcset="*{srcSet}"
+          data-th-alt-title="*{alt}"
+          data-th-sizes="${data.isFullWidth} ? 
           '(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px' :
-          '(max-width:768px) 95vw, (max-width:1087px) 62vw, 600px'" />
+          '(max-width:768px) 95vw, (max-width:1087px) 62vw, 600px'"
+        />
       </div>
-      <figcaption data-th-if="*{caption}" data-th-text="*{caption}" class="column o-block-images__caption"
-                  data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : 'o-block-images__caption--bottom is-3-tablet'">
+      <figcaption
+        data-th-if="*{caption}"
+        data-th-text="*{caption}"
+        class="column o-block-images__caption"
+        data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : 'o-block-images__caption--bottom is-3-tablet'"
+      >
         Caption
       </figcaption>
     </figure>
@@ -24,21 +36,37 @@
   <!-- /* Layout for two images */ -->
   <div data-th-if="${#lists.size(data.images) == 2}" data-th-remove="tag">
     <div class="columns o-block-images--two">
-      <figure class="column" data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-fullhd' : 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
-              data-th-object="${data.images[0]}">
-        <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt-title="*{alt}" data-th-sizes="${data.isFullWidth} ? 
+      <figure
+        class="column"
+        data-th-classappend="${data.isFullWidth} ? 'is-8-tablet is-7-fullhd' : 'is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+        data-th-object="${data.images[0]}"
+      >
+        <img
+          data-th-src="*{placeholderSrc}"
+          data-th-srcset="*{srcSet}"
+          data-th-alt-title="*{alt}"
+          data-th-sizes="${data.isFullWidth} ? 
           '(max-width:768px) 95vw, (max-width:1087px) 62vw, (max-width:1279px) 631px, (max-width:1471px) 758px, 771px' :
-          '(max-width:768px) 95vw, (max-width:1087px) 62vw, (max-width:1279px) 631px, (max-width:1471px) 660px, 657px'" />
+          '(max-width:768px) 95vw, (max-width:1087px) 62vw, (max-width:1279px) 631px, (max-width:1471px) 660px, 657px'"
+        />
         <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
           Caption
         </figcaption>
       </figure>
 
-      <figure class="column o-block-images--offset" data-th-classappend="${data.isFullWidth} ? 'is-4-tablet is-5-fullhd' : 'is-4-tablet'"
-              data-th-object="${data.images[1]}">
-        <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt-title="*{alt}" data-th-sizes="${data.isFullWidth} ? 
+      <figure
+        class="column o-block-images--offset"
+        data-th-classappend="${data.isFullWidth} ? 'is-4-tablet is-5-fullhd' : 'is-4-tablet'"
+        data-th-object="${data.images[1]}"
+      >
+        <img
+          data-th-src="*{placeholderSrc}"
+          data-th-srcset="*{srcSet}"
+          data-th-alt-title="*{alt}"
+          data-th-sizes="${data.isFullWidth} ? 
           '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 543px' :
-          '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'" />
+          '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
+        />
         <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
           Caption
         </figcaption>
@@ -52,9 +80,14 @@
       <div class="column" data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-10-fullhd is-offset-1-fullhd'">
         <div class="columns">
           <figure class="column is-one-third" data-th-each="image: ${data.images}" data-th-object="${image}">
-            <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt-title="*{alt}" data-th-sizes="${data.isFullWidth} ? 
+            <img
+              data-th-src="*{placeholderSrc}"
+              data-th-srcset="*{srcSet}"
+              data-th-alt-title="*{alt}"
+              data-th-sizes="${data.isFullWidth} ? 
               '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 352px' :
-              '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'" />
+              '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
+            />
             <figcaption data-th-if="*{caption}" class="o-block-images__caption" data-th-text="*{caption}">
               Caption
             </figcaption>

@@ -1,20 +1,10 @@
 <section class="section is-paddingless-top">
   <div class="container">
     <div class="columns is-multiline category-list">
-      <div
-        class="column is-6-tablet category-list__item"
-        data-th-each="category : ${categories}"
-        data-th-object="${category}"
-      >
+      <div class="column is-6-tablet category-list__item" data-th-each="category : ${categories}" data-th-object="${category}">
         <div class="category-list__imagewrapper" data-th-if="*{image}">
           <a data-th-href="*{url}">
-            <img
-              data-th-src="*{image.placeholderSrc}"
-              data-th-srcset="*{image.srcSet}"
-              data-th-alt="*{image.alt}"
-              sizes="160px"
-              class="category-list__image"
-            />
+            <img data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}" data-th-alt="*{image.alt}" sizes="160px" class="category-list__image" />
           </a>
         </div>
         <div class="category-list__text">

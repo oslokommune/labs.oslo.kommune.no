@@ -10,11 +10,10 @@ var xAppName = app.name.replace(/\./g, '-')
  * From a piece of contents, return related contents
  */
 exports.getRelatedContent = function(content, config) {
-
   var model = {}
 
   if (arguments.length !== 2) {
-    log.error("Please provide all required arguments!")
+    log.error('Please provide all required arguments!')
     return model
   }
 
@@ -44,7 +43,7 @@ exports.getRelatedContent = function(content, config) {
   }
 
   if (!config.contentTypes) {
-    log.error("Please provide contentTypes to search for!")
+    log.error('Please provide contentTypes to search for!')
     return model
   } else {
     contentTypes = util.forceArray(config.contentTypes).map(function(item) {
@@ -69,10 +68,7 @@ exports.getRelatedContent = function(content, config) {
     if (app.name + ':category' === content.type) {
       relatedArr.push(content._id)
     }
-    if (content.x &&
-      content.x[xAppName] &&
-      content.x[xAppName].categories &&
-      content.x[xAppName].categories.categories) {
+    if (content.x && content.x[xAppName] && content.x[xAppName].categories && content.x[xAppName].categories.categories) {
       relatedArr = relatedArr.concat(util.forceArray(content.x[xAppName].categories.categories))
     }
 
@@ -147,9 +143,7 @@ exports.getRelatedContent = function(content, config) {
       data.path = portal.pageUrl({
         path: item._path
       })
-      data.image = data.image ?
-        imageLib.image.create(data.image, config.scale) :
-        imageLib.image.placeholder(config.scale)
+      data.image = data.image ? imageLib.image.create(data.image, config.scale) : imageLib.image.placeholder(config.scale)
       if (data.lead) {
         //data.lead = util.paragraphify(data.lead)
       }
@@ -161,7 +155,6 @@ exports.getRelatedContent = function(content, config) {
   })
 
   return model
-
 }
 
 /**
@@ -228,14 +221,11 @@ exports.getContentList = function(config) {
   }
 
   if (!config.contentTypes) {
-    log.error("Please provide contentTypes to search for!")
+    log.error('Please provide contentTypes to search for!')
   } else {
-    contentTypes =
-      util
-      .forceArray(config.contentTypes)
-      .map(function(item) {
-        return app.name + ':' + item
-      })
+    contentTypes = util.forceArray(config.contentTypes).map(function(item) {
+      return app.name + ':' + item
+    })
   }
 
   var siteReferencePath = path.split('/')[1]
@@ -253,17 +243,19 @@ exports.getContentList = function(config) {
     count: count,
     contentTypes: contentTypes,
     query: query,
-    sort: "createdTime DESC"
+    sort: 'createdTime DESC'
   }
 
   if (categoryFilter) {
     queryParams.filters = {
       boolean: {
         must: {
-          hasValue: [{
-            field: 'x.' + xAppName + '.categories.categories',
-            values: categoryFilter
-          }]
+          hasValue: [
+            {
+              field: 'x.' + xAppName + '.categories.categories',
+              values: categoryFilter
+            }
+          ]
         }
       }
     }
@@ -292,25 +284,19 @@ exports.getContentList = function(config) {
 
 exports.getCategories = function(content) {
   var categories = []
-  if (content &&
-    content.x &&
-    content.x[xAppName] &&
-    content.x[xAppName].categories &&
-    content.x[xAppName].categories.categories) {
+  if (content && content.x && content.x[xAppName] && content.x[xAppName].categories && content.x[xAppName].categories.categories) {
     var category
-    categories = util
-      .forceArray(content.x[xAppName].categories.categories)
-      .map(function(categoryId) {
-        category = contentLib.get({
-          key: categoryId
-        })
-        if (category && category.data) {
-          category.data.path = portal.pageUrl({
-            path: category._path
-          })
-          return category.data
-        }
+    categories = util.forceArray(content.x[xAppName].categories.categories).map(function(categoryId) {
+      category = contentLib.get({
+        key: categoryId
       })
+      if (category && category.data) {
+        category.data.path = portal.pageUrl({
+          path: category._path
+        })
+        return category.data
+      }
+    })
   }
   return categories
 }
