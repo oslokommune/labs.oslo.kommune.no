@@ -4,6 +4,7 @@ import menuHandler from './handlers/menu-handler.js'
 import videobylineHandler from './handlers/videobyline-handler.js'
 import anchorListHandler from './handlers/anchorlist-handler.js'
 import * as vueHandler from './handlers/vue-handler.js'
+import photoSwipeHandler from './handlers/photoswipe-handler.js'
 
 if (document.getElementById('js-header')) {
   navbarHandler('js-header')
@@ -32,4 +33,8 @@ if (document.getElementById('js-minisearch')) {
 
 if (document.getElementById('js-search')) {
   vueHandler.search()
+}
+
+if (document.getElementsByClassName('pswp').length) {
+  photoSwipeHandler()
 }

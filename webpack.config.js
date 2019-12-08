@@ -1,8 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {
-  VueLoaderPlugin
-} = require('vue-loader')
+const { VueLoaderPlugin } = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
@@ -20,16 +18,15 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, 'src/main/resources/assets')
     },
     module: {
-      rules: [{
+      rules: [
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
             options: {
               babelrc: false,
-              presets: [
-                ['@babel/preset-env']
-              ],
+              presets: [['@babel/preset-env']],
               plugins: ['@babel/plugin-syntax-dynamic-import']
             }
           }
@@ -46,12 +43,12 @@ module.exports = (env, argv) => {
         {
           test: /\.(ttf|eot|woff|woff2)$/,
           use: {
-            loader: "file-loader",
+            loader: 'file-loader',
             options: {
-              name: "styles/[name].[ext]",
-              publicPath: "../"
-            },
-          },
+              name: 'styles/[name].[ext]',
+              publicPath: '../'
+            }
+          }
         },
         {
           test: /\.(sass|scss|css)$/,
@@ -67,26 +64,40 @@ module.exports = (env, argv) => {
               loader: 'postcss-loader',
               options: {
                 sourceMap: PROD_MODE ? false : 'inline',
-                plugins: PROD_MODE ? [
-                  require('postcss-preset-env')({
-                    autoprefixer: {
-                      grid: true
-                    }
-                  }),
-                  require('postcss-csso')()
-                ] : [
-                  require('postcss-preset-env')({
-                    autoprefixer: {
-                      grid: true
-                    }
-                  })
-                ]
+                plugins: PROD_MODE
+                  ? [
+                      require('postcss-preset-env')({
+                        autoprefixer: {
+                          grid: true
+                        }
+                      }),
+                      require('postcss-csso')()
+                    ]
+                  : [
+                      require('postcss-preset-env')({
+                        autoprefixer: {
+                          grid: true
+                        }
+                      })
+                    ]
               }
             },
             {
               loader: 'sass-loader',
               options: {
                 sourceMap: PROD_MODE ? false : true
+              }
+            }
+          ]
+        },
+        {
+          test: /\.(jpg|png|gif|ico|svg)$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: 'styles/[name].[ext]',
+                publicPath: '../'
               }
             }
           ]
@@ -102,26 +113,36 @@ module.exports = (env, argv) => {
       new MiniCssExtractPlugin({
         filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css'
       }),
-      new CopyWebpackPlugin([{
-        from: './src/main/frontend/gfx',
-        to: 'gfx',
-        ignore: ['.*']
-      }])
+      new CopyWebpackPlugin([
+        {
+          from: './src/main/frontend/gfx',
+          to: 'gfx',
+          ignore: ['.*']
+        },
+        {
+          from: './node_modules/lazysizes/lazysizes.min.js',
+          to: 'scripts'
+        },
+        {
+          from: './node_modules/lazysizes/plugins/blur-up/ls.blur-up.min.js',
+          to: 'scripts'
+        }
+      ])
     ],
     optimization: {
       splitChunks: {
         cacheGroups: {
           commons: {
             test: /[\\/]node_modules[\\/]/,
-            name: "vendors",
-            chunks: "all"
+            name: 'vendors',
+            chunks: 'all'
           }
         }
       }
     }
   }
-  if (env === "analyze") {
-    config.plugins.push(new BundleAnalyzerPlugin());
+  if (env === 'analyze') {
+    config.plugins.push(new BundleAnalyzerPlugin())
   }
   return config
 }

@@ -29,6 +29,13 @@
 
 @import 'partials/shame';
 
+/*
+  Had to copy referenced icons from photoswipe default-skin folder into local styles folder.
+  Webpack was unable to follow local reference in node_modules.
+*/
+@import '../../../../node_modules/photoswipe/src/css/main';
+@import '../../../../node_modules/photoswipe/src/css/default-skin/default-skin';
+
 ::placeholder {
   color: $color-grayscale-50;
 }
