@@ -3,6 +3,10 @@ type: docker
 name: default
 
 steps:
+  - name: Setup sandbox
+    image: enonic/enonic-ci:7.1
+    commands:
+      - /setup_sandbox.sh
   - name: Build App
     image: enonic/enonic-ci:7.1
     commands:
