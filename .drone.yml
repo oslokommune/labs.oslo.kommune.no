@@ -15,10 +15,10 @@ steps:
     image: enonic/enonic-ci:7.1
     environment:
       ENONIC_CLI_REMOTE_URL:
-        from_secret: ENONIC_CLI_REMOTE_URL
+        from_secret: origotest-xp7t-url
       ENONIC_CLI_REMOTE_USER:
-        from_secret: ENONIC_CLI_REMOTE_USER
+        from_secret: origotest-xp7t-user
       ENONIC_CLI_REMOTE_PASS:
-        from_secret: ENONIC_CLI_REMOTE_PASS
+        from_secret: origotest-xp7t-pass
     commands:
       - enonic app install --file build/libs/*.jar
