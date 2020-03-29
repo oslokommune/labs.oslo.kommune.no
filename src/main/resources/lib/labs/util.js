@@ -1,4 +1,5 @@
 var portal = require('/lib/xp/portal')
+var moment = require('/assets/moment/2.24.0/moment.js')
 
 exports.getServerName = function() {
   // You set servername in config/system.properties with the key xp.name
@@ -62,7 +63,7 @@ var getContentLocale = function(content) {
 }
 exports.getContentLocale = getContentLocale
 
-exports.getMomentLocale = function(content) {
+var getMomentLocale = function(content) {
   // Moment doesn't have 'no' translation, so we force it to 'nb' instead
   var locale = getContentLocale(content)
   if ('no' === locale || 'no_NO' === locale) {
@@ -70,6 +71,7 @@ exports.getMomentLocale = function(content) {
   }
   return locale
 }
+exports.getMomentLocale = getMomentLocale
 
 exports.getColorValueFromName = function(color) {
   var colors = {
@@ -103,25 +105,15 @@ exports.sanitizeParam = function(str) {
 }
 
 exports.dmyDate = function(datestr) {
-  var date = new Date(datestr)
-  var day = date.getDate()
-  var month = date.getMonth()
-  month = parseInt(month)
-  month = month + 1
-  var year = date.getFullYear()
-  var prettydate = day + '.' + month + '.' + year
-  return prettydate
+  return moment(datestr)
+    .locale(getMomentLocale())
+    .format('l')
 }
 
 exports.ymdDate = function(datestr) {
-  var date = new Date(datestr)
-  var day = date.getDate()
-  var month = date.getMonth()
-  month = parseInt(month)
-  month = month + 1
-  var year = date.getFullYear()
-  var ymdDate = [('0000' + year).slice(-4), ('00' + month).slice(-2), ('00' + day).slice(-2)].join('-')
-  return ymdDate
+  return moment(datestr)
+    .locale(getMomentLocale())
+    .format('YYYYMMDD')
 }
 
 exports.isInt = function(value) {
