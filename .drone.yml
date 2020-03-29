@@ -1,0 +1,24 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: Setup sandbox
+    image: enonic/enonic-ci:7.1
+    commands:
+      - /setup_sandbox.sh
+  - name: Build App
+    image: enonic/enonic-ci:7.1
+    commands:
+      - enonic project build
+  - name: Deploy App
+    image: enonic/enonic-ci:7.1
+    environment:
+      ENONIC_CLI_REMOTE_URL:
+        from_secret: origotest-xp7t-url
+      ENONIC_CLI_REMOTE_USER:
+        from_secret: origotest-xp7t-user
+      ENONIC_CLI_REMOTE_PASS:
+        from_secret: origotest-xp7t-pass
+    commands:
+      - enonic app install --file build/libs/*.jar
