@@ -45,7 +45,7 @@ module.exports = (env, argv) => {
           use: {
             loader: 'file-loader',
             options: {
-              name: 'styles/[name].[ext]',
+              name: 'fonts/[name].[ext]',
               publicPath: '../'
             }
           }
