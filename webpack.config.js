@@ -2,24 +2,20 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = (env, argv) => {
   console.log(JSON.stringify(argv, null, 2))
   console.log(JSON.stringify(env, null, 2))
-  const PROD_MODE =
-    argv.mode === 'production' || process.env.NODE_ENV === 'production'
+  const PROD_MODE = argv.mode === 'production' || process.env.NODE_ENV === 'production'
   const config = {
     entry: {
       main: './src/main/frontend/scripts/main.js'
     },
     output: {
       filename: PROD_MODE ? 'scripts/[name].min.js' : 'scripts/[name].js',
-      chunkFilename: PROD_MODE
-        ? 'scripts/[name].bundle.min.js'
-        : 'scripts/[name].bundle.js',
-      path: path.resolve(__dirname, 'build/resources/assets')
+      chunkFilename: PROD_MODE ? 'scripts/[name].bundle.min.js' : 'scripts/[name].bundle.js',
+      path: path.resolve(__dirname, 'build/resources/main/assets')
     },
     module: {
       rules: [
