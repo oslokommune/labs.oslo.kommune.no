@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: "Test Environment"
+name: 'Test Environment'
 
 # Build and deploy to testing on pushed commits to master branch
 trigger:
@@ -16,7 +16,7 @@ steps:
     commands:
       - /setup_sandbox.sh
       - enonic project build
-​
+
   - name: deploy
     image: enonic/enonic-ci:7.1
     environment:
@@ -32,7 +32,7 @@ steps:
 ---
 kind: pipeline
 type: docker
-name: "Production Environment"
+name: 'Production Environment'
 
 # Build and deploy to production on promoted builds
 trigger:
