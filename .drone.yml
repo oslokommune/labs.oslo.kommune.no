@@ -1,17 +1,25 @@
 kind: pipeline
 type: docker
-name: default
-
+name: "Test Environment"
+​
+# Build and deploy to testing on pushed commits to master branch
+trigger:
+  branch:
+    - master
+  event:
+    include:
+      - push
+  target:
+    - test
+​
 steps:
-  - name: Setup sandbox
+  - name: build & test app
     image: enonic/enonic-ci:7.1
     commands:
       - /setup_sandbox.sh
-  - name: Build App
-    image: enonic/enonic-ci:7.1
-    commands:
       - enonic project build
-  - name: Deploy App
+​
+  - name: deploy
     image: enonic/enonic-ci:7.1
     environment:
       ENONIC_CLI_REMOTE_URL:
@@ -20,5 +28,34 @@ steps:
         from_secret: origotest-xp7t-user
       ENONIC_CLI_REMOTE_PASS:
         from_secret: origotest-xp7t-pass
+    commands:
+      - enonic app install --file build/libs/*.jar
+​
+---
+kind: pipeline
+type: docker
+name: "Production Environment"
+​
+# Build and deploy to production on promoted builds
+trigger:
+  target:
+    - production
+​
+steps:
+  - name: build & test app
+    image: enonic/enonic-ci:7.1
+    commands:
+      - /setup_sandbox.sh
+      - enonic project build
+​
+  - name: deploy
+    image: enonic/enonic-ci:7.1
+    environment:
+      ENONIC_CLI_REMOTE_URL:
+        from_secret: origoprod-xp7p-url
+      ENONIC_CLI_REMOTE_USER:
+        from_secret: origoprod-xp7p-user
+      ENONIC_CLI_REMOTE_PASS:
+        from_secret: origoprod-xp7p-pass
     commands:
       - enonic app install --file build/libs/*.jar
