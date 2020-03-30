@@ -12,13 +12,13 @@ trigger:
 
 steps:
   - name: build & test app
-    image: enonic/enonic-ci:7.2
+    image: enonic/enonic-ci:7.1
     commands:
       - /setup_sandbox.sh
       - enonic project build
 
   - name: deploy
-    image: enonic/enonic-ci:7.2
+    image: enonic/enonic-ci:7.1
     environment:
       ENONIC_CLI_REMOTE_URL:
         from_secret: origotest-xp7t-url
@@ -41,13 +41,13 @@ trigger:
 
 steps:
   - name: build & test app
-    image: enonic/enonic-ci:7.2
+    image: enonic/enonic-ci:7.1
     commands:
       - /setup_sandbox.sh
       - enonic project build
 
   - name: deploy
-    image: enonic/enonic-ci:7.2
+    image: enonic/enonic-ci:7.1
     environment:
       ENONIC_CLI_REMOTE_URL:
         from_secret: origoprod-xp7p-url
