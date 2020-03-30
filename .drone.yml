@@ -1,7 +1,7 @@
 kind: pipeline
 type: docker
 name: "Test Environment"
-​
+
 # Build and deploy to testing on pushed commits to master branch
 trigger:
   branch:
@@ -9,7 +9,7 @@ trigger:
   event:
     include:
       - push
-​
+
 steps:
   - name: build & test app
     image: enonic/enonic-ci:7.1
@@ -28,24 +28,24 @@ steps:
         from_secret: origotest-xp7t-pass
     commands:
       - enonic app install --file build/libs/*.jar
-​
+
 ---
 kind: pipeline
 type: docker
 name: "Production Environment"
-​
+
 # Build and deploy to production on promoted builds
 trigger:
   target:
     - production
-​
+
 steps:
   - name: build & test app
     image: enonic/enonic-ci:7.1
     commands:
       - /setup_sandbox.sh
       - enonic project build
-​
+
   - name: deploy
     image: enonic/enonic-ci:7.1
     environment:
