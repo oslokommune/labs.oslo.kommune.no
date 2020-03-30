@@ -9,8 +9,6 @@ trigger:
   event:
     include:
       - push
-  target:
-    - test
 ​
 steps:
   - name: build & test app
