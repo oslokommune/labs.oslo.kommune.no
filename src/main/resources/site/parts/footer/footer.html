@@ -32,6 +32,10 @@
       <p data-th-if="${copyright}" class="has-text-centered">
         <small data-th-text="${copyright}"></small>
       </p>
+      <p data-th-if="${appVersion}" class="has-text-centered">
+        <small data-th-text="${portal.localize({'_key=parts.footer.appVersion'})}">App version</small>
+        <small data-th-text="${appVersion}">Unknown</small>
+      </p>
     </div>
   </section>
 </footer>

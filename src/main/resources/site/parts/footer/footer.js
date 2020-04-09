@@ -10,7 +10,6 @@ exports.get = function(req) {
   if (component.config) {
     var config = component.config
   }
-
   if (config.heading) {
     model.heading = config.heading
   }
@@ -51,6 +50,9 @@ exports.get = function(req) {
   }
   if (config.contactEmail) {
     model.contactEmail = config.contactEmail
+  }
+  if (app.version) {
+    model.appVersion = app.version
   }
 
   var view = resolve('./footer.html')
