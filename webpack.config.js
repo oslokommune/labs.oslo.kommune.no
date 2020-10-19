@@ -10,12 +10,12 @@ module.exports = (env, argv) => {
   const PROD_MODE = argv.mode === 'production' || process.env.NODE_ENV === 'production'
   const config = {
     entry: {
-      main: './src/main/frontend/scripts/main.js'
+      main: './src/main/frontend/scripts/main.js',
     },
     output: {
       filename: PROD_MODE ? 'scripts/[name].min.js' : 'scripts/[name].js',
       chunkFilename: PROD_MODE ? 'scripts/[name].bundle.min.js' : 'scripts/[name].bundle.js',
-      path: path.resolve(__dirname, 'build/resources/main/assets')
+      path: path.resolve(__dirname, 'build/resources/main/assets'),
     },
     module: {
       rules: [
@@ -27,18 +27,18 @@ module.exports = (env, argv) => {
             options: {
               babelrc: false,
               presets: [['@babel/preset-env']],
-              plugins: ['@babel/plugin-syntax-dynamic-import']
-            }
-          }
+              plugins: ['@babel/plugin-syntax-dynamic-import'],
+            },
+          },
         },
         {
           test: /\.vue$/,
-          use: 'vue-loader'
+          use: 'vue-loader',
         },
         {
           resourceQuery: /blockType=i18n/,
           type: 'javascript/auto',
-          loader: '@kazupon/vue-i18n-loader'
+          loader: '@kazupon/vue-i18n-loader',
         },
         {
           test: /\.(ttf|eot|woff|woff2)$/,
@@ -46,9 +46,9 @@ module.exports = (env, argv) => {
             loader: 'file-loader',
             options: {
               name: 'fonts/[name].[ext]',
-              publicPath: '../'
-            }
-          }
+              publicPath: '../',
+            },
+          },
         },
         {
           test: /\.(sass|scss|css)$/,
@@ -57,38 +57,40 @@ module.exports = (env, argv) => {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: PROD_MODE ? false : true
-              }
+                sourceMap: PROD_MODE ? false : true,
+              },
             },
             {
               loader: 'postcss-loader',
               options: {
-                sourceMap: PROD_MODE ? false : 'inline',
-                plugins: PROD_MODE
-                  ? [
-                      require('postcss-preset-env')({
-                        autoprefixer: {
-                          grid: true
-                        }
-                      }),
-                      require('postcss-csso')()
-                    ]
-                  : [
-                      require('postcss-preset-env')({
-                        autoprefixer: {
-                          grid: true
-                        }
-                      })
-                    ]
-              }
+                sourceMap: PROD_MODE ? false : true,
+                postcssOptions: {
+                  plugins: PROD_MODE
+                    ? [
+                        require('postcss-preset-env')({
+                          autoprefixer: {
+                            grid: true,
+                          },
+                        }),
+                        // require('postcss-csso')(),
+                      ]
+                    : [
+                        require('postcss-preset-env')({
+                          autoprefixer: {
+                            grid: true,
+                          },
+                        }),
+                      ],
+                },
+              },
             },
             {
               loader: 'sass-loader',
               options: {
-                sourceMap: PROD_MODE ? false : true
-              }
-            }
-          ]
+                sourceMap: PROD_MODE ? false : true,
+              },
+            },
+          ],
         },
         {
           test: /\.(jpg|png|gif|ico|svg)$/,
@@ -97,37 +99,39 @@ module.exports = (env, argv) => {
               loader: 'file-loader',
               options: {
                 name: 'styles/[name].[ext]',
-                publicPath: '../'
-              }
-            }
-          ]
-        }
-      ]
+                publicPath: '../',
+              },
+            },
+          ],
+        },
+      ],
     },
     resolve: {
-      extensions: ['.js', '.vue', '.css', '.scss']
+      extensions: ['.js', '.vue', '.css', '.scss'],
     },
     stats: 'normal',
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-        filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css'
+        filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css',
       }),
-      new CopyWebpackPlugin([
-        {
-          from: './src/main/frontend/gfx',
-          to: 'gfx',
-          ignore: ['.*']
-        },
-        {
-          from: './node_modules/lazysizes/lazysizes.min.js',
-          to: 'scripts'
-        },
-        {
-          from: './node_modules/lazysizes/plugins/blur-up/ls.blur-up.min.js',
-          to: 'scripts'
-        }
-      ])
+      new CopyWebpackPlugin({
+        patterns: [
+          ({
+            from: './src/main/frontend/gfx',
+            to: 'gfx',
+            ignore: ['.*'],
+          },
+          {
+            from: './node_modules/lazysizes/lazysizes.min.js',
+            to: 'scripts',
+          },
+          {
+            from: './node_modules/lazysizes/plugins/blur-up/ls.blur-up.min.js',
+            to: 'scripts',
+          }),
+        ],
+      }),
     ],
     optimization: {
       splitChunks: {
@@ -135,11 +139,11 @@ module.exports = (env, argv) => {
           commons: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
-            chunks: 'all'
-          }
-        }
-      }
-    }
+            chunks: 'all',
+          },
+        },
+      },
+    },
   }
   if (env === 'analyze') {
     config.plugins.push(new BundleAnalyzerPlugin())
