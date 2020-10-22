@@ -14,14 +14,14 @@ exports.get = function(req) {
   // Store URL to search page
   if (siteConfig && siteConfig.searchPage) {
     model.searchPageUrl = portal.pageUrl({
-      id: siteConfig.searchPage
+      id: siteConfig.searchPage,
     })
   }
 
   // Store URL to search service
   model.searchURL = portal.serviceUrl({
     service: 'search',
-    type: 'absolute'
+    type: 'absolute',
   })
 
   siteConfig.googleMapsKey && (model.googleMapsKey = siteConfig.googleMapsKey)
@@ -45,7 +45,7 @@ exports.get = function(req) {
   const serverName = util.getServerName().toLowerCase()
   const isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test'
   const stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  const vendorScriptsPath = isProd ? 'scripts/vendors.bundle.min.js' : 'scripts/vendors.bundle.js'
+  const vendorScriptsPath = isProd ? 'scripts/vendors.min.js' : 'scripts/vendors.js'
   const scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
   const vendorScripts = `<script defer src='${portal.assetUrl({ path: vendorScriptsPath })}'></script>`
   const scripts = `<script defer src='${portal.assetUrl({ path: scriptsPath })}'></script>`
@@ -57,7 +57,7 @@ exports.get = function(req) {
   return {
     body: body,
     pageContributions: {
-      headEnd: [styles, vendorScripts, scripts]
-    }
+      headEnd: [styles, vendorScripts, scripts],
+    },
   }
 }

@@ -9,6 +9,8 @@ module.exports = (env, argv) => {
   console.log(JSON.stringify(env, null, 2))
   const PROD_MODE = argv.mode === 'production' || process.env.NODE_ENV === 'production'
   const config = {
+    mode: PROD_MODE ? 'production' : 'development',
+    devtool: PROD_MODE ? false : 'inline-source-map',
     entry: {
       main: './src/main/frontend/scripts/main.js',
     },
@@ -65,22 +67,13 @@ module.exports = (env, argv) => {
               options: {
                 sourceMap: PROD_MODE ? false : true,
                 postcssOptions: {
-                  plugins: PROD_MODE
-                    ? [
-                        require('postcss-preset-env')({
-                          autoprefixer: {
-                            grid: true,
-                          },
-                        }),
-                        // require('postcss-csso')(),
-                      ]
-                    : [
-                        require('postcss-preset-env')({
-                          autoprefixer: {
-                            grid: true,
-                          },
-                        }),
-                      ],
+                  plugins: [
+                    require('postcss-preset-env')({
+                      autoprefixer: {
+                        grid: true,
+                      },
+                    }),
+                  ],
                 },
               },
             },

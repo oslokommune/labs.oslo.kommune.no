@@ -36,12 +36,16 @@ repositories {
     xp.enonicRepo()
 }
 
-task webpack(type: NpmTask, dependsOn: 'npmInstall') {
-    if (project.hasProperty( 'watch' )) {
-        args = ['run', 'dev']
-    } else {
-        args = ['run', 'build']
-    }
+task webpackProd(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'build']
 }
 
-jar.dependsOn += webpack
+task webpackDev(type: NpmTask, dependsOn: 'npmInstall') {
+    args = ['run', 'dev']
+}
+
+if (project.hasProperty( 'dev' )) {
+    jar.dependsOn += webpackDev
+} else if (!project.hasProperty( 'watch') ){
+    jar.dependsOn += webpackProd
+}
