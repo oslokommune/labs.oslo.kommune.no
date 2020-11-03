@@ -4,7 +4,7 @@ var contentSvc = require('/lib/xp/content')
 
 var prescaledImageSizes = [256, 512, 1024, 2048]
 var prescaledImageQualities = [70, 65, 60, 55]
-var defaultImageWidth = 1024
+var defaultImageWidth = prescaledImageSizes[prescaledImageSizes.length - 1]
 var defaultImageQuality = 60
 
 var tempSVG = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{w}} {{h}}'/>" // Simplest possible SVG
@@ -35,7 +35,7 @@ exports.image.create = function(key, scale, filter, format, quality, responsive,
   var image = {}
   if (key) {
     var result = contentSvc.get({
-      key: key
+      key: key,
     })
     if (result) {
       if ('media:image' === result.type) {
@@ -56,7 +56,7 @@ exports.image.create = function(key, scale, filter, format, quality, responsive,
         }
       } else {
         image.src = portal.attachmentUrl({
-          id: key
+          id: key,
         })
       }
       image.alt = result.displayName
@@ -88,7 +88,7 @@ exports.image.createUrl = function(key, scale, filter, format, quality, absolute
     filter: filter,
     format: format,
     quality: scaledQuality,
-    type: type
+    type: type,
   })
 }
 
@@ -250,13 +250,13 @@ function getImageDimensions(image) {
   var cameraInfo = image['x']['media']['cameraInfo']
   var imageDimensions = {
     x: imageInfo['imageWidth'],
-    y: imageInfo['imageHeight']
+    y: imageInfo['imageHeight'],
   }
   // Check for rotated images. Enonic doesn't recognize this.
   if (cameraInfo && cameraInfo.orientation && /(90|270)/.test(cameraInfo.orientation)) {
     imageDimensions = {
       x: imageInfo['imageHeight'],
-      y: imageInfo['imageWidth']
+      y: imageInfo['imageWidth'],
     }
   }
   return imageDimensions
@@ -280,7 +280,7 @@ function getScaleTypes() {
   return {
     x: ['width', 'square', 'max'],
     y: ['height'],
-    xy: ['wide', 'block']
+    xy: ['wide', 'block'],
   }
 }
 
