@@ -2,27 +2,19 @@
   <article>
     <header class="hero" data-th-classappend="${image or videoId} ? '' : ' hero--no-image'">
       <div class="container-fluid" data-th-if="!${videoId}">
-        <img
-          data-th-if="*{image}"
-          data-th-src="*{image.placeholderSrc}"
-          data-th-srcset="*{image.srcSet}"
-          data-th-sizes="'100vw'"
-          data-th-alt="*{image.alt}"
-          class="hero__img"
-        />
+        <img data-th-data-width="*{image.width}" data-th-data-height="*{image.height}" data-th-if="*{image}"
+          data-th-src="*{image.placeholderSrc}" data-th-srcset="*{image.srcSet}" data-th-sizes="'100vw'"
+          data-th-alt="*{image.alt}" class="hero__img gallery" />
       </div>
 
-      <div class="hero__videowrapper" id="js-hero-videowrapper" data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''">
+      <div class="hero__videowrapper" id="js-hero-videowrapper"
+        data-th-classappend="${stickyVideo} ? 'stickyVideo' : ''">
         <div data-th-if="${videoId}" class="hero__videocontainer" id="js-hero-videocontainer">
           <div data-th-style="'position: relative; padding-top: 56.25%;'">
             <iframe
               data-th-src="'https://player.vimeo.com/video/' + ${videoId} + '?color=da28d3&title=0&byline=0&portrait=0'"
-              style="position:absolute;top:0;left:0;width:100%;height:100%;"
-              frameborder="0"
-              webkitallowfullscreen
-              mozallowfullscreen
-              allowfullscreen
-            >
+              style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
+              mozallowfullscreen allowfullscreen>
             </iframe>
           </div>
           <div class="hero__closepopout" id="js-hero-closepopout"></div>
@@ -47,14 +39,10 @@
               <p class="lead" data-th-utext="${lead}"></p>
               <ul class="dateline">
                 <li class="dateline__date">
-                  <time
-                    class="dateline__datetime"
-                    data-th-title="${createdTimeShort}"
-                    data-th-datetime="${createdTimeShort}"
-                    data-th-text="${createdTimeRelative}"
-                    data-th-aria-label="${portal.localize({'_key=aria.published', '_values=' + createdTimeRelative})}"
-                    >Created time</time
-                  >
+                  <time class="dateline__datetime" data-th-title="${createdTimeShort}"
+                    data-th-datetime="${createdTimeShort}" data-th-text="${createdTimeRelative}"
+                    data-th-aria-label="${portal.localize({'_key=aria.published', '_values=' + createdTimeRelative})}">Created
+                    time</time>
                 </li>
                 <li class="dateline__authors" data-th-aria-label="${portal.localize({'_key=aria.writtenBy'})}">
                   <span data-th-each="author : ${authors}">
@@ -86,17 +74,12 @@
       <!--
         /* Each content block renders the corresponding content block snippet */
       -->
-      <section
-        data-th-if="${contentBlocks}"
-        data-th-each="block : ${contentBlocks}"
-        class="section"
-        data-th-style="${block.gradient} ? ${block.gradient} : ''"
-        data-th-classappend="
+      <section data-th-if="${contentBlocks}" data-th-each="block : ${contentBlocks}" class="section"
+        data-th-style="${block.gradient} ? ${block.gradient} : ''" data-th-classappend="
                 (${block.hasWhiteText} ? 'has-text-white' : '') + 
                 (${block.fill} ? ' has-background section--' + ${block.fill} : '') + 
                 (${block.gradient} ? 'has-background' : '')
-              "
-      >
+              ">
         <div class="container">
           <div class="columns">
             <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
@@ -105,8 +88,10 @@
       </section>
     </div>
     <footer class="section article-footer">
-      <ul data-th-if="${authors}" class="container bio" role="list" data-th-aria-label="${portal.localize({'_key=aria.authors'})}">
-        <li class="bio__author columns is-marginless is-mobile" data-th-each="author: ${authors}" data-th-object="${author}">
+      <ul data-th-if="${authors}" class="container bio" role="list"
+        data-th-aria-label="${portal.localize({'_key=aria.authors'})}">
+        <li class="bio__author columns is-marginless is-mobile" data-th-each="author: ${authors}"
+          data-th-object="${author}">
           <div class="bio__tag" data-th-text="${portal.localize({'_key=bio.aboutAuthor'})}"></div>
           <div class="column bio__textcontainer is-paddingless">
             <div class="bio__content">
@@ -114,16 +99,19 @@
                 <h4 class="bio__name title is-4" data-th-text="*{name}"></h4>
                 <p class="bio__meta">
                   <span data-th-if="*{role}" class="bio__role" data-th-text="*{role}">role</span>
-                  <span data-th-if="*{department}" class="bio__department" data-th-text="*{department}">department</span>
+                  <span data-th-if="*{department}" class="bio__department"
+                    data-th-text="*{department}">department</span>
                 </p>
                 <p class="bio__body" data-th-text="*{bio}"></p>
               </div>
               <ul class="bio__links">
                 <li data-th-if="*{email}">
-                  <a class="button is-primary is-outlined" data-th-href="'mailto:' + *{email}" data-th-text="${portal.localize({'_key=bio.email'})}"></a>
+                  <a class="button is-primary is-outlined" data-th-href="'mailto:' + *{email}"
+                    data-th-text="${portal.localize({'_key=bio.email'})}"></a>
                 </li>
                 <li data-th-if="*{url}">
-                  <a class="button is-primary" data-th-href="*{url}" data-th-text="${portal.localize({'_key=bio.viewProfile'})}"></a>
+                  <a class="button is-primary" data-th-href="*{url}"
+                    data-th-text="${portal.localize({'_key=bio.viewProfile'})}"></a>
                 </li>
               </ul>
             </div>
@@ -131,14 +119,8 @@
           <div class="column bio__imagecontainer is-paddingless">
             <video data-th-if="*{video}" class="bio__video" data-th-src="*{video}" loop muted></video>
 
-            <img
-              data-th-unless="*{video}"
-              data-th-if="*{image}"
-              data-th-src="*{image.placeholderSrc}"
-              data-th-srcset="*{image.srcSet}"
-              data-th-sizes="'100px'"
-              data-th-alt="*{image.alt}"
-            />
+            <img data-th-unless="*{video}" data-th-if="*{image}" data-th-src="*{image.placeholderSrc}"
+              data-th-srcset="*{image.srcSet}" data-th-sizes="'100px'" data-th-alt="*{image.alt}" />
           </div>
         </li>
       </ul>
@@ -158,7 +140,7 @@
     let videoHeight = videoWrapper.getBoundingClientRect().height
     let playing = false
 
-    player.on('play', function() {
+    player.on('play', function () {
       videoWrapper.classList.add('hero__videowrapper--expanded')
       videoHeight = videoWrapper.getBoundingClientRect().height
       playing = true
