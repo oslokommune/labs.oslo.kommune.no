@@ -41,7 +41,7 @@ export default function init() {
         return elem.tagName && elem.tagName.toUpperCase() === 'FIGURE'
       })
       if (figureItem) {
-        item.title = figureItem?.getElementsByTagName('figcaption')?.[0]?.innerText ?? 'YOOOO'
+        item.title = figureItem?.getElementsByTagName('figcaption')?.[0]?.innerText ?? ''
       }
       items.push(item)
     }
