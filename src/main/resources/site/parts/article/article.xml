@@ -1,4 +1,12 @@
 <part>
   <display-name i18n="parts.article">Article</display-name>
-  <form/>
+  <form>
+    <input name="override" type="ContentSelector">
+      <label i18n="parts.article.override">Article to use for landing page</label>
+      <occurrences minimum="0" maximum="1" />
+      <config>
+        <allowContentType>article</allowContentType>
+      </config>
+    </input>
+  </form>
 </part>
