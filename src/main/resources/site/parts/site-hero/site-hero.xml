@@ -17,6 +17,7 @@
         <relationshipType>system:reference</relationshipType>
         <allowContentType>article</allowContentType>
         <allowContentType>landing-page</allowContentType>
+        <allowContentType>category</allowContentType>
         <allowPath>${site}/*</allowPath>
       </config>
     </input>
@@ -32,6 +33,7 @@
         <relationshipType>system:reference</relationshipType>
         <allowContentType>article</allowContentType>
         <allowContentType>landing-page</allowContentType>
+        <allowContentType>category</allowContentType>
         <allowPath>${site}/*</allowPath>
       </config>
     </input>
@@ -45,7 +47,6 @@
       <occurrences minimum="0" maximum="1"/>
       <config>
         <allowPath>${site}/*</allowPath>
-        <allowContentType>media:vector</allowContentType>
       </config>
     </input>
 

@@ -6,6 +6,9 @@ exports.get = function(req) {
   var component = portal.getComponent()
   var model = {}
   model.data = contentPrep.processBlockLinkList(component.config)
+  if (component.config.background) {
+    model.data.background = component.config.background
+  }
   model.live = req.mode == 'live'
   model.hasContent = model && model.data && model.data.hasOwnProperty('links')
   var view = resolve('./block-links.html')

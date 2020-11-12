@@ -19,7 +19,7 @@
   }
 
   &__title {
-    color: $color-orange;
+    color: $color-yellow;
   }
 
   a {
@@ -41,11 +41,11 @@
 
   &__field {
     background: rgba(white, 0.05);
-    border: 2px solid $color-orange;
+    border: 2px solid $color-yellow;
   }
 
   &__submit {
-    background: $color-orange;
+    background: $color-yellow;
     border: none;
 
     &:focus {

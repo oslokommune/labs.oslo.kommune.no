@@ -2,5 +2,10 @@
   <display-name i18n="parts.blockLinkList">Generic link list block</display-name>
   <form>
     <mixin name="block-links" />
+    <input name="background" type="Textline">
+      <label i18n="txt.background">Background color</label>
+      <help-text>#rrggbb</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
   </form>
 </part>
