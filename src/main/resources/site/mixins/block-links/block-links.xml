@@ -18,6 +18,7 @@
             <allowContentType>article</allowContentType>
             <allowContentType>landing-page</allowContentType>
             <allowContentType>person</allowContentType>
+            <allowContentType>category</allowContentType>
             <allowPath>${site}/*</allowPath>
           </config>
         </input>
@@ -26,6 +27,9 @@
         </input>
         <input name="overrideLinkText" type="TextLine">
           <label i18n="txt.overrideLinkText">Override link text</label>
+        </input>
+        <input name="linkExplanation" type="TextArea">
+          <label i18n="txt.linkExplanation">Link explanation text</label>
         </input>
       </items>
     </item-set>

@@ -329,7 +329,7 @@
             <option name="ctbLinks">
               <label i18n="ct.article.ctbLinks">Link list</label>
               <items>
-                <mixin name="block-link-list" />
+                <mixin name="block-links" />
               </items>
             </option>
 

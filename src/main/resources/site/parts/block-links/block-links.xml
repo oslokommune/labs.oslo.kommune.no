@@ -1,6 +1,6 @@
 <part>
   <display-name i18n="parts.blockLinkList">Generic link list block</display-name>
   <form>
-    <mixin name="block-link-list" />
+    <mixin name="block-links" />
   </form>
 </part>

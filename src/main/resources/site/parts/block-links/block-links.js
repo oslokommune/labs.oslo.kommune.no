@@ -6,15 +6,12 @@ exports.get = function(req) {
   var component = portal.getComponent()
   var model = {}
   model.data = contentPrep.processBlockLinkList(component.config)
-  var settings = {}
-  settings.isFullWidth = true
-  model.settings = settings
   model.live = req.mode == 'live'
   model.hasContent = model && model.data && model.data.hasOwnProperty('links')
-  var view = resolve('./block-link-list.html')
+  var view = resolve('./block-links.html')
   var body = thymeleaf.render(view, model)
   return {
     body: body,
-    contentType: 'text/html'
+    contentType: 'text/html',
   }
 }

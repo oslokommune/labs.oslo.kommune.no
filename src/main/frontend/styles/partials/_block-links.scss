@@ -1,0 +1,29 @@
+.o-block-links {
+  h2.title {
+    margin-bottom: 0.5rem;
+  }
+
+  ul {
+    margin-left: 0;
+  }
+
+  & .o-icon-link__link {
+    display: flex;
+    margin-right: 1rem;
+    color: $body-color;
+  }
+
+  & .o-icon-link__link-icon {
+    margin: 0 0.5rem 0 0;
+  }
+
+  & .o-icon-link__link-text {
+    .title {
+      color: $link;
+      margin-bottom: 0.25rem;
+    }
+    .title:hover {
+      text-decoration: underline;
+    }
+  }
+}

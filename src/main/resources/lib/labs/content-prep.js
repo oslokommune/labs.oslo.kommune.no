@@ -28,7 +28,7 @@ var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
   var article = {}
   article.id = content._id
   article.path = portal.pageUrl({
-    path: content._path
+    path: content._path,
   })
   article.created = content.createdTime
   article.modifiedTime = content.modifiedTime ? content.modifiedTime : null
@@ -84,7 +84,7 @@ function processCommonFields(data, scale) {
 
   data.body &&
     (data.body = portal.processHtml({
-      value: data.body
+      value: data.body,
     }))
 
   return data
@@ -97,7 +97,7 @@ function getAuthors(authors) {
   authors = authors.map(function(authorId) {
     var author = {}
     var content = contentLib.get({
-      key: authorId
+      key: authorId,
     })
 
     // Name
@@ -117,7 +117,7 @@ function getAuthors(authors) {
     // Profile video
     if (content && content.data && content.data.video) {
       author.video = portal.attachmentUrl({
-        id: content.data.video
+        id: content.data.video,
       })
     }
 
@@ -147,7 +147,7 @@ function getAuthors(authors) {
     }
 
     author.url = portal.pageUrl({
-      id: authorId
+      id: authorId,
     })
 
     return author
@@ -175,7 +175,7 @@ function processContentBlocks(ctbs) {
           block.ctb.sidebarbox.icon = block.ctbSettings.sidebarbox.sidebarboxIcon
         }
         block.ctb.sidebarbox.contents = portal.processHtml({
-          value: block.ctbSettings.sidebarbox.sidebarboxContents
+          value: block.ctbSettings.sidebarbox.sidebarboxContents,
         })
       }
 
@@ -188,7 +188,7 @@ function processContentBlocks(ctbs) {
         }
         if (block.ctbSettings.sidebarImage.caption) {
           block.ctb.sidebarImage.caption = portal.processHtml({
-            value: block.ctbSettings.sidebarImage.caption
+            value: block.ctbSettings.sidebarImage.caption,
           })
         }
       }
@@ -255,7 +255,7 @@ function processContentBlocks(ctbs) {
     // Process text block. Mainly for fixing image references
     if (block.ctb._selected === 'ctbText' && block.ctb.ctbText) {
       block.ctb.ctbText.content = portal.processHtml({
-        value: block.ctb.ctbText.content
+        value: block.ctb.ctbText.content,
       })
     }
 
@@ -315,10 +315,10 @@ var processBlockLinkList = function(b) {
       if (item.internalLink || item.externalLink) {
         if (item.internalLink) {
           link.text = contentLib.get({
-            key: item.internalLink
+            key: item.internalLink,
           }).displayName
           link.href = portal.pageUrl({
-            id: item.internalLink
+            id: item.internalLink,
           })
         } else {
           link.href = item.externalLink
@@ -329,6 +329,9 @@ var processBlockLinkList = function(b) {
         }
         if (item.overrideLinkText) {
           link.text = item.overrideLinkText
+        }
+        if (item.linkExplanation) {
+          link.linkExplanation = item.linkExplanation
         }
       }
       if (link.href) {
@@ -349,12 +352,12 @@ var processCategoryTeaser = function(categories, scale) {
     item.image && (item.image = imageLib.image.create(item.image, scale))
     item.color = util.getColorValueFromName(item.color)
     var link = {
-      href: '#'
+      href: '#',
     }
     if (item.internalLink || item.externalLink) {
       if (item.internalLink) {
         link.href = portal.pageUrl({
-          id: item.internalLink
+          id: item.internalLink,
         })
       } else {
         link.href = item.externalLink
@@ -400,7 +403,7 @@ function calculateEqualSizeScale(images) {
   var imageData, imageDimensions
   images.forEach(function(image) {
     imageData = contentLib.get({
-      key: image
+      key: image,
     })
     if (imageData) {
       imageDimensions = getImageDimensions(imageData)
@@ -426,13 +429,13 @@ function getImageDimensions(image) {
   var cameraInfo = image['x']['media']['cameraInfo']
   var imageDimensions = {
     x: imageInfo['imageWidth'],
-    y: imageInfo['imageHeight']
+    y: imageInfo['imageHeight'],
   }
   // Check for rotated images. Enonic doesn't seem to recognize this in the java layer.
   if (cameraInfo && cameraInfo.orientation && /(90|270)/.test(cameraInfo.orientation)) {
     imageDimensions = {
       x: imageInfo['imageHeight'],
-      y: imageInfo['imageWidth']
+      y: imageInfo['imageWidth'],
     }
   }
   return imageDimensions
@@ -472,11 +475,11 @@ exports.calculatePaging = function(path, totalPosts, start, configCount) {
   if (totalPosts > nextPageStart) {
     // Show next link
     params = {
-      start: String(nextPageStart)
+      start: String(nextPageStart),
     }
     p.next = portal.pageUrl({
       path: path,
-      params: params
+      params: params,
     })
   }
 
@@ -485,22 +488,22 @@ exports.calculatePaging = function(path, totalPosts, start, configCount) {
     if (prevPageStart < 1) {
       // Shouldn't happen, but someone could be playing with the params
       p.prev = portal.pageUrl({
-        path: path
+        path: path,
       })
     } else {
       // Show prev link
       params = {
-        start: String(prevPageStart)
+        start: String(prevPageStart),
       }
       p.prev = portal.pageUrl({
         path: path,
-        params: params
+        params: params,
       })
     }
     if (prevPageStart > 0) {
       // Also display "home" link, if prev link > beginning
       p.home = portal.pageUrl({
-        path: path
+        path: path,
       })
     }
   }
