@@ -239,6 +239,10 @@ body {
 
   &__links {
     margin-top: 2em;
+    & a:not(:only-of-type) {
+      display: inline-block;
+      margin-top: 0.28rem;
+    }
   }
 }
 
