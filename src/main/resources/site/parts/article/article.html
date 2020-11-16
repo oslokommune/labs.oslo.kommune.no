@@ -45,8 +45,13 @@
                     time</time>
                 </li>
                 <li class="dateline__authors" data-th-aria-label="${portal.localize({'_key=aria.writtenBy'})}">
-                  <span data-th-each="author : ${authors}">
-                    <a data-th-href="${author.url}" data-th-text="${author.name}"></a>
+                  <span data-th-if="${isBlog}" data-th-text="${portal.localize({'_key=txt.aBlogPostBy'})}">A blog post
+                    by
+                  </span>
+                  <span class="dateline__authorlist">
+                    <span data-th-each="author : ${authors}">
+                      <a data-th-href="${author.url}" data-th-text="${author.name}"></a>
+                    </span>
                   </span>
                 </li>
               </ul>

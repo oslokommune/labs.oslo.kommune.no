@@ -18,6 +18,10 @@
       </config>
     </input>
 
+    <input name="isBlog" type="CheckBox">
+      <label i18n="txt.isBlog">Mark as blog post</label>
+    </input>
+
     <!-- Content Blocks -->
     <item-set name="contentBlocks">
       <label i18n="ct.article.ctb">Content block</label>
