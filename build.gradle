@@ -26,7 +26,6 @@ dependencies {
     include "com.enonic.xp:lib-i18n:${xpVersion}"
     include "com.enonic.lib:lib-thymeleaf:2.0.0"
     include 'com.enonic.lib:lib-cache:2.1.1'
-    include 'com.enonic.lib:lib-menu:3.1.0'
     webjar 'org.webjars.bower:moment:2.24.0'
 }
 

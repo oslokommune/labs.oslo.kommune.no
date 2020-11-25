@@ -1,7 +1,7 @@
 const portal = require('/lib/xp/portal')
 const thymeleaf = require('/lib/thymeleaf')
-const menuLib = require('/lib/menu')
 const util = require('/lib/labs/util.js')
+const menuLib = require('/lib/labs/menu.js')
 
 exports.get = function(req) {
   const model = {}
@@ -38,9 +38,7 @@ exports.get = function(req) {
 
   model.main = content.page.regions.main
 
-  model.menuItems = menuLib.getMenuTree(2) // Get 2 levels of menu based on content setting 'Show in menu'.
-  model.breadcrumbItems = menuLib.getBreadcrumbMenu({}) // Get a breadcrumb menu for current content.
-  model.subMenuItems = menuLib.getSubMenus(content, 1) // Get 1 level of submenu (from current content)
+  model.menuItems = menuLib.getMenuItems(content._path)
 
   const serverName = util.getServerName().toLowerCase()
   const isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test'

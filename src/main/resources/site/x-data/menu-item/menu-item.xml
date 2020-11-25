@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x-data>
+  <display-name>Menu settings</display-name>
+  <form>
+    <input type="Checkbox" name="menuItem">
+      <label>Show in main menu?</label>
+      <help-text>Check this to include this content in the menu.</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input type="TextLine" name="menuName">
+      <label>Override menu name</label>
+      <help-text>Name to be used in menu, default is to use the content's DisplayName.</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input type="Long" name="menuOrder">
+      <label>Sort order in menu (10-99)</label>
+      <help-text>Use numbers 10 (first) - 99 (last).</help-text>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <min>10</min>
+        <max>99</max>
+      </config>
+    </input>
+  </form>
+</x-data>
