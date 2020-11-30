@@ -107,14 +107,6 @@
   }
 }
 
-// Hanging bullets on desktop
-.content ul,
-.content ol {
-  @media screen and (min-width: 769px) {
-    margin-left: 0;
-  }
-}
-
 // Responsive text sizes
 html,
 body {
