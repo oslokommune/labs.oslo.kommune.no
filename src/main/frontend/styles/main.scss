@@ -308,9 +308,11 @@ body {
 }
 
 // Remove padding between white content blocks
+/*
 .section:not(.has-background) + .section:not(.has-background) {
-  // padding-top: 0;
+  padding-top: 0;
 }
+*/
 
 .app-cookie-line {
   padding-top: 1em;

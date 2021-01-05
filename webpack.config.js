@@ -91,8 +91,9 @@ module.exports = (env, argv) => {
             {
               loader: 'file-loader',
               options: {
-                name: 'styles/[name].[ext]',
-                publicPath: '../',
+                outputPath: './styles/',
+                name: '[hash]-[name].[ext]',
+                publicPath: './',
               },
             },
           ],
