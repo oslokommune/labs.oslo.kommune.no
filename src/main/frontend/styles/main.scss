@@ -37,6 +37,13 @@
 @import '../../../../node_modules/photoswipe/src/css/main';
 @import '../../../../node_modules/photoswipe/src/css/default-skin/default-skin';
 
+/* 
+  Styles for htmlarea presets for Custom Image Styles (XP feature).
+  Referenced in site/styles.xml to work properly in Content Studio,
+  but needs to be imported in global styles as well.
+*/
+@import '../../resources/assets/styles/styles.css';
+
 ::placeholder {
   color: $color-grayscale-50;
 }

@@ -105,6 +105,6 @@ crashlytics-build.properties
 .vscode
 
 ### labs.oslo.kommune.no ###
-src/main/resources/assets/**/*
+#src/main/resources/assets/**/*
 *.pem
 .enonic
