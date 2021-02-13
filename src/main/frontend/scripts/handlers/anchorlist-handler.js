@@ -6,13 +6,13 @@ export default function init() {
   const container = document.querySelector('#js-anchor-list-container')
   const anchorList = container.querySelector('#js-anchor-list')
   const article = document.querySelector('main article')
-  const headers = [...article.querySelectorAll('h2, h3, h4:not(.bio__name)')]
+  const headers = [...article.querySelectorAll('h2:not(.subtitle), h3, h4:not(.bio__name)')]
 
   if (headers.length >= minCount) {
     container.classList.remove('is-hidden')
   }
 
-  headers.forEach(header => {
+  headers.forEach((header) => {
     let text = header.innerHTML.replace(/<\/?[^>]+(>|$)/g, '').trim()
     let id = slugify(text)
 
