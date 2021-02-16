@@ -51,25 +51,6 @@
   <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
-<!-- /* Text with quotebox */ -->
-<div data-th-fragment="ctbTextQuote" data-th-remove="tag">
-  <div class="column is-full-mobile is-one-fifth-tablet is-one-quarter-widescreen is-2-fullhd">
-    <blockquote>
-      <p data-th-utext="${block.ctbTextQuote.quoteText}"></p>
-      <footer>
-        <cite>
-          <span data-th-utext="${block.ctbTextQuote.quoteSource}" class="quote__source"></span>
-          <span data-th-utext="${block.ctbTextQuote.quoteSourceDescription}" class="quote__source-description"></span>
-        </cite>
-      </footer>
-    </blockquote>
-  </div>
-  <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen content"
-    data-th-utext="${block.ctbTextQuote.content}"></div>
-  <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
-  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
-</div>
-
 <!-- /* Video */ -->
 <div data-th-fragment="ctbVideo" data-th-remove="tag">
   <div class="column"
@@ -84,19 +65,6 @@
   </div>
   <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
   <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
-</div>
-
-<!-- /* Link block */ -->
-<div data-th-fragment="ctbLinks" data-th-remove="tag">
-  <div data-th-if="${block.ctbLinks.links}" data-th-remove="tag">
-    <div class="column"
-      data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
-      <div data-th-replace="block-links.html(data=${block.ctbLinks}, settings=${block.settings})" data-th-remove="tag">
-      </div>
-    </div>
-    <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
-    <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
-  </div>
 </div>
 
 <!-- /* Image block */ -->

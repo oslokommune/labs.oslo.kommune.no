@@ -161,10 +161,19 @@ exports.getAuthors = getAuthors
 function processContentBlocks(ctbs) {
   ctbs = util.forceArray(ctbs)
 
-  ctbs = ctbs.map(function(block) {
-    if (!block.ctb) return
+  ctbs = ctbs.map(function(rawblock) {
+    if (!rawblock) return
+    if (!rawblock._selected) return
 
-    if (block.hasOwnProperty('ctbSettings') && block.ctbSettings._selected) {
+    // Place content blocks and settings side by side to reflect old article structure
+    var block = {
+      ctb: rawblock,
+    }
+    if (rawblock[rawblock._selected].ctbSettings) {
+      block.ctbSettings = rawblock[rawblock._selected].ctbSettings
+    }
+
+    if (block.ctbSettings && block.ctbSettings._selected) {
       // List of the selected settings
       var selected = util.forceArray(block.ctbSettings._selected)
 
@@ -286,11 +295,6 @@ function processContentBlocks(ctbs) {
         })
         block.ctb.ctbMap.mapMarkers = util.forceArray(markers)
       }
-    }
-
-    // Sanitize links. Prefer internal over external, override link text if desired
-    if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
-      block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)
     }
 
     // Prepare images

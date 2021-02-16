@@ -1,0 +1,153 @@
+<mixin>
+  <display-name>Settings for article content blocks mixin</display-name>
+  <form>
+    <!-- Settings for content block -->
+    <option-set name="ctbSettings">
+      <label i18n="ct.article.ctbSettings">Settings for content block</label>
+      <occurrences minimum="0" maximum="1"/>
+      <options minimum="0" maximum="10">
+
+        <!-- Full Width -->
+        <option name="fullWidth">
+          <label i18n="ct.article.ctbFullWidth">Full width</label>
+        </option>
+
+        <!-- Sidebar image -->
+        <option name="sidebarImage">
+          <label i18n="ct.article.sidebarImage">Sidebar image</label>
+          <items>
+            <input name="image" type="ImageSelector">
+              <label i18n="ct.article.sidebarImage">Image</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <allowPath>${site}/*</allowPath>
+              </config>
+            </input>
+            <input name="caption" type="HtmlArea">
+              <label i18n="ct.article.sidebarImageCaption">Caption</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <exclude>*</exclude>
+                <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
+              </config>
+            </input>
+          </items>
+        </option>
+
+        <!-- Sidebar box -->
+        <option name="sidebarbox">
+          <label i18n="ct.article.sidebar">Sidebar box</label>
+          <items>
+            <!-- TODO: List available icons -->
+            <input name="sidebarboxIcon" type="RadioButton">
+              <label i18n="ct.article.sidebarIcon">Box icon</label>
+              <occurrences minimum="1" maximum="0"/>
+              <config>
+                <option value="question" i18n="icon.question">Question mark</option>
+                <option value="exclamation" i18n="icon.exclamation">Exclamation mark</option>
+                <option value="info" i18n="icon.info">Info</option>
+                <option value="dialog" i18n="icon.dialog">Dialogue</option>
+                <option value="map" i18n="icon.map">Map</option>
+                <option value="code" i18n="icon.code">Code</option>
+                <option value="megaphone" i18n="icon.megaphone">Megaphone</option>
+                <option value="file" i18n="icon.file">File</option>
+                <option value="link" i18n="icon.link">Link</option>
+              </config>
+            </input>
+            <input name="sidebarboxContents" type="HtmlArea">
+              <label i18n="ct.article.sidebarContent">Box contents</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <exclude>*</exclude>
+                <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
+              </config>
+            </input>
+          </items>
+        </option>
+
+        <!-- Background fill -->
+        <option name="bgFill">
+          <label i18n="ct.article.ctbBg">Background fill</label>
+          <items>
+            <input name="colorMain" type="ComboBox">
+              <label i18n="ct.article.ctbBgMain">Background</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <option value="blue" i18n="colors.blue">Blue</option>
+                <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+                <option value="purple" i18n="colors.purple">Purple</option>
+                <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+                <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+                <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+                <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+                <option value="green" i18n="colors.green">Green</option>
+                <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+                <option value="green-light" i18n="colors.green-light">Green light</option>
+                <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+                <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+                <option value="brown" i18n="colors.brown">Brown</option>
+                <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+                <option value="orange" i18n="colors.orange">Orange</option>
+                <option value="red" i18n="colors.red">Red</option>
+                <option value="yellow" i18n="colors.yellow">Yellow</option>
+                <option value="white" i18n="colors.white">White</option>
+                <option value="black" i18n="colors.black">Black</option>
+              </config>
+            </input>
+            <input name="colorTop" type="ComboBox">
+              <label i18n="ct.article.ctbBgTop">Background top</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <option value="blue" i18n="colors.blue">Blue</option>
+                <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+                <option value="purple" i18n="colors.purple">Purple</option>
+                <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+                <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+                <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+                <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+                <option value="green" i18n="colors.green">Green</option>
+                <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+                <option value="green-light" i18n="colors.green-light">Green light</option>
+                <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+                <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+                <option value="brown" i18n="colors.brown">Brown</option>
+                <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+                <option value="orange" i18n="colors.orange">Orange</option>
+                <option value="red" i18n="colors.red">Red</option>
+                <option value="yellow" i18n="colors.yellow">Yellow</option>
+                <option value="white" i18n="colors.white">White</option>
+                <option value="black" i18n="colors.black">Black</option>
+              </config>
+            </input>
+            <input name="colorBottom" type="ComboBox">
+              <label i18n="ct.article.ctbBgBottom">Background bottom</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <option value="blue" i18n="colors.blue">Blue</option>
+                <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+                <option value="purple" i18n="colors.purple">Purple</option>
+                <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+                <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+                <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+                <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+                <option value="green" i18n="colors.green">Green</option>
+                <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+                <option value="green-light" i18n="colors.green-light">Green light</option>
+                <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+                <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+                <option value="brown" i18n="colors.brown">Brown</option>
+                <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+                <option value="orange" i18n="colors.orange">Orange</option>
+                <option value="red" i18n="colors.red">Red</option>
+                <option value="yellow" i18n="colors.yellow">Yellow</option>
+                <option value="white" i18n="colors.white">White</option>
+                <option value="black" i18n="colors.black">Black</option>
+              </config>
+            </input>
+          </items>
+        </option>
+
+      </options>
+    </option-set>
+  </form>
+</mixin>

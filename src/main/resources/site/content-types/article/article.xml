@@ -22,333 +22,137 @@
       <label i18n="txt.isBlog">Mark as blog post</label>
     </input>
 
-    <!-- Content Blocks -->
-    <item-set name="contentBlocks">
-      <label i18n="ct.article.ctb">Content block</label>
-      <items>
-
-        <!-- Settings for content block -->
-        <option-set name="ctbSettings">
-          <label i18n="ct.article.ctbSettings">Settings for content block</label>
-          <occurrences minimum="0" maximum="1"/>
-          <options minimum="0" maximum="10">
-
-            <!-- Full Width -->
-            <option name="fullWidth">
-              <label i18n="ct.article.ctbFullWidth">Full width</label>
-            </option>
-
-            <!-- Sidebar image -->
-            <option name="sidebarImage">
-              <label i18n="ct.article.sidebarImage">Sidebar image</label>
-              <items>
-                <input name="image" type="ImageSelector">
-                  <label i18n="ct.article.sidebarImage">Image</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <allowPath>${site}/*</allowPath>
-                  </config>
-                </input>
-                <input name="caption" type="HtmlArea">
-                  <label i18n="ct.article.sidebarImageCaption">Caption</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <exclude>*</exclude>
-                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-            <!-- Sidebar box -->
-            <option name="sidebarbox">
-              <label i18n="ct.article.sidebar">Sidebar box</label>
-              <items>
-                <!-- TODO: List available icons -->
-                <input name="sidebarboxIcon" type="RadioButton">
-                  <label i18n="ct.article.sidebarIcon">Box icon</label>
-                  <occurrences minimum="1" maximum="0"/>
-                  <config>
-                    <option value="question" i18n="icon.question">Question mark</option>
-                    <option value="exclamation" i18n="icon.exclamation">Exclamation mark</option>
-                    <option value="info" i18n="icon.info">Info</option>
-                    <option value="dialog" i18n="icon.dialog">Dialogue</option>
-                    <option value="map" i18n="icon.map">Map</option>
-                    <option value="code" i18n="icon.code">Code</option>
-                    <option value="megaphone" i18n="icon.megaphone">Megaphone</option>
-                    <option value="file" i18n="icon.file">File</option>
-                    <option value="link" i18n="icon.link">Link</option>
-                  </config>
-                </input>
-                <input name="sidebarboxContents" type="HtmlArea">
-                  <label i18n="ct.article.sidebarContent">Box contents</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <exclude>*</exclude>
-                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-            <!-- Background fill -->
-            <option name="bgFill">
-              <label i18n="ct.article.ctbBg">Background fill</label>
-              <items>
-                <input name="colorMain" type="ComboBox">
-                  <label i18n="ct.article.ctbBgMain">Background</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <option value="blue" i18n="colors.blue">Blue</option>
-                    <option value="blue-light" i18n="colors.blue-light">Blue light</option>
-                    <option value="purple" i18n="colors.purple">Purple</option>
-                    <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
-                    <option value="grey-light" i18n="colors.grey-light">Grey light</option>
-                    <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
-                    <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
-                    <option value="green" i18n="colors.green">Green</option>
-                    <option value="green-dark" i18n="colors.green-dark">Green dark</option>
-                    <option value="green-light" i18n="colors.green-light">Green light</option>
-                    <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
-                    <option value="green-faded" i18n="colors.green-faded">Green faded</option>
-                    <option value="brown" i18n="colors.brown">Brown</option>
-                    <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
-                    <option value="orange" i18n="colors.orange">Orange</option>
-                    <option value="red" i18n="colors.red">Red</option>
-                    <option value="yellow" i18n="colors.yellow">Yellow</option>
-                    <option value="white" i18n="colors.white">White</option>
-                    <option value="black" i18n="colors.black">Black</option>
-                  </config>
-                </input>
-                <input name="colorTop" type="ComboBox">
-                  <label i18n="ct.article.ctbBgTop">Background top</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <option value="blue" i18n="colors.blue">Blue</option>
-                    <option value="blue-light" i18n="colors.blue-light">Blue light</option>
-                    <option value="purple" i18n="colors.purple">Purple</option>
-                    <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
-                    <option value="grey-light" i18n="colors.grey-light">Grey light</option>
-                    <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
-                    <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
-                    <option value="green" i18n="colors.green">Green</option>
-                    <option value="green-dark" i18n="colors.green-dark">Green dark</option>
-                    <option value="green-light" i18n="colors.green-light">Green light</option>
-                    <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
-                    <option value="green-faded" i18n="colors.green-faded">Green faded</option>
-                    <option value="brown" i18n="colors.brown">Brown</option>
-                    <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
-                    <option value="orange" i18n="colors.orange">Orange</option>
-                    <option value="red" i18n="colors.red">Red</option>
-                    <option value="yellow" i18n="colors.yellow">Yellow</option>
-                    <option value="white" i18n="colors.white">White</option>
-                    <option value="black" i18n="colors.black">Black</option>
-                  </config>
-                </input>
-                <input name="colorBottom" type="ComboBox">
-                  <label i18n="ct.article.ctbBgBottom">Background bottom</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <option value="blue" i18n="colors.blue">Blue</option>
-                    <option value="blue-light" i18n="colors.blue-light">Blue light</option>
-                    <option value="purple" i18n="colors.purple">Purple</option>
-                    <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
-                    <option value="grey-light" i18n="colors.grey-light">Grey light</option>
-                    <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
-                    <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
-                    <option value="green" i18n="colors.green">Green</option>
-                    <option value="green-dark" i18n="colors.green-dark">Green dark</option>
-                    <option value="green-light" i18n="colors.green-light">Green light</option>
-                    <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
-                    <option value="green-faded" i18n="colors.green-faded">Green faded</option>
-                    <option value="brown" i18n="colors.brown">Brown</option>
-                    <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
-                    <option value="orange" i18n="colors.orange">Orange</option>
-                    <option value="red" i18n="colors.red">Red</option>
-                    <option value="yellow" i18n="colors.yellow">Yellow</option>
-                    <option value="white" i18n="colors.white">White</option>
-                    <option value="black" i18n="colors.black">Black</option>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-          </options>
-        </option-set>
-
-        <!-- Content block types -->
-        <option-set name="ctb">
-          <label i18n="ct.article.ctbType">Choose content block type</label>
-          <occurrences minimum="1" maximum="1"/>
-          <options minimum="1" maximum="1">
-
-            <!-- Text block -->
-            <option name="ctbText">
-              <label i18n="ct.article.ctbText">Text block</label>
-              <items>
-                <input name="content" type="HtmlArea">
-                  <label i18n="ct.article.ctbTextContent">Content</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <exclude>*</exclude>
-                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-            <!-- Video block -->
-            <option name="ctbVideo">
-              <label i18n="ct.article.ctbVideo">Video block</label>
-              <items>
-                <input name="id" type="TextLine">
-                  <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config />
-                </input>
-                <input name="aspectRatio" type="TextLine">
-                  <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config />
-                </input>
-              </items>
-            </option>
-
-            <!-- Text block with hanging Quote box -->
-            <option name="ctbTextQuote">
-              <label i18n="ct.article.ctbTextQuote">Text block with quote box</label>
-              <items>
-                <input name="content" type="HtmlArea">
-                  <label i18n="ct.article.ctbTextContent">Content</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <exclude>*</exclude>
-                    <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
-                  </config>
-                </input>
-                <input name="quoteText" type="TextArea">
-                  <label i18n="ct.article.ctbQuoteText">Quote</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <max-length>800</max-length>
-                  </config>
-                </input>
-                <input name="quoteSource" type="TextLine">
-                  <label i18n="ct.article.ctbQuoteSource">Source</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <max-length>150</max-length>
-                  </config>
-                </input>
-                <input name="quoteSourceDescription" type="TextLine">
-                  <label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <max-length>150</max-length>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-            <!-- Map block -->
-            <option name="ctbMap">
-              <label i18n="ct.article.ctbMap">Map block</label>
-              <items>
-                <input name="mapTitle" type="TextLine">
-                  <label i18n="ct.article.ctbMapTitle">Map title</label>
-                  <occurrences minimum="0" maximum="1"/>
-                </input>
-                <input name="mapCoordinates" type="GeoPoint">
-                  <label i18n="ct.article.ctbMapCoordinates">Coordinates</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config />
-                </input>
-                <input name="mapZoom" type="Long">
-                  <label i18n="ct.article.ctbMapZoom">Zoom</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <min>3</min>
-                    <max>20</max>
-                  </config>
-                </input>
-                <input name="mapMarkers" type="GeoPoint">
-                  <label i18n="ct.article.ctbMapMarkers">Map markers</label>
-                  <occurrences minimum="0" maximum="0" />
-                  <config/>
-                </input>
-                <input name="mapDistricts" type="ComboBox">
-                  <label i18n="ct.article.ctbMapDistricts">District overlays</label>
-                  <occurrences minimum="0" maximum="0"/>
-                  <config>
-                    <option value="Bydel Søndre Nordstrand">Bydel Søndre Nordstrand</option>
-                    <option value="Bydel Nordstrand">Bydel Nordstrand</option>
-                    <option value="Bydel Østensjø">Bydel Østensjø</option>
-                    <option value="Sentrum">Sentrum</option>
-                    <option value="Bydel Gamle Oslo">Bydel Gamle Oslo</option>
-                    <option value="Bydel Frogner">Bydel Frogner</option>
-                    <option value="Bydel Grünerløkka">Bydel Grünerløkka</option>
-                    <option value="Bydel Ullern">Bydel Ullern</option>
-                    <option value="Bydel St. Hanshaugen">Bydel St. Hanshaugen</option>
-                    <option value="Bydel Sagene">Bydel Sagene</option>
-                    <option value="Bydel Alna">Bydel Alna</option>
-                    <option value="Bydel Bjerke">Bydel Bjerke</option>
-                    <option value="Bydel Nordre Aker">Bydel Nordre Aker</option>
-                    <option value="Bydel Stovner">Bydel Stovner</option>
-                    <option value="Bydel Vestre Aker">Bydel Vestre Aker</option>
-                    <option value="Bydel Grorud">Bydel Grorud</option>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-            <!-- Quote block -->
-            <option name="ctbQuote">
-              <label i18n="ct.article.ctbQuote">Quote block</label>
-              <items>
-                <input name="quoteText" type="TextArea">
-                  <label i18n="ct.article.ctbQuoteText">Quote</label>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <max-length>800</max-length>
-                  </config>
-                </input>
-                <input name="quoteSource" type="TextLine">
-                  <label i18n="ct.article.ctbQuoteSource">Source</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <max-length>150</max-length>
-                  </config>
-                </input>
-                <input name="quoteSourceDescription" type="TextLine">
-                  <label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
-                  <occurrences minimum="0" maximum="1"/>
-                  <config>
-                    <max-length>150</max-length>
-                  </config>
-                </input>
-              </items>
-            </option>
-
-            <!-- Links block -->
-            <option name="ctbLinks">
-              <label i18n="ct.article.ctbLinks">Link list</label>
-              <items>
-                <mixin name="block-links" />
-              </items>
-            </option>
-
-            <!-- Images block -->
-            <option name="ctbImages">
-              <label i18n="ct.article.ctbImages">Images</label>
-              <items>
-                <mixin name="block-images" />
-              </items>
-            </option>
-
-          </options>
-        </option-set>
-      </items>
+    <!-- Content block types -->
+    <option-set name="contentBlocks">
+      <label i18n="ct.article.ctb">Add content block</label>
       <occurrences minimum="0" maximum="0"/>
-    </item-set>
+      <options minimum="1" maximum="1">
+
+        <!-- Text block -->
+        <option name="ctbText">
+          <label i18n="ct.article.ctbText">Text block</label>
+          <items>
+            <input name="content" type="HtmlArea">
+              <label i18n="ct.article.ctbTextContent">Content</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <exclude>*</exclude>
+                <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Images block -->
+        <option name="ctbImages">
+          <label i18n="ct.article.ctbImages">Images</label>
+          <items>
+            <mixin name="block-images" />
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Video block -->
+        <option name="ctbVideo">
+          <label i18n="ct.article.ctbVideo">Video block</label>
+          <items>
+            <input name="id" type="TextLine">
+              <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config />
+            </input>
+            <input name="aspectRatio" type="TextLine">
+              <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config />
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Quote block -->
+        <option name="ctbQuote">
+          <label i18n="ct.article.ctbQuote">Quote block</label>
+          <items>
+            <input name="quoteText" type="TextArea">
+              <label i18n="ct.article.ctbQuoteText">Quote</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <max-length>800</max-length>
+              </config>
+            </input>
+            <input name="quoteSource" type="TextLine">
+              <label i18n="ct.article.ctbQuoteSource">Source</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <max-length>150</max-length>
+              </config>
+            </input>
+            <input name="quoteSourceDescription" type="TextLine">
+              <label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <max-length>150</max-length>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Map block -->
+        <option name="ctbMap">
+          <label i18n="ct.article.ctbMap">Map block</label>
+          <items>
+            <input name="mapTitle" type="TextLine">
+              <label i18n="ct.article.ctbMapTitle">Map title</label>
+              <occurrences minimum="0" maximum="1"/>
+            </input>
+            <input name="mapCoordinates" type="GeoPoint">
+              <label i18n="ct.article.ctbMapCoordinates">Coordinates</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config />
+            </input>
+            <input name="mapZoom" type="Long">
+              <label i18n="ct.article.ctbMapZoom">Zoom</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <min>3</min>
+                <max>20</max>
+              </config>
+            </input>
+            <input name="mapMarkers" type="GeoPoint">
+              <label i18n="ct.article.ctbMapMarkers">Map markers</label>
+              <occurrences minimum="0" maximum="0" />
+              <config/>
+            </input>
+            <input name="mapDistricts" type="ComboBox">
+              <label i18n="ct.article.ctbMapDistricts">District overlays</label>
+              <occurrences minimum="0" maximum="0"/>
+              <config>
+                <option value="Bydel Søndre Nordstrand">Bydel Søndre Nordstrand</option>
+                <option value="Bydel Nordstrand">Bydel Nordstrand</option>
+                <option value="Bydel Østensjø">Bydel Østensjø</option>
+                <option value="Sentrum">Sentrum</option>
+                <option value="Bydel Gamle Oslo">Bydel Gamle Oslo</option>
+                <option value="Bydel Frogner">Bydel Frogner</option>
+                <option value="Bydel Grünerløkka">Bydel Grünerløkka</option>
+                <option value="Bydel Ullern">Bydel Ullern</option>
+                <option value="Bydel St. Hanshaugen">Bydel St. Hanshaugen</option>
+                <option value="Bydel Sagene">Bydel Sagene</option>
+                <option value="Bydel Alna">Bydel Alna</option>
+                <option value="Bydel Bjerke">Bydel Bjerke</option>
+                <option value="Bydel Nordre Aker">Bydel Nordre Aker</option>
+                <option value="Bydel Stovner">Bydel Stovner</option>
+                <option value="Bydel Vestre Aker">Bydel Vestre Aker</option>
+                <option value="Bydel Grorud">Bydel Grorud</option>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+      </options>
+    </option-set>
   </form>
 </content-type>
