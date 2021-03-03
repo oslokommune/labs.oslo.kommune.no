@@ -81,6 +81,22 @@ function processCommonFields(data, scale) {
       .locale(data.locale)
       .fromNow()
   }
+  if (data.publishFromTime) {
+    data.publishFromTimeShort = moment(data.publishFromTime)
+      .locale(data.locale)
+      .format('l')
+    data.publishFromTimeRelative = moment(data.publishFromTime)
+      .locale(data.locale)
+      .fromNow()
+  }
+  if (data.publishFirstTime) {
+    data.publishFirstTimeShort = moment(data.publishFirstTime)
+      .locale(data.locale)
+      .format('l')
+    data.publishFirstTimeRelative = moment(data.publishFirstTime)
+      .locale(data.locale)
+      .fromNow()
+  }
 
   data.body &&
     (data.body = portal.processHtml({
@@ -203,7 +219,7 @@ function processContentBlocks(ctbs) {
       }
 
       // Full Width
-      if (selected.indexOf('fullWidth') > -1 && !block.ctb.sidebarbox) {
+      if (selected.indexOf('fullWidth') > -1 && !block.ctb.sidebarbox && !block.ctb.sidebarImage) {
         block.ctb.isFullWidth = true
       }
 
@@ -304,6 +320,21 @@ function processContentBlocks(ctbs) {
       block.ctb.ctbImages = processBlockImages(block.ctb.ctbImages)
     }
 
+    // Process links block
+    if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
+      block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)
+      block.ctb.ctbLinks.isFullWidth = block.ctb.isFullWidth
+    }
+
+    // Process collection block
+    if (block.ctb._selected === 'ctbCollection' && block.ctb.ctbCollection) {
+      var collection = contentLib.get({
+        key: block.ctb.ctbCollection.collection,
+      })
+      block.ctb.ctbCollection = processBlockLinkList(collection.data)
+      block.ctb.ctbCollection.isFullWidth = block.ctb.isFullWidth
+    }
+
     return block.ctb
   })
 
@@ -318,9 +349,13 @@ var processBlockLinkList = function(b) {
       link = {}
       if (item.internalLink || item.externalLink) {
         if (item.internalLink) {
-          link.text = contentLib.get({
+          var c = contentLib.get({
             key: item.internalLink,
-          }).displayName
+          })
+          link.text = c.displayName
+          if (item.useContentLead && c && c.data && c.data.lead) {
+            link.linkExplanation = c.data.lead
+          }
           link.href = portal.pageUrl({
             id: item.internalLink,
           })
@@ -344,6 +379,9 @@ var processBlockLinkList = function(b) {
     })
     if (workingLinks.length) {
       b.links = workingLinks
+    }
+    if (b.colorMain) {
+      b.fill = b.colorMain
     }
   }
   return b

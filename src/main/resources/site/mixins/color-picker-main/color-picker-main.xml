@@ -1,0 +1,30 @@
+<mixin>
+  <display-name>Color picker options</display-name>
+  <form>
+    <input name="colorMain" type="ComboBox">
+      <label i18n="txt.mainBackgroundColor">Background color</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <option value="blue" i18n="colors.blue">Blue</option>
+        <option value="blue-light" i18n="colors.blue-light">Blue light</option>
+        <option value="purple" i18n="colors.purple">Purple</option>
+        <option value="grey-lighter" i18n="colors.grey-lighter">Grey lighter</option>
+        <option value="grey-light" i18n="colors.grey-light">Grey light</option>
+        <option value="grey-dark" i18n="colors.grey-dark">Grey dark</option>
+        <option value="grey-darker" i18n="colors.grey-darker">Grey darker</option>
+        <option value="green" i18n="colors.green">Green</option>
+        <option value="green-dark" i18n="colors.green-dark">Green dark</option>
+        <option value="green-light" i18n="colors.green-light">Green light</option>
+        <option value="green-lighter" i18n="colors.green-lighter">Green lighter</option>
+        <option value="green-faded" i18n="colors.green-faded">Green faded</option>
+        <option value="brown" i18n="colors.brown">Brown</option>
+        <option value="brown-beige" i18n="colors.brown-beige">Brown beige</option>
+        <option value="orange" i18n="colors.orange">Orange</option>
+        <option value="red" i18n="colors.red">Red</option>
+        <option value="yellow" i18n="colors.yellow">Yellow</option>
+        <option value="white" i18n="colors.white">White</option>
+        <option value="black" i18n="colors.black">Black</option>
+      </config>
+    </input>
+  </form>
+</mixin>

@@ -100,6 +100,30 @@
           </items>
         </option>
 
+        <!-- Links block -->
+        <option name="ctbLinks">
+          <label i18n="ct.article.ctbLinks">Links block</label>
+          <items>
+            <mixin name="block-links" />
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Links block -->
+        <option name="ctbCollection">
+          <label i18n="ct.article.ctbCollection">Collection block</label>
+          <items>
+            <input name="collection" type="ContentSelector">
+              <label i18n="ct.article.ctbCollection">Content collection</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <allowContentType>collection</allowContentType>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
         <!-- Map block -->
         <option name="ctbMap">
           <label i18n="ct.article.ctbMap">Map block</label>

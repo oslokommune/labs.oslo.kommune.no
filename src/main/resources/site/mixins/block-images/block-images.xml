@@ -4,9 +4,6 @@
     <input name="images" type="ImageSelector">
       <label i18n="txt.images">Images</label>
       <occurrences minimum="1" maximum="3"/>
-      <config>
-        <allowPath>${site}/*</allowPath>
-      </config>
     </input>
     <input name="makeEqual" type="CheckBox">
       <label i18n="txt.makeEqual">Make sizes equal (crops images)</label>

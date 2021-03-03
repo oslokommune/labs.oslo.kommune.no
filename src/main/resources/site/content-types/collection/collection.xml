@@ -1,0 +1,8 @@
+<content-type>
+  <display-name i18n="ct.collection">Collection</display-name>
+  <display-name-expression>${heading}</display-name-expression>
+  <super-type>base:structured</super-type>
+  <form>
+    <mixin name="block-links" />
+  </form>
+</content-type>

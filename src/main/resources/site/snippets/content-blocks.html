@@ -67,6 +67,26 @@
   <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
 </div>
 
+<!-- /* Links */ -->
+<div data-th-fragment="ctbLinks" data-th-remove="tag">
+  <div class="column content"
+    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
+    <div data-th-replace="block-links.html(data=${block.ctbLinks})" data-th-remove="tag"></div>
+  </div>
+  <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
+</div>
+
+<!-- /* Collection */ -->
+<div data-th-fragment="ctbCollection" data-th-remove="tag">
+  <div class="column content"
+    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
+    <div data-th-replace="block-links.html(data=${block.ctbCollection})" data-th-remove="tag"></div>
+  </div>
+  <div data-th-replace=":: sidebarbox" data-th-remove="tag"></div>
+  <div data-th-replace=":: sidebarImage" data-th-remove="tag"></div>
+</div>
+
 <!-- /* Image block */ -->
 <div data-th-fragment="ctbImages" data-th-if="${block.ctbImages.images}" class="column"
   data-th-insert="block-images.html(data=${block.ctbImages})"></div>

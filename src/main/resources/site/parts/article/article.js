@@ -22,6 +22,8 @@ exports.get = function(req) {
   // Move publish metadata to data
   content.createdTime && (content.data.createdTime = content.createdTime)
   content.modifiedTime && (content.data.modifiedTime = content.modifiedTime)
+  content.publish && content.publish.from && (content.data.publishFromTime = content.publish.from)
+  content.publish && content.publish.first && (content.data.publishFirstTime = content.publish.first)
   content.data.locale = util.getMomentLocale(content)
 
   var model = contentPrep.prepareArticleContents(content.data, 'block(5,2)')

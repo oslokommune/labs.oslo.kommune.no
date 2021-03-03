@@ -9,17 +9,15 @@
     </input>
     <item-set name="linkList">
       <label i18n="txt.linkItem">Link item</label>
-      <occurrences minimum="1" maximum="0"/>
+      <occurrences minimum="0" maximum="0"/>
       <items>
         <input name="internalLink" type="ContentSelector">
           <label i18n="txt.internalLink">Link to internal content</label>
           <config>
-            <relationshipType>system:reference</relationshipType>
             <allowContentType>article</allowContentType>
             <allowContentType>landing-page</allowContentType>
-            <allowContentType>person</allowContentType>
             <allowContentType>category</allowContentType>
-            <allowPath>${site}/*</allowPath>
+            <allowContentType>collection</allowContentType>
           </config>
         </input>
         <input name="externalLink" type="TextLine">
@@ -30,6 +28,9 @@
         </input>
         <input name="linkExplanation" type="TextArea">
           <label i18n="txt.linkExplanation">Link explanation text</label>
+        </input>
+        <input name="useContentLead" type="CheckBox">
+          <label i18n="txt.useContentLead">Use content lead as explanation</label>
         </input>
       </items>
     </item-set>

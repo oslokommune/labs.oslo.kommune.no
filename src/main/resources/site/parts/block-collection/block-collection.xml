@@ -1,0 +1,16 @@
+<part>
+  <display-name i18n="parts.blockCollection">Content collection</display-name>
+  <form>
+    <input name="collection" type="ContentSelector">
+      <label i18n="parts.blockCollection">Content collection</label>
+      <config>
+        <allowContentType>collection</allowContentType>
+      </config>
+    </input>
+    <input name="isFullWidth" type="CheckBox">
+      <label i18n="txt.fullWidth">Full width</label>
+      <default>checked</default>
+    </input>
+    <mixin name="color-picker-main" />
+  </form>
+</part>

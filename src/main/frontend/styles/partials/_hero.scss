@@ -301,7 +301,7 @@
 .category-hero {
   &__imgwrapper {
     position: relative;
-    height: 10rem;
+    height: 15rem;
   }
 
   &__img {
@@ -310,7 +310,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    filter: brightness(0.5);
+    filter: brightness(0.8);
   }
 
   &__heading {

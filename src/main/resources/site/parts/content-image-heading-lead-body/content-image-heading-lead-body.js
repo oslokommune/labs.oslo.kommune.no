@@ -6,7 +6,7 @@ exports.get = function(req) {
   var content = portal.getContent()
   var component = portal.getComponent()
 
-  var model = contentPrep.prepareHeroContents(content.data, 'block(5,1)')
+  var model = contentPrep.prepareHeroContents(content.data, 'block(4,1)')
   model.content = JSON.stringify(model, null, 2)
   model.hideLead = component && component.config && component.config.hideLead
 
@@ -14,6 +14,6 @@ exports.get = function(req) {
   var body = thymeleaf.render(view, model)
   return {
     body: body,
-    contentType: 'text/html'
+    contentType: 'text/html',
   }
 }
