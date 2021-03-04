@@ -124,6 +124,18 @@
           </items>
         </option>
 
+        <!-- Spotify podcast block -->
+        <option name="ctbPodcast">
+          <label i18n="ct.article.ctbPodcast">Podcast block</label>
+          <items>
+            <input name="id" type="TextLine">
+              <label i18n="ct.article.ctbPodcastId">Spotify podcast id</label>
+              <occurrences minimum="1" maximum="1"/>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
         <!-- Map block -->
         <option name="ctbMap">
           <label i18n="ct.article.ctbMap">Map block</label>
