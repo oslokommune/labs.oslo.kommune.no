@@ -30,7 +30,8 @@
 
         <!-- Text block -->
         <option name="ctbText">
-          <label i18n="ct.article.ctbText">Text block</label>
+          <label i18n="ct.article.ctbText">Text</label>
+          <help-text i18n="ct.article.ctbTextDesc">Normal rich text area</help-text>
           <items>
             <input name="content" type="HtmlArea">
               <label i18n="ct.article.ctbTextContent">Content</label>
@@ -47,6 +48,7 @@
         <!-- Images block -->
         <option name="ctbImages">
           <label i18n="ct.article.ctbImages">Images</label>
+          <help-text i18n="ct.article.ctbImagesDesc">1-3 Images</help-text>
           <items>
             <mixin name="block-images" />
             <mixin name="contentblock-settings" />
@@ -55,7 +57,8 @@
 
         <!-- Video block -->
         <option name="ctbVideo">
-          <label i18n="ct.article.ctbVideo">Video block</label>
+          <label i18n="ct.article.ctbVideo">Video</label>
+          <help-text i18n="ct.article.ctbVideoDesc">Vimeo video from id</help-text>
           <items>
             <input name="id" type="TextLine">
               <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
@@ -73,7 +76,8 @@
 
         <!-- Quote block -->
         <option name="ctbQuote">
-          <label i18n="ct.article.ctbQuote">Quote block</label>
+          <label i18n="ct.article.ctbQuote">Quote</label>
+          <help-text i18n="ct.article.ctbQuoteDesc">Quote with source and source description</help-text>
           <items>
             <input name="quoteText" type="TextArea">
               <label i18n="ct.article.ctbQuoteText">Quote</label>
@@ -102,7 +106,8 @@
 
         <!-- Links block -->
         <option name="ctbLinks">
-          <label i18n="ct.article.ctbLinks">Links block</label>
+          <label i18n="ct.article.ctbLinks">Random links</label>
+          <help-text i18n="ct.article.ctbLinksDesc">Et vilkårlig sett med lenker</help-text>
           <items>
             <mixin name="block-links" />
             <mixin name="contentblock-settings" />
@@ -111,7 +116,8 @@
 
         <!-- Links block -->
         <option name="ctbCollection">
-          <label i18n="ct.article.ctbCollection">Collection block</label>
+          <label i18n="ct.article.ctbCollection">Content collection</label>
+          <help-text i18n="ct.article.ctbCollectionDesc">Predefined set of grouped content</help-text>
           <items>
             <input name="collection" type="ContentSelector">
               <label i18n="ct.article.ctbCollection">Content collection</label>
@@ -126,7 +132,8 @@
 
         <!-- Spotify podcast block -->
         <option name="ctbPodcast">
-          <label i18n="ct.article.ctbPodcast">Podcast block</label>
+          <label i18n="ct.article.ctbPodcast">Podcast</label>
+          <help-text i18n="ct.article.ctbPodcastDesc">Spotify podcast player from track id</help-text>
           <items>
             <input name="id" type="TextLine">
               <label i18n="ct.article.ctbPodcastId">Spotify podcast id</label>
@@ -138,7 +145,8 @@
 
         <!-- Map block -->
         <option name="ctbMap">
-          <label i18n="ct.article.ctbMap">Map block</label>
+          <label i18n="ct.article.ctbMap">Map</label>
+          <help-text i18n="ct.article.ctbMapDesc">Map with markers and city areas</help-text>
           <items>
             <input name="mapTitle" type="TextLine">
               <label i18n="ct.article.ctbMapTitle">Map title</label>
