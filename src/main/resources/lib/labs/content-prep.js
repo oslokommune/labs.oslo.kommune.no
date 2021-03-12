@@ -228,7 +228,7 @@ function processContentBlocks(ctbs) {
         var colors = block.ctbSettings.bgFill
 
         // Which bg colors require white text
-        var darkBgs = ['purple', 'grey-dark', 'grey-darker', 'green-dark', 'green-faded', 'orange', 'red', 'black']
+        var darkBgs = ['blue-dark', 'grey-dark', 'grey-darker', 'green-dark', 'black']
 
         if (darkBgs.indexOf(colors.colorMain) > -1) {
           block.ctb.hasWhiteText = true
@@ -349,6 +349,7 @@ var processBlockLinkList = function(b) {
       link = {}
       if (item.internalLink || item.externalLink) {
         if (item.internalLink) {
+          link._id = item.internalLink
           var c = contentLib.get({
             key: item.internalLink,
           })

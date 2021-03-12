@@ -46,6 +46,6 @@ task webpackDev(type: NpmTask, dependsOn: 'npmInstall') {
 
 if (project.hasProperty( 'dev' )) {
     jar.dependsOn += webpackDev
-} else if (!project.hasProperty( 'watch') ){
+} else {
     jar.dependsOn += webpackProd
 }

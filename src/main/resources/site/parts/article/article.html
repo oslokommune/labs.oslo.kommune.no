@@ -75,7 +75,7 @@
       </div>
     </header>
 
-    <div class="article-blocks">
+    <div class="article-blocks" id="js-main">
       <!--
         /* Each content block renders the corresponding content block snippet */
       -->
@@ -89,6 +89,21 @@
           <div class="columns">
             <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
           </div>
+        </div>
+      </section>
+    </div>
+    <div data-th-if="${collections}" data-th-remove="tag">
+      <section class="section" data-th-each="collection: ${collections}">
+        <div class="collection container">
+          <h3 class="collection__tag" data-th-text="*{collection.heading}">Heading</h3>
+          <ol data-th-if="*{collection.links}">
+            <li data-th-each="link: *{collection.links}">
+              <div data-th-switch="${collection.currentId == link._id}" data-th-remove="tag">
+                <p data-th-case="true" data-th-text="*{link.text}"></p>
+                <a data-th-case="false" data-th-href="*{link.href}" data-th-text="*{link.text}"></a>
+              </div>
+            </li>
+          </ol>
         </div>
       </section>
     </div>

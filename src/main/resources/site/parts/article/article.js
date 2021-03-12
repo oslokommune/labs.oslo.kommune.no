@@ -28,6 +28,19 @@ exports.get = function(req) {
 
   var model = contentPrep.prepareArticleContents(content.data, 'block(5,2)')
 
+  var collections = contentLib.query({
+    query: "_references = '" + content._id + "'",
+    contentTypes: [app.name + ':collection'],
+  })
+
+  if (collections && collections.total > 0) {
+    model.collections = collections.hits.map(function(collection) {
+      var obj = contentPrep.processBlockLinkList(collection.data)
+      obj.currentId = content._id
+      return obj
+    })
+  }
+
   var categories = related.getCategories(content)
   if (categories.length) {
     model.categories = categories

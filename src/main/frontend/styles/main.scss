@@ -27,6 +27,7 @@
 @import 'partials/card';
 @import 'partials/bio';
 @import 'partials/categories';
+@import 'partials/collection';
 
 @import 'partials/shame';
 
@@ -50,8 +51,8 @@
     background-color: $color-blue-light;
   }
 
-  &--purple {
-    background-color: $color-purple;
+  &--blue-dark {
+    background-color: $color-blue-dark;
   }
 
   &--grey-lighter {
@@ -82,12 +83,12 @@
     background-color: $color-green-light;
   }
 
-  &--brown {
-    background-color: $color-brown;
+  &--beige-dark {
+    background-color: $color-beige-dark;
   }
 
-  &--brown-beige {
-    background-color: $color-brown-beige;
+  &--beige-light {
+    background-color: $color-beige-light;
   }
 
   &--red {
@@ -298,7 +299,7 @@ body {
 
   &__tag {
     position: absolute;
-    background: $color-purple;
+    background: $color-blue-dark;
     padding: 0.3em 0.65em;
     color: $color-blue;
     text-transform: uppercase;

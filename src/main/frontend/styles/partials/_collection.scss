@@ -1,0 +1,30 @@
+$bioImageSizeMobile: 5em;
+$bioImageSizeTablet: 9em;
+$bioImageSizeDesktop: 12em;
+
+.collection {
+  position: relative;
+  margin-top: 0.5rem;
+
+  &__tag {
+    position: absolute;
+    background: $color-blue-dark;
+    padding: 0.3em 0.65em;
+    color: $color-blue;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 0.7em;
+    top: -1em;
+  }
+
+  ol {
+    padding: 1.5rem 1rem 1rem 2.5rem;
+    background-color: $color-grey-bg;
+    & li {
+      padding: 4px 0 4px 12px;
+      & p {
+        font-weight: 500;
+      }
+    }
+  }
+}

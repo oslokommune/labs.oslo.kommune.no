@@ -1,7 +1,7 @@
 .footer {
   color: white;
   font-weight: 500;
-  background: darken($color-purple, 12%);
+  background: darken($color-blue-dark, 12%);
   margin-top: 2em;
 
   &__content {
@@ -32,7 +32,7 @@
   }
 
   &__bottom {
-    background: darken($color-purple, 18%);
+    background: darken($color-blue-dark, 18%);
   }
 
   &__form {

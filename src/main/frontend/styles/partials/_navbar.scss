@@ -107,7 +107,7 @@
   }
 
   &__searchbutton {
-    background-color: $color-purple;
+    background-color: $color-blue-dark;
     background-image: url($gfxPath+'/icons/search.svg');
     background-repeat: no-repeat;
     background-position: 50% 50%;
@@ -136,7 +136,7 @@
       left: 1.25em;
       height: $bar-height;
       border-radius: 0.075em;
-      background: $color-purple;
+      background: $color-blue-dark;
       top: $center;
       transform-origin: 50% 50%;
 
@@ -245,7 +245,7 @@ main.main {
     height: 100%;
     width: 100%;
     padding: 0.5em;
-    background: $color-purple;
+    background: $color-blue-dark;
     color: white;
     font-size: 1rem;
     border: 0;
@@ -260,7 +260,7 @@ main.main {
   }
 
   &__results {
-    background: darken($color-purple, 5%);
+    background: darken($color-blue-dark, 5%);
 
     a {
       color: white;
@@ -282,7 +282,7 @@ main.main {
       padding: 0.5em;
 
       &:focus {
-        background: darken($color-purple, 20%);
+        background: darken($color-blue-dark, 20%);
       }
     }
   }
@@ -301,7 +301,7 @@ main.main {
       opacity: 1;
       width: 16em;
       max-width: 16em;
-      background: $color-purple;
+      background: $color-blue-dark;
 
       input {
         display: block;

@@ -13,7 +13,7 @@ $bioImageSizeDesktop: 12em;
   }
 
   &__textcontainer {
-    border: 1px solid $color-purple;
+    border: 1px solid $color-blue-dark;
     flex: auto 0 0;
     width: 100%;
     min-height: $bioImageSizeMobile;
@@ -34,7 +34,7 @@ $bioImageSizeDesktop: 12em;
 
   &__tag {
     position: absolute;
-    background: $color-purple;
+    background: $color-blue-dark;
     padding: 0.3em 0.65em;
     color: $color-blue;
     text-transform: uppercase;
@@ -102,7 +102,7 @@ $bioImageSizeDesktop: 12em;
 
   &__name {
     margin-bottom: 0.15rem !important;
-    color: $color-purple;
+    color: $color-blue-dark;
   }
   &__meta {
     margin-bottom: 0.5rem !important;
@@ -113,7 +113,7 @@ $bioImageSizeDesktop: 12em;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 0.03em;
-    color: $color-purple;
+    color: $color-blue-dark;
 
     > span + span {
       display: inline-block;

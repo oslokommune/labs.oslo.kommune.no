@@ -5,7 +5,7 @@ export default function init() {
   const minCount = 3 // Minimum amount of headers required to create the list
   const container = document.querySelector('#js-anchor-list-container')
   const anchorList = container.querySelector('#js-anchor-list')
-  const article = document.querySelector('main article')
+  const article = document.querySelector('#js-main')
   const headers = [...article.querySelectorAll('h2:not(.subtitle), h3:not(.js-link), h4')]
 
   if (headers.length >= minCount) {

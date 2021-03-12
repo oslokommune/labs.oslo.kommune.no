@@ -15,7 +15,7 @@
       padding: 2em;
 
       .title {
-        color: $color-purple !important;
+        color: $color-blue-dark !important;
       }
     }
   }
@@ -65,7 +65,7 @@
     &::before {
       width: 5em;
       height: 5em;
-      background: rgba($color-purple, 0.2);
+      background: rgba($color-blue-dark, 0.2);
       border-radius: 50%;
       transform: translate(-2.5em, -2.5em);
       z-index: 2;
@@ -82,7 +82,7 @@
 
     &:hover {
       &::before {
-        background: rgba($color-purple, 1);
+        background: rgba($color-blue-dark, 1);
       }
 
       &::after {

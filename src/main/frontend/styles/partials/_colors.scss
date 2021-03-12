@@ -1,21 +1,22 @@
+$color-blue-dark: #2a2859;
 $color-blue: #6fe9ff;
 $color-blue-light: #b3f5ff;
-$color-purple: #2a2859;
+$color-red: #ff8274;
+$color-green-dark: #034b45;
+$color-green: #43f8b6;
+$color-green-light: #c7f6c9;
+$color-black: #2c2c2c;
+$color-yellow: #f9c66b;
+$color-beige-dark: #d0bfae;
+$color-beige-light: #f8f0dd;
+$color-white: #ffffff;
+
 $color-grey-lighter: #f2f2f2;
 $color-grey-light: #4a4a4a;
 $color-grey-dark: #333333;
-$color-grey-darker: #171414;
-$color-green: #43f8b6;
-$color-green-dark: #034b45;
-$color-green-light: #c7f6c9;
-$color-brown: #d0bfae;
-$color-brown-beige: #f8f0dd;
-$color-red: #ff8274;
-$color-yellow: #f9c66b;
-$color-white: #ffffff;
-$color-black: #000000;
+$color-grey-darker: #141414;
 
-$color-grey-bg: #e9f1f2;
+$color-grey-bg: $color-grey-lighter;
 
 $color-grayscale-5: darken(white, 5%);
 $color-grayscale-10: darken(white, 10%);
@@ -29,7 +30,7 @@ $color-grayscale-80: darken(white, 80%);
 $color-grayscale-90: darken(white, 90%);
 
 // Bulma overrides
-$primary: $color-purple;
+$primary: $color-blue-dark;
 $secondary: $color-blue;
 $radius: 0px;
 
