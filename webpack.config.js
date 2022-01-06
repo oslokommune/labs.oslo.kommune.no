@@ -43,16 +43,6 @@ module.exports = (env, argv) => {
           loader: '@kazupon/vue-i18n-loader',
         },
         {
-          test: /\.(ttf|eot|woff|woff2)$/,
-          use: {
-            loader: 'file-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-              publicPath: '../',
-            },
-          },
-        },
-        {
           test: /\.(sass|scss|css)$/,
           use: [
             MiniCssExtractPlugin.loader,
@@ -81,19 +71,6 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: PROD_MODE ? false : true,
-              },
-            },
-          ],
-        },
-        {
-          test: /\.(jpg|png|gif|ico|svg)$/,
-          use: [
-            {
-              loader: 'file-loader',
-              options: {
-                outputPath: './styles/',
-                name: '[hash]-[name].[ext]',
-                publicPath: './',
               },
             },
           ],
