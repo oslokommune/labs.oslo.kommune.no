@@ -269,10 +269,10 @@
     padding-top: 0.5em;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 1s ease-in-out;
+    transition: max-height 0.5s ease-in-out;
 
     @media screen and (min-width: $tablet) {
-      max-height: 25em;
+      max-height: 35em;
     }
   }
 

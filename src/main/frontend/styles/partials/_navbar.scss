@@ -128,7 +128,7 @@
     position: relative;
 
     $bar-height: 0.15em;
-    $center: 1em - ($bar-height/2);
+    $center: 1em - calc($bar-height/2);
     span {
       display: block;
       position: absolute;
