@@ -5,7 +5,7 @@ var util = require('/lib/labs/util.js')
 var contentPrep = require('/lib/labs/content-prep.js')
 var related = require('/lib/labs/related.js')
 
-exports.get = function(req) {
+exports.get = function (req) {
   var content
   var component = portal.getComponent()
   var config = component.config
@@ -28,13 +28,20 @@ exports.get = function(req) {
 
   var model = contentPrep.prepareArticleContents(content.data, 'block(5,2)')
 
+  if (model.publishFirstTimeRelative) {
+    model.published = model.publishFirstTimeRelative
+  }
+  if (model.modifiedTimeRelative && model.modifiedTimeRelative !== model.publishFirstTimeRelative) {
+    model.modified = model.modifiedTimeRelative
+  }
+
   var collections = contentLib.query({
     query: "_references = '" + content._id + "'",
     contentTypes: [app.name + ':collection'],
   })
 
   if (collections && collections.total > 0) {
-    model.collections = collections.hits.map(function(collection) {
+    model.collections = collections.hits.map(function (collection) {
       var obj = contentPrep.processBlockLinkList(collection.data)
       obj.currentId = content._id
       return obj

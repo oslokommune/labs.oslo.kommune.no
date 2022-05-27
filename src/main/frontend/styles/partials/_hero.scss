@@ -196,6 +196,11 @@
   margin: 1.5rem 0 0;
   border-bottom: 1px solid $color-grayscale-30;
   font-weight: 500;
+  align-items: flex-end;
+
+  time {
+    display: block;
+  }
 
   > li {
     flex: 1 0 50%;

@@ -11,18 +11,18 @@ var imageLib = require('/lib/labs/image.js')
 var districts = require('/lib/labs/oslo-districts.js')
 var moment = require('/assets/moment/2.24.0/moment.js')
 
-exports.prepareArticleContents = function(data, scale) {
+exports.prepareArticleContents = function (data, scale) {
   data = processCommonFields(data, scale)
   data.contentBlocks && (data.contentBlocks = processContentBlocks(data.contentBlocks))
   return data
 }
 
-exports.prepareHeroContents = function(data, scale) {
+exports.prepareHeroContents = function (data, scale) {
   data = processCommonFields(data, scale)
   return data
 }
 
-var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
+var prepareFeaturedArticle = function (content, scaleLandscape, scalePortrait) {
   var singleImage = scaleLandscape === scalePortrait || scalePortrait == null
 
   var article = {}
@@ -50,10 +50,10 @@ var prepareFeaturedArticle = function(content, scaleLandscape, scalePortrait) {
 
 exports.prepareFeaturedArticle = prepareFeaturedArticle
 
-exports.prepareArticleList = function(data, scale) {
+exports.prepareArticleList = function (data, scale) {
   if (!data.count) return []
   scale = scale || 'block(16,9)'
-  var list = data.hits.map(function(res) {
+  var list = data.hits.map(function (res) {
     return prepareFeaturedArticle(res, scale)
   })
   return list
@@ -66,36 +66,20 @@ function processCommonFields(data, scale) {
   data.image && (data.image = imageLib.image.create(data.image, scale))
 
   if (data.createdTime) {
-    data.createdTimeShort = moment(data.createdTime)
-      .locale(data.locale)
-      .format('l')
-    data.createdTimeRelative = moment(data.createdTime)
-      .locale(data.locale)
-      .fromNow()
+    data.createdTimeShort = moment(data.createdTime).locale(data.locale).format('l')
+    data.createdTimeRelative = moment(data.createdTime).locale(data.locale).fromNow()
   }
   if (data.modifiedTime) {
-    data.modifiedTimeShort = moment(data.modifiedTime)
-      .locale(data.locale)
-      .format('l')
-    data.modifiedTimeRelative = moment(data.modifiedTime)
-      .locale(data.locale)
-      .fromNow()
+    data.modifiedTimeShort = moment(data.modifiedTime).locale(data.locale).format('l')
+    data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow()
   }
   if (data.publishFromTime) {
-    data.publishFromTimeShort = moment(data.publishFromTime)
-      .locale(data.locale)
-      .format('l')
-    data.publishFromTimeRelative = moment(data.publishFromTime)
-      .locale(data.locale)
-      .fromNow()
+    data.publishFromTimeShort = moment(data.publishFromTime).locale(data.locale).format('l')
+    data.publishFromTimeRelative = moment(data.publishFromTime).locale(data.locale).fromNow()
   }
   if (data.publishFirstTime) {
-    data.publishFirstTimeShort = moment(data.publishFirstTime)
-      .locale(data.locale)
-      .format('l')
-    data.publishFirstTimeRelative = moment(data.publishFirstTime)
-      .locale(data.locale)
-      .fromNow()
+    data.publishFirstTimeShort = moment(data.publishFirstTime).locale(data.locale).format('l')
+    data.publishFirstTimeRelative = moment(data.publishFirstTime).locale(data.locale).fromNow()
   }
 
   data.body &&
@@ -110,7 +94,7 @@ function getAuthors(authors) {
   if (!authors) return
 
   authors = util.forceArray(authors)
-  authors = authors.map(function(authorId) {
+  authors = authors.map(function (authorId) {
     var author = {}
     var content = contentLib.get({
       key: authorId,
@@ -177,7 +161,7 @@ exports.getAuthors = getAuthors
 function processContentBlocks(ctbs) {
   ctbs = util.forceArray(ctbs)
 
-  ctbs = ctbs.map(function(rawblock) {
+  ctbs = ctbs.map(function (rawblock) {
     if (!rawblock) return
     if (!rawblock._selected) return
 
@@ -306,7 +290,7 @@ function processContentBlocks(ctbs) {
 
       if (block.ctb.ctbMap.mapMarkers) {
         var markers = []
-        util.forceArray(block.ctb.ctbMap.mapMarkers).forEach(function(marker) {
+        util.forceArray(block.ctb.ctbMap.mapMarkers).forEach(function (marker) {
           markers.push([marker])
         })
         block.ctb.ctbMap.mapMarkers = util.forceArray(markers)
@@ -341,11 +325,11 @@ function processContentBlocks(ctbs) {
   return ctbs
 }
 
-var processBlockLinkList = function(b) {
+var processBlockLinkList = function (b) {
   if (b.linkList) {
     var workingLinks = []
     var link = {}
-    util.forceArray(b.linkList).forEach(function(item) {
+    util.forceArray(b.linkList).forEach(function (item) {
       link = {}
       if (item.internalLink || item.externalLink) {
         if (item.internalLink) {
@@ -389,9 +373,9 @@ var processBlockLinkList = function(b) {
 }
 exports.processBlockLinkList = processBlockLinkList
 
-var processCategoryTeaser = function(categories, scale) {
+var processCategoryTeaser = function (categories, scale) {
   var teaserList = []
-  util.forceArray(categories).forEach(function(item) {
+  util.forceArray(categories).forEach(function (item) {
     item.image && (item.image = imageLib.image.create(item.image, scale))
     item.color = util.getColorValueFromName(item.color)
     var link = {
@@ -416,7 +400,7 @@ var processCategoryTeaser = function(categories, scale) {
 }
 exports.processCategoryTeaser = processCategoryTeaser
 
-var processBlockImages = function(b) {
+var processBlockImages = function (b) {
   b.images = util.forceArray(b.images)
   b.isSingleImage = b.images.length === 1
   var scale = 'width(1)' // No scaling is default
@@ -424,7 +408,7 @@ var processBlockImages = function(b) {
     scale = calculateEqualSizeScale(b.images)
   }
   var image
-  b.images = b.images.map(function(image) {
+  b.images = b.images.map(function (image) {
     image = imageLib.image.create(image, scale)
     return image
   })
@@ -444,7 +428,7 @@ function calculateEqualSizeScale(images) {
   var maxWidth = 0
   var maxHeight = 0
   var imageData, imageDimensions
-  images.forEach(function(image) {
+  images.forEach(function (image) {
     imageData = contentLib.get({
       key: image,
     })
@@ -489,7 +473,7 @@ function getImageDimensions(image) {
  * multi type content. Prefers heading > title > name > displayName
  * @param {*} content   The content object from the result
  */
-exports.getHeading = function(content) {
+exports.getHeading = function (content) {
   if (content && content.data && content.data.heading) return content.data.heading
   if (content && content.data && content.data.name) return content.data.name
   if (content && content.data && content.data.title) return content.data.title
@@ -505,7 +489,7 @@ exports.getHeading = function(content) {
  * @param configCount
  * @returns {{}}
  */
-exports.calculatePaging = function(path, totalPosts, start, configCount) {
+exports.calculatePaging = function (path, totalPosts, start, configCount) {
   var p = {}
   var params
 

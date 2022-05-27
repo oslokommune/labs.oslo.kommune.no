@@ -39,10 +39,17 @@
               <p class="lead" data-th-utext="${lead}"></p>
               <ul class="dateline">
                 <li class="dateline__date">
-                  <time class="dateline__datetime" data-th-title="${publishFromTimeShort}"
-                    data-th-datetime="${publishFromTimeShort}" data-th-text="${publishFromTimeRelative}"
-                    data-th-aria-label="${portal.localize({'_key=aria.published', '_values=' + publishFromTimeRelative})}">Publish
-                    time</time>
+                  <time class="dateline__datetime" data-th-if="${published}" data-th-title="${publishFromTimeShort}"
+                    data-th-datetime="${publishFromTimeShort}"
+                    data-th-text="${portal.localize({'_key=aria.published', '_values=' + publishFromTimeShort})}"
+                    data-th-aria-label="${portal.localize({'_key=aria.published', '_values=' + publishFromTimeShort})}">
+                    Published time
+                  </time>
+                  <time class="dateline__datetime" data-th-if="${modified}" data-th-title="${modifiedTimeShort}"
+                    data-th-datetime="${modifiedTimeShort}"
+                    data-th-text="${portal.localize({'_key=aria.modified', '_values=' + modifiedTimeShort})}"
+                    data-th-aria-label="${portal.localize({'_key=aria.modified', '_values=' + modifiedTimeShort})}">
+                    Updated time</time>
                 </li>
                 <li class="dateline__authors" data-th-aria-label="${portal.localize({'_key=aria.writtenBy'})}">
                   <div data-th-if="${isBlog}" data-th-text="${portal.localize({'_key=txt.aBlogPostBy'})}">A blog post
