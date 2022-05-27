@@ -104,7 +104,9 @@ function getAuthors(authors) {
     if (content && content.data && content.data.name) {
       author.name = content.data.name
     } else {
-      author.name = content.displayName
+      if (content) {
+        author.name = content.displayName
+      }
     }
 
     // Profile image
