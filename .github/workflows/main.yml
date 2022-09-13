@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build to test
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "master" branch
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - id: build-only
+        uses: enonic/release-tools/build-and-publish@master
+        with:
+          skipPublishing: true
+          repoUser: ${{ secrets.ARTIFACTORY_USERNAME }}
+          repoPassword: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      - id: deploy
+        uses: enonic/action-app-deploy@main
+        with:
+          url: "https://ok-origo-xp7test.enonic.cloud:4443"
+          username: ${{ secrets.ENONIC_TEST_USER }}
+          password: ${{ secrets.ENONIC_TEST_PASS }}
+          client_cert: ${{ secrets.ENONIC_CERT }}
+          client_key: ${{ secrets.ENONIC_KEY }}
+          app_jar: "./build/libs/*.jar"
