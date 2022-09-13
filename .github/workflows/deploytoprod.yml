@@ -1,0 +1,22 @@
+name: Manually build and deploy to production
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - id: build-only
+        uses: enonic/release-tools/build-and-publish@master
+        with:
+          skipPublishing: true
+          repoUser: ${{ secrets.ARTIFACTORY_USERNAME }}
+          repoPassword: ${{ secrets.ARTIFACTORY_PASSWORD }}
+      - id: deploy
+        uses: enonic/action-app-deploy@main
+        with:
+          url: 'https://ok-origo-xp7.enonic.cloud:4443'
+          username: ${{ secrets.ENONIC_TEST_USER }}
+          password: ${{ secrets.ENONIC_TEST_PASS }}
+          client_cert: ${{ secrets.ENONIC_CERT }}
+          client_key: ${{ secrets.ENONIC_KEY }}
+          app_jar: './build/libs/*.jar'
