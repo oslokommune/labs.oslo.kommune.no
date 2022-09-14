@@ -15,8 +15,8 @@ jobs:
         uses: enonic/action-app-deploy@main
         with:
           url: ${{ secrets.ENONIC_DEPLOY_URL_PROD }}
-          username: ${{ secrets.ENONIC_TEST_USER }}
-          password: ${{ secrets.ENONIC_TEST_PASS }}
+          username: ${{ secrets.ENONIC_PROD_USER }}
+          password: ${{ secrets.ENONIC_PROD_PASS }}
           client_cert: ${{ secrets.ENONIC_CERT }}
           client_key: ${{ secrets.ENONIC_KEY }}
           app_jar: './build/libs/*.jar'
