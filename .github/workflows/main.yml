@@ -6,9 +6,9 @@ name: Build to test
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
+    branches: ['master']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -31,9 +31,9 @@ jobs:
       - id: deploy
         uses: enonic/action-app-deploy@main
         with:
-          url: "https://ok-origo-xp7test.enonic.cloud:4443"
+          url: ${{ secrets.ENONIC_DEPLOY_URL_TEST }}
           username: ${{ secrets.ENONIC_TEST_USER }}
           password: ${{ secrets.ENONIC_TEST_PASS }}
           client_cert: ${{ secrets.ENONIC_CERT }}
           client_key: ${{ secrets.ENONIC_KEY }}
-          app_jar: "./build/libs/*.jar"
+          app_jar: './build/libs/*.jar'
