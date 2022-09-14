@@ -14,7 +14,7 @@ jobs:
       - id: deploy
         uses: enonic/action-app-deploy@main
         with:
-          url: 'https://ok-origo-xp7.enonic.cloud:4443'
+          url: ${{ secrets.ENONIC_DEPLOY_URL_PROD }}
           username: ${{ secrets.ENONIC_TEST_USER }}
           password: ${{ secrets.ENONIC_TEST_PASS }}
           client_cert: ${{ secrets.ENONIC_CERT }}
