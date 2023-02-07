@@ -7,16 +7,19 @@ var related = require('/lib/labs/related.js')
 
 var articleCache = cacheLib.newCache({
   size: 300,
-  expire: 60 * 60 * 24
+  expire: 60 * 60 * 24,
 })
 
-exports.get = function(req) {
+exports.get = function (req) {
   var startTime = +new Date()
 
   var content = portal.getContent()
   var component = portal.getComponent()
   var config = component.config
   var model = {}
+
+  const site = portal.getSite()
+  const isFrontpage = site._path === content._path
 
   /**
    * Small hack to enable this part to be used as a template part.
@@ -50,7 +53,8 @@ exports.get = function(req) {
     contentTypes: ['article'],
     categoryFilter: categories,
     onlyChildren: config.onlyChildren,
-    paging: config.paging
+    paging: config.paging,
+    isFrontpage: isFrontpage,
   }
 
   var result = related.getContentList(queryConfig)
@@ -58,11 +62,23 @@ exports.get = function(req) {
   if (result) {
     if (result.selectedHits && result.selectedHits.length) {
       // model.featuredHits = prepareData(result.selectedHits, req.mode);
-      model.featured = prepareData(result.selectedHits, scaleLandscapeFeatured, scalePortraitFeatured, req.mode, config.presentationMode)
+      model.featured = prepareData(
+        result.selectedHits,
+        scaleLandscapeFeatured,
+        scalePortraitFeatured,
+        req.mode,
+        config.presentationMode
+      )
     }
     if (result.queryHits && result.queryHits.length) {
       // model.hits = prepareData(result.queryHits, req.mode);
-      model.articles = prepareData(result.queryHits, scaleLandscape, scalePortrait, req.mode, config.presentationMode)
+      model.articles = prepareData(
+        result.queryHits,
+        scaleLandscape,
+        scalePortrait,
+        req.mode,
+        config.presentationMode
+      )
     }
     if (result.hasOwnProperty('firstPage')) {
       model.firstPage = result.firstPage
@@ -75,40 +91,54 @@ exports.get = function(req) {
   if (config.seeAllLink && !model.paging) {
     model.seeAllLink = {}
     model.seeAllLink.href = portal.pageUrl({
-      id: config.seeAllLink
+      id: config.seeAllLink,
     })
     if (config.seeAllLinkText) {
       model.seeAllLink.text = config.seeAllLinkText
     } else {
       model.seeAllLink.text = contentLib.get({
-        key: config.seeAllLink
+        key: config.seeAllLink,
       }).displayName
     }
   }
 
   model.live = req.mode == 'live'
-  model.hasContent = (model.featured && model.featured.length) || (model.articles && model.articles.length)
+  model.hasContent =
+    (model.featured && model.featured.length) || (model.articles && model.articles.length)
   var endTime = +new Date()
   model.controllerPageTime = 'Controller time: ' + String(endTime - startTime) + 'ms'
   var view = resolve('./article-list.html')
   var body = thymeleaf.render(view, model)
   return {
     body: body,
-    contentType: 'text/html'
+    contentType: 'text/html',
   }
 }
 
 function prepareData(hits, scaleLandscape, scalePortrait, mode, presentationMode) {
-  return hits.map(function(resultItem) {
-    return articleCache.get(resultItem._id + resultItem._path + resultItem.modifiedTime + scaleLandscape + scalePortrait + mode + presentationMode, function() {
-      if (resultItem.data) {
-        resultItem.data = contentPrep.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait)
-        var categories = related.getCategories(resultItem)
-        if (categories.length) {
-          resultItem.data.categories = categories
+  return hits.map(function (resultItem) {
+    return articleCache.get(
+      resultItem._id +
+        resultItem._path +
+        resultItem.modifiedTime +
+        scaleLandscape +
+        scalePortrait +
+        mode +
+        presentationMode,
+      function () {
+        if (resultItem.data) {
+          resultItem.data = contentPrep.prepareFeaturedArticle(
+            resultItem,
+            scaleLandscape,
+            scalePortrait
+          )
+          var categories = related.getCategories(resultItem)
+          if (categories.length) {
+            resultItem.data.categories = categories
+          }
         }
+        return resultItem.data
       }
-      return resultItem.data
-    })
+    )
   })
 }

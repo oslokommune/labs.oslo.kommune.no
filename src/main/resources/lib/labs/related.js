@@ -4,12 +4,12 @@ var util = require('/lib/labs/util.js')
 var cUtil = require('/lib/labs/content-prep.js')
 var imageLib = require('/lib/labs/image.js')
 
-var xAppName = app.name.replace(/\./g, '-')
+const xAppName = app.name.replace(/\./g, '-')
 
 /**
  * From a piece of contents, return related contents
  */
-exports.getRelatedContent = function(content, config) {
+exports.getRelatedContent = function (content, config) {
   var model = {}
 
   if (arguments.length !== 2) {
@@ -30,9 +30,9 @@ exports.getRelatedContent = function(content, config) {
   if (config.selectedItems) {
     selectedItems = util.forceArray(config.selectedItems)
     var currentItem
-    selectedItems.map(function(item) {
+    selectedItems.map(function (item) {
       currentItem = contentLib.get({
-        key: item
+        key: item,
       })
       if (currentItem) {
         selectedHits.push(currentItem)
@@ -46,7 +46,7 @@ exports.getRelatedContent = function(content, config) {
     log.error('Please provide contentTypes to search for!')
     return model
   } else {
-    contentTypes = util.forceArray(config.contentTypes).map(function(item) {
+    contentTypes = util.forceArray(config.contentTypes).map(function (item) {
       return app.name + ':' + item
     })
   }
@@ -68,8 +68,15 @@ exports.getRelatedContent = function(content, config) {
     if (app.name + ':category' === content.type) {
       relatedArr.push(content._id)
     }
-    if (content.x && content.x[xAppName] && content.x[xAppName].categories && content.x[xAppName].categories.categories) {
-      relatedArr = relatedArr.concat(util.forceArray(content.x[xAppName].categories.categories))
+    if (
+      content.x &&
+      content.x[xAppName] &&
+      content.x[xAppName].categories &&
+      content.x[xAppName].categories.categories
+    ) {
+      relatedArr = relatedArr.concat(
+        util.forceArray(content.x[xAppName].categories.categories)
+      )
     }
 
     if (relatedArr.length || fallback) {
@@ -82,19 +89,19 @@ exports.getRelatedContent = function(content, config) {
       if (relatedArr.length) {
         mustHasValue.push({
           field: 'x.' + xAppName + '.categories.categories',
-          values: relatedArr
+          values: relatedArr,
         })
       }
       if (selectedItems.length) {
         mustNotHasValue.push({
           field: '_id',
-          values: selectedItems
+          values: selectedItems,
         })
       }
       if (content._id) {
         mustNotHasValue.push({
           field: '_id',
-          values: content._id
+          values: content._id,
         })
       }
 
@@ -107,23 +114,21 @@ exports.getRelatedContent = function(content, config) {
         count: count,
         contentTypes: contentTypes,
         query: query,
-        sort: sort
+        sort: sort,
       }
 
       if (mustHasValue.length || mustNotHasValue.length) {
         queryParams.filters = {
           boolean: {
             must: {
-              hasValue: mustHasValue
+              hasValue: mustHasValue,
             },
             mustNot: {
-              hasValue: mustNotHasValue
-            }
-          }
+              hasValue: mustNotHasValue,
+            },
+          },
         }
       }
-
-      //log.info(JSON.stringify(queryParams, null, 2))
 
       var result = contentLib.query(queryParams)
 
@@ -137,13 +142,15 @@ exports.getRelatedContent = function(content, config) {
 
   model.hits = selectedHits.concat(queryHits)
   var data
-  model.hits = model.hits.map(function(item) {
+  model.hits = model.hits.map(function (item) {
     if (item && item.data) {
       data = item.data
       data.path = portal.pageUrl({
-        path: item._path
+        path: item._path,
       })
-      data.image = data.image ? imageLib.image.create(data.image, config.scale) : imageLib.image.placeholder(config.scale)
+      data.image = data.image
+        ? imageLib.image.create(data.image, config.scale)
+        : imageLib.image.placeholder(config.scale)
       if (data.lead) {
         //data.lead = util.paragraphify(data.lead)
       }
@@ -162,7 +169,7 @@ exports.getRelatedContent = function(content, config) {
  * @param config
  * @returns {{featuredItems: *, resultItems: *, paging: *}}
  */
-exports.getContentList = function(config) {
+exports.getContentList = function (config) {
   var start = 0,
     queryStart = 0,
     count = 20,
@@ -200,9 +207,9 @@ exports.getContentList = function(config) {
   // Featured items
   if (start === 0) {
     var currentItem
-    selectedItems.map(function(item) {
+    selectedItems.map(function (item) {
       currentItem = contentLib.get({
-        key: item
+        key: item,
       })
       if (currentItem) {
         selectedHits.push(currentItem)
@@ -223,7 +230,7 @@ exports.getContentList = function(config) {
   if (!config.contentTypes) {
     log.error('Please provide contentTypes to search for!')
   } else {
-    contentTypes = util.forceArray(config.contentTypes).map(function(item) {
+    contentTypes = util.forceArray(config.contentTypes).map(function (item) {
       return app.name + ':' + item
     })
   }
@@ -243,21 +250,41 @@ exports.getContentList = function(config) {
     count: count,
     contentTypes: contentTypes,
     query: query,
-    sort: 'createdTime DESC'
+    sort: 'createdTime DESC',
   }
 
+  // Filters. As we don't have spread operators or Object.assign, we need to hack a bit.
+
+  var mustHasValue = [],
+    mustNotHasValue = []
+
   if (categoryFilter) {
+    mustHasValue.push({
+      field: 'x.' + xAppName + '.categories.categories',
+      values: categoryFilter,
+    })
+  }
+  if (config.isFrontpage) {
+    mustNotHasValue.push({
+      field: 'x.' + xAppName + '.visibility.hideFromFrontpage',
+      values: true,
+    })
+  }
+  mustNotHasValue.push({
+    field: 'x.' + xAppName + '.visibility.hideFromLists',
+    values: true,
+  })
+
+  if (mustHasValue.length || mustNotHasValue.length) {
     queryParams.filters = {
       boolean: {
         must: {
-          hasValue: [
-            {
-              field: 'x.' + xAppName + '.categories.categories',
-              values: categoryFilter
-            }
-          ]
-        }
-      }
+          hasValue: mustHasValue,
+        },
+        mustNot: {
+          hasValue: mustNotHasValue,
+        },
+      },
     }
   }
 
@@ -278,25 +305,33 @@ exports.getContentList = function(config) {
     selectedHits: selectedHits,
     queryHits: queryHits,
     paging: paging,
-    firstPage: start === 0
+    firstPage: start === 0,
   }
 }
 
-exports.getCategories = function(content) {
+exports.getCategories = function (content) {
   var categories = []
-  if (content && content.x && content.x[xAppName] && content.x[xAppName].categories && content.x[xAppName].categories.categories) {
+  if (
+    content &&
+    content.x &&
+    content.x[xAppName] &&
+    content.x[xAppName].categories &&
+    content.x[xAppName].categories.categories
+  ) {
     var category
-    categories = util.forceArray(content.x[xAppName].categories.categories).map(function(categoryId) {
-      category = contentLib.get({
-        key: categoryId
-      })
-      if (category && category.data) {
-        category.data.path = portal.pageUrl({
-          path: category._path
+    categories = util
+      .forceArray(content.x[xAppName].categories.categories)
+      .map(function (categoryId) {
+        category = contentLib.get({
+          key: categoryId,
         })
-        return category.data
-      }
-    })
+        if (category && category.data) {
+          category.data.path = portal.pageUrl({
+            path: category._path,
+          })
+          return category.data
+        }
+      })
   }
   return categories
 }

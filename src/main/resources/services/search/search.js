@@ -7,17 +7,19 @@ var util = require('/lib/labs/util.js')
 var contentPrep = require('/lib/labs/content-prep.js')
 var ASCIIFolder = require('/lib/labs/ascii-folder.js')
 
+const xAppName = app.name.replace(/\./g, '-')
+
 var imageCache = cacheLib.newCache({
   size: 100,
-  expire: 60 * 60 * 24
+  expire: 60 * 60 * 24,
 })
 
 var nameCache = cacheLib.newCache({
   size: 2 /* /no and /en namespaces*/,
-  expire: 60 * 60 * 24
+  expire: 60 * 60 * 24,
 })
 
-exports.get = function(req) {
+exports.get = function (req) {
   var startTime = +new Date()
 
   var limit = req.params.limit || 20
@@ -44,12 +46,16 @@ exports.get = function(req) {
           hasValue: [
             {
               field: 'data.hideFromList',
-              values: ['true']
-            }
-          ]
-        }
-      }
-    }
+              values: ['true'],
+            },
+            {
+              field: 'x.' + xAppName + '.visibility.hideFromSearch',
+              values: true,
+            },
+          ],
+        },
+      },
+    },
     /*,
         highlight: {
           preTag: '',
@@ -74,15 +80,15 @@ exports.get = function(req) {
     q = ASCIIFolder.foldMaintaining(q)
 
     qArr = q.split(' ')
-    qArr = qArr.map(function(word) {
+    qArr = qArr.map(function (word) {
       return word + '*'
     })
     qMod = qArr.join(' ')
 
-    //log.info(qMod)
-
     queryParams.query +=
-      " AND ( fulltext('data.heading^10,data.name^10,data.title^10,displayName^10,_path^5,data.lead^5,data.bio^5,_alltext', '" + qMod + "', 'AND')"
+      " AND ( fulltext('data.heading^10,data.name^10,data.title^10,displayName^10,_path^5,data.lead^5,data.bio^5,_alltext', '" +
+      qMod +
+      "', 'AND')"
     queryParams.query += ' )'
   } else {
     queryParams.sort = 'publish.from DESC'
@@ -91,22 +97,21 @@ exports.get = function(req) {
   var r = contentLib.query(queryParams)
 
   if (r && r.count) {
-    // log.info(JSON.stringify(r.highlight, null, 2))
     var formattedItem = {}
-    r.hits.map(function(item) {
+    r.hits.map(function (item) {
       formattedItem = {
         type: getTypeString(item, contentTypes),
         date: {
           iso: util.ymdDate(item.publish.from),
-          pretty: util.dmyDate(item.publish.from)
+          pretty: util.dmyDate(item.publish.from),
         },
         authors: getAuthors(item),
         heading: contentPrep.getHeading(item),
         lead: getLead(item),
         image: getImage(item),
         url: portalLib.pageUrl({
-          path: item._path
-        })
+          path: item._path,
+        }),
       }
       /*
       if (q.length) {
@@ -122,8 +127,8 @@ exports.get = function(req) {
         service: 'search',
         params: {
           q: q,
-          start: String(nextPageStart)
-        }
+          start: String(nextPageStart),
+        },
       })
     }
   }
@@ -136,10 +141,10 @@ exports.get = function(req) {
       hits: searchResults,
       total: total,
       time: timeSpent + 'ms',
-      next: next
+      next: next,
     },
     status: 200,
-    contentType: 'application/json; charset=utf-8'
+    contentType: 'application/json; charset=utf-8',
   }
 }
 
@@ -165,15 +170,15 @@ function getTypeString(content, contentTypes) {
 function getAuthors(item) {
   var authors = []
   if (item.data && item.data.authors) {
-    authors = util.forceArray(item.data.authors).map(function(authorId) {
+    authors = util.forceArray(item.data.authors).map(function (authorId) {
       var author = contentLib.get({
-        key: authorId
+        key: authorId,
       })
       return {
         name: author.data.name,
         url: portalLib.pageUrl({
-          id: authorId
-        })
+          id: authorId,
+        }),
       }
     })
   }
@@ -206,12 +211,13 @@ function getHighlight(content, highlight) {
  * @param {*} content The content object from the result
  */
 function getImage(content) {
-  if (content && content.data && content.data.image) return getImageFromCache(content.data.image)
+  if (content && content.data && content.data.image)
+    return getImageFromCache(content.data.image)
   return false
 }
 
 function getImageFromCache(imageId) {
-  return imageCache.get(imageId, function() {
+  return imageCache.get(imageId, function () {
     return imageLib.image.create(imageId, 'square')
   })
 }
@@ -221,19 +227,19 @@ function getImageFromCache(imageId) {
  * @param {*} pathKey   The root part of the content path (i.e. "no" in /content/no/urlpath)
  */
 function getContentTypes(pathKey) {
-  return nameCache.get(pathKey, function() {
+  return nameCache.get(pathKey, function () {
     var contentTypes = {}
     contentTypes[app.name + ':article'] = i18nLib.localize({
-      key: 'search.article'
+      key: 'search.article',
     })
     contentTypes[app.name + ':landing-page'] = i18nLib.localize({
-      key: 'search.landing-page'
+      key: 'search.landing-page',
     })
     contentTypes[app.name + ':person'] = i18nLib.localize({
-      key: 'search.person'
+      key: 'search.person',
     })
     contentTypes[app.name + ':category'] = i18nLib.localize({
-      key: 'search.category'
+      key: 'search.category',
     })
     return contentTypes
   })

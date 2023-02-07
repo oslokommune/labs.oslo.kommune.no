@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x-data>
+  <display-name>Visibility</display-name>
+  <form>
+    <input type="Checkbox" name="hideFromFrontpage">
+      <label>Hide from frontpage article list</label>
+      <help-text>Check this to hide this content from lists on the front page.</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input type="Checkbox" name="hideFromLists">
+      <label>Hide from all article lists</label>
+      <help-text>Check this to hide this content from lists on all pages.</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+    <input type="Checkbox" name="hideFromSearch">
+      <label>Hide from search</label>
+      <help-text>Check this to hide this content from search results.</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+  </form>
+</x-data>

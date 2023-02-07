@@ -23,6 +23,7 @@
       </items>
     </field-set>
   </form>
+  <x-data name="visibility" />
   <x-data name="categories" />
   <x-data name="menu-item" />
 </site>
