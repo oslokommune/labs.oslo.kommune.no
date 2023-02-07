@@ -56,13 +56,8 @@
   <div class="column"
     data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'">
     <div data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'">
-      <iframe data-th-if="${block.ctbVideo.secret}"
-        data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?h=' + ${block.ctbVideo.secret} + '&color=da28d3&title=0&byline=0&portrait=0'"
-        style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
-        mozallowfullscreen allowfullscreen title="Video">
-      </iframe>
-      <iframe data-th-if="!${block.ctbVideo.secret}"
-        data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?color=da28d3&title=0&byline=0&portrait=0'"
+      <iframe
+        data-th-src="'https://player.vimeo.com/video/' + ${block.ctbVideo.id} + '?' + (${block.ctbVideo.secret} ? 'h=' + ${block.ctbVideo.secret} : '') + '&color=da28d3&title=0&byline=0&portrait=0'"
         style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
         mozallowfullscreen allowfullscreen title="Video">
       </iframe>
