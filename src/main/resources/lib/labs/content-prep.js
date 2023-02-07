@@ -37,10 +37,16 @@ var prepareFeaturedArticle = function (content, scaleLandscape, scalePortrait) {
   if (!content.data) return article
 
   if (singleImage) {
-    article.image = content.data.image ? imageLib.image.create(content.data.image, scaleLandscape) : imageLib.image.placeholder(scaleLandscape)
+    article.image = content.data.image
+      ? imageLib.image.create(content.data.image, scaleLandscape)
+      : imageLib.image.placeholder(scaleLandscape)
   } else {
-    article.image = content.data.image ? imageLib.image.create(content.data.image, scaleLandscape) : imageLib.image.placeholder(scaleLandscape)
-    article.image.portrait = content.data.image ? imageLib.image.create(content.data.image, scalePortrait) : imageLib.image.placeholder(scalePortrait)
+    article.image = content.data.image
+      ? imageLib.image.create(content.data.image, scaleLandscape)
+      : imageLib.image.placeholder(scaleLandscape)
+    article.image.portrait = content.data.image
+      ? imageLib.image.create(content.data.image, scalePortrait)
+      : imageLib.image.placeholder(scalePortrait)
   }
   article.heading = content.data.heading ? content.data.heading : content.displayName
   article.lead = content.data.lead
@@ -74,12 +80,20 @@ function processCommonFields(data, scale) {
     data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow()
   }
   if (data.publishFromTime) {
-    data.publishFromTimeShort = moment(data.publishFromTime).locale(data.locale).format('l')
-    data.publishFromTimeRelative = moment(data.publishFromTime).locale(data.locale).fromNow()
+    data.publishFromTimeShort = moment(data.publishFromTime)
+      .locale(data.locale)
+      .format('l')
+    data.publishFromTimeRelative = moment(data.publishFromTime)
+      .locale(data.locale)
+      .fromNow()
   }
   if (data.publishFirstTime) {
-    data.publishFirstTimeShort = moment(data.publishFirstTime).locale(data.locale).format('l')
-    data.publishFirstTimeRelative = moment(data.publishFirstTime).locale(data.locale).fromNow()
+    data.publishFirstTimeShort = moment(data.publishFirstTime)
+      .locale(data.locale)
+      .format('l')
+    data.publishFirstTimeRelative = moment(data.publishFirstTime)
+      .locale(data.locale)
+      .fromNow()
   }
 
   data.body &&
@@ -205,7 +219,11 @@ function processContentBlocks(ctbs) {
       }
 
       // Full Width
-      if (selected.indexOf('fullWidth') > -1 && !block.ctb.sidebarbox && !block.ctb.sidebarImage) {
+      if (
+        selected.indexOf('fullWidth') > -1 &&
+        !block.ctb.sidebarbox &&
+        !block.ctb.sidebarImage
+      ) {
         block.ctb.isFullWidth = true
       }
 
@@ -281,13 +299,21 @@ function processContentBlocks(ctbs) {
         ratio = defaultAspectRatio.split(':')
       }
       block.ctb.ctbVideo.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
+
+      if ((block.ctb.ctbVideo.id.match(/\//g) || []).length === 1) {
+        const parts = block.ctb.ctbVideo.id.split('/')
+        block.ctb.ctbVideo.id = parts[0]
+        block.ctb.ctbVideo.secret = parts[1]
+      }
     }
 
     // Markers and District overlays
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       if (block.ctb.ctbMap.mapDistricts) {
         var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
-        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(districts.generateGeoJSON(selectedDistricts))
+        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(
+          districts.generateGeoJSON(selectedDistricts)
+        )
       }
 
       if (block.ctb.ctbMap.mapMarkers) {
