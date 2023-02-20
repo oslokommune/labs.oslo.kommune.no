@@ -42,6 +42,10 @@
   color: $color-grayscale-50;
 }
 
+:focus-visible {
+  outline-color: $color-red;
+}
+
 .section {
   &--blue {
     background-color: $color-blue;

@@ -47,9 +47,5 @@
   &__submit {
     background: $color-yellow;
     border: none;
-
-    &:focus {
-      outline-color: 2px solid $color-blue;
-    }
   }
 }
