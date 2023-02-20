@@ -327,3 +327,8 @@ body {
     color: currentColor;
   }
 }
+
+a.skip:focus {
+  z-index:20;
+  position: relative;
+}

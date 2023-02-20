@@ -10,7 +10,7 @@
 
 <body data-portal-component-type="page">
   <div>
-    <a href="#main" data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}" z-index="0"></a>
+    <a class="skip" href="#main" data-th-aria-label="${portal.localize({'_key=aria.skipToContent'})}" data-th-text="${portal.localize({'_key=aria.skipToContent'})}"></a>
   </div>
 
   <header data-th-replace="/site/snippets/navbar.html"></header>
