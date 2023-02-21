@@ -347,7 +347,16 @@ body {
   }
 }
 
+a.skip {
+  z-index: 0;
+  position: absolute;
+  color:transparent;
+}
+
 a.skip:focus {
   z-index:20;
-  position: relative;
+  color:$color-red;
+  text-decoration: underline;
+  top:2px;
+  left:2px;
 }
