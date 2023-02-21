@@ -60,6 +60,11 @@
           <label i18n="ct.article.ctbVideo">Video</label>
           <help-text i18n="ct.article.ctbVideoDesc">Vimeo video from id</help-text>
           <items>
+            <input name="title" type="TextLine">
+              <label i18n="ct.article.ctbVideoTitle">Descriptive video title (for accessibility)</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config />
+            </input>
             <input name="id" type="TextLine">
               <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
               <help-text i18n="ct.article.ctbVideoIdDesc">Use format video-id/secret for unlisted videos</help-text>
