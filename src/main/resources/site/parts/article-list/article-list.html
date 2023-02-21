@@ -24,7 +24,7 @@
         </div>
 
         <div data-th-if="${presentationMode == 'compact'}" data-th-remove="tag">
-          <h1 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h1>
+          <h1 data-th-if="${heading}" data-th-text="${heading}" class="title is-3"></h1>
           <ul data-th-if="${featured}" class="columns is-multiline">
             <li data-th-each="article, i: ${featured}" data-th-object="${article}" class="column experiment__tile has-text-white is-12 experiment__tile--large">
               <a data-th-href="*{path}">
@@ -42,10 +42,10 @@
                 </div>
                 <div data-th-if="*{categories}" class="experiment__tag">
                   <ol class="categories">
-                    <li data-th-each="category, i: *{categories}" data-th-object="${category}" data-th-text="*{heading}">Category</li>
+                    <li data-th-each="category, i: *{categories}" data-th-object="${category}"><span data-th-text="*{heading}">Category</span></li>
                   </ol>
                 </div>
-                <h3 class="title is-3 experiment__heading has-text-white" data-th-text="*{heading}"></h3>
+                <h3 class="title is-3 experiment__heading has-text-white"><span data-th-text="*{heading}"></span></h3>
               </a>
             </li>
           </ul>
@@ -66,10 +66,10 @@
                 </div>
                 <div data-th-if="*{categories}" class="experiment__tag">
                   <ol class="categories">
-                    <li data-th-each="category, i: *{categories}" data-th-object="${category}" data-th-text="*{heading}">Category</li>
+                    <li data-th-each="category, i: *{categories}" data-th-object="${category}"><span data-th-text="*{heading}">Category</span></li>
                   </ol>
                 </div>
-                <h3 class="title is-3 experiment__heading has-text-white" data-th-text="*{heading}"></h3>
+                <h3 class="title is-3 experiment__heading has-text-white"><span data-th-text="*{heading}"></span></h3>
               </a>
             </li>
           </ul>

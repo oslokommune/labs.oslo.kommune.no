@@ -13,10 +13,12 @@ ol.categories li {
 
 ol.categories li:after {
   content: ' / ';
+  padding: 0 4px;
 }
 
 ol.categories li:last-child:after {
   content: '';
+  padding: 0;
 }
 
 .category-teaser {
@@ -51,6 +53,15 @@ ol.categories li:last-child:after {
     text-align: center;
     width: 100%;
     left: 0;
+
+    overflow: visible;
+
+    & span {
+      box-shadow: 6px 0 0 #000, -6px 0 0 #000;
+      background-color: #000;
+      box-decoration-break: clone;
+      padding-bottom:2px;
+    }
   }
 
   &__image {

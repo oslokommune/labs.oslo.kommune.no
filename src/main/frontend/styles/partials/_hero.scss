@@ -327,6 +327,16 @@
     width: 100%;
     top: 50%;
     transform: translateY(-1em);
-    text-shadow: 0 3px 6px rgba(black, 0.7);
+
+    overflow: visible;
+
+    & span {
+      box-shadow: 12px 0 0 #000, -12px 0 0 #000;
+      background-color: #000;
+      box-decoration-break: clone;
+      padding-bottom:2px;
+    
+    }
+
   }
 }

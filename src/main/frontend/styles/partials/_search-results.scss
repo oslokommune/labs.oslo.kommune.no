@@ -3,6 +3,10 @@
     min-height: 22em;
     position: relative;
     padding-top: 6em;
+
+    & .button.is-static {
+      color: $color-black;
+    }
   }
 
   &__heroimg {

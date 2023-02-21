@@ -266,19 +266,38 @@ body {
   &__tag {
     top: 2rem;
     display: block;
-    padding: 0.3em 0.5em 0.1em;
     font-size: 0.7em;
     text-transform: uppercase;
     font-weight: 700;
     color: white;
-    text-shadow: 0 1px 1px rgba(black, 0.4);
+
+    overflow: visible;
+
+    & span {
+      box-shadow: 6px 0 0 #000, -6px 0 0 #000;
+      background-color: #000;
+      box-decoration-break: clone;
+    }
   }
 
   &__heading {
     bottom: 2rem;
     width: calc(100% - 4rem);
     max-width: 20em;
-    text-shadow: 0 1px 4px rgba(black, 1);
+
+    &.title.is-3 {
+      font-size: 1.15em;
+    }
+
+    overflow: visible;
+
+    & span {
+      box-shadow: 6px 0 0 #000, -6px 0 0 #000;
+      background-color: #000;
+      box-decoration-break: clone;
+      padding-bottom:2px;
+    
+    }
   }
 
   &__imagecontainer {
