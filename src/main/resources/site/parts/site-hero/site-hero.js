@@ -3,7 +3,7 @@ var thymeleaf = require('/lib/thymeleaf')
 var imageLib = require('/lib/labs/image.js')
 var contentLib = require('/lib/xp/content')
 
-exports.get = function(req) {
+exports.get = function (req) {
   var component = portal.getComponent()
   var model = component.config || {}
 
@@ -11,26 +11,26 @@ exports.get = function(req) {
 
   if (model.primaryLink) {
     var page = contentLib.get({
-      key: model.primaryLink
+      key: model.primaryLink,
     })
 
     model.primary = {
       url: portal.pageUrl({
-        id: model.primaryLink
+        id: model.primaryLink,
       }),
-      label: model.primaryLinkLabel || (page && page.data && page.data.heading) || page.displayName
+      label: model.primaryLinkLabel || (page && page.data && page.data.heading) || page.displayName,
     }
   }
 
   if (model.secondaryLink) {
     var page = contentLib.get({
-      key: model.secondaryLink
+      key: model.secondaryLink,
     })
     model.secondary = {
       url: portal.pageUrl({
-        id: model.secondaryLink
+        id: model.secondaryLink,
       }),
-      label: model.secondaryLinkLabel || (page && page.data && page.data.heading) || page.displayName
+      label: model.secondaryLinkLabel || (page && page.data && page.data.heading) || page.displayName,
     }
   }
 
@@ -38,6 +38,6 @@ exports.get = function(req) {
   var body = thymeleaf.render(view, model)
   return {
     body: body,
-    contentType: 'text/html'
+    contentType: 'text/html',
   }
 }

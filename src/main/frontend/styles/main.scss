@@ -231,7 +231,7 @@ body {
 
   &__image-column {
     min-height: 200px;
-    margin: 0.75rem;
+    object-fit: cover;
   }
 
   &__links {
@@ -295,8 +295,7 @@ body {
       box-shadow: 6px 0 0 #000, -6px 0 0 #000;
       background-color: #000;
       box-decoration-break: clone;
-      padding-bottom:2px;
-    
+      padding-bottom: 2px;
     }
   }
 
@@ -350,13 +349,13 @@ body {
 a.skip {
   z-index: 0;
   position: absolute;
-  color:transparent;
+  color: transparent;
 }
 
 a.skip:focus {
-  z-index:20;
-  color:$color-red;
+  z-index: 20;
+  color: $color-red;
   text-decoration: underline;
-  top:2px;
-  left:2px;
+  top: 2px;
+  left: 2px;
 }

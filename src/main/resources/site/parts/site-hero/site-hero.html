@@ -1,16 +1,35 @@
 <section class="section home-header">
   <div class="container">
     <div class="columns is-multiline home-header__columns">
-      <div class="column home-header__image-column" data-th-style="'background-image: url(\'' + ${image.src} + '\');
-      background-size:cover; background-position: center center;'"></div>
+      <img
+        class="column home-header__image-column is-half"
+        data-th-object="${image}"
+        data-th-width="*{width}"
+        data-th-height="*{height}"
+        data-th-src="*{placeholderSrc}"
+        data-th-srcset="*{srcSet}"
+        data-th-alt-title="*{alt}"
+        data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 512px, 660px'"
+      />
+
       <div class="column home-header__text-column has-text-centered-mobile">
         <h1 data-th-if="${heading}" class="title is-1" data-th-text="${heading}"></h1>
         <p data-th-if="${subheading}" data-th-text="${subheading}"></p>
         <p class="home-header__links">
-          <a data-th-if="${primary}" data-th-href="${primary.url}" data-th-text="${primary.label}"
-            class="button is-primary">Call to Action</a>
-          <a data-th-if="${secondary}" data-th-href="${secondary.url}" data-th-text="${secondary.label}"
-            class="button is-primary is-outlined">Call to Action</a>
+          <a
+            data-th-if="${primary}"
+            data-th-href="${primary.url}"
+            data-th-text="${primary.label}"
+            class="button is-primary"
+            >Call to Action</a
+          >
+          <a
+            data-th-if="${secondary}"
+            data-th-href="${secondary.url}"
+            data-th-text="${secondary.label}"
+            class="button is-primary is-outlined"
+            >Call to Action</a
+          >
         </p>
       </div>
     </div>
