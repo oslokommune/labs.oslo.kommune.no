@@ -1,11 +1,25 @@
-<a data-th-fragment="card(size)" data-th-href="${item.path}" class="card" data-th-classappend="${size == 'big'} ? card--featured : ''">
+<a
+  data-th-fragment="card(size)"
+  data-th-href="${item.path}"
+  class="card"
+  data-th-classappend="${size == 'big'} ? card--featured : ''"
+>
   <div class="card__imagecontainer">
     <picture data-th-if="*{item.image}">
-      <source data-th-if="*{item.image.portrait}" media="(max-width:768px)" data-th-srcset="*{item.image.portrait.srcSet}" sizes="'95vw'" />
+      <source
+        data-th-if="*{item.image.portrait}"
+        data-th-width="*{item.image.portrait.width}"
+        data-th-height="*{item.image.portrait.height}"
+        media="(max-width:768px)"
+        data-th-srcset="*{item.image.portrait.srcSet}"
+        sizes="'95vw'"
+      />
       <img
         data-th-src="*{item.image.placeholderSrc}"
         data-th-srcset="*{item.image.srcSet}"
         data-th-alt-title="*{item.image.alt}"
+        data-th-width="*{item.image.width}"
+        data-th-height="*{item.image.height}"
         class="card__image"
         data-th-sizes="${size == 'big'} ? 
             '(max-width:1087px) 95vw, (max-width:1279px) 960px, (max-width:1471px) 1152px, 1344px' :
@@ -16,7 +30,9 @@
   <div class="card__body">
     <div data-th-if="*{item.categories}" class="card__category">
       <ol class="categories">
-        <li data-th-each="category, i: *{item.categories}" data-th-object="${category}" data-th-text="*{heading}">Category</li>
+        <li data-th-each="category, i: *{item.categories}" data-th-object="${category}" data-th-text="*{heading}">
+          Category
+        </li>
       </ol>
     </div>
     <h2 class="card__title title is-3" data-th-text="${item.heading}"></h2>

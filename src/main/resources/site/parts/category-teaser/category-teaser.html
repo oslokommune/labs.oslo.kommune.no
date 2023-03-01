@@ -11,6 +11,8 @@
       >
         <img
           data-th-if="*{image}"
+          data-th-width="*{image.width}"
+          data-th-height="*{image.height}"
           data-th-src="*{image.placeholderSrc}"
           data-th-srcset="*{image.srcSet}"
           data-th-sizes="200px"
@@ -21,7 +23,9 @@
       </a>
     </div>
     <div class="columns see-all" data-th-if="${seeAllLink}">
-      <a class="column has-text-centered" data-th-href="${seeAllLink.href}" data-th-text="${seeAllLink.text}">See all</a>
+      <a class="column has-text-centered" data-th-href="${seeAllLink.href}" data-th-text="${seeAllLink.text}"
+        >See all</a
+      >
     </div>
   </div>
 </section>
