@@ -6,10 +6,10 @@ var util = require('/lib/labs/util.js')
 
 var imageCache = cacheLib.newCache({
   size: 100,
-  expire: 60 * 60 * 24
+  expire: 60 * 60 * 24,
 })
 
-exports.get = function(req) {
+exports.get = function (req) {
   var startTime = +new Date()
   var limit = req.params.limit || 100
   var searchResults = [],
@@ -29,31 +29,32 @@ exports.get = function(req) {
     aggregations: {
       distance: {
         geoDistance: {
-          field: "data.coordinates",
-          unit: "m",
+          field: 'data.coordinates',
+          unit: 'm',
           origin: {
             lat: latlong.split(',')[0],
-            lon: latlong.split(',')[1]
+            lon: latlong.split(',')[1],
           },
-          ranges: [{
+          ranges: [
+            {
               from: 0,
-              to: 1000
+              to: 1000,
             },
             {
               from: 1000,
-              to: 2000
+              to: 2000,
             },
             {
               from: 2000,
-              to: 3000
+              to: 3000,
             },
             {
-              from: 3000
-            }
-          ]
-        }
-      }
-    }
+              from: 3000,
+            },
+          ],
+        },
+      },
+    },
   }
 
   var r = contentLib.query(queryParams)
@@ -62,13 +63,16 @@ exports.get = function(req) {
     //log.info(JSON.stringify(r, null, 2))
     total = r.total
     var d
-    r.hits.map(function(item) {
+    r.hits.map(function (item) {
       if (item.data) {
         d = item.data
         d.lead && (d.leadHtml = util.paragraphify(d.lead))
-        d.body && (d.body = portalLib.processHtml({
-          value: d.body
-        }))
+        d.body &&
+          (d.body = portalLib.processHtml({
+            value: d.body,
+            imageWidths: [256, 512, 1024, 2048],
+            imageSizes: '(max-width:768px) 95vw, 657px',
+          }))
         d.image && (d.image = getImageFromCache(d.image))
         searchResults.push(d)
       }
@@ -85,12 +89,12 @@ exports.get = function(req) {
       time: timeSpent + 'ms',
     },
     status: 200,
-    contentType: 'application/json; charset=utf-8'
+    contentType: 'application/json; charset=utf-8',
   }
 }
 
 function getImageFromCache(imageId) {
-  return imageCache.get(imageId, function() {
+  return imageCache.get(imageId, function () {
     return imageLib.image.create(imageId, 'block(1600,900)', null, null, 80, false, true)
   })
 }

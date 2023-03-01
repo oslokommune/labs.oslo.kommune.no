@@ -80,25 +80,19 @@ function processCommonFields(data, scale) {
     data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow()
   }
   if (data.publishFromTime) {
-    data.publishFromTimeShort = moment(data.publishFromTime)
-      .locale(data.locale)
-      .format('l')
-    data.publishFromTimeRelative = moment(data.publishFromTime)
-      .locale(data.locale)
-      .fromNow()
+    data.publishFromTimeShort = moment(data.publishFromTime).locale(data.locale).format('l')
+    data.publishFromTimeRelative = moment(data.publishFromTime).locale(data.locale).fromNow()
   }
   if (data.publishFirstTime) {
-    data.publishFirstTimeShort = moment(data.publishFirstTime)
-      .locale(data.locale)
-      .format('l')
-    data.publishFirstTimeRelative = moment(data.publishFirstTime)
-      .locale(data.locale)
-      .fromNow()
+    data.publishFirstTimeShort = moment(data.publishFirstTime).locale(data.locale).format('l')
+    data.publishFirstTimeRelative = moment(data.publishFirstTime).locale(data.locale).fromNow()
   }
 
   data.body &&
     (data.body = portal.processHtml({
       value: data.body,
+      imageWidths: [256, 512, 1024, 2048],
+      imageSizes: '(max-width:768px) 95vw, 657px',
     }))
 
   return data
@@ -201,6 +195,8 @@ function processContentBlocks(ctbs) {
         }
         block.ctb.sidebarbox.contents = portal.processHtml({
           value: block.ctbSettings.sidebarbox.sidebarboxContents,
+          imageWidths: [256, 512, 1024, 2048],
+          imageSizes: '(max-width:768px) 95vw, 210px',
         })
       }
 
@@ -214,16 +210,14 @@ function processContentBlocks(ctbs) {
         if (block.ctbSettings.sidebarImage.caption) {
           block.ctb.sidebarImage.caption = portal.processHtml({
             value: block.ctbSettings.sidebarImage.caption,
+            imageWidths: [256, 512, 1024, 2048],
+            imageSizes: '(max-width:768px) 95vw, 248px',
           })
         }
       }
 
       // Full Width
-      if (
-        selected.indexOf('fullWidth') > -1 &&
-        !block.ctb.sidebarbox &&
-        !block.ctb.sidebarImage
-      ) {
+      if (selected.indexOf('fullWidth') > -1 && !block.ctb.sidebarbox && !block.ctb.sidebarImage) {
         block.ctb.isFullWidth = true
       }
 
@@ -285,6 +279,8 @@ function processContentBlocks(ctbs) {
     if (block.ctb._selected === 'ctbText' && block.ctb.ctbText) {
       block.ctb.ctbText.content = portal.processHtml({
         value: block.ctb.ctbText.content,
+        imageWidths: [256, 512, 1024, 2048],
+        imageSizes: '(max-width:768px) 95vw, 657px',
       })
     }
 
@@ -311,9 +307,7 @@ function processContentBlocks(ctbs) {
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       if (block.ctb.ctbMap.mapDistricts) {
         var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
-        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(
-          districts.generateGeoJSON(selectedDistricts)
-        )
+        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(districts.generateGeoJSON(selectedDistricts))
       }
 
       if (block.ctb.ctbMap.mapMarkers) {
