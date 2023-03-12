@@ -1,0 +1,22 @@
+<macro>
+  <display-name>Youtube</display-name>
+  <description>Stream a video directly from your website</description>
+  <form>
+    <input name="title" type="TextLine">
+      <label>Title</label>
+      <help-text>
+        A title that is added to the iframe
+      </help-text>
+      <config>
+        <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
+      </config>
+    </input>
+    <input name="url" type="TextLine">
+      <label>Url</label>
+      <config>
+        <regexp>^(https:\/\/|http:\/\/)?(www\.)?(m\.)?(youtu\.be\/|youtube\.com\/)(.)+</regexp>
+      </config>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+  </form>
+</macro>
