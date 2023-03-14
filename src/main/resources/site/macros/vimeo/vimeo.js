@@ -1,84 +1,40 @@
 var portal = require('/lib/xp/portal')
 
 exports.macro = function (context) {
-  const url = context.params.url
-  let title = context.params.title
+  let id = context.params.id
+  let secret = ''
+  const title = context.params.title || 'Video'
+  const aspectRatio = context.params.aspectRatio
 
-  if (!url || !isYoutubeUrl(url)) {
-    return makeErrorMessage('Valid youtube url is required.')
+  const defaultAspectRatio = '16:9'
+  let ratio
+
+  if (aspectRatio) {
+    ratio = aspectRatio.trim().split(':')
+  } else {
+    ratio = defaultAspectRatio.split(':')
   }
 
-  if (isProperTitle(title) == false) {
-    return makeErrorMessage('Valid title is required')
+  const paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
+
+  if ((id.match(/\//g) || []).length === 1) {
+    const parts = id.split('/')
+    id = parts[0]
+    secret = `h=${parts[1]}&`
   }
 
-  title = title ? `title="${title}"` : ''
-
-  const html = `<div class='youtube-video-wrapper'><iframe ${title} src='${convertUrl(
-    url
-  )}' allowfullscreen></iframe></div>`
+  const html = `
+<div class="" style="position: relative; padding-top:${paddingTop};">
+  <iframe
+    src="https://player.vimeo.com/video/${id}?${secret}texttrack=no&color=da28d3&title=0&byline=0&portrait=0"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen
+    mozallowfullscreen allowfullscreen title="${title}">
+  </iframe>
+</div>
+`
 
   return {
     body: html,
-    pageContributions: {
-      headBegin: [
-        '<link rel="stylesheet" href="' +
-          portal.assetUrl({ path: 'css/youtube.css', application: app.name }) +
-          '" type="text/css" />',
-      ],
-    },
-  }
-}
-
-function makeErrorMessage(message) {
-  return {
-    body: message,
     pageContributions: {},
   }
-}
-
-function isYoutubeUrl(url) {
-  return /^(https:\/\/|http:\/\/)?(www\.)?(m\.)?(youtu\.be\/|youtube\.com\/)(.)+/.test(url)
-}
-
-function isProperTitle(title) {
-  // Check for things that would break
-  return /^(?!.*[\"\>\<\']).*/.test(title)
-}
-
-function convertUrl(url) {
-  return 'https://www.youtube-nocookie.com/embed/' + fetchVideoId(url)
-}
-
-function fetchVideoId(url) {
-  var pathWithVideoId = fetchLastPathOfUrl(url)
-
-  if (urlPathHasAttributes(pathWithVideoId)) {
-    return findVideoIdWithinPathAttributes(pathWithVideoId)
-  }
-
-  return pathWithVideoId // matches ...www.youtube.com/v/gdfgdfg and ...youtu.be/cFfxuWUgcvI
-}
-
-function findVideoIdWithinPathAttributes(path) {
-  var indexOfIdKey = path.lastIndexOf('v=')
-  if (indexOfIdKey > -1) {
-    var videoId = path.substring(indexOfIdKey + 2),
-      indexOfAmp = videoId.indexOf('&')
-    if (indexOfAmp > -1) {
-      // case like v=cFfxuWUgcvI&t=2
-      return videoId.substring(0, indexOfAmp)
-    } else {
-      return videoId
-    }
-  }
-  return path.substring(0, path.indexOf('?')) // ...www.youtube.com/v/-aAbBcCdDeE?version=3&autohide=1
-}
-
-function fetchLastPathOfUrl(url) {
-  return url.substring(url.lastIndexOf('/') + 1)
-}
-
-function urlPathHasAttributes(path) {
-  return path.indexOf('?') > -1
 }

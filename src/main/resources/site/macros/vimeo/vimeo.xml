@@ -1,22 +1,24 @@
 <macro>
-  <display-name>Youtube</display-name>
-  <description>Stream a video directly from your website</description>
+  <display-name>Vimeo</display-name>
+  <description>Vimeo video from id[/secret]</description>
   <form>
     <input name="title" type="TextLine">
-      <label>Title</label>
-      <help-text>
-        A title that is added to the iframe
-      </help-text>
+      <label i18n="ct.article.ctbVideoTitle">Descriptive video title (for accessibility)</label>
+      <occurrences minimum="1" maximum="1"/>
       <config>
         <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
       </config>
     </input>
-    <input name="url" type="TextLine">
-      <label>Url</label>
-      <config>
-        <regexp>^(https:\/\/|http:\/\/)?(www\.)?(m\.)?(youtu\.be\/|youtube\.com\/)(.)+</regexp>
-      </config>
+    <input name="id" type="TextLine">
+      <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
+      <help-text i18n="ct.article.ctbVideoIdDesc">Use format video-id/secret for unlisted videos</help-text>
       <occurrences minimum="1" maximum="1"/>
+      <config />
+    </input>
+    <input name="aspectRatio" type="TextLine">
+      <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config />
     </input>
   </form>
 </macro>
