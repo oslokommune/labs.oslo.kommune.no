@@ -63,7 +63,9 @@
             <input name="title" type="TextLine">
               <label i18n="ct.article.ctbVideoTitle">Descriptive video title (for accessibility)</label>
               <occurrences minimum="0" maximum="1"/>
-              <config />
+              <config>
+                <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
+              </config>
             </input>
             <input name="id" type="TextLine">
               <label i18n="ct.article.ctbVideoId">Vimeo video id</label>

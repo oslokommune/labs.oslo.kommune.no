@@ -1,0 +1,24 @@
+<macro>
+  <display-name>Vimeo</display-name>
+  <description>Vimeo video from id[/secret]</description>
+  <form>
+    <input name="title" type="TextLine">
+      <label i18n="ct.article.ctbVideoTitle">Descriptive video title (for accessibility)</label>
+      <occurrences minimum="1" maximum="1"/>
+      <config>
+        <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
+      </config>
+    </input>
+    <input name="id" type="TextLine">
+      <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
+      <help-text i18n="ct.article.ctbVideoIdDesc">Use format video-id/secret for unlisted videos</help-text>
+      <occurrences minimum="1" maximum="1"/>
+      <config />
+    </input>
+    <input name="aspectRatio" type="TextLine">
+      <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config />
+    </input>
+  </form>
+</macro>
