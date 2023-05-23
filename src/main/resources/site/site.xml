@@ -20,6 +20,12 @@
         <input name="googleMapsKey" type="TextLine">
           <label i18n="site.googleMapsKey">Google Maps key</label>
         </input>
+        <input name="piwikSite" type="TextLine">
+          <label i18n="site.piwikSite">Piwik tracker site url</label>
+        </input>
+        <input name="piwikId" type="TextLine">
+          <label i18n="site.piwikId">Piwik tracker id</label>
+        </input>
       </items>
     </field-set>
   </form>

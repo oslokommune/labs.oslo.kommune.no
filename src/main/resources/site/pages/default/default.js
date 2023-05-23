@@ -3,7 +3,7 @@ const thymeleaf = require('/lib/thymeleaf')
 const util = require('/lib/labs/util.js')
 const menuLib = require('/lib/labs/menu.js')
 
-exports.get = function(req) {
+exports.get = function (req) {
   const model = {}
   const content = portal.getContent()
 
@@ -25,6 +25,8 @@ exports.get = function(req) {
   })
 
   siteConfig.googleMapsKey && (model.googleMapsKey = siteConfig.googleMapsKey)
+  siteConfig.piwikSite && (model.piwikSite = siteConfig.piwikSite)
+  siteConfig.piwikId && (model.piwikId = siteConfig.piwikId)
 
   // Local hack for development
   // Store Site Path
