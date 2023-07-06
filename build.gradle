@@ -1,6 +1,7 @@
 plugins {
-    id 'com.github.node-gradle.node' version '2.2.3'
-    id 'com.enonic.xp.app' version '2.0.0'
+    id 'java'
+    id 'com.github.node-gradle.node' version '5.0.0'
+    id 'com.enonic.xp.app' version '3.4.0'
     id 'org.ajoberstar.grgit' version '3.1.1'
 }
 
@@ -14,25 +15,25 @@ app {
 }
 
 node {
-    version = '16.13.2'
+    version = '16.20.1'
     download = true
 }
 
 dependencies {
-    compile "com.enonic.xp:core-api:${xpVersion}"
-    compile "com.enonic.xp:portal-api:${xpVersion}"
+    compileOnly "com.enonic.xp:core-api:${xpVersion}"
+    compileOnly "com.enonic.xp:portal-api:${xpVersion}"
     include "com.enonic.xp:lib-content:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
     include "com.enonic.xp:lib-i18n:${xpVersion}"
     include "com.enonic.xp:lib-auth:${xpVersion}"
     include "com.enonic.lib:lib-thymeleaf:2.0.1"
-    include 'com.enonic.lib:lib-cache:2.1.1'
+    include 'com.enonic.lib:lib-cache:2.2.0'
     webjar 'org.webjars.bower:moment:2.24.0'
 }
 
 repositories {
     mavenLocal()
-    jcenter()
+    mavenCentral()
     xp.enonicRepo()
 }
 
