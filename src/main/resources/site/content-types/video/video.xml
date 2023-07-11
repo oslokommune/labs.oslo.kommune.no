@@ -1,21 +1,36 @@
 <content-type>
-    <display-name i18n="ct.video">Video</display-name>
-    <super-type>base:structured</super-type>
-    <form>
-        <input name="name" type="TextLine">
-            <label i18n="ct.video.title">Title</label>
-        </input>
-        <input name="image" type="ImageSelector">
-            <label i18n="ct.video.image">Title image</label>
-            <config>
-                <allowPath>${site}/*</allowPath>
-            </config>
-        </input>
-        <input name="link" type="TextLine">
-            <label i18n="ct.video.link">Video URL</label>
-        </input>
-        <input name="lead" type="TextArea">
-            <label i18n="ct.video.lead">Short description</label>
-        </input>
-    </form>
+  <display-name i18n="ct.video">Video</display-name>
+  <super-type>base:structured</super-type>
+  <form>
+    <input name="title" type="TextLine">
+      <label i18n="ct.video.title">Title</label>
+      <occurrences minimum="1" maximum="1"/>
+      <config>
+        <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
+      </config>
+    </input>
+    <input name="id" type="TextLine">
+      <label i18n="ct.video.id">Video id/URL</label>
+      <occurrences minimum="1" maximum="1"/>
+    </input>
+    <input name="uuTitle" type="TextLine">
+      <label i18n="ct.video.uuTitle">Descriptive video title (for accessibility)</label>
+      <occurrences minimum="0" maximum="1"/>
+      <config>
+        <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
+      </config>
+    </input>
+    <input name="image" type="ImageSelector">
+      <label i18n="ct.video.image">Title image</label>
+      <config>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+    <input name="aspectRatio" type="TextLine">
+      <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="ct.video.lead">Short description</label>
+    </input>
+  </form>
 </content-type>
