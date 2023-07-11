@@ -1,0 +1,21 @@
+<content-type>
+    <display-name i18n="ct.video">Video</display-name>
+    <super-type>base:structured</super-type>
+    <form>
+        <input name="name" type="TextLine">
+            <label i18n="ct.video.title">Title</label>
+        </input>
+        <input name="image" type="ImageSelector">
+            <label i18n="ct.video.image">Title image</label>
+            <config>
+                <allowPath>${site}/*</allowPath>
+            </config>
+        </input>
+        <input name="link" type="TextLine">
+            <label i18n="ct.video.link">Video URL</label>
+        </input>
+        <input name="lead" type="TextArea">
+            <label i18n="ct.video.lead">Short description</label>
+        </input>
+    </form>
+</content-type>
