@@ -1,0 +1,14 @@
+<div data-th-remove="tag">
+  <div data-th-if="${!live && !hasContent}">
+    <h3>Unconfigured generic link list part</h3>
+  </div>
+  <section data-th-if="${hasContent}" class="section" data-th-classappend="
+          (${data.hasWhiteText} ? 'has-text-white' : '') +
+          (${data.fill} ? ' has-background section--' + ${data.fill} : '') +
+          (${data.gradient} ? 'has-background' : '')
+        ">
+    <div class="container content">
+      <div data-th-replace="/site/snippets/block-videos.html" data-th-remove="tag"></div>
+    </div>
+  </section>
+</div>

@@ -27,7 +27,7 @@
       </config>
     </input>
     <input name="aspectRatio" type="TextLine">
-      <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+      <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h') (default is 16:9)</label>
     </input>
     <input name="lead" type="TextArea">
       <label i18n="ct.video.lead">Short description</label>

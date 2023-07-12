@@ -1,0 +1,28 @@
+<part>
+  <display-name i18n="parts.blockVideos">Generic block of videos (or single video)</display-name>
+  <form>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="txt.lead">Lead</label>
+    </input>
+    <input name="videos" type="ContentSelector">
+      <label i18n="parts.blockVideos.videos">Videos</label>
+      <occurrences minimum="1" maximum="0"/>
+      <config>
+        <allowContentType>video</allowContentType>
+      </config>
+    </input>
+    <input name="inline" type="CheckBox">
+      <label i18n="parts.blockVideos.playInline">Play inline</label>
+      <help-text i18n="parts.blockVideos.playInlineHelp">If checked it presents online playable video(s). Othervise links to video page.</help-text>
+      <default>checked</default>
+    </input>
+    <input name="isFullWidth" type="CheckBox">
+      <label i18n="txt.fullWidth">Full width</label>
+      <default>checked</default>
+    </input>
+    <mixin name="color-picker-main" />
+  </form>
+</part>

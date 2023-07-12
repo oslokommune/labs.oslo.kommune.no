@@ -94,6 +94,11 @@
                 <allowContentType>video</allowContentType>
               </config>
             </input>
+            <input name="inline" type="CheckBox">
+              <label i18n="ct.article.txt.playInline">Play inline</label>
+              <help-text i18n="ct.article.txt.playInlineHelp">If checked it presents online playable video(s). Othervise links to video page.</help-text>
+              <default>checked</default>
+            </input>
             <mixin name="contentblock-settings" />
           </items>
         </option>
