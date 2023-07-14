@@ -23,7 +23,15 @@ var iconSVG =
  * @param {Boolean} absolute - Return absolute URL?
  * @return {Object} The image object
  */
-exports.image.create = function(key, scale, filter, format, quality, responsive, absolute) {
+exports.image.create = function (
+  key,
+  scale,
+  filter,
+  format,
+  quality,
+  responsive,
+  absolute
+) {
   /*
      if (!scale) {
      log.warning('Scale parameter not set');
@@ -41,8 +49,23 @@ exports.image.create = function(key, scale, filter, format, quality, responsive,
       if ('media:image' === result.type) {
         if (responsive) {
           image.isResponsive = true
-          image.srcSet = createSrcSet(result, scale, filter, format, quality, absolute).join(', ')
-          image.src = createSrc(defaultImageWidth, result, scale, filter, format, quality, absolute)
+          image.srcSet = createSrcSet(
+            result,
+            scale,
+            filter,
+            format,
+            quality,
+            absolute
+          ).join(', ')
+          image.src = createSrc(
+            defaultImageWidth,
+            result,
+            scale,
+            filter,
+            format,
+            quality,
+            absolute
+          )
           var placeHolder = createScaledPlaceholder(result, scale, defaultImageWidth)
           if (placeHolder && placeHolder.x && placeHolder.y) {
             image.width = placeHolder.x
@@ -52,7 +75,14 @@ exports.image.create = function(key, scale, filter, format, quality, responsive,
           }
         } else {
           image.isResponsive = false
-          image.src = exports.image.createUrl(key, scale, filter, format, quality, absolute)
+          image.src = exports.image.createUrl(
+            key,
+            scale,
+            filter,
+            format,
+            quality,
+            absolute
+          )
         }
       } else {
         image.src = portal.attachmentUrl({
@@ -79,7 +109,7 @@ exports.image.create = function(key, scale, filter, format, quality, responsive,
  * @param {Boolean} absolute - Return absolute URL?
  * @return {String} The image URL
  */
-exports.image.createUrl = function(key, scale, filter, format, quality, absolute) {
+exports.image.createUrl = function (key, scale, filter, format, quality, absolute) {
   var scaledQuality = quality || defaultImageQuality
   var type = absolute ? 'absolute' : 'server'
   return portal.imageUrl({
@@ -97,13 +127,12 @@ exports.image.createUrl = function(key, scale, filter, format, quality, absolute
  * @param {String} scale - Scaling filter
  * @return {Object} The image srcset
  */
-exports.image.placeholder = function(scale) {
+exports.image.placeholder = function (scale) {
   var image = {}
-  var ar = scale
-    .split('block(')[1]
-    .split(')')[0]
-    .split(',')
-  var placeholder = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
+  var ar = scale.split('block(')[1].split(')')[0].split(',')
+  var placeholder =
+    'data:image/svg+xml;charset=utf-8,' +
+    encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
 
   image.src = ''
   image.srcSet = placeholder
@@ -128,7 +157,14 @@ function createSrcSet(image, scale, filter, format, quality, absolute) {
     var scaledWidth = prescaledImageSizes[i]
     var scaledQuality = quality || prescaledImageQualities[i]
     var scalingFilter = createScaleFilter(image, scale, scaledWidth)
-    var scaledUrl = exports.image.createUrl(image['_id'], scalingFilter, filter, format, scaledQuality, absolute)
+    var scaledUrl = exports.image.createUrl(
+      image['_id'],
+      scalingFilter,
+      filter,
+      format,
+      scaledQuality,
+      absolute
+    )
     srcSet.push(scaledUrl + ' ' + scaledWidth + 'w')
   }
   return srcSet
@@ -148,7 +184,14 @@ function createSrcSet(image, scale, filter, format, quality, absolute) {
 function createSrc(scaledWidth, image, scale, filter, format, quality, absolute) {
   var scalingFilter = createScaleFilter(image, scale, scaledWidth)
   var scaledQuality = quality || defaultImageQuality
-  return exports.image.createUrl(image['_id'], scalingFilter, filter, format, scaledQuality, absolute)
+  return exports.image.createUrl(
+    image['_id'],
+    scalingFilter,
+    filter,
+    format,
+    scaledQuality,
+    absolute
+  )
 }
 
 /**
@@ -235,7 +278,11 @@ function createScaledPlaceholder(image, scale, width) {
   placeholder.y = String(Math.round(height))
   placeholder.heightPercentage = String((100 * height) / width)
 
-  placeholder.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y))
+  placeholder.src =
+    'data:image/svg+xml;charset=utf-8,' +
+    encodeURIComponent(
+      iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y)
+    )
 
   return placeholder
 }

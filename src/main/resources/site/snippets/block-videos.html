@@ -1,14 +1,21 @@
 <div data-th-fragment="block-videos" class="o-block-videos">
   <h2 class="title" data-th-if="${data.heading}" data-th-text="${data.heading}">Heading</h2>
   <p data-th-if="${data.lead}" data-th-text="${data.lead}">Lead</p>
-  <ul class="columns is-multiline">
-    <li class="column" data-th-each="video: ${data.videos}"
+  <div class="columns is-multiline">
+    <div class="column" data-th-each="video: ${data.videos}"
       data-th-classappend="(${data.isFullWidth} ? 'is-half-tablet is-one-third-desktop' : 'is-full')">
-      <div data-th-text="*{video}">Hei</div>
-    </li>
-  </ul>
+      <figure data-th-object="${video.image}">
+        <img data-th-src="*{placeholderSrc}" data-th-srcset="*{srcSet}" data-th-alt-title="*{alt}"
+          data-th-sizes="${data.isFullWidth} ?
+              '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 352px' :
+              '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'" />
+        <figcaption data-th-if="${video.lead}" class="o-block-images__caption" data-th-text="${video.lead}">
+          Caption
+        </figcaption>
+      </figure>
+    </div>
+  </div>
   <p data-th-if="${data.inline}">Play inline</p>
   <p data-th-unless="${data.inline}">Link to separate window</p>
-  <p data-th-text="${#lists.size(data.videos)}"># of videos</p>
-
+  <p data-th-text="${#lists.size(data.videos)} + ' videoer'"># of videos</p>
 </div>

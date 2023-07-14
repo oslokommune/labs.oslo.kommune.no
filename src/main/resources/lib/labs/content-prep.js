@@ -475,13 +475,18 @@ var processBlockVideos = function (b) {
       if (c && c.data) video = c.data
       video.internalUrl = internalUrl
       video.heading = getHeading(c)
-      video.image = imageLib.image.create(video.image)
       if (video.aspectRatio) {
         ratio = video.aspectRatio.trim().split(':')
       } else {
         ratio = defaultAspectRatio.split(':')
       }
       video.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
+
+      if (video.image) {
+        video.image = imageLib.image.create(video.image)
+      } else {
+        video.image = imageLib.image.placeholder('block(16,9)')
+      }
 
       if ((video.id.match(/\//g) || []).length === 1) {
         const parts = video.id.split('/')
