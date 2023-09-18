@@ -80,20 +80,12 @@ function processCommonFields(data, scale) {
     data.modifiedTimeRelative = moment(data.modifiedTime).locale(data.locale).fromNow()
   }
   if (data.publishFromTime) {
-    data.publishFromTimeShort = moment(data.publishFromTime)
-      .locale(data.locale)
-      .format('l')
-    data.publishFromTimeRelative = moment(data.publishFromTime)
-      .locale(data.locale)
-      .fromNow()
+    data.publishFromTimeShort = moment(data.publishFromTime).locale(data.locale).format('l')
+    data.publishFromTimeRelative = moment(data.publishFromTime).locale(data.locale).fromNow()
   }
   if (data.publishFirstTime) {
-    data.publishFirstTimeShort = moment(data.publishFirstTime)
-      .locale(data.locale)
-      .format('l')
-    data.publishFirstTimeRelative = moment(data.publishFirstTime)
-      .locale(data.locale)
-      .fromNow()
+    data.publishFirstTimeShort = moment(data.publishFirstTime).locale(data.locale).format('l')
+    data.publishFirstTimeRelative = moment(data.publishFirstTime).locale(data.locale).fromNow()
   }
 
   data.body &&
@@ -225,11 +217,7 @@ function processContentBlocks(ctbs) {
       }
 
       // Full Width
-      if (
-        selected.indexOf('fullWidth') > -1 &&
-        !block.ctb.sidebarbox &&
-        !block.ctb.sidebarImage
-      ) {
+      if (selected.indexOf('fullWidth') > -1 && !block.ctb.sidebarbox && !block.ctb.sidebarImage) {
         block.ctb.isFullWidth = true
       }
 
@@ -325,9 +313,7 @@ function processContentBlocks(ctbs) {
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       if (block.ctb.ctbMap.mapDistricts) {
         var selectedDistricts = util.forceArray(block.ctb.ctbMap.mapDistricts)
-        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(
-          districts.generateGeoJSON(selectedDistricts)
-        )
+        block.ctb.ctbMap.mapGeoJSON = JSON.stringify(districts.generateGeoJSON(selectedDistricts))
       }
 
       if (block.ctb.ctbMap.mapMarkers) {
@@ -465,6 +451,8 @@ var processBlockVideos = function (b) {
 
   if (b.videos) {
     videos = util.forceArray(b.videos).map(function (item, i) {
+      // @todo better error handling
+
       var c = contentLib.get({
         key: item,
       })
