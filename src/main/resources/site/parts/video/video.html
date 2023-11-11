@@ -1,0 +1,17 @@
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <h1 class="title is-1" data-th-text="${name}"></h1>
+      </div>
+    </div>
+    <div class="columns is-multiline">
+      <div
+        class="column is-6-tablet is-4-desktop"
+        data-th-each="article : ${articles}"
+        data-th-with="item=${article}"
+        data-th-insert="/site/snippets/article-card.html :: card('small')"
+      ></div>
+    </div>
+  </div>
+</div>
