@@ -65,7 +65,7 @@ exports.prepareArticleList = function (data, scale) {
   return list
 }
 
-function processCommonFields(data, scale) {
+var processCommonFields = function (data, scale) {
   if (!data) return
 
   data.authors && (data.authors = getAuthors(data.authors))
@@ -97,6 +97,7 @@ function processCommonFields(data, scale) {
 
   return data
 }
+exports.processCommonFields = processCommonFields
 
 function getAuthors(authors) {
   if (!authors) return

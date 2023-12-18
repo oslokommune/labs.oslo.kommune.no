@@ -5,13 +5,10 @@
         <h1 class="title is-1" data-th-text="${name}"></h1>
       </div>
     </div>
-    <div class="columns is-multiline">
-      <div
-        class="column is-6-tablet is-4-desktop"
-        data-th-each="article : ${articles}"
-        data-th-with="item=${article}"
-        data-th-insert="/site/snippets/article-card.html :: card('small')"
-      ></div>
-    </div>
+    <div data-th-text="${id}"></div>
+    <div data-th-text="${aspectRatio}"></div>
+    <div data-th-text="${uuTitle}"></div>
+    <div data-th-text="${image}"></div>
+    <div data-th-text="${lead}"></div>
   </div>
 </div>
