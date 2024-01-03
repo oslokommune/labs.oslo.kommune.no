@@ -211,8 +211,7 @@ function getHighlight(content, highlight) {
  * @param {*} content The content object from the result
  */
 function getImage(content) {
-  if (content && content.data && content.data.image)
-    return getImageFromCache(content.data.image)
+  if (content && content.data && content.data.image) return getImageFromCache(content.data.image)
   return false
 }
 
@@ -240,6 +239,9 @@ function getContentTypes(pathKey) {
     })
     contentTypes[app.name + ':category'] = i18nLib.localize({
       key: 'search.category',
+    })
+    contentTypes[app.name + ':video'] = i18nLib.localize({
+      key: 'search.video',
     })
     return contentTypes
   })

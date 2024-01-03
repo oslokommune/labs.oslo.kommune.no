@@ -554,7 +554,7 @@ var getHeading = function (content) {
   if (content) return content.displayName
   return false
 }
-exports.getHeading = this.getHeading
+exports.getHeading = getHeading
 
 /**
  *

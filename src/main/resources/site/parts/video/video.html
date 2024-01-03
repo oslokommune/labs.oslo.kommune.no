@@ -1,14 +1,22 @@
 <div class="section">
   <div class="container">
     <div class="columns">
-      <div class="column">
+      <div class="column o-video">
         <h1 class="title is-1" data-th-text="${name}"></h1>
+        <div class="o-video-container" data-th-style="'position: relative; padding-top:' + ${paddingTop} + ';'">
+          <iframe
+            data-th-src="'https://player.vimeo.com/video/' + ${id} + '?' + (${secret} ? 'h=' + ${secret} : '') + '&texttrack=no&color=da28d3&title=0&byline=0&portrait=0'"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+            frameborder="0"
+            webkitallowfullscreen
+            mozallowfullscreen
+            allowfullscreen
+            data-th-title="${uuTitle} ? ${uuTitle} : 'Video'"
+          >
+          </iframe>
+        </div>
+        <div data-th-if="${lead}" class="o-block-images__caption o-video-caption" data-th-text="${lead}">Caption</div>
       </div>
     </div>
-    <div data-th-text="${id}"></div>
-    <div data-th-text="${aspectRatio}"></div>
-    <div data-th-text="${uuTitle}"></div>
-    <div data-th-text="${image}"></div>
-    <div data-th-text="${lead}"></div>
   </div>
 </div>

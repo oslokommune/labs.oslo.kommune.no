@@ -22,6 +22,23 @@ exports.get = function (req) {
     model.modified = model.modifiedTimeRelative
   }
 
+  // Define height of video player based on aspect ratio
+  const defaultAspectRatio = '16:9'
+  var ratio
+
+  if (model.aspectRatio) {
+    ratio = model.aspectRatio.trim().split(':')
+  } else {
+    ratio = defaultAspectRatio.split(':')
+  }
+  model.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
+
+  if ((model.id.match(/\//g) || []).length === 1) {
+    const parts = model.id.split('/')
+    model.id = parts[0]
+    model.secret = parts[1]
+  }
+
   if (content.data && content.data.name) {
     model.name = content.data.title
   } else {
