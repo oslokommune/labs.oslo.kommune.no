@@ -25,8 +25,6 @@ exports.get = function (req) {
   })
 
   siteConfig.googleMapsKey && (model.googleMapsKey = siteConfig.googleMapsKey)
-  siteConfig.piwikSite && (model.piwikSite = siteConfig.piwikSite)
-  siteConfig.piwikId && (model.piwikId = siteConfig.piwikId)
 
   // Local hack for development
   // Store Site Path
