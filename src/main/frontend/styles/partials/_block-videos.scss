@@ -1,0 +1,35 @@
+.o-block-videos {
+  h2.title {
+    margin-bottom: 0.5rem;
+  }
+
+  & figure {
+    text-align: left;
+  }
+
+  &__item {
+    &-heading {
+      font-size: 1rem;
+    }
+  }
+
+  & figure:not(:first-child) {
+    margin-top: 0.3em;
+  }
+}
+
+.o-video {
+  &-container {
+    margin: 0;
+  }
+  &-caption {
+    margin-top: 0.5em;
+  }
+}
+
+article.video {
+  margin-bottom: 1rem;
+  .lead {
+    margin: 1em 0 0 0;
+  }
+}

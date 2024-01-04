@@ -82,6 +82,33 @@
           </items>
         </option>
 
+        <!-- New Video type block -->
+        <option name="ctbVideos">
+          <label i18n="ct.article.ctbVideos">Videos</label>
+          <help-text i18n="ct.article.ctbVideosDesc">Either a single video or a bunch</help-text>
+          <items>
+            <input name="heading" type="TextLine">
+              <label i18n="txt.heading">Heading</label>
+            </input>
+            <input name="lead" type="TextArea">
+              <label i18n="txt.lead">Lead text</label>
+            </input>
+            <input name="videos" type="ContentSelector">
+              <label i18n="ct.article.ctbVideos">Videos</label>
+              <occurrences minimum="1" maximum="0"/>
+              <config>
+                <allowContentType>video</allowContentType>
+              </config>
+            </input>
+            <input name="inline" type="CheckBox">
+              <label i18n="ct.article.txt.playInline">Play inline</label>
+              <help-text i18n="ct.article.txt.playInlineHelp">If checked it presents online playable video(s). Othervise links to video page.</help-text>
+              <default>checked</default>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
         <!-- Quote block -->
         <option name="ctbQuote">
           <label i18n="ct.article.ctbQuote">Quote</label>
@@ -122,7 +149,7 @@
           </items>
         </option>
 
-        <!-- Links block -->
+        <!-- Collection block -->
         <option name="ctbCollection">
           <label i18n="ct.article.ctbCollection">Content collection</label>
           <help-text i18n="ct.article.ctbCollectionDesc">Predefined set of grouped content</help-text>

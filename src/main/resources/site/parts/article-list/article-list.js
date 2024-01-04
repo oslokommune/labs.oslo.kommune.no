@@ -50,7 +50,7 @@ exports.get = function (req) {
     count: config.count,
     path: content._path,
     selectedItems: config.featured,
-    contentTypes: ['article'],
+    contentTypes: ['article', 'video'],
     categoryFilter: categories,
     onlyChildren: config.onlyChildren,
     paging: config.paging,
@@ -72,13 +72,7 @@ exports.get = function (req) {
     }
     if (result.queryHits && result.queryHits.length) {
       // model.hits = prepareData(result.queryHits, req.mode);
-      model.articles = prepareData(
-        result.queryHits,
-        scaleLandscape,
-        scalePortrait,
-        req.mode,
-        config.presentationMode
-      )
+      model.articles = prepareData(result.queryHits, scaleLandscape, scalePortrait, req.mode, config.presentationMode)
     }
     if (result.hasOwnProperty('firstPage')) {
       model.firstPage = result.firstPage
@@ -103,8 +97,7 @@ exports.get = function (req) {
   }
 
   model.live = req.mode == 'live'
-  model.hasContent =
-    (model.featured && model.featured.length) || (model.articles && model.articles.length)
+  model.hasContent = (model.featured && model.featured.length) || (model.articles && model.articles.length)
   var endTime = +new Date()
   model.controllerPageTime = 'Controller time: ' + String(endTime - startTime) + 'ms'
   var view = resolve('./article-list.html')
@@ -127,11 +120,7 @@ function prepareData(hits, scaleLandscape, scalePortrait, mode, presentationMode
         presentationMode,
       function () {
         if (resultItem.data) {
-          resultItem.data = contentPrep.prepareFeaturedArticle(
-            resultItem,
-            scaleLandscape,
-            scalePortrait
-          )
+          resultItem.data = contentPrep.prepareFeaturedArticle(resultItem, scaleLandscape, scalePortrait)
           var categories = related.getCategories(resultItem)
           if (categories.length) {
             resultItem.data.categories = categories

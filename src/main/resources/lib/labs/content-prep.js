@@ -65,7 +65,7 @@ exports.prepareArticleList = function (data, scale) {
   return list
 }
 
-function processCommonFields(data, scale) {
+var processCommonFields = function (data, scale) {
   if (!data) return
 
   data.authors && (data.authors = getAuthors(data.authors))
@@ -97,6 +97,7 @@ function processCommonFields(data, scale) {
 
   return data
 }
+exports.processCommonFields = processCommonFields
 
 function getAuthors(authors) {
   if (!authors) return
@@ -303,6 +304,12 @@ function processContentBlocks(ctbs) {
       }
     }
 
+    // Process collection of Video content type
+    if (block.ctb._selected === 'ctbVideos' && block.ctb.ctbVideos) {
+      block.ctb.ctbVideos = processBlockVideos(block.ctb.ctbVideos)
+      block.ctb.ctbVideos.isFullWidth = block.ctb.isFullWidth
+    }
+
     // Markers and District overlays
     if (block.ctb._selected === 'ctbMap' && block.ctb.ctbMap) {
       if (block.ctb.ctbMap.mapDistricts) {
@@ -438,6 +445,51 @@ var processBlockImages = function (b) {
 }
 exports.processBlockImages = processBlockImages
 
+var processBlockVideos = function (b) {
+  const defaultAspectRatio = '16:9'
+  var ratio
+  var videos = []
+
+  if (b.videos) {
+    videos = util.forceArray(b.videos).map(function (item, i) {
+      // @todo better error handling
+
+      var c = contentLib.get({
+        key: item,
+      })
+      var internalUrl = portal.pageUrl({
+        id: item,
+      })
+      var video = {}
+      if (c && c.data) video = c.data
+      video.internalUrl = internalUrl
+      video.heading = getHeading(c)
+      if (video.aspectRatio) {
+        ratio = video.aspectRatio.trim().split(':')
+      } else {
+        ratio = defaultAspectRatio.split(':')
+      }
+      video.paddingTop = (ratio[1] / ratio[0]) * 100 + '%'
+
+      if (video.image) {
+        video.image = imageLib.image.create(video.image)
+      } else {
+        video.image = imageLib.image.placeholder('block(16,9)')
+      }
+
+      if ((video.id.match(/\//g) || []).length === 1) {
+        const parts = video.id.split('/')
+        video.id = parts[0]
+        video.secret = parts[1]
+      }
+      return video
+    })
+    b.videos = videos
+  }
+  return b
+}
+exports.processBlockVideos = processBlockVideos
+
 /**
  * Helper function that takes an array of images of varying dimensions and calculates
  * the optimal common aspect ratio to make them equal, while keeping as much of the
@@ -495,13 +547,14 @@ function getImageDimensions(image) {
  * multi type content. Prefers heading > title > name > displayName
  * @param {*} content   The content object from the result
  */
-exports.getHeading = function (content) {
+var getHeading = function (content) {
   if (content && content.data && content.data.heading) return content.data.heading
   if (content && content.data && content.data.name) return content.data.name
   if (content && content.data && content.data.title) return content.data.title
   if (content) return content.displayName
   return false
 }
+exports.getHeading = getHeading
 
 /**
  *
