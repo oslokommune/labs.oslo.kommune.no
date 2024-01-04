@@ -52,8 +52,8 @@ exports.get = function (req) {
       model.categories = categories
     }
   }
-  model.hasContent = model && model.id
-  model.live = req.mode == 'live'
+  model.hasContent = model.id && model.id.length
+  model.live = req.mode === 'live'
 
   var view = resolve('./video.html')
   var body = thymeleaf.render(view, model)
