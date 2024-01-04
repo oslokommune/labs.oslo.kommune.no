@@ -74,9 +74,7 @@ exports.getRelatedContent = function (content, config) {
       content.x[xAppName].categories &&
       content.x[xAppName].categories.categories
     ) {
-      relatedArr = relatedArr.concat(
-        util.forceArray(content.x[xAppName].categories.categories)
-      )
+      relatedArr = relatedArr.concat(util.forceArray(content.x[xAppName].categories.categories))
     }
 
     if (relatedArr.length || fallback) {
@@ -157,6 +155,7 @@ exports.getRelatedContent = function (content, config) {
       data.type = item.type.split(':')[1]
       data.prettyCreatedTime = util.dmyDate(item.createdTime)
       data.prettyModifiedTime = util.dmyDate(item.modifiedTime)
+      data.heading = cUtil.getHeading(item)
     }
     return item
   })
@@ -319,19 +318,17 @@ exports.getCategories = function (content) {
     content.x[xAppName].categories.categories
   ) {
     var category
-    categories = util
-      .forceArray(content.x[xAppName].categories.categories)
-      .map(function (categoryId) {
-        category = contentLib.get({
-          key: categoryId,
-        })
-        if (category && category.data) {
-          category.data.path = portal.pageUrl({
-            path: category._path,
-          })
-          return category.data
-        }
+    categories = util.forceArray(content.x[xAppName].categories.categories).map(function (categoryId) {
+      category = contentLib.get({
+        key: categoryId,
       })
+      if (category && category.data) {
+        category.data.path = portal.pageUrl({
+          path: category._path,
+        })
+        return category.data
+      }
+    })
   }
   return categories
 }

@@ -2,7 +2,7 @@ var portal = require('/lib/xp/portal')
 var thymeleaf = require('/lib/thymeleaf')
 var related = require('/lib/labs/related.js')
 
-exports.get = function(req) {
+exports.get = function (req) {
   var content = portal.getContent()
   var component = portal.getComponent()
   var config = component.config
@@ -11,9 +11,9 @@ exports.get = function(req) {
     related.getRelatedContent(content, {
       count: config.count,
       fallback: config.fallback || false,
-      contentTypes: ['article'],
+      contentTypes: ['article', 'video'],
       selectedItems: config.selectedItems,
-      scale: 'block(16,9)'
+      scale: 'block(16,9)',
     }) || {}
 
   model.heading = config.heading
@@ -26,6 +26,6 @@ exports.get = function(req) {
   var body = thymeleaf.render(view, model)
   return {
     body: body,
-    contentType: 'text/html'
+    contentType: 'text/html',
   }
 }

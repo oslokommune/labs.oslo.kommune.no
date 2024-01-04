@@ -23,25 +23,26 @@
       </div>
 
       <div data-th-unless="${data.inline}" class="o-block-videos__item">
-        <div class="o-block-videos__item-heading" data-th-if="${video.title}" data-th-text="${video.title}">Title</div>
+        <a data-th-href="${video.internalUrl}">
+          <div class="o-block-videos__item-heading" data-th-if="${video.title}" data-th-text="${video.title}">
+            Title
+          </div>
 
-        <figure data-th-object="${video.image}">
-          <img
-            data-th-src="*{placeholderSrc}"
-            data-th-srcset="*{srcSet}"
-            data-th-alt-title="*{alt}"
-            data-th-sizes="${data.isFullWidth} ?
-                '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 352px' :
-                '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
-          />
-          <figcaption data-th-if="${video.lead}" class="o-block-images__caption" data-th-text="${video.lead}">
-            Caption
-          </figcaption>
-        </figure>
+          <figure data-th-object="${video.image}">
+            <img
+              data-th-src="*{placeholderSrc}"
+              data-th-srcset="*{srcSet}"
+              data-th-alt-title="*{alt}"
+              data-th-sizes="${data.isFullWidth} ?
+                  '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 352px' :
+                  '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
+            />
+            <figcaption data-th-if="${video.lead}" class="o-block-images__caption" data-th-text="${video.lead}">
+              Caption
+            </figcaption>
+          </figure>
+        </a>
       </div>
     </div>
   </div>
-  <p data-th-if="${data.inline}">Play inline</p>
-  <p data-th-unless="${data.inline}">Link to separate window</p>
-  <p data-th-text="${#lists.size(data.videos)} + ' videoer'"># of videos</p>
 </div>
