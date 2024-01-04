@@ -1,22 +1,72 @@
-<div class="section">
-  <div class="container">
-    <div class="columns">
-      <div class="column o-video">
-        <h1 class="title is-1" data-th-text="${name}"></h1>
-        <div class="o-video-container" data-th-style="'position: relative; padding-top:' + ${paddingTop} + ';'">
-          <iframe
-            data-th-src="'https://player.vimeo.com/video/' + ${id} + '?' + (${secret} ? 'h=' + ${secret} : '') + '&texttrack=no&color=da28d3&title=0&byline=0&portrait=0'"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
-            frameborder="0"
-            webkitallowfullscreen
-            mozallowfullscreen
-            allowfullscreen
-            data-th-title="${uuTitle} ? ${uuTitle} : 'Video'"
-          >
-          </iframe>
+<div data-th-remove="tag">
+  <div data-th-if="${!live && !hasContent}">
+    <h3>Unconfigured Video part</h3>
+  </div>
+  <div data-th-if="${hasContent}" data-th-remove="tag">
+    <article class="video">
+      <header>
+        <div class="section is-paddingless-top-bottom">
+          <div class="container">
+            <div class="columns">
+              <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
+                <h1 class="title is-1" data-th-text="${name}"></h1>
+                <ul class="dateline">
+                  <li class="dateline__date">
+                    <time
+                      class="dateline__datetime"
+                      data-th-if="${published}"
+                      data-th-title="${publishFromTimeShort}"
+                      data-th-datetime="${publishFromTimeShort}"
+                      data-th-text="${portal.localize({'_key=aria.published', '_values=' + publishFromTimeShort})}"
+                      data-th-aria-label="${portal.localize({'_key=aria.published', '_values=' + publishFromTimeShort})}"
+                    >
+                      Published time
+                    </time>
+                    <time
+                      class="dateline__datetime"
+                      data-th-if="${modified}"
+                      data-th-title="${modifiedTimeShort}"
+                      data-th-datetime="${modifiedTimeShort}"
+                      data-th-text="${portal.localize({'_key=aria.modified', '_values=' + modifiedTimeShort})}"
+                      data-th-aria-label="${portal.localize({'_key=aria.modified', '_values=' + modifiedTimeShort})}"
+                    >
+                      Updated time</time
+                    >
+                  </li>
+                </ul>
+                <div data-th-if="${categories}" class="categoryline">
+                  <ol class="categories">
+                    <li data-th-each="category, i: ${categories}" data-th-object="${category}">
+                      <a data-th-href="*{path}" data-th-text="*{heading}">Category</a>
+                    </li>
+                  </ol>
+                </div>
+                <p class="lead" data-th-utext="${lead}"></p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div data-th-if="${lead}" class="o-block-images__caption o-video-caption" data-th-text="${lead}">Caption</div>
+      </header>
+      <div class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column o-video">
+              <div class="o-video-container" data-th-style="'position: relative; padding-top:' + ${paddingTop} + ';'">
+                <iframe
+                  data-th-src="'https://player.vimeo.com/video/' + ${id} + '?' + (${secret} ? 'h=' + ${secret} : '') + '&texttrack=no&color=da28d3&title=0&byline=0&portrait=0'"
+                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%"
+                  frameborder="0"
+                  webkitallowfullscreen
+                  mozallowfullscreen
+                  allowfullscreen
+                  data-th-title="${uuTitle} ? ${uuTitle} : 'Video'"
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </article>
   </div>
 </div>
