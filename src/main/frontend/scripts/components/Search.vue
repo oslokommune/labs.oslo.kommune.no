@@ -1,5 +1,5 @@
 <template>
-  <div @keyup="focusNextItem">
+  <div @keyup.tab="focusNextItem" @keydown.down.prevent="focusNextItem" @keydown.up.prevent="focusNextItem">
     <section class="search__hero section">
       <ResponsiveImage v-if="mainImage" class="search__heroimg" :image="mainImage" sizes="100vw"></ResponsiveImage>
       <div class="container">
@@ -109,11 +109,6 @@ const focusNextItem = (e) => {
 }
 
 const doSearch = async () => {
-  if (q.value.trim() === '') {
-    hits.value = []
-    total.value = 0
-    return
-  }
   try {
     const response = await axios.get(`${searchURL}?q=${q.value}`)
     total.value = response.data.total

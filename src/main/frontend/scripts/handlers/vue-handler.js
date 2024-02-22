@@ -47,21 +47,30 @@ function minisearch() {
   miniSearchApp.mount('#js-minisearch')
 }
 
-// Map-funksjonen, nå oppdatert for direkte bruk av GoogleMap og Marker
 function map(containerElement) {
   const mapOptions = {
-    center: containerElement.getAttribute('center')
-      ? JSON.parse(containerElement.getAttribute('center'))
-      : { lat: 0, lng: 0 },
-    zoom: containerElement.getAttribute('zoom') ? parseInt(containerElement.getAttribute('zoom'), 10) : 10,
+    center: containerElement.getAttribute('center') ? containerElement.getAttribute('center') : '0,0',
+    zoom: containerElement.getAttribute('zoom') ? containerElement.getAttribute('zoom') : +10,
     markers: containerElement.getAttribute('markers') ? JSON.parse(containerElement.getAttribute('markers')) : [],
     geoJSON: containerElement.getAttribute('geoJSON') ? JSON.parse(containerElement.getAttribute('geoJSON')) : [],
+    googleMapsKey,
   }
 
-  // Anta at MapComponent nå tar imot og håndterer disse props direkte for å vise kartet og markørene
-  const mapApp = createApp({
-    render: () => h(MapComponent, { ...mapOptions }),
-  })
+  // Opprett en funksjonell komponent som renderes med h-funksjonen og mottar props
+  const RootComponent = {
+    render() {
+      return h(MapComponent, {
+        center: this.center,
+        zoom: this.zoom,
+        markers: this.markers,
+        geoJSON: this.geoJSON,
+        googleMapsKey: this.googleMapsKey,
+      })
+    },
+    props: ['center', 'zoom', 'markers', 'geoJSON', 'googleMapsKey'],
+  }
+
+  const mapApp = createApp(RootComponent, { ...mapOptions })
   mapApp.use(i18n)
   mapApp.mount(containerElement.querySelector('.mapcontainer'))
 }
