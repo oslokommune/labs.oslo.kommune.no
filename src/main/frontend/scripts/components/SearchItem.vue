@@ -1,5 +1,5 @@
 <template>
-  <article class="search-list-item" v-bind:class="{ isFocus: focus }">
+  <article class="search-list-item" :class="{ isFocus: focus }">
     <div class="search-list-item__text">
       <header class="search-list-item__header">
         <div v-if="item.type" class="search-list-item__tag">
@@ -17,7 +17,12 @@
         </div>
       </header>
       <div class="search-list-item__body">
-        <a :href="item.url" class="search-list-item__title title is-4 is-marginless" v-html="highlight(item.heading)" ref="link"></a>
+        <a
+          :href="item.url"
+          class="search-list-item__title title is-4 is-marginless"
+          v-html="highlight(item.heading)"
+          ref="linkRef"
+        ></a>
         <div class="search-list-item__slug" v-html="highlight(item.url)"></div>
         <p class="search-list-item__lead" v-html="highlight(item.lead)"></p>
       </div>
@@ -30,49 +35,49 @@
   </article>
 </template>
 
-<script>
+<script setup>
+import { watch, ref } from 'vue'
 import ResponsiveImage from './ResponsiveImage'
-export default {
-  props: {
-    item: {
-      type: Object,
-      required: true
-    },
-    q: {
-      type: String,
-      required: true
-    },
-    focus: {
-      type: Boolean,
-      required: true
-    }
-  },
-  components: {
-    ResponsiveImage
-  },
-  watch: {
-    focus: function() {
-      if (this.focus) {
-        this.$refs.link.focus()
-      } else {
-        this.$refs.link.blur()
-      }
-    }
-  },
-  methods: {
-    highlight(str) {
-      if (!this.q) return str
 
-      // Strip HTML tags from string
-      let div = document.createElement('div')
-      div.innerHTML = str
-      str = div.textContent || div.innerText || ''
+const props = defineProps({
+  item: {
+    type: Object,
+    required: true,
+  },
+  q: {
+    type: String,
+    required: true,
+  },
+  focus: {
+    type: Boolean,
+    required: true,
+  },
+})
 
-      // Highlight the matched characters by wrapping a span around them
-      return str.replace(new RegExp(this.q, 'gi'), match => {
-        return '<span class="has-background-grey-lighter">' + match + '</span>'
-      })
+const linkRef = ref(null)
+
+watch(
+  () => props.focus,
+  (newVal) => {
+    if (newVal && linkRef.value) {
+      linkRef.value.focus()
+    } else if (linkRef.value) {
+      linkRef.value.blur()
     }
   }
+)
+
+const highlight = (str) => {
+  if (!props.q) return str
+
+  // Strip HTML tags from string
+  let div = document.createElement('div')
+  div.innerHTML = str
+  str = div.textContent || div.innerText || ''
+
+  // Highlight the matched characters by wrapping a span around them
+  return str.replace(new RegExp(props.q, 'gi'), (match) => {
+    return `<span class="has-background-grey-lighter">${match}</span>`
+  })
 }
 </script>

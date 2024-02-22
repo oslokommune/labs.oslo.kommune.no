@@ -15,7 +15,7 @@ app {
 }
 
 node {
-    version = '16.20.1'
+    version = '20.11.1'
     download = true
 }
 

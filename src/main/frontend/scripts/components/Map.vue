@@ -1,50 +1,52 @@
 <template>
-  <GmapMap ref="mapRef" :center="{ lat: 0, lng: 0 }" :zoom="1" style="width: 100%; height: 50vh"></GmapMap>
+  <GoogleMap ref="mapRef" :center="mapCenter" :zoom="zoomLevel" style="width: 100%; height: 50vh"></GoogleMap>
 </template>
 
-<script>
+<script setup>
+import { onMounted, ref } from 'vue'
+import { useGoogleMap } from 'vue3-google-map'
 import mapstyles from './../mapStyles.js'
 
-export default {
-  props: ['center', 'zoom', 'markers', 'geoJSON'],
-  mounted() {
-    this.$refs.mapRef.$mapPromise.then(map => {
-      let mapCoordinates = this.center.split(',').map(d => +d)
+defineProps(['center', 'zoom', 'markers', 'geoJSON'])
+const mapRef = ref(null)
 
-      // Map options
-      map.setOptions({
-        zoom: +this.zoom,
-        center: { lat: mapCoordinates[0], lng: mapCoordinates[1] },
-        styles: mapstyles,
-        gestureHandling: 'cooperative',
-        disableDefaultUI: true,
-        zoomControl: true,
-        fullscreenControl: true
-      })
+// Konverterer `center` til et objekt for Google Maps
+const mapCenter = computed(() => {
+  let coordinates = props.center.split(',').map((d) => +d)
+  return { lat: coordinates[0], lng: coordinates[1] }
+})
+const zoomLevel = computed(() => +props.zoom)
 
-      // Draw markers on map
-      this.markers.forEach(markerCoordinates => {
-        new google.maps.Marker({
-          position: {
-            lat: markerCoordinates[0],
-            lng: markerCoordinates[1]
-          },
-          animation: google.maps.Animation.DROP,
-          map: map
-        })
-      })
+onMounted(() => {
+  const map = useGoogleMap(mapRef.value)
 
-      // Draw distric overlays
-      if (this.geoJSON && this.geoJSON.type === 'FeatureCollection') {
-        map.data.addGeoJson(this.geoJSON)
-      }
+  // Map options
+  map.setOptions({
+    styles: mapstyles,
+    gestureHandling: 'cooperative',
+    disableDefaultUI: true,
+    zoomControl: true,
+    fullscreenControl: true,
+  })
 
-      // Overlay styling
-      map.data.setStyle({
-        fillColor: 'blue',
-        strokeWeight: 1
-      })
+  // Draw markers on map
+  props.markers.forEach((markerCoordinates) => {
+    new google.maps.Marker({
+      position: { lat: markerCoordinates[0], lng: markerCoordinates[1] },
+      animation: google.maps.Animation.DROP,
+      map: map,
     })
+  })
+
+  // Draw district overlays
+  if (props.geoJSON && props.geoJSON.type === 'FeatureCollection') {
+    map.data.addGeoJson(props.geoJSON)
   }
-}
+
+  // Overlay styling
+  map.data.setStyle({
+    fillColor: 'blue',
+    strokeWeight: 1,
+  })
+})
 </script>
