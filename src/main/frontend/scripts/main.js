@@ -13,7 +13,7 @@ if (document.getElementById('js-header')) {
 
 const mapBlocks = document.querySelectorAll("[data-js='map-block']")
 if (mapBlocks.length) {
-  mapBlocks.forEach(mapBlock => {
+  mapBlocks.forEach((mapBlock) => {
     vueHandler.map(mapBlock)
   })
 }
