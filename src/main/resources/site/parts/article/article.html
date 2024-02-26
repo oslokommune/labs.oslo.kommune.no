@@ -1,20 +1,25 @@
 <div data-th-remove="tag">
   <article>
     <header class="hero" data-th-classappend="${image or videoId} ? '' : ' hero--no-image'">
-      <div class="container-fluid" data-th-if="!${videoId}">
-        <img
-          data-th-data-width="*{image.width}"
-          data-th-data-height="*{image.height}"
-          data-th-if="*{image}"
-          data-th-src="*{image.placeholderSrc}"
-          data-th-srcset="*{image.srcSet}"
-          data-th-sizes="'100vw'"
-          data-th-alt="*{image.alt}"
-          data-th-width="*{image.width}"
-          data-th-height="*{image.height}"
-          class="hero__img gallery"
-        />
-      </div>
+      <a
+        class="gallery"
+        data-th-href="*{image.src}"
+        data-th-data-pswp-width="*{image.width}"
+        data-th-data-pswp-height="*{image.height}"
+      >
+        <div class="container-fluid" data-th-if="!${videoId}">
+          <img
+            data-th-if="*{image}"
+            data-th-src="*{image.placeholderSrc}"
+            data-th-srcset="*{image.srcSet}"
+            data-th-sizes="'100vw'"
+            data-th-alt="*{image.alt}"
+            data-th-width="*{image.width}"
+            data-th-height="*{image.height}"
+            class="hero__img"
+          />
+        </div>
+      </a>
 
       <div
         class="hero__videowrapper"

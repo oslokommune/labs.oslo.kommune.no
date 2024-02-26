@@ -168,20 +168,31 @@
   class="column is-4-tablet is-3-desktop is-offset-1-desktop"
 >
   <div class="sidebarImage">
-    <figure data-th-object="${block.sidebarImage}">
-      <img
-        class="gallery"
-        data-th-data-width="*{image.width}"
-        data-th-data-height="*{image.height}"
-        data-th-src="*{image.placeholderSrc}"
-        data-th-srcset="*{image.srcSet}"
-        data-th-alt-title="*{image.alt}"
-        data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 300px, (max-width:1279px) 300px, (max-width:1471px) 300px, 300px'"
-      />
-      <figcaption data-th-if="*{caption==null} and *{image.caption}" data-th-text="*{image.caption}">
-        Caption
-      </figcaption>
-      <figcaption data-th-if="*{caption}" class="content" data-th-utext="*{caption}">Caption</figcaption>
-    </figure>
+    <a
+      class="gallery"
+      data-th-object="${block.sidebarImage}"
+      data-th-href="*{image.src}"
+      data-th-data-pswp-width="*{image.width}"
+      data-th-data-pswp-height="*{image.height}"
+    >
+      <figure>
+        <img
+          data-th-src="*{image.placeholderSrc}"
+          data-th-srcset="*{image.srcSet}"
+          data-th-alt-title="*{image.alt}"
+          data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 300px, (max-width:1279px) 300px, (max-width:1471px) 300px, 300px'"
+        />
+        <figcaption
+          data-th-if="*{caption==null} and *{image.caption}"
+          class="pswp-caption-content"
+          data-th-text="*{image.caption}"
+        >
+          Caption
+        </figcaption>
+        <figcaption data-th-if="*{caption}" class="content pswp-caption-content" data-th-utext="*{caption}">
+          Caption
+        </figcaption>
+      </figure></a
+    >
   </div>
 </div>
