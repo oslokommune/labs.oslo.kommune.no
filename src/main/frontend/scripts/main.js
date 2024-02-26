@@ -35,6 +35,4 @@ if (document.getElementById('js-search')) {
   vueHandler.search()
 }
 
-if (document.getElementsByClassName('pswp').length) {
-  photoSwipeHandler()
-}
+photoSwipeHandler()

@@ -18,6 +18,10 @@
 */
 @import 'custom-bulma';
 
+@import '../../../../node_modules/photoswipe/dist/photoswipe.css';
+@import '../../../../node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
+@import 'custom-photoswipe';
+
 @import 'partials/hero';
 @import 'partials/navbar';
 @import 'partials/search-results';
@@ -31,13 +35,6 @@
 @import 'partials/collection';
 
 @import 'partials/shame';
-
-/*
-  Had to copy referenced icons from photoswipe default-skin folder into local styles folder.
-  Webpack was unable to follow local reference in node_modules.
-*/
-@import '../../../../node_modules/photoswipe/src/css/main';
-@import '../../../../node_modules/photoswipe/src/css/default-skin/default-skin';
 
 ::placeholder {
   color: $color-grayscale-50;
