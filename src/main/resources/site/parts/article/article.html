@@ -3,13 +3,13 @@
     <header class="hero" data-th-classappend="${image or videoId} ? '' : ' hero--no-image'">
       <a
         class="gallery"
+        data-th-if="*{image}"
         data-th-href="*{image.src}"
         data-th-data-pswp-width="*{image.width}"
         data-th-data-pswp-height="*{image.height}"
       >
         <div class="container-fluid" data-th-if="!${videoId}">
           <img
-            data-th-if="*{image}"
             data-th-src="*{image.placeholderSrc}"
             data-th-srcset="*{image.srcSet}"
             data-th-sizes="'100vw'"
