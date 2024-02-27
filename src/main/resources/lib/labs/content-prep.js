@@ -209,11 +209,13 @@ function processContentBlocks(ctbs) {
           block.ctb.sidebarImage.image = imageLib.image.create(image)
         }
         if (block.ctbSettings.sidebarImage.caption) {
-          block.ctb.sidebarImage.caption = portal.processHtml({
-            value: block.ctbSettings.sidebarImage.caption,
-            imageWidths: [256, 512, 1024, 2048],
-            imageSizes: '(max-width:768px) 95vw, 248px',
-          })
+          block.ctb.sidebarImage.caption = portal.sanitizeHtml(
+            portal.processHtml({
+              value: block.ctbSettings.sidebarImage.caption,
+              imageWidths: [256, 512, 1024, 2048],
+              imageSizes: '(max-width:768px) 95vw, 248px',
+            })
+          )
         }
       }
 

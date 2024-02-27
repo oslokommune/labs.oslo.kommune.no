@@ -23,15 +23,7 @@ var iconSVG =
  * @param {Boolean} absolute - Return absolute URL?
  * @return {Object} The image object
  */
-exports.image.create = function (
-  key,
-  scale,
-  filter,
-  format,
-  quality,
-  responsive,
-  absolute
-) {
+exports.image.create = function (key, scale, filter, format, quality, responsive, absolute) {
   /*
      if (!scale) {
      log.warning('Scale parameter not set');
@@ -49,23 +41,8 @@ exports.image.create = function (
       if ('media:image' === result.type) {
         if (responsive) {
           image.isResponsive = true
-          image.srcSet = createSrcSet(
-            result,
-            scale,
-            filter,
-            format,
-            quality,
-            absolute
-          ).join(', ')
-          image.src = createSrc(
-            defaultImageWidth,
-            result,
-            scale,
-            filter,
-            format,
-            quality,
-            absolute
-          )
+          image.srcSet = createSrcSet(result, scale, filter, format, quality, absolute).join(', ')
+          image.src = createSrc(defaultImageWidth, result, scale, filter, format, quality, absolute)
           var placeHolder = createScaledPlaceholder(result, scale, defaultImageWidth)
           if (placeHolder && placeHolder.x && placeHolder.y) {
             image.width = placeHolder.x
@@ -75,14 +52,7 @@ exports.image.create = function (
           }
         } else {
           image.isResponsive = false
-          image.src = exports.image.createUrl(
-            key,
-            scale,
-            filter,
-            format,
-            quality,
-            absolute
-          )
+          image.src = exports.image.createUrl(key, scale, filter, format, quality, absolute)
         }
       } else {
         image.src = portal.attachmentUrl({
@@ -90,7 +60,7 @@ exports.image.create = function (
         })
       }
       image.alt = result.displayName
-      image.caption = result.data['caption'] || null
+      image.caption = portal.sanitizeHtml(result.data['caption']) || null
       image.artist = result.data['artist'] || null
       image.copyright = result.data['copyright'] || null
       image.tags = result.data['tags'] || null
@@ -131,8 +101,7 @@ exports.image.placeholder = function (scale) {
   var image = {}
   var ar = scale.split('block(')[1].split(')')[0].split(',')
   var placeholder =
-    'data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
+    'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
 
   image.src = ''
   image.srcSet = placeholder
@@ -157,14 +126,7 @@ function createSrcSet(image, scale, filter, format, quality, absolute) {
     var scaledWidth = prescaledImageSizes[i]
     var scaledQuality = quality || prescaledImageQualities[i]
     var scalingFilter = createScaleFilter(image, scale, scaledWidth)
-    var scaledUrl = exports.image.createUrl(
-      image['_id'],
-      scalingFilter,
-      filter,
-      format,
-      scaledQuality,
-      absolute
-    )
+    var scaledUrl = exports.image.createUrl(image['_id'], scalingFilter, filter, format, scaledQuality, absolute)
     srcSet.push(scaledUrl + ' ' + scaledWidth + 'w')
   }
   return srcSet
@@ -184,14 +146,7 @@ function createSrcSet(image, scale, filter, format, quality, absolute) {
 function createSrc(scaledWidth, image, scale, filter, format, quality, absolute) {
   var scalingFilter = createScaleFilter(image, scale, scaledWidth)
   var scaledQuality = quality || defaultImageQuality
-  return exports.image.createUrl(
-    image['_id'],
-    scalingFilter,
-    filter,
-    format,
-    scaledQuality,
-    absolute
-  )
+  return exports.image.createUrl(image['_id'], scalingFilter, filter, format, scaledQuality, absolute)
 }
 
 /**
@@ -280,9 +235,7 @@ function createScaledPlaceholder(image, scale, width) {
 
   placeholder.src =
     'data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(
-      iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y)
-    )
+    encodeURIComponent(iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y))
 
   return placeholder
 }
