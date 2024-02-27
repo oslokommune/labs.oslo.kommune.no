@@ -60,7 +60,11 @@ exports.image.create = function (key, scale, filter, format, quality, responsive
         })
       }
       image.alt = result.displayName
-      image.caption = portal.sanitizeHtml(result.data['caption']) || null
+      if (result.data['caption']) {
+        image.caption = portal.sanitizeHtml(result.data['caption'])
+      } else {
+        image.caption = null
+      }
       image.artist = result.data['artist'] || null
       image.copyright = result.data['copyright'] || null
       image.tags = result.data['tags'] || null
