@@ -94,9 +94,10 @@
 
   &__search {
     z-index: 1;
-    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0.5s, opacity 0s linear 1s;
+    transition: transform 0.6s cubic-bezier(0.84, -0.86, 0.34, 2.76) 0s, opacity 0s linear 1s;
     position: absolute;
     right: 0;
+    top: 0;
     transform: translateY($header-height);
     height: $header-height;
     @media screen and (min-width: $tablet) {
@@ -108,7 +109,7 @@
 
   &__searchbutton {
     background-color: $color-blue-dark;
-    background-image: url($gfxPath+'/icons/search.svg');
+    background-image: url($gfxPath + '/icons/search.svg');
     background-repeat: no-repeat;
     background-position: 50% 50%;
     border-radius: 50%;
@@ -117,7 +118,7 @@
 
     &.active {
       border-radius: 0;
-      background-image: url($gfxPath+'/icons/close.svg');
+      background-image: url($gfxPath + '/icons/close.svg');
     }
   }
 
