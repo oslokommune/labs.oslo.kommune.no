@@ -8,7 +8,7 @@
         data-th-data-pswp-width="*{image.width}"
         data-th-data-pswp-height="*{image.height}"
       >
-        <div class="container-fluid" data-th-if="!${videoId}">
+        <figure class="container isFluid" data-th-if="!${videoId}">
           <img
             data-th-src="*{image.placeholderSrc}"
             data-th-srcset="*{image.srcSet}"
@@ -18,9 +18,11 @@
             data-th-height="*{image.height}"
             class="hero__img"
           />
-        </div>
+          <figcaption data-th-if="*{image.caption}" class="pswp-caption-content" data-th-utext="*{image.caption}">
+            Caption
+          </figcaption>
+        </figure>
       </a>
-
       <div
         class="hero__videowrapper"
         id="js-hero-videowrapper"

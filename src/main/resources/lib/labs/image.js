@@ -59,15 +59,23 @@ exports.image.create = function (key, scale, filter, format, quality, responsive
           id: key,
         })
       }
-      image.alt = result.displayName
-      if (result.data['caption']) {
-        image.caption = portal.sanitizeHtml(result.data['caption'])
+      if (result.data) {
+        if (result.data.altText) {
+          image.alt = result.data.altText
+        } else {
+          image.alt = result.displayName
+        }
+        if (result.data.caption) {
+          image.caption = portal.sanitizeHtml(result.data.caption)
+        } else {
+          image.caption = null
+        }
+        image.artist = result.data.artist || null
+        image.copyright = result.data.copyright || null
+        image.tags = result.data.tags || null
       } else {
-        image.caption = null
+        image.alt = result.displayName
       }
-      image.artist = result.data['artist'] || null
-      image.copyright = result.data['copyright'] || null
-      image.tags = result.data['tags'] || null
     }
   }
   return image

@@ -14,6 +14,7 @@ exports.get = function (req) {
       contentTypes: ['article', 'video'],
       selectedItems: config.selectedItems,
       scale: 'block(16,9)',
+      sort: 'publish.first DESC',
     }) || {}
 
   model.heading = config.heading

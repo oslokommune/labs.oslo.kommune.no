@@ -107,6 +107,9 @@
       }
     }
   }
+  .pswp-caption-content {
+    display: none;
+  }
 }
 
 .hero__closepopout {
@@ -334,9 +337,7 @@
       box-shadow: 12px 0 0 #000, -12px 0 0 #000;
       background-color: #000;
       box-decoration-break: clone;
-      padding-bottom:2px;
-    
+      padding-bottom: 2px;
     }
-
   }
 }

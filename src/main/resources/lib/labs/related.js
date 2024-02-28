@@ -249,7 +249,7 @@ exports.getContentList = function (config) {
     count: count,
     contentTypes: contentTypes,
     query: query,
-    sort: 'createdTime DESC',
+    sort: 'publish.first DESC',
   }
 
   // Filters. As we don't have spread operators or Object.assign, we need to hack a bit.

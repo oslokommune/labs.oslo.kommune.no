@@ -1,7 +1,7 @@
 <div data-th-remove="tag">
   <article>
     <header class="category-hero" data-th-classappend="${image} ? '' : ' hero--no-image'">
-      <div class="category-hero__imgwrapper container-fluid" data-th-if="*{image}">
+      <div class="category-hero__imgwrapper container isFluid" data-th-if="*{image}">
         <img
           data-th-if="*{image}"
           data-th-src="*{image.placeholderSrc}"
