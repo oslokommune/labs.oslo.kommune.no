@@ -40,7 +40,7 @@ module.exports = (env, argv) => {
         {
           resourceQuery: /blockType=i18n/,
           type: 'javascript/auto',
-          loader: '@kazupon/vue-i18n-loader',
+          loader: '@intlify/unplugin-vue-i18n',
         },
         {
           test: /\.(sass|scss|css)$/,
