@@ -33,6 +33,13 @@
                       Updated time</time
                     >
                   </li>
+                  <li class="dateline__authors" data-th-aria-label="${portal.localize({'_key=aria.writtenBy'})}">
+                    <span class="dateline__authorlist">
+                      <span data-th-each="author : ${authors}">
+                        <a data-th-href="${author.url}" data-th-text="${author.name}"></a>
+                      </span>
+                    </span>
+                  </li>
                 </ul>
                 <div data-th-if="${categories}" class="categoryline">
                   <ol class="categories">
@@ -67,6 +74,9 @@
           </div>
         </div>
       </div>
+      <footer class="section article-footer">
+        <div data-th-replace="/site/snippets/bio.html"></div>
+      </footer>
     </article>
   </div>
 </div>
