@@ -33,5 +33,16 @@
     <input name="lead" type="TextArea">
       <label i18n="ct.video.lead">Short description</label>
     </input>
+    <!-- Authors -->
+    <input name="authors" type="ContentSelector">
+      <label i18n="txt.authors">Made by</label>
+      <occurrences minimum="0" maximum="0"/>
+      <config>
+        <relationshipType>system:reference</relationshipType>
+        <allowContentType>person</allowContentType>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+
   </form>
 </content-type>

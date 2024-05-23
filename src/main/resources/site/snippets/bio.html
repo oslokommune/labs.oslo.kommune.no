@@ -1,0 +1,52 @@
+<ul
+  data-th-if="${authors}"
+  class="container bio"
+  role="list"
+  data-th-aria-label="${portal.localize({'_key=aria.authors'})}"
+>
+  <li class="bio__author columns is-marginless is-mobile" data-th-each="author: ${authors}" data-th-object="${author}">
+    <div class="bio__tag" data-th-text="${portal.localize({'_key=bio.aboutAuthor'})}"></div>
+    <div class="column bio__textcontainer is-paddingless">
+      <div class="bio__content">
+        <div class="bio__text">
+          <div class="bio__name title is-4" data-th-text="*{name}"></div>
+          <p class="bio__meta">
+            <span data-th-if="*{role}" class="bio__role" data-th-text="*{role}">role</span>
+            <span data-th-if="*{department}" class="bio__department" data-th-text="*{department}">department</span>
+          </p>
+          <p class="bio__body" data-th-text="*{bio}"></p>
+        </div>
+        <ul class="bio__links">
+          <li data-th-if="*{email}">
+            <a
+              class="button is-primary is-outlined"
+              data-th-href="'mailto:' + *{email}"
+              data-th-text="${portal.localize({'_key=bio.email'})}"
+            ></a>
+          </li>
+          <li data-th-if="*{url}">
+            <a
+              class="button is-primary"
+              data-th-href="*{url}"
+              data-th-text="${portal.localize({'_key=bio.viewProfile'})}"
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="column bio__imagecontainer is-paddingless">
+      <video data-th-if="*{video}" class="bio__video" data-th-src="*{video}" loop muted></video>
+
+      <img
+        data-th-unless="*{video}"
+        data-th-if="*{image}"
+        data-th-width="*{image.width}"
+        data-th-height="*{image.height}"
+        data-th-src="*{image.placeholderSrc}"
+        data-th-srcset="*{image.srcSet}"
+        data-th-sizes="'100px'"
+        data-th-alt="*{image.alt}"
+      />
+    </div>
+  </li>
+</ul>
