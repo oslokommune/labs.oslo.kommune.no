@@ -55,6 +55,11 @@
         <h3 class="title is-marginless" data-th-text="${block.ctbMap.mapTitle}"></h3>
       </div>
     </div>
+    <script data-th-inline="javascript">
+      if (typeof googleMapsKey === 'undefined') {
+        var googleMapsKey = /*[[${googleMapsKey}]]*/ ''
+      }
+    </script>
     <div class="mapcontainer">
       <!-- Vue Component gets inserted here -->
     </div>

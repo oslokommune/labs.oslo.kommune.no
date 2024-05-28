@@ -53,6 +53,9 @@ exports.get = function (req) {
     model.categories = categories
   }
 
+  const siteConfig = portal.getSiteConfig()
+  siteConfig.googleMapsKey && (model.googleMapsKey = siteConfig.googleMapsKey)
+
   var view = resolve('./article.html')
   var body = thymeleaf.render(view, model)
   return {
