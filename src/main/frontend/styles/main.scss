@@ -291,7 +291,9 @@ html {
       font-size: 1.15em;
     }
 
-    overflow: visible;
+    & {
+      overflow: visible;
+    }
 
     & span {
       box-shadow: 6px 0 0 #000, -6px 0 0 #000;
