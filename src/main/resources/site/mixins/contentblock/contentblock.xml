@@ -1,0 +1,217 @@
+<mixin>
+  <display-name>Article content blocks mixin</display-name>
+  <form>
+    <!-- Content block types -->
+    <option-set name="contentBlocks">
+      <label i18n="ct.article.ctb">Add content block</label>
+      <occurrences minimum="0" maximum="0"/>
+      <options minimum="1" maximum="1">
+
+        <!-- Text block -->
+        <option name="ctbText">
+          <label i18n="ct.article.ctbText">Text</label>
+          <help-text i18n="ct.article.ctbTextDesc">Normal rich text area</help-text>
+          <items>
+            <input name="content" type="HtmlArea">
+              <label i18n="ct.article.ctbTextContent">Content</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <exclude>*</exclude>
+                <include>Format | Bold Italic Underline Blockquote Strike Subscript Superscript | BulletedList NumberedList | Link Unlink Table Image | Macro</include>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Images block -->
+        <option name="ctbImages">
+          <label i18n="ct.article.ctbImages">Images</label>
+          <help-text i18n="ct.article.ctbImagesDesc">1-3 Images</help-text>
+          <items>
+            <mixin name="block-images" />
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Video block -->
+        <option name="ctbVideo">
+          <label i18n="ct.article.ctbVideo">Video</label>
+          <help-text i18n="ct.article.ctbVideoDesc">Vimeo video from id</help-text>
+          <items>
+            <input name="title" type="TextLine">
+              <label i18n="ct.article.ctbVideoTitle">Descriptive video title (for accessibility)</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <regexp>^(?!.*[\"\u003E\u003C\']).*</regexp>
+              </config>
+            </input>
+            <input name="id" type="TextLine">
+              <label i18n="ct.article.ctbVideoId">Vimeo video id</label>
+              <help-text i18n="ct.article.ctbVideoIdDesc">Use format video-id/secret for unlisted videos</help-text>
+              <occurrences minimum="1" maximum="1"/>
+              <config />
+            </input>
+            <input name="aspectRatio" type="TextLine">
+              <label i18n="ct.article.ctbVideoAspectRatio">Aspect ratio ('w:h')</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config />
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- New Video type block -->
+        <option name="ctbVideos">
+          <label i18n="ct.article.ctbVideos">Videos</label>
+          <help-text i18n="ct.article.ctbVideosDesc">Either a single video or a bunch</help-text>
+          <items>
+            <input name="heading" type="TextLine">
+              <label i18n="txt.heading">Heading</label>
+            </input>
+            <input name="lead" type="TextArea">
+              <label i18n="txt.lead">Lead text</label>
+            </input>
+            <input name="videos" type="ContentSelector">
+              <label i18n="ct.article.ctbVideos">Videos</label>
+              <occurrences minimum="1" maximum="0"/>
+              <config>
+                <allowContentType>video</allowContentType>
+              </config>
+            </input>
+            <input name="inline" type="CheckBox">
+              <label i18n="ct.article.txt.playInline">Play inline</label>
+              <help-text i18n="ct.article.txt.playInlineHelp">If checked it presents online playable video(s). Othervise links to video page.</help-text>
+              <default>checked</default>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Quote block -->
+        <option name="ctbQuote">
+          <label i18n="ct.article.ctbQuote">Quote</label>
+          <help-text i18n="ct.article.ctbQuoteDesc">Quote with source and source description</help-text>
+          <items>
+            <input name="quoteText" type="TextArea">
+              <label i18n="ct.article.ctbQuoteText">Quote</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <max-length>800</max-length>
+              </config>
+            </input>
+            <input name="quoteSource" type="TextLine">
+              <label i18n="ct.article.ctbQuoteSource">Source</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <max-length>150</max-length>
+              </config>
+            </input>
+            <input name="quoteSourceDescription" type="TextLine">
+              <label i18n="ct.article.ctbQuoteSourceDesc">Source description</label>
+              <occurrences minimum="0" maximum="1"/>
+              <config>
+                <max-length>150</max-length>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Links block -->
+        <option name="ctbLinks">
+          <label i18n="ct.article.ctbLinks">Random links</label>
+          <help-text i18n="ct.article.ctbLinksDesc">Et vilkårlig sett med lenker</help-text>
+          <items>
+            <mixin name="block-links" />
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Collection block -->
+        <option name="ctbCollection">
+          <label i18n="ct.article.ctbCollection">Content collection</label>
+          <help-text i18n="ct.article.ctbCollectionDesc">Predefined set of grouped content</help-text>
+          <items>
+            <input name="collection" type="ContentSelector">
+              <label i18n="ct.article.ctbCollection">Content collection</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <allowContentType>collection</allowContentType>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Spotify podcast block -->
+        <option name="ctbPodcast">
+          <label i18n="ct.article.ctbPodcast">Podcast</label>
+          <help-text i18n="ct.article.ctbPodcastDesc">Spotify podcast player from track id</help-text>
+          <items>
+            <input name="id" type="TextLine">
+              <label i18n="ct.article.ctbPodcastId">Spotify podcast id</label>
+              <occurrences minimum="1" maximum="1"/>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+        <!-- Map block -->
+        <option name="ctbMap">
+          <label i18n="ct.article.ctbMap">Map</label>
+          <help-text i18n="ct.article.ctbMapDesc">Map with markers and city areas</help-text>
+          <items>
+            <input name="mapTitle" type="TextLine">
+              <label i18n="ct.article.ctbMapTitle">Map title</label>
+              <occurrences minimum="0" maximum="1"/>
+            </input>
+            <input name="mapCoordinates" type="GeoPoint">
+              <label i18n="ct.article.ctbMapCoordinates">Coordinates</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config />
+            </input>
+            <input name="mapZoom" type="Long">
+              <label i18n="ct.article.ctbMapZoom">Zoom</label>
+              <occurrences minimum="1" maximum="1"/>
+              <config>
+                <min>3</min>
+                <max>20</max>
+              </config>
+            </input>
+            <input name="mapMarkers" type="GeoPoint">
+              <label i18n="ct.article.ctbMapMarkers">Map markers</label>
+              <occurrences minimum="0" maximum="0" />
+              <config/>
+            </input>
+            <input name="mapDistricts" type="ComboBox">
+              <label i18n="ct.article.ctbMapDistricts">District overlays</label>
+              <occurrences minimum="0" maximum="0"/>
+              <config>
+                <option value="Bydel Søndre Nordstrand">Bydel Søndre Nordstrand</option>
+                <option value="Bydel Nordstrand">Bydel Nordstrand</option>
+                <option value="Bydel Østensjø">Bydel Østensjø</option>
+                <option value="Sentrum">Sentrum</option>
+                <option value="Bydel Gamle Oslo">Bydel Gamle Oslo</option>
+                <option value="Bydel Frogner">Bydel Frogner</option>
+                <option value="Bydel Grünerløkka">Bydel Grünerløkka</option>
+                <option value="Bydel Ullern">Bydel Ullern</option>
+                <option value="Bydel St. Hanshaugen">Bydel St. Hanshaugen</option>
+                <option value="Bydel Sagene">Bydel Sagene</option>
+                <option value="Bydel Alna">Bydel Alna</option>
+                <option value="Bydel Bjerke">Bydel Bjerke</option>
+                <option value="Bydel Nordre Aker">Bydel Nordre Aker</option>
+                <option value="Bydel Stovner">Bydel Stovner</option>
+                <option value="Bydel Vestre Aker">Bydel Vestre Aker</option>
+                <option value="Bydel Grorud">Bydel Grorud</option>
+              </config>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
+      </options>
+    </option-set>
+
+  </form>
+</mixin>

@@ -3,5 +3,6 @@
   <super-type>base:structured</super-type>
   <form>
     <mixin name="image-heading-lead-body" />
+    <mixin name="contentblock" />
   </form>
 </content-type>
