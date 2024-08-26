@@ -2,7 +2,20 @@
   <display-name i18n="ct.category">Category</display-name>
   <super-type>base:structured</super-type>
   <form>
-    <mixin name="image-heading-lead-body" />
+    <input name="image" type="ImageSelector">
+      <label i18n="txt.image">Image</label>
+      <config>
+        <allowPath>${site}/*</allowPath>
+      </config>
+    </input>
+    <input name="heading" type="TextLine">
+      <label i18n="txt.heading">Heading</label>
+      <occurrences minimum="1" maximum="1" />
+    </input>
+    <input name="lead" type="TextArea">
+      <label i18n="txt.lead">Lead text</label>
+      <occurrences minimum="1" maximum="1" />
+    </input>
     <mixin name="contentblock" />
   </form>
 </content-type>
