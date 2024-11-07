@@ -135,6 +135,14 @@
   data-th-insert="block-images.html(data=${block.ctbImages})"
 ></div>
 
+<!-- /* Gallery block */ -->
+<div
+  data-th-fragment="ctbGallery"
+  data-th-if="${block.ctbGallery.galleryImages}"
+  class="column"
+  data-th-insert="block-gallery.html(data=${block.ctbGallery})"
+></div>
+
 <!-- /* Podcast */ -->
 <div data-th-fragment="ctbPodcast" data-th-remove="tag">
   <div

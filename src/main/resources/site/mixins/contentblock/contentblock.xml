@@ -34,6 +34,19 @@
           </items>
         </option>
 
+        <!-- Gallery block -->
+        <option name="ctbGallery">
+          <label i18n="ct.article.ctbGallery">Gallery</label>
+          <help-text i18n="ct.article.ctbGalleryDesc">Image gallery</help-text>
+          <items>
+            <input name="galleryImages" type="ImageSelector">
+              <label i18n="txt.images">Images</label>
+              <occurrences minimum="1" maximum="0"/>
+            </input>
+            <mixin name="contentblock-settings" />
+          </items>
+        </option>
+
         <!-- Video block -->
         <option name="ctbVideo">
           <label i18n="ct.article.ctbVideo">Video</label>

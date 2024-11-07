@@ -1,0 +1,43 @@
+<!--
+  /*
+    Gallery block
+    Wants data in ${data}
+  */
+-->
+
+<div data-th-if="${data.galleryImages}">
+  <div class="columns">
+    <div class="column" data-th-classappend="${data.isFullWidth} ? 'is-12' : 'is-10-fullhd is-offset-1-fullhd'">
+      <div class="columns is-multiline">
+        <a
+          class="gallery column is-one-third"
+          data-th-each="image: ${data.galleryImages}"
+          data-th-object="${image}"
+          data-th-href="*{src}"
+          data-th-data-pswp-width="*{width}"
+          data-th-data-pswp-height="*{height}"
+        >
+          <figure>
+            <img
+              data-th-width="*{width}"
+              data-th-height="*{height}"
+              data-th-src="*{placeholderSrc}"
+              data-th-srcset="*{srcSet}"
+              data-th-alt-title="*{alt}"
+              data-th-sizes="${data.isFullWidth} ? 
+            '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 352px' :
+            '(max-width:768px) 95vw, (max-width:1087px) 30vw, (max-width:1279px) 301px, (max-width:1471px) 364px, 428px'"
+            />
+            <figcaption
+              data-th-if="*{caption}"
+              class="o-block-images__caption pswp-caption-content"
+              data-th-utext="*{caption}"
+            >
+              Caption
+            </figcaption>
+          </figure>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

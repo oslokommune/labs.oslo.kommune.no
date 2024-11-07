@@ -335,6 +335,13 @@ function processContentBlocks(ctbs) {
       block.ctb.ctbImages = processBlockImages(block.ctb.ctbImages)
     }
 
+    // Prepare gallery
+    if (block.ctb._selected === 'ctbGallery' && block.ctb.ctbGallery) {
+      // Duplicate fullwidth flag from settings, as it is needed in calculation
+      block.ctb.ctbGallery.isFullWidth = block.ctb.isFullWidth
+      block.ctb.ctbGallery = processBlockGallery(block.ctb.ctbGallery)
+    }
+
     // Process links block
     if (block.ctb._selected === 'ctbLinks' && block.ctb.ctbLinks) {
       block.ctb.ctbLinks = processBlockLinkList(block.ctb.ctbLinks)
@@ -446,6 +453,17 @@ var processBlockImages = function (b) {
   return b
 }
 exports.processBlockImages = processBlockImages
+
+var processBlockGallery = function (b) {
+  b.galleryImages = util.forceArray(b.galleryImages)
+  var scale = 'width(1)' // No scaling is default
+  b.galleryImages = b.galleryImages.map(function (image) {
+    image = imageLib.image.create(image, scale)
+    return image
+  })
+  return b
+}
+exports.processBlockGallery = processBlockGallery
 
 var processBlockVideos = function (b) {
   const defaultAspectRatio = '16:9'

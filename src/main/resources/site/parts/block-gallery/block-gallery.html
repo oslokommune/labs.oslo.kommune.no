@@ -1,0 +1,10 @@
+<div data-th-remove="tag">
+  <div data-th-if="${!live && !hasContent}">
+    <h3>Unconfigured generic gallery part</h3>
+  </div>
+  <section data-th-if="${hasContent}" class="section">
+    <div class="container">
+      <div data-th-replace="/site/snippets/block-gallery.html(d=${data}, s=${settings})" data-th-remove="tag"></div>
+    </div>
+  </section>
+</div>
