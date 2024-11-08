@@ -342,6 +342,7 @@ html {
 
 .app-cookie-line {
   padding-top: 1em;
+  z-index: 1;
 
   &-button:hover {
     color: currentColor;
