@@ -3,6 +3,7 @@
 
   &__imagecontainer {
     overflow: hidden;
+    position: relative;
   }
 
   &:hover img {
@@ -28,6 +29,22 @@
     font-size: 1.1em;
   }
 
+  &__video-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: top;
+    justify-content: right;
+    padding-top: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  &__video-icon {
+    width: 3rem; /* 64px */
+    height: 3rem; /* 64px */
+    color: #222; /* Fargen på play-symbolet */
+  }
+
   &__category {
     position: relative;
     margin-bottom: 1.5rem;
@@ -43,6 +60,11 @@
     }
   }
 
+  &--featured {
+    display: block;
+    padding-bottom: 2rem;
+  }
+
   &--featured > &__body {
     margin-top: -3em;
     margin-left: 1.5em;
@@ -51,5 +73,10 @@
     @media screen and (min-width: $tablet) {
       margin-top: -7em;
     }
+  }
+
+  &--featured &__video-icon {
+    width: 5rem; /* 80px */
+    height: 5rem; /* 80px */
   }
 }

@@ -33,6 +33,7 @@ var prepareFeaturedArticle = function (content, scaleLandscape, scalePortrait) {
   article.created = content.createdTime
   article.modifiedTime = content.modifiedTime ? content.modifiedTime : null
   article.heading = content.displayName
+  article.type = content.type.split(':')[1].trim()
 
   if (!content.data) return article
 

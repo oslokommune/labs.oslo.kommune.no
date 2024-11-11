@@ -12,6 +12,7 @@
       <occurrences minimum="0" maximum="3" />
       <config>
         <allowContentType>article</allowContentType>
+        <allowContentType>video</allowContentType>
       </config>
     </input>
     <input name="categories" type="ContentSelector">
