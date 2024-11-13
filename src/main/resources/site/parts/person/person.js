@@ -3,7 +3,7 @@ var thymeleaf = require('/lib/thymeleaf')
 var contentLib = require('/lib/xp/content')
 var contentPrep = require('/lib/labs/content-prep.js')
 
-exports.get = function(req) {
+exports.get = function (req) {
   var content = portal.getContent()
 
   var model = {}
@@ -13,14 +13,14 @@ exports.get = function(req) {
     start: 0,
     count: 20,
     query: query,
-    contentTypes: [app.name + ':article'],
+    contentTypes: [app.name + ':article', app.name + ':video'],
     sort: 'createdTime DESC',
     filters: {
       hasValue: {
         field: 'data.authors',
-        values: [content._id]
-      }
-    }
+        values: [content._id],
+      },
+    },
   })
 
   model.articles = contentPrep.prepareArticleList(result, 'block(4,3)')
@@ -35,6 +35,6 @@ exports.get = function(req) {
   var body = thymeleaf.render(view, model)
   return {
     body: body,
-    contentType: 'text/html'
+    contentType: 'text/html',
   }
 }
