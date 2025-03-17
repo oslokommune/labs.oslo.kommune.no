@@ -23,13 +23,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - id: build-only
-        uses: enonic/release-tools/build-and-publish@master
+        uses: enonic/release-tools/build-and-publish@d6ef777ea07c90d689ba596ae3d16826fed34f38
         with:
           skipPublishing: true
           repoUser: ${{ secrets.ARTIFACTORY_USERNAME }}
           repoPassword: ${{ secrets.ARTIFACTORY_PASSWORD }}
       - id: deploy
-        uses: enonic/action-app-deploy@main
+        uses: enonic/action-app-deploy@47a2449e6c4da8d5962b6e869db3e150916a66a3
         with:
           url: ${{ secrets.ENONIC_DEPLOY_URL_TEST }}
           username: ${{ secrets.ENONIC_TEST_USER }}
