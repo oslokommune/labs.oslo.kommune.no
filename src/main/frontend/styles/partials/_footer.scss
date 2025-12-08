@@ -1,7 +1,9 @@
+@use 'sass:color';
+
 .footer {
   color: white;
   font-weight: 500;
-  background: darken($color-blue-dark, 12%);
+  background: color.adjust($color-blue-dark, $lightness: -12%);
   margin-top: 2em;
 
   &__content {
@@ -32,7 +34,7 @@
   }
 
   &__bottom {
-    background: darken($color-blue-dark, 18%);
+    background: color.adjust($color-blue-dark, $lightness: -18%);
   }
 
   &__form {

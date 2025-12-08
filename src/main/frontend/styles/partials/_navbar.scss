@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .header {
   position: fixed;
   height: $header-height;
@@ -259,7 +261,7 @@ main.main {
   }
 
   &__results {
-    background: darken($color-blue-dark, 5%);
+    background: color.adjust($color-blue-dark, $lightness: -5%);
 
     a {
       color: white;
@@ -281,7 +283,7 @@ main.main {
       padding: 0.5em;
 
       &:focus {
-        background: darken($color-blue-dark, 20%);
+        background: color.adjust($color-blue-dark, $lightness: -20%);
       }
     }
   }
