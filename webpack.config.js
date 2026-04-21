@@ -2,6 +2,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const VueI18nPlugin = require('@intlify/unplugin-vue-i18n/webpack')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = (env, argv) => {
@@ -37,11 +38,6 @@ module.exports = (env, argv) => {
         {
           test: /\.vue$/,
           use: 'vue-loader',
-        },
-        {
-          resourceQuery: /blockType=i18n/,
-          type: 'javascript/auto',
-          loader: '@intlify/unplugin-vue-i18n',
         },
         {
           test: /\.(sass|scss|css)$/,
@@ -84,6 +80,7 @@ module.exports = (env, argv) => {
     stats: 'normal',
     plugins: [
       new VueLoaderPlugin(),
+      VueI18nPlugin({}),
       new MiniCssExtractPlugin({
         filename: 'styles/[name].css',
       }),
