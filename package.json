@@ -32,7 +32,7 @@
     "@intlify/unplugin-vue-i18n": "^6.0.3",
     "babel-loader": "^9.2.1",
     "bulma": "^1.0.4",
-    "copy-webpack-plugin": "^12.0.2",
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.4",
     "mini-css-extract-plugin": "^2.10.2",
     "postcss-loader": "^8.2.1",
