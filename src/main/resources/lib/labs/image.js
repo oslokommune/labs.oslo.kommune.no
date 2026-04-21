@@ -7,8 +7,6 @@ var prescaledImageQualities = [70, 65, 60, 55]
 var defaultImageWidth = prescaledImageSizes[prescaledImageSizes.length - 1]
 var defaultImageQuality = 60
 
-var tempSVG = "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 {{w}} {{h}}'/>" // Simplest possible SVG
-
 var iconSVG =
   "<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 {{w}} {{h}}'><rect width='100%' height='100%' fill='#eee'/><defs><symbol id='a' viewBox='0 0 90 66' opacity='0.3'><path d='M85 5v56H5V5h80m5-5H0v66h90V0z'/><circle cx='18' cy='20' r='6'/><path d='M56 14L37 39l-8-6-17 23h67z'/></symbol></defs><use xlink:href='#a' width='20%' x='40%'/></svg>" // Basic 'picture' icon
 
@@ -43,12 +41,10 @@ exports.image.create = function (key, scale, filter, format, quality, responsive
           image.isResponsive = true
           image.srcSet = createSrcSet(result, scale, filter, format, quality, absolute).join(', ')
           image.src = createSrc(defaultImageWidth, result, scale, filter, format, quality, absolute)
-          var placeHolder = createScaledPlaceholder(result, scale, defaultImageWidth)
-          if (placeHolder && placeHolder.x && placeHolder.y) {
-            image.width = placeHolder.x
-            image.height = placeHolder.y
-            image.heightPercentage = placeHolder.heightPercentage
-            image.placeholderSrc = placeHolder.src
+          var dimensions = computeScaledDimensions(result, scale, defaultImageWidth)
+          if (dimensions && dimensions.x && dimensions.y) {
+            image.width = dimensions.x
+            image.height = dimensions.y
           }
         } else {
           image.isResponsive = false
@@ -115,7 +111,7 @@ exports.image.placeholder = function (scale) {
   var placeholder =
     'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(iconSVG.replace(/{{w}}/g, ar[0]).replace(/{{h}}/g, ar[1]))
 
-  image.src = ''
+  image.src = placeholder
   image.srcSet = placeholder
   image.alt = 'Placeholder image'
 
@@ -216,40 +212,31 @@ function createScaleFilter(image, scale, width) {
 }
 
 /**
- * Create placeholder width and height based on selected scaling filter and available width
+ * Compute scaled image dimensions for a given target width.
  * @param {Object} image - The image content
- * @param {String} scaling - Scaling filter
- * @param {Integer} width
- * @return {object} placeholder object with x, y, heightPercentage and svg src image
+ * @param {String} scale - Scaling filter
+ * @param {Integer} width - Target width
+ * @return {Object} Dimensions object with x (width) and y (height)
  */
-function createScaledPlaceholder(image, scale, width) {
+function computeScaledDimensions(image, scale, width) {
   var scaleParams = getScaleParameters(scale)
   var scaleType = scaleParams[0].toLowerCase()
-  var placeholder = {}
   var scaleRatio = 1
 
   var scaleTypes = getScaleTypes()
 
   if (scaleTypes['xy'].indexOf(scaleType) >= 0) {
-    // We use user set aspect ratio
     scaleRatio = scaleParams[1] / scaleParams[2]
   } else if ('square' === scaleType) {
     scaleRatio = 1
   } else {
-    // We use actual image size for ratio
     scaleRatio = getImageAspectRatio(image)
   }
 
-  var height = width / scaleRatio
-  placeholder.x = width
-  placeholder.y = String(Math.round(height))
-  placeholder.heightPercentage = String((100 * height) / width)
-
-  placeholder.src =
-    'data:image/svg+xml;charset=utf-8,' +
-    encodeURIComponent(iconSVG.replace(/{{w}}/g, placeholder.x).replace(/{{h}}/g, placeholder.y))
-
-  return placeholder
+  return {
+    x: width,
+    y: String(Math.round(width / scaleRatio)),
+  }
 }
 
 /**
@@ -296,46 +283,3 @@ function getScaleTypes() {
   }
 }
 
-/**
- * Calculate optimal dimensions (width and height) for placeholder image
- * @param {Object} image - The image content
- * @param {String} scaling - Scaling filter
- * @return {Object} Placeholder (dimensions)
- */
-function createPlaceholder(image, scaling) {
-  var scaleParams = getScaleParameters(scaling)
-  var scaleType = scaleParams[0].toLowerCase()
-  var scaleTypes = getScaleTypes()
-
-  var scaleDimensions = {}
-  scaleDimensions['x'] = scaleParams[1]
-
-  if (scaleTypes['xy'].indexOf(scaleType) >= 0) {
-    scaleDimensions['y'] = scaleParams[2]
-  } else {
-    var y = Math.round(scaleParams[1] / getImageAspectRatio(image))
-    scaleDimensions['y'] = y
-  }
-
-  var gcd = greatestCommonDivisor(scaleDimensions['x'], scaleDimensions['y'])
-
-  var placeholder = {}
-  placeholder.x = (scaleDimensions['x'] / gcd).toString()
-  placeholder.y = (scaleDimensions['y'] / gcd).toString()
-
-  return placeholder
-}
-
-/**
- * Calculates the greatest common divisor for a and b
- * @param {Integer} a
- * @param {Integer} b
- * @return {Integer} Greatest common divisor
- */
-function greatestCommonDivisor(a, b) {
-  if (b) {
-    return greatestCommonDivisor(b, a % b)
-  } else {
-    return Math.abs(a)
-  }
-}
