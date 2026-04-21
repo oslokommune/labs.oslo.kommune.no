@@ -1,0 +1,174 @@
+@use '../variables' as *;
+
+// Restore the pre-Punkt body and heading typography. Punkt defaults to
+// line-height 1.75 and light font-weight; the old site used 1.65 and regular.
+// Headings are re-overridden to the sizes the content was authored against.
+
+body {
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+// Bulma shipped with minireset.css, which zeroes out margin and padding on
+// block elements (including figure and blockquote). Without this, browser
+// defaults like `figure { margin: 1em 40px }` leak through and cause visible
+// gaps around images, iframes and the like.
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+// Bulma reset lists to no bullets by default; markers were reintroduced only
+// inside .content. Without this reset, browser defaults leak bullets into the
+// navbar, dateline, footer etc. .labs-prose re-enables markers for article
+// copy.
+ul,
+ol {
+  list-style: none;
+}
+
+// Bulma default: plain text colour on <a>, underline only on hover. Prose
+// (.labs-prose) overrides to always-underlined, matching old .content a.
+a {
+  color: $link;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+// Additional element resets that Bulma provided. These mostly only matter
+// when the element appears outside .labs-prose; prose adds its own tighter
+// rules for lists, blockquotes and the rest.
+
+strong {
+  font-weight: 600;
+  color: $color-black;
+}
+
+hr {
+  display: block;
+  height: 2px;
+  margin: 1.5rem 0;
+  padding: 0;
+  border: none;
+  background-color: $color-grey-lighter;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 0;
+}
+
+code {
+  background-color: $color-grey-lighter;
+  color: $color-red;
+  padding: 0.25em 0.5em;
+  border-radius: 0.25em;
+  font-size: 0.875em;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+}
+
+pre {
+  -webkit-overflow-scrolling: touch;
+  background-color: $color-grey-lighter;
+  color: $color-black;
+  padding: 1.25em 1.5em;
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+  font-size: 0.875em;
+  font-family: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', monospace;
+
+  code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: 1em;
+  }
+}
+
+// Element selectors apply to bare h1-h6. The additional class selectors
+// override Punkt's .pkt-txt-* classes still used in templates, so we
+// don't need to touch every file to restore the old feel.
+
+h1,
+.pkt-txt-36,
+.pkt-txt-54--tablet-up {
+  font-weight: 500;
+  font-size: 1.8em;
+  line-height: 1.1em;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 1.65em;
+  line-height: 1.3em;
+  letter-spacing: -0.01em;
+}
+
+h3,
+.pkt-txt-22,
+.pkt-txt-30--tablet-up {
+  font-weight: 500;
+  font-size: 1.5em;
+  line-height: 1.4em;
+  letter-spacing: -0.005em;
+}
+
+h4,
+.pkt-txt-18-medium,
+.pkt-txt-24-medium--tablet-up {
+  font-weight: 500;
+  font-size: 1.3em;
+  line-height: 1.4em;
+}
+
+h5 {
+  font-weight: 500;
+  font-size: 1.1em;
+  line-height: 1.4em;
+}
+
+h6 {
+  font-weight: 500;
+  font-size: 1em;
+  line-height: 1.4em;
+}
+
+// Subtitle / ingress sizing (Bulma `.subtitle.is-4` previously)
+.pkt-txt-20-light,
+.pkt-txt-24-light--tablet-up {
+  font-weight: 400;
+  font-size: 1.3em;
+  line-height: 1.4em;
+}

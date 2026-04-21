@@ -1,5 +1,7 @@
 import PhotoSwipeLightbox from '../../../../../node_modules/photoswipe/dist/photoswipe-lightbox.esm'
 import PhotoSwipeDynamicCaption from '../../../../../node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.esm.js'
+import 'photoswipe/dist/photoswipe.css'
+import 'photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css'
 
 export default function init() {
   const lightbox = new PhotoSwipeLightbox({

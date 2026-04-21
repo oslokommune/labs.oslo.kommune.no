@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .o-block-links {
   h2.title {
     margin-bottom: 0.5rem;
@@ -10,7 +12,7 @@
   & .o-icon-link__link {
     display: flex;
     margin-right: 1rem;
-    color: $body-color;
+    color: $color-black;
   }
 
   & .o-icon-link__link-icon {

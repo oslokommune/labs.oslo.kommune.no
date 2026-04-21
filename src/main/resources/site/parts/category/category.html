@@ -8,7 +8,7 @@
         data-th-data-pswp-width="*{image.width}"
         data-th-data-pswp-height="*{image.height}"
       >
-        <figure class="container isFluid">
+        <figure class="pkt-container">
           <img
             data-th-src="*{image.src}"
             data-th-srcset="*{image.srcSet}"
@@ -27,20 +27,20 @@
       <div class="hero__videowrapper" id="js-hero-videowrapper"></div>
 
       <div class="hero-foot section is-paddingless-top-bottom">
-        <div class="container">
-          <div class="columns">
-            <div class="column hero__text is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
-              <h1 class="title is-1" data-th-if="${heading}" data-th-text="${heading}"></h1>
-              <h2 class="subtitle is-4" data-th-if="${subheading}" data-th-text="${subheading}"></h2>
+        <div class="pkt-container">
+          <div class="pkt-grid">
+            <div class="pkt-cell labs-article-col hero__text">
+              <h1 class="pkt-txt-36 pkt-txt-54--tablet-up" data-th-if="${heading}" data-th-text="${heading}"></h1>
+              <h2 class="pkt-txt-20-light pkt-txt-24-light--tablet-up" data-th-if="${subheading}" data-th-text="${subheading}"></h2>
             </div>
           </div>
         </div>
       </div>
 
       <div class="section is-paddingless-top-bottom" data-th-if="${lead}">
-        <div class="container">
-          <div class="columns">
-            <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
+        <div class="pkt-container">
+          <div class="pkt-grid">
+            <div class="pkt-cell labs-article-col">
               <p class="lead" data-th-utext="${lead}"></p>
             </div>
           </div>
@@ -58,13 +58,13 @@
         class="section"
         data-th-style="${block.gradient} ? ${block.gradient} : ''"
         data-th-classappend="
-                (${block.hasWhiteText} ? 'has-text-white' : '') + 
-                (${block.fill} ? ' has-background section--' + ${block.fill} : '') + 
+                (${block.hasWhiteText} ? 'has-text-white' : '') +
+                (${block.fill} ? ' has-background section--' + ${block.fill} : '') +
                 (${block.gradient} ? 'has-background' : '')
               "
       >
-        <div class="container">
-          <div class="columns">
+        <div class="pkt-container">
+          <div class="pkt-grid">
             <div data-th-replace="/site/snippets/content-blocks.html :: ${block._selected}"></div>
           </div>
         </div>

@@ -2,35 +2,31 @@
   <div @keyup.tab="focusNextItem" @keydown.down.prevent="focusNextItem" @keydown.up.prevent="focusNextItem">
     <section class="search__hero section">
       <ResponsiveImage v-if="mainImage" class="search__heroimg" :image="mainImage" sizes="100vw"></ResponsiveImage>
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-10-tablet is-8-desktop">
-            <div class="field has-addons">
-              <div class="control is-expanded">
-                <input
-                  type="text"
-                  role="search"
-                  :aria-label="t('searchLabel')"
-                  :placeholder="t('inputPlaceHolder')"
-                  class="input is-fullwidth"
-                  v-model="q"
-                  @input="doSearch"
-                  ref="searchField"
-                  @keydown.enter="focusNextItem('first')"
-                />
-              </div>
-              <p class="control">
-                <a class="button is-static">{{ t('searchLabel') }}</a>
-              </p>
+      <div class="pkt-container">
+        <div class="pkt-grid">
+          <div class="pkt-cell labs-search-col">
+            <div class="labs-search-input">
+              <input
+                type="text"
+                role="search"
+                :aria-label="t('searchLabel')"
+                :placeholder="t('inputPlaceHolder')"
+                class="labs-search-input__field"
+                v-model="q"
+                @input="doSearch"
+                ref="searchField"
+                @keydown.enter="focusNextItem('first')"
+              />
+              <span class="labs-search-input__label">{{ t('searchLabel') }}</span>
             </div>
           </div>
         </div>
       </div>
     </section>
     <section class="section">
-      <div class="container">
-        <div class="columns is-centered">
-          <div class="column is-10-tablet is-8-desktop">
+      <div class="pkt-container">
+        <div class="pkt-grid">
+          <div class="pkt-cell labs-search-col">
             <div class="section search__resultlist" role="region" id="search-results" aria-live="polite">
               <div v-if="!hits.length && !q">
                 <!-- Placeholder for no search query -->

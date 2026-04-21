@@ -4,18 +4,18 @@
   </div>
   <div data-th-if="${hasContent}" data-th-remove="tag">
     <section class="section">
-      <div class="container">
+      <div class="pkt-container">
         <div data-th-if="${presentationMode == 'normal'}" data-th-remove="tag">
-          <h2 data-th-if="heading" data-th-text="${heading}" class="title is-3"></h2>
+          <h2 data-th-if="heading" data-th-text="${heading}" class="pkt-txt-22 pkt-txt-30--tablet-up"></h2>
           <div
             data-th-if="${featured}"
             data-th-each="article : ${featured}"
             data-th-with="item=${article}"
             data-th-insert="/site/snippets/article-card.html :: card('big')"
           ></div>
-          <div data-th-if="${articles}" class="columns is-multiline">
+          <div data-th-if="${articles}" class="pkt-grid">
             <div
-              class="column is-6-tablet is-4-desktop"
+              class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up pkt-cell--span4-tablet-big-up"
               data-th-each="article : ${articles}"
               data-th-with="item=${article}"
               data-th-insert="/site/snippets/article-card.html :: card('small')"
@@ -24,12 +24,12 @@
         </div>
 
         <div data-th-if="${presentationMode == 'compact'}" data-th-remove="tag">
-          <h2 data-th-if="${heading}" data-th-text="${heading}" class="title is-3"></h2>
-          <ul data-th-if="${featured}" class="columns is-multiline">
+          <h2 data-th-if="${heading}" data-th-text="${heading}" class="pkt-txt-22 pkt-txt-30--tablet-up"></h2>
+          <ul data-th-if="${featured}" class="pkt-grid">
             <li
               data-th-each="article, i: ${featured}"
               data-th-object="${article}"
-              class="column experiment__tile has-text-white is-12 experiment__tile--large"
+              class="pkt-cell pkt-cell--span12 experiment__tile has-text-white experiment__tile--large"
             >
               <a data-th-href="*{path}">
                 <div class="experiment__imagecontainer">
@@ -76,15 +76,15 @@
                     </li>
                   </ol>
                 </div>
-                <h3 class="title is-3 experiment__heading has-text-white"><span data-th-text="*{heading}"></span></h3>
+                <h3 class="pkt-txt-22 pkt-txt-30--tablet-up experiment__heading has-text-white"><span data-th-text="*{heading}"></span></h3>
               </a>
             </li>
           </ul>
-          <ul data-th-if="${articles}" class="columns is-multiline">
+          <ul data-th-if="${articles}" class="pkt-grid">
             <li
               data-th-each="article, i: ${articles}"
               data-th-object="${article}"
-              class="column experiment__tile has-text-white is-4"
+              class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up pkt-cell--span4-tablet-big-up experiment__tile has-text-white"
             >
               <a data-th-href="*{path}">
                 <div class="experiment__imagecontainer">
@@ -131,7 +131,7 @@
                     </li>
                   </ol>
                 </div>
-                <h3 class="title is-3 experiment__heading has-text-white"><span data-th-text="*{heading}"></span></h3>
+                <h3 class="pkt-txt-22 pkt-txt-30--tablet-up experiment__heading has-text-white"><span data-th-text="*{heading}"></span></h3>
               </a>
             </li>
           </ul>
@@ -139,9 +139,9 @@
 
         <div data-th-if="${paging}" data-th-insert="/site/snippets/paging">Paging</div>
 
-        <div data-th-if="${seeAllLink}" class="columns">
+        <div data-th-if="${seeAllLink}" class="pkt-grid">
           <a
-            class="column has-text-centered is-paddingless-top"
+            class="pkt-cell pkt-cell--span12 pkt-txt-center is-paddingless-top"
             data-th-href="${seeAllLink.href}"
             data-th-text="${seeAllLink.text}"
             >See all</a

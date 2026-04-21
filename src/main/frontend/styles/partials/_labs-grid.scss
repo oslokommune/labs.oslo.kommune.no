@@ -1,0 +1,136 @@
+@use '../variables' as *;
+
+// Punkt's .pkt-container is 100% width below the laptop breakpoint and caps at
+// 80rem (1280px) above it. Bulma used progressive max-widths per breakpoint,
+// which gave article content a more readable line length on 1024-1280px
+// viewports. Restore that behaviour so copy doesn't stretch.
+// Bulma's .container had no padding; all inward spacing came from the
+// enclosing .section. Punkt adds 1rem/2rem padding, so content ends up 32px
+// further inset than before and full-width images appear to start "one column
+// in". Strip the padding so .section alone controls outer spacing, matching
+// the pre-migration behaviour.
+.pkt-container {
+  padding-left: 0;
+  padding-right: 0;
+
+  @media screen and (min-width: $tablet) {
+    max-width: 728px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    max-width: 960px;
+  }
+
+  @media screen and (min-width: $widescreen) {
+    max-width: 1152px;
+  }
+
+  @media screen and (min-width: $fullhd) {
+    max-width: 1344px;
+  }
+}
+
+// Restore --full after the override above, since same-specificity source
+// order would otherwise make our media rules win over Punkt's `--full`.
+.pkt-container--full {
+  max-width: 100%;
+}
+
+// Re-creates the Bulma column-plus-offset patterns the site used before the
+// Punkt migration. Intended as grid-children of `.pkt-grid`.
+
+// Matches: column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen
+.labs-article-col {
+  grid-column: span 12;
+
+  @media screen and (min-width: $tablet) {
+    grid-column: 1 / span 8;
+  }
+
+  @media screen and (min-width: $widescreen) {
+    grid-column: 2 / span 7;
+  }
+
+  @media screen and (min-width: $fullhd) {
+    grid-column: 2 / span 6;
+  }
+}
+
+// Matches: column is-8-tablet is-7-widescreen is-6-fullhd inside columns is-centered
+.labs-article-col--centered {
+  grid-column: span 12;
+
+  @media screen and (min-width: $tablet) {
+    grid-column: 3 / span 8;
+  }
+
+  @media screen and (min-width: $widescreen) {
+    grid-column: 3 / span 7;
+  }
+
+  @media screen and (min-width: $fullhd) {
+    grid-column: 4 / span 6;
+  }
+}
+
+// Matches: column is-3-tablet (caption alongside a labs-article-col image)
+.labs-article-caption {
+  grid-column: span 12;
+
+  @media screen and (min-width: $tablet) {
+    grid-column: span 3;
+  }
+}
+
+// Matches the wider centered column the search page used:
+// column is-10-tablet is-8-desktop inside columns is-centered
+.labs-search-col {
+  grid-column: span 12;
+
+  @media screen and (min-width: $tablet) {
+    grid-column: 2 / span 10;
+  }
+
+  @media screen and (min-width: $desktop) {
+    grid-column: 3 / span 8;
+  }
+}
+
+// Matches: column is-4-tablet is-3-desktop is-offset-1-desktop, rendered
+// alongside a .labs-article-col main column. Position shifts as the main
+// column narrows at widescreen/fullhd so the 1-col offset stays relative to
+// where the main column ends, like Bulma's flex-based offsets.
+.labs-article-sidebar {
+  grid-column: span 12;
+
+  @media screen and (min-width: $tablet) {
+    // Main is cols 1-8, sidebar flows into cols 9-12 (span 4, no offset yet)
+    grid-column: span 4;
+  }
+
+  @media screen and (min-width: $desktop) {
+    // Main is 1-8, sidebar natural = col 9, offset 1 = col 10
+    grid-column: 10 / span 3;
+  }
+
+  @media screen and (min-width: $widescreen) {
+    // Main is 2-8, sidebar natural = col 9, offset 1 = col 10 (same)
+    grid-column: 10 / span 3;
+  }
+
+  @media screen and (min-width: $fullhd) {
+    // Main is 2-7, sidebar natural = col 8, offset 1 = col 9
+    grid-column: 9 / span 3;
+  }
+}
+
+// Match Bulma's column gutter (1.5rem total between columns, 0.75rem either
+// side of a .column). Punkt uses 2rem from tablet-up which makes content
+// columns noticeably narrower.
+.pkt-grid {
+  gap: 1.5rem;
+
+  @media screen and (min-width: $tablet) {
+    gap: 1.5rem;
+  }
+}

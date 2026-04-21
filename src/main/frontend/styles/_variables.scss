@@ -1,3 +1,10 @@
+@forward 'partials/colors';
+
 $gfxPath: '../gfx';
-$fontPath: '../fonts';
 $header-height: 4em;
+
+// Breakpoints (Bulma-compatible to minimize visual regressions)
+$tablet: 769px;
+$desktop: 1024px;
+$widescreen: 1216px;
+$fullhd: 1408px;

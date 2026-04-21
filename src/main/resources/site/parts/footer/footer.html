@@ -1,21 +1,21 @@
 <footer class="footer">
   <div class="section">
-    <div class="container">
-      <div class="columns is-multiline">
-        <div class="column is-7-tablet is-5-desktop footer__column">
-          <h3 data-th-if="${heading}" class="title is-3 has-text-white" data-th-text="${heading}"></h3>
+    <div class="pkt-container">
+      <div class="pkt-grid">
+        <div class="pkt-cell pkt-cell--span12 pkt-cell--span7-tablet-up pkt-cell--span5-tablet-big-up footer__column">
+          <h3 data-th-if="${heading}" class="pkt-txt-22 pkt-txt-30--tablet-up has-text-white" data-th-text="${heading}"></h3>
           <p data-th-if="${description}" data-th-text="${description}"></p>
         </div>
-        <div class="column is-6-tablet is-3-desktop is-offset-1-desktop footer__column">
-          <h4 class="footer__title title is-small" data-th-text="${menuName}"></h4>
+        <div class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up pkt-cell--span3-tablet-big-up footer__column">
+          <h4 class="footer__title is-small" data-th-text="${menuName}"></h4>
           <ul class="footer__content">
             <li data-th-each="element : ${menuElements}">
               <a data-th-href="${element.url}" data-th-text="${element.name}"></a>
             </li>
           </ul>
         </div>
-        <div class="column is-6-tablet is-3-desktop footer__column">
-          <h4 class="footer__title title is-small" data-th-text="${contactTitle}"></h4>
+        <div class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up pkt-cell--span3-tablet-big-up footer__column">
+          <h4 class="footer__title is-small" data-th-text="${contactTitle}"></h4>
           <ul class="footer__content ul">
             <li data-th-if="${contactAddress}"><em class="icon icon--map"></em><span data-th-text="${contactAddress}"></span></li>
             <li data-th-if="${contactPhone}"><em class="icon icon--phone"></em><span data-th-text="${contactPhone}"></span></li>
@@ -27,12 +27,12 @@
       </div>
     </div>
   </div>
-  <section class="section footer__bottom has-background">
-    <div class="container">
-      <p data-th-if="${copyright}" class="has-text-centered">
+  <section class="section footer__bottom">
+    <div class="pkt-container">
+      <p data-th-if="${copyright}" class="pkt-txt-center">
         <small data-th-text="${copyright}"></small>
       </p>
-      <p data-th-if="${appVersion}" class="has-text-centered">
+      <p data-th-if="${appVersion}" class="pkt-txt-center">
         <small data-th-text="${portal.localize({'_key=parts.footer.appVersion'})}">App version</small>
         <small data-th-text="${appVersion}">Unknown</small>
       </p>

@@ -1,8 +1,8 @@
 <section class="section home-header">
-  <div class="container">
-    <div class="columns is-multiline home-header__columns">
+  <div class="pkt-container">
+    <div class="pkt-grid home-header__columns">
       <img
-        class="column home-header__image-column is-half"
+        class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up home-header__image-column"
         data-th-object="${image}"
         data-th-width="*{width}"
         data-th-height="*{height}"
@@ -12,22 +12,22 @@
         data-th-sizes="'(max-width:768px) 95vw, (max-width:1087px) 512px, 660px'"
       />
 
-      <div class="column home-header__text-column has-text-centered-mobile">
-        <h1 data-th-if="${heading}" class="title is-1" data-th-text="${heading}"></h1>
+      <div class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up home-header__text-column">
+        <h1 data-th-if="${heading}" class="pkt-txt-36 pkt-txt-54--tablet-up" data-th-text="${heading}"></h1>
         <p data-th-if="${subheading}" data-th-text="${subheading}"></p>
         <p class="home-header__links">
           <a
             data-th-if="${primary}"
             data-th-href="${primary.url}"
             data-th-text="${primary.label}"
-            class="button is-primary"
+            class="labs-button labs-button--primary"
             >Call to Action</a
           >
           <a
             data-th-if="${secondary}"
             data-th-href="${secondary.url}"
             data-th-text="${secondary.label}"
-            class="button is-primary is-outlined"
+            class="labs-button"
             >Call to Action</a
           >
         </p>

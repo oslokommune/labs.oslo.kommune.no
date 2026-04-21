@@ -1,4 +1,4 @@
-<header class="header header--top has-background-white" id="js-header" role="menubar">
+<header class="header header--top" id="js-header" role="menubar">
   <a role="menuitem" data-th-href="${sitePath}" class="header__branding" z-index="1"><strong
       data-th-text="${siteName}">Site
       name</strong></a>
@@ -44,7 +44,7 @@
                 (menuItem.inPath ? ' in-path' : '') +
                 (menuItem.isActive ? ' active' : '')
               }">
-          <a href="#" class="title is-3 is-spaced" data-th-href="${portal.pageUrl({'_path=' + menuItem.path})}"
+          <a href="#" class="pkt-txt-22 pkt-txt-30--tablet-up" data-th-href="${portal.pageUrl({'_path=' + menuItem.path})}"
             data-th-text="${menuItem.menuName} ?: ${menuItem.displayName}"></a>
         </li>
       </ul>

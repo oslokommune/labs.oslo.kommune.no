@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use '../variables' as *;
 
 .header {
   position: fixed;
@@ -263,7 +264,11 @@ main.main {
   &__results {
     background: color.adjust($color-blue-dark, $lightness: -5%);
 
-    a {
+    // Punkt sets `a:visited:not(.pkt-*) { color: inherit }` with specificity
+    // (0,4,1). Match that specificity so visited links stay white on the dark
+    // dropdown background.
+    a,
+    a:visited:not(.pkt-linkcard):not(.pkt-btn):not(.pkt-tabs__link) {
       color: white;
     }
   }
@@ -271,7 +276,8 @@ main.main {
   &__item {
     &--hitcount {
       border-top: 1px solid rgba(white, 0.2);
-      a {
+      a,
+      a:visited:not(.pkt-linkcard):not(.pkt-btn):not(.pkt-tabs__link) {
         padding: 0.025;
         color: rgba(white, 0.8);
       }

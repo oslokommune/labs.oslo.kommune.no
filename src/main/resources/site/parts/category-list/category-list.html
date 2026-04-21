@@ -1,14 +1,14 @@
 <section class="section is-paddingless-top">
-  <div class="container">
-    <div class="columns is-multiline category-list">
-      <div class="column is-6-tablet category-list__item" data-th-each="category : ${categories}" data-th-object="${category}">
+  <div class="pkt-container">
+    <div class="pkt-grid category-list">
+      <div class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up category-list__item" data-th-each="category : ${categories}" data-th-object="${category}">
         <div class="category-list__imagewrapper" data-th-if="*{image}">
           <a data-th-href="*{url}">
             <img loading="lazy" data-th-src="*{image.src}" data-th-srcset="*{image.srcSet}" data-th-alt="*{image.alt}" sizes="160px" class="category-list__image" />
           </a>
         </div>
         <div class="category-list__text">
-          <h2 class="category-list__heading title is-4 is-marginless">
+          <h2 class="category-list__heading pkt-txt-18-medium pkt-txt-24-medium--tablet-up">
             <a data-th-href="*{url}" data-th-text="*{heading}"></a>
           </h2>
           <p class="category-list__lead" data-th-text="*{lead}"></p>

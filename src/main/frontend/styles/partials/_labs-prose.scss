@@ -1,0 +1,221 @@
+@use '../variables' as *;
+
+// Mirrors Bulma's `.content` styling for editor-authored article bodies.
+// Scopes list markers, tighter margins, heading rhythm and nested-list
+// decorations to this container so they don't leak into the rest of the site.
+
+.labs-prose {
+  line-height: 1.5;
+
+  // Block rhythm: every block element gets 1em spacing, except the last.
+  p,
+  dl,
+  ol,
+  ul,
+  blockquote,
+  pre,
+  table {
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
+  // Headings
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+    line-height: 1.1em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+
+    &:not(:first-child) {
+      margin-top: 1em;
+    }
+  }
+
+  h1 {
+    font-size: 1.8em;
+    line-height: 1.1em;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    font-size: 1.65em;
+    line-height: 1.3em;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-size: 1.5em;
+    line-height: 1.4em;
+    letter-spacing: -0.005em;
+  }
+
+  h4 {
+    font-size: 1.3em;
+    line-height: 1.4em;
+  }
+
+  h5 {
+    font-size: 1.1em;
+    line-height: 1.4em;
+  }
+
+  h6 {
+    font-size: 1em;
+    line-height: 1.4em;
+  }
+
+  // Lists with markers (re-enabling the global reset)
+  ul {
+    list-style: disc outside;
+    margin-left: 2em;
+  }
+
+  ol {
+    list-style: decimal outside;
+    margin-left: 2em;
+  }
+
+  ul ul {
+    list-style-type: circle;
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+  }
+
+  ul ul ul {
+    list-style-type: square;
+  }
+
+  ol:not(:first-child),
+  ul:not(:first-child) {
+    margin-top: 1em;
+  }
+
+  li + li {
+    margin-top: 0.25em;
+  }
+
+  dd {
+    margin-left: 2em;
+  }
+
+  // Figures
+  figure {
+    margin-left: 0;
+    margin-right: 0;
+
+    figcaption {
+      font-size: 0.8em;
+      font-style: normal;
+      line-height: 1.2em;
+      font-weight: 500;
+      margin-top: 0;
+      padding-top: 0;
+      color: $color-grayscale-60;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+
+    &:not(:first-child) {
+      margin-top: 1em;
+    }
+  }
+
+  figure:not([class]) {
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: center;
+
+    &:not(:first-child) {
+      margin-top: 2em;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2em;
+    }
+
+    img {
+      display: inline-block;
+    }
+
+    figcaption {
+      font-style: italic;
+    }
+  }
+
+  // Blockquote (when rendered from CMS without the .quote class)
+  blockquote {
+    background-color: rgba(0, 0, 0, 0.03);
+    border-left: 4px solid $color-grayscale-20;
+    padding: 1em 1.25em;
+  }
+
+  // Code
+  pre {
+    // Inherits the global pre styling; just allow it to scroll horizontally
+    // inside narrow article columns.
+    overflow-x: auto;
+  }
+
+  // Small adjustments
+  sup,
+  sub {
+    font-size: 75%;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  a,
+  a:visited:not(.pkt-linkcard):not(.pkt-btn):not(.pkt-tabs__link) {
+    color: $link;
+    text-decoration: underline;
+  }
+
+  table {
+    width: 100%;
+
+    th,
+    td {
+      border: 1px solid $color-grey-lighter;
+      padding: 0.5em 0.75em;
+      vertical-align: top;
+    }
+
+    th {
+      font-weight: 600;
+      text-align: left;
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+  }
+}
+
+.has-text-white .labs-prose,
+.labs-prose.has-text-white {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: white;
+  }
+
+  strong {
+    color: white !important;
+  }
+
+  a,
+  a:visited:not(.pkt-linkcard):not(.pkt-btn):not(.pkt-tabs__link) {
+    color: white;
+    text-decoration: underline;
+  }
+}
