@@ -65,6 +65,14 @@ module.exports = (env, argv) => {
               loader: 'sass-loader',
               options: {
                 sourceMap: PROD_MODE ? false : true,
+                sassOptions: {
+                  // Silences "The Sass if() syntax is deprecated" from Bulma
+                  // 1.0.4's utilities/functions.scss and utilities/mixins.scss.
+                  // Fix is approved upstream in
+                  // https://github.com/jgthms/bulma/pull/4028 but unmerged as
+                  // of Apr 2026. Remove this when Bulma ships the fix.
+                  silenceDeprecations: ['if-function'],
+                },
               },
             },
           ],
