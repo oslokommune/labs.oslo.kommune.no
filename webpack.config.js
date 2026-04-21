@@ -1,7 +1,6 @@
 const path = require('path')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = (env, argv) => {
@@ -80,23 +79,6 @@ module.exports = (env, argv) => {
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
         filename: 'styles/[name].css',
-      }),
-      new CopyWebpackPlugin({
-        patterns: [
-          ({
-            from: './src/main/frontend/gfx',
-            to: 'gfx',
-            ignore: ['.*'],
-          },
-          {
-            from: './node_modules/lazysizes/lazysizes.min.js',
-            to: 'scripts',
-          },
-          {
-            from: './node_modules/lazysizes/plugins/blur-up/ls.blur-up.min.js',
-            to: 'scripts',
-          }),
-        ],
       }),
     ],
     optimization: {
