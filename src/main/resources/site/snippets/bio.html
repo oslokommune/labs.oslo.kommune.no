@@ -38,6 +38,7 @@
       <video data-th-if="*{video}" class="bio__video" data-th-src="*{video}" loop muted></video>
 
       <img
+        loading="lazy"
         data-th-unless="*{video}"
         data-th-if="*{image}"
         data-th-width="*{image.width}"
