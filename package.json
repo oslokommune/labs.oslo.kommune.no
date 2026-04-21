@@ -52,6 +52,6 @@
     "photoswipe": "^5.4.4",
     "photoswipe-dynamic-caption-plugin": "^1.2.7",
     "vue-i18n": "^11.3.2",
-    "vue3-google-map": "^0.21.0"
+    "vue3-google-map": "^0.27.1"
   }
 }
