@@ -30,7 +30,6 @@ module.exports = (env, argv) => {
             options: {
               babelrc: false,
               presets: [['@babel/preset-env']],
-              plugins: ['@babel/plugin-syntax-dynamic-import'],
             },
           },
         },
