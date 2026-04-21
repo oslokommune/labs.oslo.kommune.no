@@ -5,17 +5,25 @@ plugins {
     id 'org.ajoberstar.grgit' version '5.2.1'
 }
 
+def gitHash = {
+    try {
+        return grgit.head().abbreviatedId
+    } catch (Exception ignored) {
+        return 'unknown'
+    }
+}()
+
 app {
     name = "${appName}"
     displayName = "${appDisplayName}"
     vendorName = "${vendorName}"
     vendorUrl = "${vendorUrl}"
     systemVersion = "${xpVersion}"
-    version = "${version}.${grgit.head().abbreviatedId}"
+    version = "${version}.${gitHash}"
 }
 
 node {
-    version = '20.11.1'
+    version = '24.15.0'
     download = true
 }
 
@@ -37,16 +45,33 @@ repositories {
     xp.enonicRepo()
 }
 
+def webpackInputs = [
+        'src/main/frontend',
+        'webpack.config.js',
+        'package.json',
+        'package-lock.json'
+]
+
 task webpackProd(type: NpmTask, dependsOn: 'npmInstall') {
     args = ['run', 'build']
+    inputs.files(webpackInputs).withPathSensitivity(PathSensitivity.RELATIVE)
+    outputs.dir("$buildDir/resources/main/assets")
 }
 
 task webpackDev(type: NpmTask, dependsOn: 'npmInstall') {
     args = ['run', 'dev']
+    inputs.files(webpackInputs).withPathSensitivity(PathSensitivity.RELATIVE)
+    outputs.dir("$buildDir/resources/main/assets")
 }
 
-if (project.hasProperty( 'dev' )) {
-    jar.dependsOn += webpackDev
-} else {
-    jar.dependsOn += webpackProd
+// Webpack output lands in build/resources/main/assets, so hook it into processResources rather
+// than jar — that way live-sync flows (./gradlew processResources, continuous builds) also
+// keep the assets up to date. Pass -PskipWebpack to disable this entirely when `npm run watch`
+// is already writing assets in parallel, so the frontend isn't built twice.
+if (!project.hasProperty('skipWebpack')) {
+    if (project.hasProperty('dev')) {
+        processResources.dependsOn webpackDev
+    } else {
+        processResources.dependsOn webpackProd
+    }
 }

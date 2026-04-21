@@ -1,13 +1,6 @@
 var portal = require('/lib/xp/portal')
 var moment = require('/assets/moment/2.24.0/moment.js')
 
-exports.getServerName = function() {
-  // You set servername in config/system.properties with the key xp.name
-  return Java.type('com.enonic.xp.server.ServerInfo')
-    .get()
-    .getName()
-}
-
 exports.paragraphify = function(content) {
   var safeContent = portal.sanitizeHtml(content)
   return '<p>' + safeContent.replace(/\n([ \t]*\n)+/g, '</p><p>').replace(/\n/g, '<br />') + '</p>'

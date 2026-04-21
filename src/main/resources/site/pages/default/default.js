@@ -1,6 +1,5 @@
 const portal = require('/lib/xp/portal')
 const thymeleaf = require('/lib/thymeleaf')
-const util = require('/lib/labs/util.js')
 const menuLib = require('/lib/labs/menu.js')
 
 exports.get = function (req) {
@@ -40,14 +39,9 @@ exports.get = function (req) {
 
   model.menuItems = menuLib.getMenuItems(content._path)
 
-  const serverName = util.getServerName().toLowerCase()
-  const isProd = serverName === 'production' || serverName === 'prod' || serverName === 'test'
-  const stylesPath = isProd ? 'styles/main.min.css' : 'styles/main.css'
-  const vendorScriptsPath = isProd ? 'scripts/vendors.min.js' : 'scripts/vendors.js'
-  const scriptsPath = isProd ? 'scripts/main.min.js' : 'scripts/main.js'
-  const vendorScripts = `<script defer src='${portal.assetUrl({ path: vendorScriptsPath })}'></script>`
-  const scripts = `<script defer src='${portal.assetUrl({ path: scriptsPath })}'></script>`
-  const styles = `<link rel='stylesheet' href='${portal.assetUrl({ path: stylesPath })}'>`
+  const styles = `<link rel='stylesheet' href='${portal.assetUrl({ path: 'styles/main.css' })}'>`
+  const vendorScripts = `<script defer src='${portal.assetUrl({ path: 'scripts/vendors.js' })}'></script>`
+  const scripts = `<script defer src='${portal.assetUrl({ path: 'scripts/main.js' })}'></script>`
 
   const view = resolve('default.html')
   const body = thymeleaf.render(view, model)

@@ -15,9 +15,10 @@ module.exports = (env, argv) => {
       main: './src/main/frontend/scripts/main.js',
     },
     output: {
-      filename: PROD_MODE ? 'scripts/[name].min.js' : 'scripts/[name].js',
-      chunkFilename: PROD_MODE ? 'scripts/[name].bundle.min.js' : 'scripts/[name].bundle.js',
+      filename: 'scripts/[name].js',
+      chunkFilename: 'scripts/[name].bundle.js',
       path: path.resolve(__dirname, 'build/resources/main/assets'),
+      clean: true,
     },
     module: {
       rules: [
@@ -84,7 +85,7 @@ module.exports = (env, argv) => {
     plugins: [
       new VueLoaderPlugin(),
       new MiniCssExtractPlugin({
-        filename: PROD_MODE ? 'styles/[name].min.css' : 'styles/[name].css',
+        filename: 'styles/[name].css',
       }),
       new CopyWebpackPlugin({
         patterns: [
