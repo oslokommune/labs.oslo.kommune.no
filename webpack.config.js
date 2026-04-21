@@ -112,7 +112,7 @@ module.exports = (env, argv) => {
       },
     },
   }
-  if (env === 'analyze') {
+  if (env.analyze) {
     config.plugins.push(new BundleAnalyzerPlugin())
   }
   return config
