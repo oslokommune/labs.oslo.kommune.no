@@ -2,10 +2,15 @@
 
 @use 'variables' as *;
 
+// Pull in Punkt modularly: normalise + base only. Elements (inputs, buttons,
+// tables) are class-based (.pkt-input / .pkt-btn) so omitting them doesn't
+// affect bare <input>/<button> styling, and we're not using any Punkt
+// components (modal, tabs, accordion, etc.).
 @use '@oslokommune/punkt-css/dist/scss/abstracts/variables' with (
   $font-path: 'https://punkt-cdn.oslo.kommune.no/latest'
 );
-@use '@oslokommune/punkt-css/dist/scss/pkt';
+@use '@oslokommune/punkt-css/dist/scss/pkt-normalise';
+@use '@oslokommune/punkt-css/dist/scss/pkt-base';
 
 @use 'helpers/icons';
 @use 'partials/fonts';
@@ -208,8 +213,8 @@ img {
 }
 
 .is-paddingless-top-bottom {
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .is-paddingless-top {

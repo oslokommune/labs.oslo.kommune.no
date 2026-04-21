@@ -1,8 +1,15 @@
 @use '../variables' as *;
 
 .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
   background-repeat: no-repeat;
   background-position: 50% 50%;
+  background-size: contain;
 
   &--calendar {
     background-image: url($gfxPath+'/icons/calendar-alt.svg');

@@ -172,3 +172,26 @@ h6 {
   font-size: 1.3em;
   line-height: 1.4em;
 }
+
+// Bulma text-colour helpers. Used on dark-overlay cards (experiment__tile)
+// and has-text-white article sections. !important is intentional - matches
+// Bulma's own definitions.
+.has-text-white {
+  color: white !important;
+}
+
+.has-text-black {
+  color: $color-black !important;
+}
+
+.has-text-centered {
+  text-align: center !important;
+}
+
+.has-text-left {
+  text-align: left !important;
+}
+
+.has-text-right {
+  text-align: right !important;
+}
