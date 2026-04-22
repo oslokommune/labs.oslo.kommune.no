@@ -6,12 +6,10 @@
           {{ item.type }}
         </div>
         <div class="search-list-item__date">
-          <span class="icon icon--calendar"></span>
           <time :datetime="item.date.iso">{{ item.date.pretty }}</time>
         </div>
         <div class="search-list-item__authors">
           <div class="search-list-item__author" v-for="(author, i) in item.authors" :key="i">
-            <span class="icon icon--user"></span>
             <a :href="author.url">{{ author.name }}</a>
           </div>
         </div>
