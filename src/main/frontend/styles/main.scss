@@ -385,6 +385,23 @@ img {
   }
 }
 
+.paging {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.paging__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.paging__item {
+  margin: 0;
+}
+
 .app-cookie-line {
   padding-top: 1em;
   z-index: 1;

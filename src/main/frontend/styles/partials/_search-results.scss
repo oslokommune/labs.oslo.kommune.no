@@ -83,6 +83,7 @@
     flex-direction: row;
     font-size: 0.85em;
     align-items: center;
+    gap: 1rem;
     margin-bottom: 0.5em;
   }
 
@@ -113,6 +114,7 @@
   &__authors {
     display: flex;
     align-items: center;
+    gap: 0.375em;
   }
 
   &__text,

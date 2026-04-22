@@ -1,14 +1,14 @@
-<div data-th-fragment="paging" data-th-if="${paging}" data-th-object="${paging}" class="paging pkt-container">
-  <ol class="pkt-grid paging__list">
-    <li data-th-if="*{prev}" class="pkt-cell paging__item">
+<div data-th-fragment="paging" data-th-if="${paging}" data-th-object="${paging}" class="paging">
+  <ol class="paging__list">
+    <li data-th-if="*{prev}" class="paging__item">
       <a data-th-href="*{prev}">
         [[${portal.localize({'_key=txt.previousPage'})}]]
       </a>
     </li>
-    <li data-th-if="*{currentPage && totalPages}" class="pkt-cell paging__item">
+    <li data-th-if="*{currentPage && totalPages}" class="paging__item">
       [[*{currentPage}]] / [[*{totalPages}]]
     </li>
-    <li data-th-if="*{next}" class="pkt-cell paging__item">
+    <li data-th-if="*{next}" class="paging__item">
       <a data-th-href="*{next}">
         [[${portal.localize({'_key=txt.nextPage'})}]]
       </a>
