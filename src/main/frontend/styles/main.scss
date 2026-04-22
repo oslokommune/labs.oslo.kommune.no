@@ -1,40 +1,39 @@
-@charset "utf-8";
-/*! bulma.io v0.7.2 | MIT License | github.com/jgthms/bulma */
+@charset 'utf-8';
 
-@import 'variables';
-@import 'helpers/icons';
-@import 'partials/fonts';
-@import 'partials/colors';
+@use 'variables' as *;
 
-@import '../../../../node_modules/bulma/sass/index';
-/*
-@import '../../../../node_modules/bulma/sass/utilities/_all';
-@import '../../../../node_modules/bulma/sass/base/_all';
-@import '../../../../node_modules/bulma/sass/elements/_all';
-@import '../../../../node_modules/bulma/sass/components/_all';
-@import '../../../../node_modules/bulma/sass/grid/_all';
-@import '../../../../node_modules/bulma/sass/layout/_all';
-@import '../../../../node_modules/bulma/sass/form/_all';
-*/
-@import 'custom-bulma';
+// Pull in Punkt modularly: normalise + base only. Elements (inputs, buttons,
+// tables) are class-based (.pkt-input / .pkt-btn) so omitting them doesn't
+// affect bare <input>/<button> styling, and we're not using any Punkt
+// components (modal, tabs, accordion, etc.).
+@use '@oslokommune/punkt-css/dist/scss/abstracts/variables' with (
+  $font-path: 'https://punkt-cdn.oslo.kommune.no/latest'
+);
+@use '@oslokommune/punkt-css/dist/scss/pkt-normalise';
+@use '@oslokommune/punkt-css/dist/scss/pkt-base';
 
-@import '../../../../node_modules/photoswipe/dist/photoswipe.css';
-@import '../../../../node_modules/photoswipe-dynamic-caption-plugin/photoswipe-dynamic-caption-plugin.css';
-@import 'custom-photoswipe';
+@use 'helpers/icons';
+@use 'partials/fonts';
 
-@import 'partials/hero';
-@import 'partials/navbar';
-@import 'partials/search-results';
-@import 'partials/footer';
-@import 'partials/block-images';
-@import 'partials/block-links';
-@import 'partials/block-videos';
-@import 'partials/card';
-@import 'partials/bio';
-@import 'partials/categories';
-@import 'partials/collection';
+@use 'custom-photoswipe';
 
-@import 'partials/shame';
+@use 'partials/hero';
+@use 'partials/navbar';
+@use 'partials/search-results';
+@use 'partials/footer';
+@use 'partials/block-images';
+@use 'partials/block-links';
+@use 'partials/block-videos';
+@use 'partials/card';
+@use 'partials/bio';
+@use 'partials/categories';
+@use 'partials/collection';
+@use 'partials/labs-prose';
+@use 'partials/labs-button';
+@use 'partials/labs-grid';
+@use 'partials/labs-typography';
+
+@use 'partials/shame';
 
 ::placeholder {
   color: $color-grayscale-50;
@@ -45,6 +44,16 @@
 }
 
 .section {
+  padding: 1.5rem;
+
+  @media screen and (min-width: $fullhd) {
+    padding: 2rem 1.5rem;
+  }
+
+  & + section {
+    padding-top: 1.5rem;
+  }
+
   &--blue {
     background-color: $color-blue;
   }
@@ -110,24 +119,57 @@
   }
 }
 
-// Responsive text sizes
+.section:not(.has-background) + .section:not(.has-background) {
+  padding-top: 0;
+}
+
 html,
 body {
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: $tablet) {
     font-size: 18px;
   }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: $desktop) {
     font-size: 19px;
   }
 
-  @media screen and (min-width: 1408px) {
+  @media screen and (min-width: $fullhd) {
     font-size: 20px;
   }
 }
 
 html {
   scroll-padding-top: 5rem;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: 'Oslo Sans', 'Oslo', Helvetica, Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+// Punkt's CSS Grid stretches cells to match row height by default, which
+// blows out images and naturally-sized content. Opt back to content height.
+.pkt-grid > .pkt-cell {
+  align-self: start;
 }
 
 .quote {
@@ -171,8 +213,8 @@ html {
 }
 
 .is-paddingless-top-bottom {
-  padding-top: 0.25em;
-  padding-bottom: 0.25em;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .is-paddingless-top {
@@ -225,10 +267,6 @@ html {
 
   &__text-column {
     align-self: center;
-
-    @media screen and (min-width: $tablet) {
-      // padding: 0;
-    }
   }
 
   &__image-column {
@@ -238,6 +276,7 @@ html {
 
   &__links {
     margin-top: 2em;
+
     & a:not(:only-of-type) {
       display: inline-block;
       margin-top: 0.28rem;
@@ -249,7 +288,6 @@ html {
   $p: &;
 
   &__tile {
-    //height: 24em;
     position: relative;
 
     &:hover #{$p}__image {
@@ -268,9 +306,9 @@ html {
     }
 
     &__video-icon {
-      width: 3rem; /* 64px */
-      height: 3rem; /* 64px */
-      color: #222; /* Fargen på play-symbolet */
+      width: 3rem;
+      height: 3rem;
+      color: #222;
     }
   }
 
@@ -288,7 +326,6 @@ html {
     text-transform: uppercase;
     font-weight: 700;
     color: white;
-
     overflow: visible;
 
     & span {
@@ -302,10 +339,7 @@ html {
     bottom: 2rem;
     width: calc(100% - 4rem);
     max-width: 20em;
-
-    &.title.is-3 {
-      font-size: 1.15em;
-    }
+    font-size: 1.15em;
 
     & {
       overflow: visible;
@@ -349,11 +383,6 @@ html {
     font-size: 0.7em;
     top: -2rem;
   }
-}
-
-// Remove padding between white content blocks
-.section:not(.has-background) + .section:not(.has-background) {
-  padding-top: 0;
 }
 
 .app-cookie-line {

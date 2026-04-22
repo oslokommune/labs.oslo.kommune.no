@@ -1,3 +1,7 @@
-.pswp-caption-content {
+// photoswipe-dynamic-caption-plugin hides .pswp-caption-content by default so
+// it only shows up inside the lightbox. On this site we want the caption to
+// appear in the article flow as well. Scoping to figcaption bumps specificity
+// above the plugin's generic rule regardless of CSS import order.
+figcaption.pswp-caption-content {
   display: block;
 }

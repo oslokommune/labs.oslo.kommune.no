@@ -6,10 +6,10 @@
     <article class="video">
       <header>
         <div class="section is-paddingless-top-bottom">
-          <div class="container">
-            <div class="columns">
-              <div class="column is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen">
-                <h1 class="title is-1" data-th-text="${name}"></h1>
+          <div class="pkt-container">
+            <div class="pkt-grid">
+              <div class="pkt-cell labs-article-col">
+                <h1 class="pkt-txt-36 pkt-txt-54--tablet-up" data-th-text="${name}"></h1>
                 <ul class="dateline">
                   <li class="dateline__date">
                     <time
@@ -55,9 +55,9 @@
         </div>
       </header>
       <div class="section">
-        <div class="container">
-          <div class="columns">
-            <div class="column o-video">
+        <div class="pkt-container">
+          <div class="pkt-grid">
+            <div class="pkt-cell pkt-cell--span12 o-video">
               <div class="o-video-container" data-th-style="'position: relative; padding-top:' + ${paddingTop} + ';'">
                 <iframe
                   data-th-src="'https://player.vimeo.com/video/' + ${id} + '?' + (${secret} ? 'h=' + ${secret} : '') + '&texttrack=no&color=da28d3&title=0&byline=0&portrait=0'"

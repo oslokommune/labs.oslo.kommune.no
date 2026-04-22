@@ -1,11 +1,11 @@
 <div data-th-remove="tag">
   <div data-th-if="${!live && !hasContent}"><h3>Related articles part</h3></div>
-  <div data-th-if="${hasContent}" class="section has-background-light">
-    <div class="container">
+  <div data-th-if="${hasContent}" class="section section--grey-lighter">
+    <div class="pkt-container">
       <h3 class="related__tag" data-th-text="${heading}">Heading</h3>
-      <div class="columns is-multiline">
+      <div class="pkt-grid">
         <div
-          class="column is-6-tablet is-4-desktop"
+          class="pkt-cell pkt-cell--span12 pkt-cell--span6-tablet-up pkt-cell--span4-tablet-big-up"
           data-th-each="item : ${hits}"
           data-th-with="item=${item.data}"
           data-th-insert="/site/snippets/article-card.html :: card('small')"

@@ -7,8 +7,8 @@
 <!-- /* Quote */ -->
 <div data-th-fragment="ctbQuote" data-th-remove="tag">
   <div
-    class="column"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <blockquote class="quote">
       <p data-th-utext="${block.ctbQuote.quoteText}"></p>
@@ -27,8 +27,8 @@
 <!-- /* Textblock */ -->
 <div data-th-fragment="ctbText" data-th-remove="tag">
   <div
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell labs-prose"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <div data-th-utext="${block.ctbText.content}" data-th-remove="tag"></div>
   </div>
@@ -44,15 +44,15 @@
     data-th-zoom="${block.ctbMap.mapZoom}"
     data-th-markers="${block.ctbMap.mapMarkers}"
     data-th-geoJSON="${block.ctbMap.mapGeoJSON}"
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell labs-prose"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
-    <div class="columns">
+    <div class="pkt-grid">
       <div
-        class="column is-paddingless-top-bottom"
-        data-th-classappend="${block.isFullWidth} ? ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen' : ''"
+        class="pkt-cell is-paddingless-top-bottom"
+        data-th-classappend="${block.isFullWidth} ? 'labs-article-col' : 'pkt-cell--span12'"
       >
-        <h3 class="title is-marginless" data-th-text="${block.ctbMap.mapTitle}"></h3>
+        <h3 data-th-text="${block.ctbMap.mapTitle}"></h3>
       </div>
     </div>
     <script data-th-inline="javascript">
@@ -71,8 +71,8 @@
 <!-- /* Video */ -->
 <div data-th-fragment="ctbVideo" data-th-remove="tag">
   <div
-    class="column"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <div data-th-style="'position: relative; padding-top:' + ${block.ctbVideo.paddingTop} + ';'">
       <iframe
@@ -94,8 +94,8 @@
 <!-- /* Videos */ -->
 <div data-th-fragment="ctbVideos" data-th-remove="tag">
   <div
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell labs-prose"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <div data-th-replace="block-videos.html(data=${block.ctbVideos})" data-th-remove="tag"></div>
   </div>
@@ -106,8 +106,8 @@
 <!-- /* Links */ -->
 <div data-th-fragment="ctbLinks" data-th-remove="tag">
   <div
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell labs-prose"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <div data-th-replace="block-links.html(data=${block.ctbLinks})" data-th-remove="tag"></div>
   </div>
@@ -118,8 +118,8 @@
 <!-- /* Collection */ -->
 <div data-th-fragment="ctbCollection" data-th-remove="tag">
   <div
-    class="column content"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell labs-prose"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <div data-th-replace="block-links.html(data=${block.ctbCollection})" data-th-remove="tag"></div>
   </div>
@@ -131,7 +131,7 @@
 <div
   data-th-fragment="ctbImages"
   data-th-if="${block.ctbImages.images}"
-  class="column"
+  class="pkt-cell pkt-cell--span12"
   data-th-insert="block-images.html(data=${block.ctbImages})"
 ></div>
 
@@ -139,15 +139,15 @@
 <div
   data-th-fragment="ctbGallery"
   data-th-if="${block.ctbGallery.galleryImages}"
-  class="column"
+  class="pkt-cell pkt-cell--span12"
   data-th-insert="block-gallery.html(data=${block.ctbGallery})"
 ></div>
 
 <!-- /* Podcast */ -->
 <div data-th-fragment="ctbPodcast" data-th-remove="tag">
   <div
-    class="column"
-    data-th-classappend="${block.isFullWidth} ? '' : ' is-8-tablet is-7-widescreen is-6-fullhd is-offset-1-widescreen'"
+    class="pkt-cell"
+    data-th-classappend="${block.isFullWidth} ? 'pkt-cell--span12' : 'labs-article-col'"
   >
     <iframe
       data-th-src="'https://open.spotify.com/embed-podcast/episode/' + ${block.ctbPodcast.id}"
@@ -166,11 +166,11 @@
 <div
   data-th-fragment="sidebarbox"
   data-th-if="${block.sidebarbox}"
-  class="column is-4-tablet is-3-desktop is-offset-1-desktop"
+  class="pkt-cell labs-article-sidebar"
 >
   <div class="sidebarbox section">
     <div class="icon sidebarbox__icon" data-th-classappend="'icon-sidebar--'+${block.sidebarbox.icon}"></div>
-    <div class="sidebarbox__content content" data-th-utext="${block.sidebarbox.contents}"></div>
+    <div class="sidebarbox__content labs-prose" data-th-utext="${block.sidebarbox.contents}"></div>
   </div>
 </div>
 
@@ -178,7 +178,7 @@
 <div
   data-th-fragment="sidebarImage"
   data-th-if="${block.sidebarImage}"
-  class="column is-4-tablet is-3-desktop is-offset-1-desktop"
+  class="pkt-cell labs-article-sidebar"
 >
   <div class="sidebarImage">
     <a
@@ -203,7 +203,7 @@
         >
           Caption
         </figcaption>
-        <figcaption data-th-if="*{caption}" class="content pswp-caption-content" data-th-utext="*{caption}">
+        <figcaption data-th-if="*{caption}" class="labs-prose pswp-caption-content" data-th-utext="*{caption}">
           Caption
         </figcaption>
       </figure></a

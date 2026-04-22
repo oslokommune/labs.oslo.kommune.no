@@ -9,7 +9,7 @@ export default function init() {
   const headers = [...article.querySelectorAll('h2:not(.subtitle), h3:not(.js-link), h4')]
 
   if (headers.length >= minCount) {
-    container.classList.remove('is-hidden')
+    container.classList.remove('pkt-hide')
   }
 
   headers.forEach((header) => {

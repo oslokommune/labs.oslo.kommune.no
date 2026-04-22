@@ -1,6 +1,12 @@
+@use '../variables' as *;
+
 .o-block-links {
-  h2.title {
+  h2 {
     margin-bottom: 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1.5rem;
   }
 
   ul {
@@ -10,7 +16,7 @@
   & .o-icon-link__link {
     display: flex;
     margin-right: 1rem;
-    color: $body-color;
+    color: $color-black;
   }
 
   & .o-icon-link__link-icon {
@@ -18,11 +24,12 @@
   }
 
   & .o-icon-link__link-text {
-    .title {
+    h3 {
       color: $link;
       margin-bottom: 0.25rem;
     }
-    .title:hover {
+
+    h3:hover {
       text-decoration: underline;
     }
   }

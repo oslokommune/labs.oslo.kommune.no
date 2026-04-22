@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 .hero-foot {
   @media screen and (min-width: $desktop) {
     .columns {
@@ -288,7 +290,7 @@
     display: block;
     width: 100%;
     padding: 0.25em 0;
-    color: $text;
+    color: $color-black;
     text-decoration: underline;
   }
 

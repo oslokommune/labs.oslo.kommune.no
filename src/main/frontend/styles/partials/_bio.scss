@@ -1,3 +1,5 @@
+@use '../variables' as *;
+
 $bioImageSizeMobile: 5em;
 $bioImageSizeTablet: 9em;
 $bioImageSizeDesktop: 12em;
@@ -5,6 +7,9 @@ $bioImageSizeDesktop: 12em;
 .bio {
   &__author {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
     margin-bottom: 2em !important;
   }
 
